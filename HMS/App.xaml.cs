@@ -34,7 +34,7 @@ namespace HMS
                 else if (usertype == "guest")
                     Application.Current.MainPage = new GuestMainMenu();
                 else
-                    Application.Current.MainPage = new FrmRoommateDetails();
+                    App.Current.MainPage.DisplayAlert("HMS", "Entered Credential is Not Available.", "OK");
             }
         }
         protected override void OnStart()
