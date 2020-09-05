@@ -19,7 +19,7 @@ namespace HMS.View.Guest
 
         private void login_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync(true);
+            Application.Current.MainPage = new FrmLogin();
         }
     }
 }
