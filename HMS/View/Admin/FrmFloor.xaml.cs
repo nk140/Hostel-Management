@@ -117,8 +117,7 @@ namespace HMS.View.Admin
             {
                 Vm.FloorProp.AreaName = ((AreaModel)e.SelectedItem).areaName;
                 AreaModel value = (AreaModel)e.SelectedItem;
-                int count = ListArea.IndexOf(value);
-                Vm.AreaSelection(count);
+                Vm.selectedArea(value.id);
             }
             catch (Exception ex)
             {

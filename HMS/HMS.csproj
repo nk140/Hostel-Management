@@ -127,6 +127,9 @@
     <EmbeddedResource Update="View\Parent\FrmWardenDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\RegistrationOption.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Student\FrmComplaintRegister.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

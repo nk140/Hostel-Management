@@ -250,8 +250,11 @@ namespace HMS.ViewModel.Admin
             FloorData.hostelId = "";
             FloorProp.HostelName = "";
             OnPropertyChanged("FloorProp");
-            web.GetAllHostel(AreaModelList[index]);
-
+            //web.GetAllHostel(AreaModelList[index]);
+        }
+        public void selectedArea(string id)
+        {
+            web.GetAllHostel(id);
         }
 
         public void HostelSelection(int index)

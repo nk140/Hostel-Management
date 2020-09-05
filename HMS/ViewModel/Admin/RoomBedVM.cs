@@ -191,10 +191,12 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("AreaName");
             OnPropertyChanged("HostelName");
             hostelId = "";
-            web.GetAllHostel1(AreaModelList[index]);
-
+            //web.GetAllHostel1(AreaModelList[index]);
         }
-
+        public void selectedarea(string id)
+        {
+            web.GetAllHostel1(id);
+        }
         public void HostelSelection(int index)
         {
             HostelVisible = !HostelVisible;//true

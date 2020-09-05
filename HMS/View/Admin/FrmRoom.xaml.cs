@@ -131,8 +131,7 @@ namespace HMS.View.Admin
             {
                 txtsearchbykeyword.Text = ((AreaModel)e.SelectedItem).areaName;
                 AreaModel value = (AreaModel)e.SelectedItem;
-                int count = ListArea.IndexOf(value);
-                Vm.AreaSelection(count);
+                Vm.SelectedArea(value.id);
             }
             catch (Exception ex)
             {

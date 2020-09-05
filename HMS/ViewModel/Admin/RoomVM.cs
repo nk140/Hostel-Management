@@ -298,10 +298,13 @@ namespace HMS.ViewModel.Admin
             RoomData.hostelId = "";
             RoomProperty.HostelName = "";
             OnPropertyChanged("RoomProperty");
-            web.GetAllHostel(AreaModelList[index]);
+           // web.GetAllHostel(AreaModelList[index]);
 
         }
-
+        public void SelectedArea(string id)
+        {
+            web.GetAllHostel(id);
+        }
         public void HostelSelection(int index)
         {
             RoomProperty.HostelVisible = !RoomProperty.HostelVisible;//true

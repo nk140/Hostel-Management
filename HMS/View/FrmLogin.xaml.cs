@@ -4,6 +4,7 @@ using HMS.View.Parrent;
 using HMS.View.Student;
 using HMS.View.Warden;
 using HMS.ViewModel;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -41,32 +42,7 @@ namespace HMS.View
         }
         private async void BtnRegisterClick(object sender, EventArgs e)
         {
-            var actionSheet = await DisplayActionSheet("Registration for which Role.", "Guest", null, "Parent", "Student");
-            switch (actionSheet)
-            {
-                case "Guest":
-                    TapGestureRecognizer_Tapped_1();
-                    break;
-                case "Parent":
-                    TapGestureRecognizer_Tapped_2();
-                    break;
-                case "Student":
-                    TapGestureRecognizer_Tapped_3();
-                    break;
-            }
-            //Application.Current.MainPage = new NavigationPage(new View.Student.FrmStudentRegistration());
-        }
-        private async void TapGestureRecognizer_Tapped_1()
-        {
-            Application.Current.MainPage = new NavigationPage(new FrmGuestRegistration());
-        }
-        private async void TapGestureRecognizer_Tapped_2()
-        {
-            //Application.Current.MainPage = new NavigationPage(new View.Student.Frm());
-        }
-        private async void TapGestureRecognizer_Tapped_3()
-        {
-            Application.Current.MainPage = new NavigationPage(new FrmStudentRegistration());
+            await Navigation.PushPopupAsync(new RegistrationOption(), true);
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

@@ -93,8 +93,7 @@ namespace HMS.View.Admin
                 Vm.AreaName = ((AreaModel)e.SelectedItem).areaName;
                 Vm.AreaName = txtsearchbykeyword.DisplayMemberPath;
                 AreaModel value = (AreaModel)e.SelectedItem;
-                int count = ListArea.IndexOf(value);
-                Vm.AreaSelection(count);
+                Vm.selectedarea(value.id);
             }
             catch (Exception ex)
             {

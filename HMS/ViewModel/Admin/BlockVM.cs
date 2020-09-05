@@ -200,8 +200,11 @@ namespace HMS.ViewModel.Admin
             BlockData.hostelId = "";
             HostelName = "";
             OnPropertyChanged("HostelName");
-            web.GetAllHostel(AreaModelList[index]);
-
+           // web.GetAllHostel(AreaModelList[index]);
+        }
+        public void SelectedArea(string id)
+        {
+            web.GetAllHostel(id);
         }
 
         public void HostelSelection(int index)

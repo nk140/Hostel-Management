@@ -559,12 +559,11 @@ namespace HMS.Services
 
         }
 
-        public async void GetAllHostel(AreaModel areaModel)
+        public async void GetAllHostel(string areaId)
         {
-
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
-            client.DefaultRequestHeaders.Add("areaId", areaModel.id.ToString());
+            client.DefaultRequestHeaders.Add("areaId",areaId.ToString());
 
             try
             {
@@ -586,10 +585,6 @@ namespace HMS.Services
                         batchData = JsonConvert.DeserializeObject<ObservableCollection<HostelModel>>(result);
                         await masterCallback.LoadHostelList(batchData);
                     }
-
-
-
-
                 }
                 else
                 {
@@ -802,12 +797,12 @@ namespace HMS.Services
 
         }
 
-        public async void GetAllHostel1(AreaModel areaModel)
+        public async void GetAllHostel1(string areaid)
         {
 
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
-            client.DefaultRequestHeaders.Add("areaId", areaModel.id.ToString());
+            client.DefaultRequestHeaders.Add("areaId", areaid.ToString());
 
             try
             {
