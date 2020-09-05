@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  xmlns:controls="clr-namespace:HMS.Controls"
+             Title="Create Warden"
+             x:Class="HMS.View.Admin.FrmWardenCreatioin">
+    <ContentPage.Content>
+        <ScrollView
+            Orientation="Vertical">
+            <StackLayout
+            Orientation="Vertical">
+                <StackLayout 
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical">
+                    <StackLayout 
+                    Orientation="Vertical"
+                    Margin="20,20,20,0"
+                    Spacing="16"
+                    VerticalOptions="StartAndExpand">
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="Name" 
+                           FontSize="Default"
+                           Margin="-16"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Warden.firstName}"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        </Frame>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="Address"
+                             Margin="-16"
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Warden.permanent_address_line_1}"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        </Frame>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="City"
+                             Margin="-16"
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Warden.permanent_address_city}"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        </Frame>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="Phone Number"
+                             Margin="-16"
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Warden.mobile_no}"
+                             Keyboard="Telephone"
+                             MaxLength="10"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        </Frame>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="Email"
+                             Margin="-16"
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Warden.email}"
+                             Keyboard="Email"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        </Frame>
+
+                        <StackLayout>
+                            <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                                <controls:BetterEntry 
+                            Placeholder="Select Role"
+                            Margin="-16"
+                            TextColor="#2D295F" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding RoleName}"/>
+                            </Frame>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer                           
+                                Command="{Binding SetRoleVisibility}"
+                                NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <Frame 
+                    x:Name="f_role_list"
+                    HasShadow="True"
+                    IsVisible="{Binding RoleVisible}"                      
+                    Margin="10,0,10,0"  >
+                            <StackLayout 
+                        Orientation="Vertical">
+                                <ListView 
+                                x:Name="lv_role"    
+                                HeightRequest="{Binding RoleHeight}"
+                                ItemsSource="{Binding Role}"
+                                VerticalOptions="Fill"                            
+                             ItemTapped="OnSelectedRoleItem" >
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell >
+                                                <StackLayout Orientation="Horizontal">
+
+                                                    <Label Text="{Binding roleName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+
+                                </ListView>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton Text="Male" FontSize="15" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}" TextColor="#e96125"/>
+                            <RadioButton Text="Female" FontSize="15" IsChecked="{Binding IsCheck2}" Command="{Binding Check2Clicked}" TextColor="#e96125"/>
+                            <!--<input:RadioButtonGroupView Orientation="Horizontal">
+                                <input:RadioButton x:Name="BuyerRadiobtn" Text="Male" ClickCommand="{Binding Check1Clicked}" TextFontSize="15" IsChecked="{Binding IsCheck1}" Color="#e96125"/>
+                                <input:RadioButton x:Name="SellerRadiobtn" Text="Female" ClickCommand="{Binding Check2Clicked}" TextFontSize="15" IsChecked="{Binding IsCheck2}" Color="#e96125"/>
+                            </input:RadioButtonGroupView>-->
+                        </StackLayout>
+
+                        <!--<Frame 
+                    x:Name="f_gender_list"
+                    HasShadow="True"
+                    IsVisible="{Binding GenderVisible}"                      
+                    Margin="10,0,10,0"  >
+                            <StackLayout 
+                        Orientation="Vertical">
+                                <ListView 
+                                x:Name="lv_gender"    
+                                HeightRequest="{Binding GenderHeight}"
+                                ItemsSource="{Binding Gender}"
+                                VerticalOptions="Fill"                            
+                             ItemTapped="OnSelectedGenderItem" >
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell >
+                                                <StackLayout Orientation="Horizontal">
+
+                                                    <Label Text="{Binding name}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+
+                                </ListView>
+
+                            </StackLayout>
+
+                        </Frame>-->
+
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="Username"
+                             Margin="-16"
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Warden.username}"
+                             Keyboard="Text"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        </Frame>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="Password"
+                             Margin="-16"
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Warden.password}"
+                             Keyboard="Text"
+                             IsPassword="True"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        </Frame>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry
+                             Placeholder="Confirm Password"
+                             Margin="-16"
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding ConfirmPassword}"
+                             Keyboard="Text"
+                           TextColor="Black"
+                           ReturnType="Done" />
+                        </Frame>
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Margin="5,30,5,5">
+
+                            <Button
+                                HorizontalOptions="CenterAndExpand"
+                                BackgroundColor="#e96125"
+                                WidthRequest="150"
+                                CornerRadius="10"
+                                Command="{Binding SaveWardenCommand}"
+                                TextColor="Wheat"
+                                Text="Register"/>
+                        </StackLayout>
+
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

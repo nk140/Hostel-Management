@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Upload Hostel Images and Videos"
+             x:Class="HMS.View.Admin.UploadImageAndVideo">
+    <AbsoluteLayout>
+        <Image x:Name="imgUpload" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.3,0,1,0.4" Source="NoImage.png">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <Button Text="Upload" x:Name="btnupload" BackgroundColor="#e96125" TextColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.16,0.5,0.4,0.1" CornerRadius="20"/>
+        <Button Text="Cancel" x:Name="btncancel" BackgroundColor="#e96125" TextColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.9,0.5,0.4,0.1" CornerRadius="20"/>
+    </AbsoluteLayout>
+</ContentPage>

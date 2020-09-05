@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HMS.View.Student.FrmLeaveApplication"
+             Title="Leave Request">
+    <ContentPage.Content>
+
+
+        <StackLayout
+            Orientation="Vertical"
+            Margin="20,30,20,0">
+            <Label
+                Text="Leave Type"
+                TextColor="#2D295F" />
+            <StackLayout>
+                <Entry
+                Placeholder="Select Leave Type"
+                TextColor="Black"
+                    IsEnabled="False" 
+                Text="{ Binding LeaveType}"/>
+                       
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetTypeVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_type_list"
+                    HasShadow="True"
+                    IsVisible="{Binding TypeVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_type_list"    
+                                HeightRequest="{Binding TypeHeight}"
+                                ItemsSource="{Binding LeaveTypeList}"
+                                VerticalOptions="Fill"                            
+                             ItemTapped="OnSelectedLeaveTypeItem" >
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding name}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+            
+
+            <Label
+                Text="Start Date"
+                TextColor="#2D295F" />
+            <DatePicker
+                    x:Name="dp_start_date"
+                    HorizontalOptions="FillAndExpand"
+                    Unfocused="from_date_selected"
+                    
+                    Format="dd-MMM-yyyy"/>
+
+            <Label
+                Text="Start Time"
+                TextColor="#2D295F" />
+            <TimePicker
+                    x:Name="tp_start_time"
+                    HorizontalOptions="FillAndExpand"
+                     Unfocused="from_t_selected"
+                    
+                    Format="HH:mm"/>
+
+
+            <Label
+                Text="End Date"
+                TextColor="#2D295F" />
+            <DatePicker
+                    x:Name="dp_end_date"
+                    HorizontalOptions="FillAndExpand"
+                    Unfocused="to_date_selected"
+                    
+                    Format="dd-MMM-yyyy"/>
+
+            <Label
+                Text="End Tiime"
+                TextColor="#2D295F" />
+            <TimePicker
+                    x:Name="tp_end_time"
+                    HorizontalOptions="FillAndExpand"
+                    Unfocused="to_t_selected"
+                    
+                    Format="HH:mm"/>
+
+            <Label
+                Text="Reason"
+                TextColor="#2D295F" />
+            <Entry
+                Placeholder="Enter Reason"
+                TextColor="Black"
+                Text="{Binding Reason}"/>
+
+            <Label
+                Text="Description"
+                TextColor="#2D295F"
+                IsVisible="false"/>
+            <Entry
+                Placeholder="Enter Description"
+                TextColor="Black"
+                IsVisible="false"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="5,30,5,5">
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#ffa500"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    
+                    TextColor="Wheat"
+                    Text="Cancel"/>
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#ffa500"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    TextColor="Wheat"
+                    Command="{Binding SaveCommand}"
+
+                    Text="Save"/>
+            </StackLayout>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

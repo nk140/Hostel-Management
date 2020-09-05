@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:Controls="clr-namespace:HMS.Controls"
+             x:Class="HMS.View.Admin.FrmBloack"
+             Title="Block Creation">
+    <ContentPage.Content>
+
+        <ScrollView 
+            Orientation="Vertical">
+            <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+                <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                VerticalOptions="StartAndExpand" Spacing="16">
+
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" Margin="-16" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                    </Frame>
+                    <Frame 
+                    x:Name="f_area_list"
+                    HasShadow="True"
+                    IsVisible="false"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_area"    
+                                VerticalOptions="Fill"                            
+                              ItemTapped="OnSelectedAreaItem" >
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding areaName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+                    <StackLayout>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <Controls:BetterEntry 
+                            Placeholder="Select Hostel"     
+                            TextColor="#2D295F" 
+                            Margin="-16"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding HostelName}"/>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetHostelVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_hostel_list"
+                    HasShadow="True"
+                    IsVisible="{Binding HostelVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_hostel"    
+                                HeightRequest="{Binding HostelHeight}"
+                                ItemsSource="{Binding HostelModelList}"
+                                VerticalOptions="Fill"                            
+                             ItemTapped="OnSelectedHostelItem" >
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding hostelName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="BlockName" 
+                       FontSize="Default"
+                       PlaceholderColor="#003366"
+                       Margin="-16"
+                       Text="{Binding BlockData.name}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Button   Margin="60,40,30,0"
+                      Text="CANCEL" Grid.Row="0" Grid.Column="1"
+                      BackgroundColor="#e96125"
+                      Command="{Binding CancelCommand}"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                        <Button   Margin="30,40,40,0"
+                      Text="SAVE" Grid.Row="0" Grid.Column="1"
+                      BackgroundColor="#e96125"
+                      Command="{Binding SaveBlock}"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

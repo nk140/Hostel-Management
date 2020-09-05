@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:Controls="clr-namespace:HMS.Controls" 
+             x:Class="HMS.View.Admin.FrmHostel"
+             Title="Hostel Creation">
+
+    <ContentPage.Content>
+        <ScrollView 
+            Orientation="Vertical">
+            <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+                <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                VerticalOptions="StartAndExpand" Spacing="16">
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <forms:AutoSuggestBox x:Name="txtsearchbykeyword" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                    </Frame>
+                    <Frame 
+                    x:Name="f_area_list"
+                    HasShadow="True"
+                    IsVisible="{Binding AreaVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_area"    
+                                HeightRequest="{Binding AreaHeight}"
+                                ItemsSource="{Binding AreaList}"
+                                VerticalOptions="Fill"                            
+                             ItemTapped="OnSelectedAreaItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding areaName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="HostelName" 
+                       FontSize="Default"
+                       Margin="-16"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding HostelName}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <RadioButton Text="Male" x:Name="male" TextColor="#e96125" FontSize="15" IsChecked="{Binding IsCheck1}" GroupName="Gender"  Command="{Binding Check1Clicked}"/>
+                        <RadioButton Text="Female" x:Name="female" TextColor="#e96125" FontSize="15" IsChecked="{Binding IsCheck2}" GroupName="Gender" Command="{Binding Check2Clicked}"/>
+                        <!--<input:RadioButtonGroupView Orientation="Horizontal">
+                            <input:RadioButton x:Name="BuyerRadiobtn" Text="Male" ClickCommand="{Binding Check1Clicked}" TextFontSize="15" IsChecked="{Binding IsCheck1}" Color="#e96125"/>
+                            <input:RadioButton x:Name="SellerRadiobtn" Text="Female" ClickCommand="{Binding Check2Clicked}" TextFontSize="15" IsChecked="{Binding IsCheck2}" Color="#e96125"/>
+                        </input:RadioButtonGroupView>-->
+                    </StackLayout>
+
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="Address" 
+                       FontSize="Default"
+                       Margin="-16"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding Address}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="ZipCode" 
+                       FontSize="Default"
+                       Margin="-16"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding Zipcode}"
+                       TextColor="Black"
+                       Keyboard="Numeric"
+                       ReturnType="Next" />
+                    </Frame>
+
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="Phone Number" 
+                       FontSize="Default"
+                       Margin="-16"
+                       Keyboard="Telephone"
+                       MaxLength="10"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding Phone}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="Email" 
+                       FontSize="Default"
+                       Margin="-16"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding Email}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Button   Margin="60,40,30,0"
+                      Text="CANCEL" Grid.Row="0" Grid.Column="1"
+                      BackgroundColor="#e96125"
+                      Command="{Binding CancelCommand}"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                        <Button   Margin="30,40,40,0"
+                      Text="SAVE" Grid.Row="0" Grid.Column="1"
+                      BackgroundColor="#e96125"
+                      Command="{Binding SaveCommand}"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

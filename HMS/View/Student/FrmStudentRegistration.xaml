@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HMS.View.Student.FrmStudentRegistration"
+             Title="Registration"
+             BackgroundColor="White">
+    <ContentPage.Content>
+
+        <ScrollView
+           Orientation="Vertical">
+            <StackLayout
+            Orientation="Vertical">
+                <StackLayout 
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical">
+                    <StackLayout 
+                    Orientation="Vertical"
+                    Margin="20,20,20,0"
+                    VerticalOptions="StartAndExpand">
+                        <!--<Label
+                            Text="Enter Name"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Name" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.studentName}"
+                           TextColor="Black"
+                           ReturnType="Next" />
+                        <!--<Label
+                            Text="Enter Address"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Address" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.address}"
+                           TextColor="Black"
+                           ReturnType="Next" />
+
+                        <!--<Label
+                            Text="Enter Phone Number"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Phone Number" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.phoneNo}"
+                             Keyboard="Telephone"
+                           TextColor="Black"
+                           ReturnType="Next" />
+
+                        <!--<Label
+                            Text="Enter Email"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Email" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.email}"
+                             Keyboard="Email"
+                           TextColor="Black"
+                           ReturnType="Next" />
+
+                        <!--<Label
+                            Text="Enter Adhar Number"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Adhar Number" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.adharNo}"
+                             Keyboard="Numeric"
+                           TextColor="Black"
+                           ReturnType="Next" />
+
+                        <!--<Label
+                            Text="Enter Username"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Username" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.userName}"
+                             Keyboard="Text"
+                           TextColor="Black"
+                           ReturnType="Next" />
+
+                        <!--<Label
+                            Text="Enter Password"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Password" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.password}"
+                             Keyboard="Text"
+                             IsPassword="True"
+                           TextColor="Black"
+                           ReturnType="Next" />
+
+                        <!--<Label
+                            Text="Confirm Password"
+                            TextColor="#2D295F" 
+                            FontAttributes="None"
+                            FontSize="Medium" />-->
+                        <Entry
+                             Placeholder="Confirm Password" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding ConfirmPassword}"
+                             Keyboard="Text"
+                             IsPassword="False"
+                           TextColor="Black"
+                           ReturnType="Done" />
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Margin="5,10,5,5">
+
+                            <Button
+                                HorizontalOptions="CenterAndExpand"
+                                BackgroundColor="#e96125"
+                                WidthRequest="150"
+                                CornerRadius="20"
+                                Command="{Binding SaveCommand}"
+                                TextColor="White"
+                                Text="Register"/>
+
+                            <Label
+                                HorizontalOptions="Center"
+                                Margin="30,10,30,0"
+                                TextColor="Black"
+                                Text="OR"/>
+                            <Button
+                                Margin="30,10,30,0"
+                                  Text="Login" Grid.Row="0" Grid.Column="1"
+                                  BackgroundColor="White"
+                                  Clicked="BtnLoginClick"
+                                  TextColor="#003366"
+                                  CornerRadius="10"/>
+
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

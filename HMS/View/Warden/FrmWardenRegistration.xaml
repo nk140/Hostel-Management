@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             Title="Warden Registration"
+             x:Class="HMS.View.Warden.FrmWardenRegistration">
+    <ScrollView>
+        <Grid Margin="8" RowSpacing="14">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
+                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+                <controls:BetterEntry Placeholder="Enter Address" Keyboard="Text" Text="{Binding Fulladdress}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
+                <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding Mobileno}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="3">
+                <controls:BetterEntry Placeholder="Enter Email" Keyboard="Default" Text="{Binding Email}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="4">
+                <controls:BetterEntry Placeholder="Role" Keyboard="Text"  Text="{Binding Role}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="5">
+                <controls:CustomPicker  x:Name="ddgender" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7" >
+                    <controls:CustomPicker.Items>
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </controls:CustomPicker.Items>
+                </controls:CustomPicker>
+                <!--<controls:BetterEntry Placeholder="Gender" Keyboard="Text"  Text="{Binding Gender}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>-->
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="6">
+                <controls:BetterEntry Placeholder="Enter Aadhar No" Keyboard="Text"  Text="{Binding Aadharno}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="7">
+                <controls:BetterEntry Placeholder="Username" Keyboard="Text"  Text="{Binding Username}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="8">
+                <controls:BetterEntry Placeholder="Enter New Password" Keyboard="Default" IsPassword="True"  Text="{Binding Newpassword}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="9">
+                <controls:BetterEntry Placeholder="Confirm Password" Keyboard="Default"  Text="{Binding CnfPassword}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Button x:Name="btnupdate" CornerRadius="25" Text="Update"  Command="{Binding UpdateWardenInfoCommand}"  Grid.Row="10" TextColor="White" BackgroundColor="#e96125"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

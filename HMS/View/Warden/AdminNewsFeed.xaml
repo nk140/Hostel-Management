@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:HMS.Converts"
+             xmlns:vm="clr-namespace:HMS.ViewModel"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="News Feed"
+             x:Class="HMS.View.Warden.AdminNewsFeed">
+    <ContentPage.BindingContext>
+        <vm:NewsFeedViewModel></vm:NewsFeedViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageSourceConverter x:Key="UrlToImage"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding NewsFeeds}" SeparatorVisibility="None" HasUnevenRows="True" VerticalScrollBarVisibility="Never">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding newsTitle}" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0"/>
+                                <Image Source="{Binding linkUrl}" Grid.Row="1" Aspect="AspectFill"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout x:Name="emptyContent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsResponsenotok}" Orientation="Vertical">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="1" Source="no_connection.png" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

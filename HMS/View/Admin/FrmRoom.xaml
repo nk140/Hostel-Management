@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:controls="clr-namespace:HMS.Controls"
+             x:Class="HMS.View.Admin.FrmRoom"
+               Title="Room Creation">
+    <ContentPage.Content>
+
+        <ScrollView 
+            Orientation="Vertical">
+            <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+                <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                Spacing="16"
+                VerticalOptions="StartAndExpand">
+
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <forms:AutoSuggestBox x:Name="txtsearchbykeyword" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding RoomProperty.AreaName}" DisplayMemberPath="areaName" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                    </Frame>
+                    <!--<Frame 
+                    x:Name="f_Area_list"
+                    HasShadow="True"
+                    IsVisible="{Binding RoomProperty.AreaVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_area"    
+                                HeightRequest="{Binding RoomProperty.AreaHeight}"
+                                ItemsSource="{Binding AreaModelList}"
+                                VerticalOptions="Fill"
+                              ItemTapped="OnSelectedAreaItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding areaName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>-->
+                    <StackLayout>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry 
+                            Placeholder="Select Hostel"     
+                            TextColor="#2D295F" 
+                            Margin="-16"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding RoomProperty.HostelName}"/>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetHostelVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_hostel_list"
+                    HasShadow="True"
+                    IsVisible="{Binding RoomProperty.HostelVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_hostel"    
+                                HeightRequest="{Binding RoomProperty.HostelHeight}"
+                                ItemsSource="{Binding HostelModelList}"
+                                VerticalOptions="Fill"
+                              ItemTapped="OnSelectedHostelItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding hostelName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+                    <StackLayout>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry 
+                            Placeholder="Select Block" 
+                            Margin="-16"
+                            TextColor="#2D295F" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding RoomProperty.BlockName}"/>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetBlockVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_block_list"
+                    HasShadow="True"
+                    IsVisible="{Binding RoomProperty.BlockVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_block"    
+                                HeightRequest="{Binding RoomProperty.BlockHeight}"
+                                ItemsSource="{Binding BlockModelList}"
+                                VerticalOptions="Fill"
+                              ItemTapped="OnSelectedBlockItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding name}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+                    <StackLayout>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry 
+                            Placeholder="Select Floor"     
+                            TextColor="#2D295F"
+                            Margin="-16"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding RoomProperty.FloorName}"/>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetFloorVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_floor_list"
+                    HasShadow="True"
+                    IsVisible="{Binding RoomProperty.FloorVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_floor"    
+                                HeightRequest="{Binding RoomProperty.FloorHeight}"
+                                ItemsSource="{Binding FloorModelList}"
+                                VerticalOptions="Fill"                            
+                              ItemTapped="OnSelectedFloorItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding floorNo}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+
+                    <StackLayout>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:BetterEntry 
+                            Placeholder="Select Room Type"
+                            Margin="-16"
+                            TextColor="#2D295F" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding RoomProperty.RoomType}"/>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetRoomTypeVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_room_type_list"
+                    HasShadow="True"
+                    IsVisible="{Binding RoomProperty.RoomTypeVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_room_type"    
+                                HeightRequest="{Binding RoomProperty.RoomTypeHeight}"
+                                ItemsSource="{Binding RoomTypeList}"
+                                VerticalOptions="Fill"                            
+                              ItemTapped="OnSelectedRoomTypeItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding name}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+
+
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <controls:BetterEntry 
+                            x:Name="EntryName"
+                            Placeholder="Room Name"
+                            Margin="-16"
+                       FontSize="Default"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding RoomData.name}"
+                       TextColor="Black"
+                       Keyboard="Text"
+                       ReturnType="Next" />
+                    </Frame>
+
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <controls:BetterEntry 
+                            x:Name="EntrybedNo"
+                            Margin="-16"
+                            Placeholder="No of beds" 
+                       FontSize="Default"
+                            Keyboard="Numeric"
+                            MaxLength="2"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding RoomData.bedno}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <Button   Margin="60,40,30,0"
+                      Text="Next" Grid.Row="0" Grid.Column="1"
+                      BackgroundColor="#ffa500"
+                      Command="{Binding NextCommand}"
+                      TextColor="White"
+                      IsVisible="false"
+                      CornerRadius="10"/>
+                    <StackLayout
+                Orientation="Horizontal"
+                Margin="5,30,5,5">
+                        <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#e96125"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    
+                    TextColor="Wheat"
+                    Text="Cancel"/>
+                        <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#e96125"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    TextColor="Wheat"
+                    Command="{Binding SaveCommand}"
+                    Text="Save"/>
+                    </StackLayout>
+
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

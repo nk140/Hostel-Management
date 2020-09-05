@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:controls="clr-namespace:HMS.Controls" x:Class="HMS.View.Admin.FrmRoomBed" Title="Room Bed">
+    <ContentPage.Content>
+
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="16"
+            Margin="20,30,20,0">
+
+            <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                <forms:AutoSuggestBox x:Name="txtsearchbykeyword" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+            </Frame>
+
+
+            <StackLayout>
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <controls:BetterEntry 
+                            Placeholder="Select Hostel"
+                            Margin="-16"
+                            TextColor="#2D295F" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding HostelName}"/>
+                </Frame>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer                           
+                                Command="{Binding SetHostelVisibility}"
+                                NumberOfTapsRequired="1">
+                    </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <Frame 
+                    x:Name="f_hostel_list"
+                    HasShadow="True"
+                    IsVisible="{Binding HostelVisible}"                      
+                    Margin="10,0,10,0"  >
+                <StackLayout 
+                        Orientation="Vertical">
+                    <ListView 
+                                x:Name="lv_hostel"    
+                                HeightRequest="{Binding HostelHeight}"
+                                ItemsSource="{Binding HostelModelList}"
+                                VerticalOptions="Fill"
+                             ItemTapped="OnSelectedHostelItem" >
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell >
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <Label Text="{Binding hostelName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                </StackLayout>
+
+            </Frame>
+
+            <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                <controls:BetterEntry 
+                            x:Name="EntryName"
+                            Margin="-16"
+                            Placeholder="Bed No" 
+                       FontSize="Default"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding BedNo}"
+                    Keyboard="Numeric"
+                    MaxLength="10"
+                       TextColor="Black"
+                       ReturnType="Next" />
+            </Frame>
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="5,30,5,5">
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#e96125"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    
+                    TextColor="Wheat"
+                    Text="Cancel"/>
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#e96125"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    TextColor="Wheat"
+                    Command="{Binding SaveCommand}"
+                    Text="Save"/>
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

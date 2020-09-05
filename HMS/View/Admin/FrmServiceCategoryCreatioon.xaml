@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:HMS.Controls"
+             Title="Service Category"
+             x:Class="HMS.View.Admin.FrmServiceCategoryCreatioon">
+    <ContentPage.Content>
+
+        <StackLayout
+            Orientation="Vertical"
+            Margin="20,40,20,0">
+            <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                <controls:BetterEntry
+                    Placeholder="Service Category" 
+                    Margin="-16"
+                    FontSize="Default"
+                    PlaceholderColor="#003366" 
+                    Text="{Binding Category.name}"
+                    TextColor="Black"
+                    ReturnType="Next" />
+            </Frame>
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="20">
+
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#e96125"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    
+                    TextColor="Wheat"
+                    Text="Cancel"/>
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#e96125"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    Command="{Binding SaveCommand}"
+                    TextColor="Wheat"
+                    Text="Save"/>
+
+            </StackLayout>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

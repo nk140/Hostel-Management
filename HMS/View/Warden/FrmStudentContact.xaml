@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Warden"
+             mc:Ignorable="d"
+             x:Name="wardencontactstudent"
+             Title="Contact Student"
+             x:Class="HMS.View.Warden.FrmStudentContact">
+    <ContentPage.BindingContext>
+        <vm:StudentContactforwarden></vm:StudentContactforwarden>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout
+           Orientation="Vertical" >
+            <ListView 
+                x:Name="lv_contact"  
+                ItemsSource="{Binding studentlist}"
+                 VerticalOptions="FillAndExpand"
+                HasUnevenRows="True"
+                SelectionMode="None"
+                VerticalScrollBarVisibility="Never"
+                HorizontalScrollBarVisibility="Never"
+                 SeparatorVisibility="Default">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                 VerticalOptions="FillAndExpand"
+                                BorderColor="DarkBlue"
+                                Margin="20,10,20,10" CornerRadius="20">
+                                <StackLayout
+                                    Orientation="Vertical">
+                                    <Label
+                                    Text="{Binding name}" FontFamily="{StaticResource BoldFont}"/>
+                                    <Label
+                                    Text="{Binding stream}" FontFamily="{StaticResource BoldFont}"/>
+                                    <Label
+                                    Text="{Binding semester}" FontFamily="{StaticResource BoldFont}"/>
+                                    <Label Text="{Binding parentname}" FontFamily="{StaticResource BoldFont}"/>
+                                    <Label
+                                    Text="{Binding contactno}" FontFamily="{StaticResource BoldFont}"/>
+                                    <StackLayout Margin="0,-115,-193,0">
+                                        <Image Source="user.png" WidthRequest="110"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        HorizontalOptions="EndAndExpand"
+                                        Margin="10">
+                                        <StackLayout>
+                                            <Image
+                                                
+                                                Source="call.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                            Command="{Binding BindingContext.CallCommand, Source={x:Reference wardencontactstudent}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Margin="10,0,0,0">
+                                            <Image
+                                                Source="message.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                            Command="{Binding BindingContext.MessageCommand, Source={x:Reference wardencontactstudent}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Margin="17,0,0,0">
+                                            <Image
+                                                Source="whatsapp.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                            Command="{Binding BindingContext.WhatsappCommand, Source={x:Reference wardencontactstudent}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

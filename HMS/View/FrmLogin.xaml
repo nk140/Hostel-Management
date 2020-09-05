@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:HMS.Controls"
+             x:Class="HMS.View.FrmLogin"
+             BackgroundColor="White">
+    <AbsoluteLayout>
+        <Frame BackgroundColor="Transparent" CornerRadius="25" BorderColor="#663399" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.3,0.8,0.07">
+            <controls:BetterEntry Placeholder="Username" FontSize="Default" PlaceholderColor="#003366" Text="{Binding UserModel.userName}" TextColor="Black" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" CornerRadius="25" BorderColor="#663399" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.4,0.8,0.07">
+            <controls:BetterEntry Placeholder="Password" FontSize="Default" PlaceholderColor="#003366" Text="{Binding UserModel.password}" TextColor="Black" IsPassword="True" Margin="-17"/>
+        </Frame>
+        <Button Text="Login" BackgroundColor="#e96125" Command="{Binding LoginCommand}" TextColor="White" CornerRadius="20" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.6,0.5,0.08"/>
+        <Label Text="Forget Password"  TextColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.2,0.49,0.4,0.04">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+            </Label.GestureRecognizers>
+            </Label>
+        <Label Text="OR" TextColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.6,0.7,0.2,0.04"/>
+        <Button Text="Create Account" BackgroundColor="#e96125" Clicked="BtnRegisterClick" TextColor="White" CornerRadius="20" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.52,0.8,0.5,0.08"/>
+    </AbsoluteLayout>
+</ContentPage>

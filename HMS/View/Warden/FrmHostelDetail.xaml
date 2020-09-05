@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Warden"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             Title="Hostel Detail Master"
+             x:Class="HMS.View.Warden.FrmHostelDetail">
+    <!--<ContentPage.BindingContext>
+        <vm:HostelDetailMasterViewModel></vm:HostelDetailMasterViewModel>
+    </ContentPage.BindingContext>-->
+    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Orientation="Vertical" Spacing="5">
+                <Frame CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.23,0.25,0.5,0.06" BorderColor="Black">
+                    <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding hostelName}" Margin="-5" DisplayMemberPath="hostelName" TextMemberPath="hostelName" TextColor="#2D295F" PlaceholderText="Search From Hostel Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                </Frame>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView  x:Name="_listView" ItemsSource="{Binding HostalMasterData}"  Margin="0,0,0,0" WidthRequest="410"  VerticalOptions="FillAndExpand" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
+                        <ListView.Header>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label WidthRequest="150" HeightRequest="40" Text="Id" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="Hostel Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding id}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <Label WidthRequest="200" HeightRequest="40" Text="{Binding hostelName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ScrollView>
+</ContentPage>

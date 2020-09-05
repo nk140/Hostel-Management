@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Admin"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             Title="Disciplinary Type"
+             x:Class="HMS.View.Admin.Disciplinary">
+    <ContentPage.BindingContext>
+        <vm:DisciplinaryTypeVM></vm:DisciplinaryTypeVM>
+    </ContentPage.BindingContext>
+    <AbsoluteLayout>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.42,0.06,0.79,0.08">
+            <controls:BetterEntry Placeholder="Enter Disciplinary Type" Text="{Binding DisciplinaryReason}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-17"/>
+        </Frame>
+        <Button Text="Save" x:Name="btndisciplinarytype" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Command="{Binding SaveCommands}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.46,0.25,0.58,0.08"/>
+    </AbsoluteLayout>
+</ContentPage>

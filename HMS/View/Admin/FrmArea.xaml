@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:Controls="clr-namespace:HMS.Controls"
+             x:Class="HMS.View.Admin.FrmArea"
+             Title="Area Creation">
+    <ContentPage.Content>
+
+        <ScrollView 
+            Orientation="Vertical">
+            <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical" Spacing="10">
+                <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                VerticalOptions="StartAndExpand" Spacing="16">
+
+                    <!--<Entry 
+                            Placeholder="Select Country"     
+                            TextColor="#2D295F" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding CountryName}"/>-->
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding CountryName}" DisplayMemberPath="country" TextMemberPath="country" TextColor="#2D295F" Margin="-15" PlaceholderText="Search From Country Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                    </Frame>
+                    <!--<StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetCountryVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>-->
+
+                    <!--<Frame 
+                    x:Name="f_country_list"
+                    HasShadow="True"
+                    IsVisible="{Binding CountryVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_country"    
+                                HeightRequest="{Binding CountryHeight}"
+                                ItemsSource="{Binding CountryModel}"
+                                VerticalOptions="Fill"                            
+                             ItemTapped="OnSelectedCountryItem" >
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding country}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>-->
+                    <StackLayout>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <Controls:BetterEntry 
+                            Placeholder="Select State"     
+                            TextColor="#2D295F" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False" 
+                                Margin="-15"
+                            Text="{Binding StateName}"/>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetStateVisibility}"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_state_list"
+                    HasShadow="True"
+                    IsVisible="{Binding StateVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_state"    
+                                HeightRequest="{Binding StateHeight}"
+                                ItemsSource="{Binding StateModel}"
+                                VerticalOptions="Fill"                            
+                              ItemTapped="OnSelectedStateItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding state}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>
+                    <!--<Label
+                    Text="Select Area"
+                    TextColor="#2D295F" 
+                    FontAttributes="None"
+                    FontSize="Medium"/>
+                    <StackLayout>
+                        <Entry 
+                            Placeholder="Select Area"     
+                            TextColor="#2D295F" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"                        
+                            Text="{Binding AreaName}"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer                           
+                                Command="{Binding SetAreaVisibility}"
+                                NumberOfTapsRequired="1"
+                                >
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Frame 
+                    x:Name="f_area_list"
+                    HasShadow="True"
+                    IsVisible="{Binding AreaVisible}"                      
+                    Margin="10,0,10,0"  >
+                        <StackLayout 
+                        Orientation="Vertical">
+                            <ListView 
+                                x:Name="lv_area"    
+                                HeightRequest="{Binding AreaHeight}"
+                                ItemsSource="{Binding AreaModel}"
+                                VerticalOptions="Fill"                            
+                             ItemTapped="OnSelectedAreaItem">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label Text="{Binding areaName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+
+                        </StackLayout>
+
+                    </Frame>-->
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry 
+                            x:Name="EntryName"
+                            Placeholder="AreaName" 
+                       FontSize="Default"
+                       Margin="-16"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding AreaName}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                        </Frame>
+                        <StackLayout Orientation="Horizontal">
+                        <Button   Margin="60,40,30,0"
+                      Text="CANCEL" Grid.Row="0" Grid.Column="1"
+                      BackgroundColor="#e96125"
+                      Command="{Binding CancelCommand}"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                        <Button   Margin="30,40,40,0"
+                      Text="SAVE" Grid.Row="0" Grid.Column="1"
+                      BackgroundColor="#e96125"
+                      Command="{Binding SaveCommand}"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

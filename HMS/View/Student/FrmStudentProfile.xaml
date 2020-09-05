@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Student"
+             x:Class="HMS.View.Student.FrmStudentProfile"
+             Title="Profile">
+    <ContentPage.BindingContext>
+        <vm:ProfileVM></vm:ProfileVM>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView
+            Orientation="Vertical">
+            <StackLayout
+            Orientation="Vertical">
+            <Image
+                HorizontalOptions="Center"
+                WidthRequest="300"
+                HeightRequest="300"
+                Margin="10,30,10,0"
+                IsVisible="false"
+                BackgroundColor="AliceBlue"/>
+
+            <Label
+                Text="Name"
+                Margin="10,10,10,0"/>
+            <Entry
+                
+                Text="{Binding StudentName}"
+                Margin="10,1,10,0"
+                TextColor="Black"
+                IsEnabled="False"/>
+            <Label
+                Text="Phone Number"
+                Margin="10,10,10,0"/>
+            <Entry
+                Text="{Binding Phoneno}"
+                Margin="10,0,10,0"
+                TextColor="Black"
+                IsEnabled="False"/>
+
+            <Label
+                Text="Email Id"
+                Margin="10,10,10,0"/>
+            <Entry
+                Text="{Binding Email}"
+                Margin="10,0,10,0"
+                TextColor="Black"
+                IsEnabled="False"/>
+
+            <Label
+                Text="Hostel Name"
+                Margin="10,10,10,0"/>
+            <Entry
+                Text="{Binding HostelName}"
+                Margin="10,0,10,0"
+                TextColor="Black"
+                IsEnabled="False"/>
+
+            <Label
+                Text="Floor No"
+                Margin="10,10,10,0"/>
+            <Entry
+                Text="{Binding FloorNo}"
+                Margin="10,0,10,0"
+                TextColor="Black"
+                IsEnabled="False"/>
+
+            <Label
+                Text="Room No"
+                Margin="10,10,10,0"/>
+            <Entry
+                Text="{Binding Roomno}"
+                Margin="10,0,10,0"
+                TextColor="Black"
+                IsEnabled="False"/>
+
+            <Label
+                Text="Bed No"
+                Margin="10,10,10,0"/>
+                <Entry
+                Text="{Binding BedNo}"
+                Margin="10,0,10,0"
+                TextColor="Black"
+                IsEnabled="False"/>
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

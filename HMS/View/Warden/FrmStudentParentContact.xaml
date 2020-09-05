@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Warden"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             x:Name="parentcontact"
+             Title="Student Parent Contact"
+             x:Class="HMS.View.Warden.FrmStudentParentContact">
+    <ContentPage.BindingContext>
+        <vm:StudentParentInfo></vm:StudentParentInfo>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout
+           Orientation="Vertical">
+            <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
+                <StackLayout Orientation="Horizontal" Margin="-4,0,0,0">
+                    <forms:AutoSuggestBox x:Name="txtsearchbykeyword"  PlaceholderText="Search By name,room-no" HorizontalOptions="FillAndExpand" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                    <!--<controls:BetterEntry Placeholder="Enter Name" Keyboard="Text" HorizontalOptions="FillAndExpand" PlaceholderColor="Black" FontSize="17" Margin="-7"/>-->
+                    <Image Source="Search_Icon.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <ListView 
+                x:Name="lv_contact"  
+                ItemsSource="{Binding Parentlist}"
+                 VerticalOptions="FillAndExpand"
+                HasUnevenRows="True"
+                SelectionMode="None"
+                VerticalScrollBarVisibility="Never"
+                 SeparatorVisibility="Default">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                 VerticalOptions="FillAndExpand"
+                                BorderColor="DarkBlue"
+                                Margin="20,10,20,10" CornerRadius="20">
+                                <StackLayout
+                                    Orientation="Vertical">
+                                    <Label
+                                    Text="{Binding Name}" FontFamily="{StaticResource BoldFont}"/>
+                                    <Label
+                                    Text="{Binding Parentof}" FontFamily="{StaticResource BoldFont}"/>
+                                    <Label
+                                    Text="{Binding contactno}" FontFamily="{StaticResource BoldFont}"/>
+                                    <StackLayout Margin="0,-85,-193,0">
+                                        <Image Source="user.png" WidthRequest="110"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        HorizontalOptions="EndAndExpand"
+                                        Margin="10">
+                                        <StackLayout>
+                                            <Image
+                                                
+                                                Source="call.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                            Command="{Binding BindingContext.CallCommand, Source={x:Reference parentcontact}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Margin="10,0,0,0">
+                                            <Image
+                                                Source="message.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                            Command="{Binding BindingContext.MessageCommand, Source={x:Reference parentcontact}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Margin="17,0,0,0">
+                                            <Image
+                                                Source="whatsapp.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                            Command="{Binding BindingContext.WhatsappCommand, Source={x:Reference parentcontact}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

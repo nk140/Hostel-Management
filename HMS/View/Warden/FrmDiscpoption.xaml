@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             Title="Disciplinary Option"
+             x:Class="HMS.View.Warden.FrmDiscpoption">
+    <AbsoluteLayout>
+        <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.34,0.03,0.89,0.07">
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-15" TextColor="#2D295F" PlaceholderText="Search From Room id" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+        </Frame>
+    </AbsoluteLayout>
+</ContentPage>

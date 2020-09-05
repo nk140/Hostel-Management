@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Guest"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="View Room Booking Status"
+             x:Class="HMS.View.Guest.Roombookingandstatusview">
+    <ContentPage.BindingContext>
+        <vm:GuestRoomBookingVM></vm:GuestRoomBookingVM>
+    </ContentPage.BindingContext>
+    <ScrollView Orientation="Horizontal">
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView  x:Name="_listView"  ItemsSource="{Binding GuestRoombookings}" Margin="1,0,1,0" WidthRequest="800"  VerticalOptions="FillAndExpand" HasUnevenRows="true">
+                        <ListView.Header>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#0099ff" >
+                                <Label WidthRequest="150" HeightRequest="40" Text="Name" TextColor="White" FontAttributes="Bold" BackgroundColor="#0099ff" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="Requestedroomno" TextColor="White" FontAttributes="Bold" BackgroundColor="#0099ff" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="150" HeightRequest="40" Text="Roomtype" TextColor="White" FontAttributes="Bold" BackgroundColor="#0099ff" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="150" HeightRequest="40" Text="Status" TextColor="White" FontAttributes="Bold" BackgroundColor="#0099ff" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding Name}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <Label WidthRequest="200" HeightRequest="40" Text="{Binding Requestedroomno}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding Roomtype}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding Status}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ScrollView>
+</ContentPage>

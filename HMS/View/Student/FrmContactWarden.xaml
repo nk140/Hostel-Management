@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HMS.View.Student.FrmContactWarden"
+             Title="Contact Warden">
+    <ContentPage.Content>
+
+        <StackLayout
+           Orientation="Vertical" >
+
+            <ListView 
+                x:Name="lv_contact"    
+                ItemsSource="{Binding Warden}"
+                 VerticalOptions="FillAndExpand"
+                HasUnevenRows="True"
+                 SeparatorVisibility="None"
+                ItemTapped="OnSelectedItem" >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                             <Frame
+                                 VerticalOptions="FillAndExpand"
+                                Margin="20,10,20,10">
+                                <StackLayout
+                                    Orientation="Vertical">
+                                    <Label
+                                    Text="{Binding firstName}"/>
+                                <Label
+                                    Text="{Binding contact}"/>
+
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        HorizontalOptions="EndAndExpand"
+                                        Margin="10">
+                                           <StackLayout>
+                                            <Image
+                                                
+                                                Source="call.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer  
+                                                    Tapped="OnCallClick"
+                                                    NumberOfTapsRequired="1">
+                                                </TapGestureRecognizer>
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Margin="10,0,0,0">
+                                            <Image
+                                                Source="message.png"
+                                                WidthRequest="30"
+                                                 />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer                           
+                                                    Tapped="OnMessageClick"
+                                                    NumberOfTapsRequired="1">
+                                                </TapGestureRecognizer>
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+
+                                        
+                        
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+          
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
