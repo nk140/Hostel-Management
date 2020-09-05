@@ -30,6 +30,7 @@ namespace HMS.ViewModel.Warden
         }
         public void GetServicelist(ObservableCollection<WardenServiceModel> servicelists)
         {
+            WardenServiceData = new ObservableCollection<WardenServiceModel>();
             WardenServiceData = servicelists;
             OnPropertyChanged();
         }

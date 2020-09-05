@@ -16,7 +16,7 @@ namespace HMS
         public App()
         {
             InitializeComponent();
-            Device.SetFlags(new string[] { "RadioButton_Experimental" });
+            Device.SetFlags(new String[] { "CollectionView_Experimental","SwipeView_Experimental", "RadioButton_Experimental" });
             userid = Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
             if (userid == null)
                 Application.Current.MainPage = new FrmLogin();

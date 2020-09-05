@@ -7,7 +7,7 @@
 
         // Development
         // public static string BaseURL = "http://172.16.16.5:8080";
-        public static string BaseURL = "http://106.51.139.122:8080";
+        public static string BaseURL = "http://203.192.204.167:8081";
         // public static string BaseURL = "http://203.192.204.167:8080";
 
         //  public static string BaseURL = "http://203.192.204.167:8080";

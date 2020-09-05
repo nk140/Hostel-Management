@@ -16,5 +16,10 @@ namespace HMS.View.Guest
         {
             InitializeComponent();
         }
+
+        private void login_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync(true);
+        }
     }
 }

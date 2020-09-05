@@ -23,7 +23,7 @@ namespace HMS.Droid
 
             base.OnCreate(savedInstanceState);
             UserDialogs.Init(this);
-            Forms.SetFlags("CollectionView_Experimental", "SwipeView_Experimental");
+           // Forms.SetFlags("CollectionView_Experimental", "SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);

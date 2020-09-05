@@ -85,6 +85,7 @@ namespace HMS.ViewModel.Warden
         }
         public void GetNewStudentData(ObservableCollection<Students> students)
         {
+            GetStudents = new ObservableCollection<Students>();
             GetStudents = students;
             OnPropertyChanged();
         }
