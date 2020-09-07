@@ -167,20 +167,19 @@ namespace HMS.ViewModel.Admin
             {
                 return new Command(() =>
                 {
-                    if (BlockData.areaId == null || BlockData.areaId.Length == 0)
-                    {
-                        App.Current.MainPage.DisplayAlert("", "Select Area", "OK");
-                    }
+                    if(BlockData.areaId==null||BlockData.areaId.Length==0)
+                        App.Current.MainPage.DisplayAlert("HMS", "Select Area", "OK");
                     else if (BlockData.hostelId == null || BlockData.hostelId.Length == 0)
                     {
-                        App.Current.MainPage.DisplayAlert("", "Select Hoostel", "OK");
+                        App.Current.MainPage.DisplayAlert("HMS", "Select Hostel", "OK");
                     }
                     else if (BlockData.name == null || BlockData.name.Length == 0)
                     {
-                        App.Current.MainPage.DisplayAlert("", "Enter Block Name", "OK");
+                        App.Current.MainPage.DisplayAlert("HMS", "Enter Block Name", "OK");
                     }
                     else
                     {
+
                         web.SaveBlockEntry(BlockData);
                     }
                 });
@@ -200,10 +199,11 @@ namespace HMS.ViewModel.Admin
             BlockData.hostelId = "";
             HostelName = "";
             OnPropertyChanged("HostelName");
-           // web.GetAllHostel(AreaModelList[index]);
+            // web.GetAllHostel(AreaModelList[index]);
         }
         public void SelectedArea(string id)
         {
+            BlockData.areaId = id;
             web.GetAllHostel(id);
         }
 

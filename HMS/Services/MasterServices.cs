@@ -382,6 +382,7 @@ namespace HMS.Services
         public async void SaveFloorEntry(FloorModel entryModel)
         {
             FloorResponse floorrResponse;
+            FloorErrorResponse floorErrorResponse;
             HttpResponseMessage response = new HttpResponseMessage();
             try
             {
@@ -407,8 +408,8 @@ namespace HMS.Services
                 {
                     UserDialogs.Instance.HideLoading();
                     string resultHostel = await response.Content.ReadAsStringAsync();
-                    floorrResponse = JsonConvert.DeserializeObject<FloorResponse>(resultHostel);
-                    await floorCallback.ServiceFaild(floorrResponse.message);
+                    floorErrorResponse = JsonConvert.DeserializeObject<FloorErrorResponse>(resultHostel);
+                    await floorCallback.ServiceFaild(floorErrorResponse.errors[0].message);
                 }
             }
             catch (Exception e)

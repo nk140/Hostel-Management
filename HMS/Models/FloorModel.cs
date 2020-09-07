@@ -1,4 +1,6 @@
-﻿namespace HMS.Models
+﻿using System.Collections.Generic;
+
+namespace HMS.Models
 {
     public class FloorModel
     {
@@ -29,6 +31,16 @@
     {
         public string status { get; set; }
         public string code { get; set; }
+        public string message { get; set; }
+    }
+    public class FloorErrorResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public List<floorerror> errors { get; set; }
+    }
+    public class floorerror
+    {
         public string message { get; set; }
     }
 }
