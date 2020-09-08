@@ -494,8 +494,6 @@ namespace HMS.Services
 
 
         }
-
-
         public async void GetAllRomType1()
         {
 
@@ -524,10 +522,34 @@ namespace HMS.Services
             {
                 await roomCallback.ServiceFaild(ex.ToString());
             }
-
-
         }
+        public async void GetAllRomTypeForRoomBed()
+        {
 
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.AllRoomType);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    ObservableCollection<RoomTypeModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomTypeModel>>(result);
+                    await roomBedCallback.LoadRoomTypeList(batchData);
+                }
+                else
+                {
+                    await roomCallback.ServiceFaild("No Rooms Available");
+                }
+            }
+            catch (Exception ex)
+            {
+                await roomCallback.ServiceFaild(ex.ToString());
+            }
+        }
         public async void GetAllArea()
         {
 

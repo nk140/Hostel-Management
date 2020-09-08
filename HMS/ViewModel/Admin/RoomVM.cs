@@ -303,6 +303,7 @@ namespace HMS.ViewModel.Admin
         }
         public void SelectedArea(string id)
         {
+            RoomData.areaId = id;
             web.GetAllHostel(id);
         }
         public void HostelSelection(int index)

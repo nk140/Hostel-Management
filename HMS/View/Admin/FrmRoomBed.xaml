@@ -65,17 +65,18 @@
                 </StackLayout>
 
             </Frame>
-
+            <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                <forms:AutoSuggestBox x:Name="txtsearchbyroomname" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  DisplayMemberPath="name" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search For Which Room" TextChanged="txtsearchbyroomname_TextChanged" SuggestionChosen="txtsearchbyroomname_SuggestionChosen" />
+            </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <controls:BetterEntry 
                             x:Name="EntryName"
                             Margin="-16"
-                            Placeholder="Bed No" 
+                            Placeholder="Enter Bed No for which Room" 
                        FontSize="Default"
                        PlaceholderColor="#003366" 
                        Text="{Binding BedNo}"
-                    Keyboard="Numeric"
-                    MaxLength="10"
+                    Keyboard="Default"
                        TextColor="Black"
                        ReturnType="Next" />
             </Frame>

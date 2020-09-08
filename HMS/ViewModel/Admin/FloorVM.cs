@@ -235,10 +235,7 @@ namespace HMS.ViewModel.Admin
                 web.SaveFloorEntry(FloorData);
             }
         }
-
         #endregion
-
-
         public void AreaSelection(int index)
         {
             FloorProp.AreaVisible = !FloorProp.AreaVisible;//true

@@ -8,6 +8,7 @@ namespace HMS.Interface
     {
         Task LoadAreaList(ObservableCollection<AreaModel> AreaList);
         Task LoadHostelList(ObservableCollection<HostelModel> HostelList);
+        Task LoadRoomTypeList(ObservableCollection<RoomTypeModel> roomTypeModels);
         Task SaveRoomBedSuccess(string result);
         Task Failer(int index);
 

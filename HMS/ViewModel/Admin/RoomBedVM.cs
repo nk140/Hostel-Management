@@ -16,12 +16,14 @@ namespace HMS.ViewModel.Admin
             HostelVisible = false;
             web = new MasterServices(this);
             web.GetAllArea1();
+            web.GetAllRomTypeForRoomBed();
         }
 
         MasterServices web;
 
         private ObservableCollection<AreaModel> areamodels_ = new ObservableCollection<AreaModel>();
         private ObservableCollection<HostelModel> hostelmodels_ = new ObservableCollection<HostelModel>();
+        private ObservableCollection<RoomTypeModel> roomTypeModels = new ObservableCollection<RoomTypeModel>();
         string BedNo_ = "";
         long HostelHeight_ = 0;
         bool HostelVisible_ = false;
@@ -86,7 +88,18 @@ namespace HMS.ViewModel.Admin
             set { hostelmodels_ = value; OnPropertyChanged("HostelModelList"); }
         }
 
-
+        public ObservableCollection<RoomTypeModel> RoomTypeLists
+        {
+            get
+            {
+                return roomTypeModels;
+            }
+            set
+            {
+                roomTypeModels = value;
+                OnPropertyChanged();
+            }
+        }
         #region Command
         public Command SetAreaVisibility
         {
@@ -235,6 +248,13 @@ namespace HMS.ViewModel.Admin
         public async Task Failer(int index)
         {
             await App.Current.MainPage.DisplayAlert("", "Something went wrong", "OK");
+        }
+
+        public async Task LoadRoomTypeList(ObservableCollection<RoomTypeModel> roomTypeModels)
+        {
+            RoomTypeLists = new ObservableCollection<RoomTypeModel>();
+            RoomTypeLists = roomTypeModels;
+            OnPropertyChanged("RoomTypeLists");
         }
     }
 }
