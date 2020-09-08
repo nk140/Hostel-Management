@@ -23,12 +23,12 @@
                             <SwipeItems>
                                 <SwipeItem Text="Approve"
                                            IconImageSource="approved.png"
-                                           BackgroundColor="Transparent"
+                                           BackgroundColor="DarkGreen"
                                            Command="{Binding Source={x:Reference studentleaveaction}, Path=BindingContext.ApproveCommand}"
                                            CommandParameter="{Binding}" />
                                 <SwipeItem Text="Reject"
                                            IconImageSource="reject.png"
-                                           BackgroundColor="Transparent"
+                                           BackgroundColor="DarkRed"
                                            Command="{Binding Source={x:Reference studentleaveaction}, Path=BindingContext.RejectCommand}"
                                            CommandParameter="{Binding}" />
                             </SwipeItems>

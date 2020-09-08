@@ -8,7 +8,7 @@
              x:Class="HMS.View.Warden.FrmDiscpoption">
     <AbsoluteLayout>
         <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.34,0.03,0.89,0.07">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-15" TextColor="#2D295F" PlaceholderText="Search From Room id" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-19" TextColor="#2D295F" PlaceholderText="Search From Room id" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
         </Frame>
     </AbsoluteLayout>
 </ContentPage>

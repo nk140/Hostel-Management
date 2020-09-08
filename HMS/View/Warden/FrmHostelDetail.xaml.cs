@@ -13,6 +13,7 @@ namespace HMS.View.Warden
     {
         HostelDetailMasterViewModel vm;
         ObservableCollection<HostalMasterModel> ListHostel;
+        ObservableCollection<HostalMasterModel> hostalMasterModels;
         public FrmHostelDetail()
         {
             InitializeComponent();
@@ -59,9 +60,16 @@ namespace HMS.View.Warden
         {
             try
             {
+                hostalMasterModels = new ObservableCollection<HostalMasterModel>();
                 txtsearchbykeyword.Text = ((HostalMasterModel)e.SelectedItem).hostelName;
-                _listView.ItemsSource = ListHostel;
-                _listView.IsVisible = true;
+                if (ListHostel != null)
+                {
+                    foreach (var items in ListHostel)
+                    {
+                        hostalMasterModels.Add(items);
+                    }
+                }
+                _listView.ItemsSource = hostalMasterModels;
             }
             catch (Exception ex)
             {

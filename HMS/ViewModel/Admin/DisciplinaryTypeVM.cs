@@ -33,10 +33,15 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnSaveCommands()
         {
-            DisciplinaryType disciplinary = new DisciplinaryType();
-            disciplinary.name = DisciplinaryReason;
-            disciplinary.userId = App.userid;
-            masterService.Savedisciplinary(disciplinary);
+            if (DisciplinaryReason != null || string.IsNullOrEmpty(DisciplinaryReason))
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter Disciplinary Type", "OK");
+            else
+            {
+                DisciplinaryType disciplinary = new DisciplinaryType();
+                disciplinary.name = DisciplinaryReason;
+                disciplinary.userId = App.userid;
+                masterService.Savedisciplinary(disciplinary);
+            }
         }
         public void SaveDisciplinaryType(string result)
         {

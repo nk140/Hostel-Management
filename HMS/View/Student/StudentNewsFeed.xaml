@@ -28,7 +28,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Vertical">
                                 <Label Text="{Binding newsTitle}" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0"/>
-                                <Image Source="{Binding linkUrl,Converter={StaticResource UrlToImage}}" Grid.Row="1" Aspect="AspectFill"/>
+                                <Image Source="{Binding linkUrl}" Grid.Row="1" Aspect="AspectFill"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

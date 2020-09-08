@@ -34,7 +34,7 @@ namespace HMS.ViewModel.Admin
                     if (FasilityData.name == null || FasilityData.name.Length == 0)
                     {
                         UserDialogs.Instance.HideLoading();
-                        App.Current.MainPage.DisplayAlert("", "Please Enter Fasility", "OK");
+                        App.Current.MainPage.DisplayAlert("HMS", "Please Enter Facility", "OK");
                     }
                     else
                     {

@@ -23,27 +23,23 @@
                             <SwipeItems>
                                 <SwipeItem Text="Call"
                                            IconImageSource="call.png"
-                                           BackgroundColor="Transparent"
+                                           BackgroundColor="DarkBlue"
                                            Command="{Binding Source={x:Reference NewStudentdata}, Path=BindingContext.CallCommand}"
                                            CommandParameter="{Binding}" />
                                 <SwipeItem Text="Message"
                                            IconImageSource="message.png"
-                                           BackgroundColor="Transparent"
+                                           BackgroundColor="DarkCyan"
                                            Command="{Binding Source={x:Reference NewStudentdata}, Path=BindingContext.MessageCommand}"
                                            CommandParameter="{Binding}" />
                                 <SwipeItem Text="Whatsapp"
                                            IconImageSource="whatsapp.png"
-                                           BackgroundColor="Transparent"
+                                           BackgroundColor="DarkGreen"
                                            Command="{Binding Source={x:Reference NewStudentdata}, Path=BindingContext.WhatsappCommand}"
                                            CommandParameter="{Binding}" />
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <Frame VerticalOptions="FillAndExpand" BorderColor="DarkBlue" Margin="20,10,20,10" CornerRadius="20">
                             <StackLayout Orientation="Vertical">
-                                <!--<StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="Student Id:-" FontFamily="{StaticResource BoldFont}" FontSize="25"/>
-                                    <Label Text="{Binding studentId}" FontFamily="{StaticResource BoldFont}" FontSize="25"/>
-                                </StackLayout>-->
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="Student Name:-" FontFamily="{StaticResource BoldFont}" FontSize="25"/>
                                     <Label Text="{Binding studentName}" FontFamily="{StaticResource BoldFont}" FontSize="25"/>
