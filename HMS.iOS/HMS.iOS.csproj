@@ -229,4 +229,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\users.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\whatsappmessenger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\messenging.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\phone.png" />
+  </ItemGroup>
 </Project>

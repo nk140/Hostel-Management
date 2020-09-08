@@ -52,7 +52,7 @@
                                         <StackLayout>
                                             <Image
                                                 
-                                                Source="call.png"
+                                                Source="phone.png"
                                                 WidthRequest="30"
                                                  />
                                             <StackLayout.GestureRecognizers>
@@ -64,7 +64,7 @@
                                         <StackLayout
                                             Margin="10,0,0,0">
                                             <Image
-                                                Source="message.png"
+                                                Source="messenging.png"
                                                 WidthRequest="30"
                                                  />
                                             <StackLayout.GestureRecognizers>
@@ -75,7 +75,7 @@
                                         <StackLayout
                                             Margin="17,0,0,0">
                                             <Image
-                                                Source="whatsapp.png"
+                                                Source="whatsappmessenger.png"
                                                 WidthRequest="30"
                                                  />
                                             <StackLayout.GestureRecognizers>
