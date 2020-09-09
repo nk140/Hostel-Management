@@ -37,12 +37,12 @@
                                     <Label Text="{Binding reason}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="LeaveFromDate:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding leaveFromDate}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
+                                    <Label Text="LeaveFromDate:-" FontFamily="{StaticResource BoldFont}"  FontSize="20"/>
+                                    <Label Text="{Binding leaveFromDate}" FontFamily="{StaticResource BoldFont}" Margin="3" FontSize="15"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="LeaveToDate:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding leaveToDate}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
+                                    <Label Text="{Binding leaveToDate}" FontFamily="{StaticResource BoldFont}" Margin="3" FontSize="15"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="MobileNo:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>

@@ -47,7 +47,6 @@ namespace HMS.View.Warden
                 new WardenMenuItem {Title="Logout",TargetType=typeof(FrmLogin)},
             };
             ListViewMenu.ItemsSource = wardenmenuList;
-            // Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(FrmWardenRegistration)));
         }
         private async void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

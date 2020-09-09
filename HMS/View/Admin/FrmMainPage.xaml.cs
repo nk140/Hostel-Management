@@ -38,6 +38,7 @@ namespace HMS.View.Admin
                 new HomeMenuItem {Title="Logout",TargetType=typeof(FrmLogin)}
             };
             ListViewMenu.ItemsSource = menuItems;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(AdminNewsFeed)));  
         }
         private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

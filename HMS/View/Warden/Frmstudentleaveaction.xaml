@@ -49,11 +49,11 @@
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="FromDate:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding fromDate}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="{Binding fromDate}" FontFamily="{StaticResource BoldFont}" Margin="2" FontSize="20"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="ToDate:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding toDate}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="{Binding toDate}" FontFamily="{StaticResource BoldFont}" Margin="2" FontSize="20"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="LeaveType:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>

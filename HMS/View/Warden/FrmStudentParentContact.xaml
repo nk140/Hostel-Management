@@ -15,11 +15,7 @@
         <StackLayout
            Orientation="Vertical">
             <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-                <StackLayout Orientation="Horizontal" Margin="-4,0,0,0">
-                    <forms:AutoSuggestBox x:Name="txtsearchbykeyword"  PlaceholderText="Search By name,room-no" HorizontalOptions="FillAndExpand" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
-                    <!--<controls:BetterEntry Placeholder="Enter Name" Keyboard="Text" HorizontalOptions="FillAndExpand" PlaceholderColor="Black" FontSize="17" Margin="-7"/>-->
-                    <Image Source="Search_Icon.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
+                <forms:AutoSuggestBox x:Name="txtsearchbykeyword"  PlaceholderText="Search By name,room-no" HorizontalOptions="FillAndExpand" Margin="-10" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
             </Frame>
             <ListView 
                 x:Name="lv_contact"  
@@ -40,13 +36,13 @@
                                 <StackLayout
                                     Orientation="Vertical">
                                     <Label
-                                    Text="{Binding Name}" FontFamily="{StaticResource BoldFont}"/>
+                                    Text="{Binding Name}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
                                     <Label
-                                    Text="{Binding Parentof}" FontFamily="{StaticResource BoldFont}"/>
+                                    Text="{Binding Parentof}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
                                     <Label
-                                    Text="{Binding contactno}" FontFamily="{StaticResource BoldFont}"/>
-                                    <StackLayout Margin="0,-85,-193,0">
-                                        <Image Source="user.png" WidthRequest="110"/>
+                                    Text="{Binding contactno}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
+                                    <StackLayout Margin="0,-70,-193,0"  VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand">
+                                        <Image Source="user.png" WidthRequest="100"/>
                                     </StackLayout>
                                     <StackLayout
                                         Orientation="Horizontal"

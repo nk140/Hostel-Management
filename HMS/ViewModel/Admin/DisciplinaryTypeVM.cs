@@ -33,7 +33,7 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnSaveCommands()
         {
-            if (DisciplinaryReason != null || string.IsNullOrEmpty(DisciplinaryReason))
+            if (string.IsNullOrEmpty(DisciplinaryReason))
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Disciplinary Type", "OK");
             else
             {

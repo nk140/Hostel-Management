@@ -67,7 +67,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:AdminNewsFeed />
+                <views:AdminNewsFeed/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

@@ -239,19 +239,29 @@ namespace HMS.ViewModel.Admin
                 App.Current.MainPage.DisplayAlert("", "Enter Phone Number", "OK");
                 return false;
             }
+            else if (Warden.mobile_no.Length != 10)
+            {
+                App.Current.MainPage.DisplayAlert("HMS", "Phone Number Must Be 10 digits", "OK");
+                return false;
+            }
             else if (Warden.email == null || Warden.email.Length == 0)
             {
                 App.Current.MainPage.DisplayAlert("", "Enter Email Id", "OK");
                 return false;
             }
-            else if (Warden.roleId == null || Warden.roleId.Length == 0)
+            else if (RoleName.Length == 0 || string.IsNullOrEmpty(RoleName))
             {
-                App.Current.MainPage.DisplayAlert("", "Select Role", "OK");
+                App.Current.MainPage.DisplayAlert("HMS", "Enter Role", "OK");
                 return false;
             }
             else if (Warden.gender == null || Warden.gender.Length == 0)
             {
                 App.Current.MainPage.DisplayAlert("", "Select Gender", "OK");
+                return false;
+            }
+            else if(Warden.roleId==null || Warden.roleId.Length==0)
+            {
+                App.Current.MainPage.DisplayAlert("", "Select Role", "OK");
                 return false;
             }
             else if (Warden.email == null || Warden.email.Length == 0)
@@ -310,7 +320,19 @@ namespace HMS.ViewModel.Admin
         public async Task GetAllRole(ObservableCollection<RoleModel> role_)
         {
             Role = new ObservableCollection<RoleModel>();
-            Role = role_;
+            if (role_ != null)
+            {
+                foreach(var items in role_)
+                {
+                    if (items.roleName == "warden")
+                    {
+                        Role.Add(items);
+                        break;
+                    }
+                        
+                }
+            }
+            //Role = role_;
             OnPropertyChanged("Role");
         }
 
@@ -319,6 +341,8 @@ namespace HMS.ViewModel.Admin
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             Warden = new WardenModel();
             ConfirmPassword = "";
+            RoleName = "";
+            IsCheck1 = true;
             OnPropertyChanged("Warden");
             OnPropertyChanged("ConfirmPassword");
         }

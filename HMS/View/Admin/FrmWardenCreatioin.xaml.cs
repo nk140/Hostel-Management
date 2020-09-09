@@ -31,18 +31,5 @@ namespace HMS.View.Admin
 
          ((ListView)sender).SelectedItem = null;
         }
-
-        private void OnSelectedGenderItem(object sender, ItemTappedEventArgs e)
-        {
-
-            //    GenderModel md = (GenderModel)lv_gender.SelectedItem;
-            //    int cnt = Vm.Gender.IndexOf(md);
-            //    if (cnt >= 0)
-            //    {
-            //        Vm.GenderItemSelect(cnt);
-            //    }
-
-            //((ListView)sender).SelectedItem = null;
-        }
     }
 }
