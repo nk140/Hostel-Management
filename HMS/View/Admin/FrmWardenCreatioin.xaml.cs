@@ -21,14 +21,12 @@ namespace HMS.View.Admin
 
         private void OnSelectedRoleItem(object sender, ItemTappedEventArgs e)
         {
-
             RoleModel md = (RoleModel)lv_role.SelectedItem;
             int cnt = Vm.Role.IndexOf(md);
             if (cnt >= 0)
             {
                 Vm.RoleItemSelect(cnt);
             }
-
          ((ListView)sender).SelectedItem = null;
         }
     }

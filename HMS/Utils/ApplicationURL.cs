@@ -65,5 +65,8 @@
         #region NewsFeed
         public static string GetNewsFeedData = "/hostelandmess/api/v1/notification/allNotification";
         #endregion
+        #region GUEST
+        public static string GuestRegistration = "/hostelandmess/api/v1/student/guestregister";
+        #endregion
     }
 }

@@ -2,10 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Guest"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
              mc:Ignorable="d"
              Title="Guest Registration"
              x:Class="HMS.View.Guest.FrmGuestRegistration">
+    <ContentPage.BindingContext>
+        <vm:GuestRegBeforeLoginVM></vm:GuestRegBeforeLoginVM>
+    </ContentPage.BindingContext>
     <Grid Margin="0,14,0,0" RowSpacing="7">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,32 +23,32 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30">
-            <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding GuestRegistrationModel.guestName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
-            <controls:BetterEntry Placeholder="Enter Address" Keyboard="Text" Text="{Binding Fulladdress}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Enter Address" Keyboard="Text" Text="{Binding GuestRegistrationModel.address}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
-            <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding Mobileno}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding GuestRegistrationModel.phoneNo}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <StackLayout Orientation="Horizontal" Grid.Row="3">
             
         </StackLayout>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="4">
-            <controls:BetterEntry Placeholder="Enter Email" Keyboard="Email" Text="{Binding Email}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Enter Email" Keyboard="Email" Text="{Binding GuestRegistrationModel.email}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="5">
-            <controls:BetterEntry Placeholder="Enter Aadhar no" Keyboard="Text"  Text="{Binding Aadharno}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Enter Aadhar no" Keyboard="Numeric" MaxLength="9"  Text="{Binding GuestRegistrationModel.aadharNo}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="6">
-            <controls:BetterEntry Placeholder="Enter UserName" Keyboard="Text"  Text="{Binding Username}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Enter UserName" Keyboard="Text"  Text="{Binding GuestRegistrationModel.userName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <Grid Grid.Row="7"  ColumnSpacing="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Text="Register" BackgroundColor="#e96125" Margin="65,10,0,0" TextColor="White" CornerRadius="20" HeightRequest="50" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Register" BackgroundColor="#e96125" Margin="65,10,0,0" Command="{Binding SaveCommand}" TextColor="White" CornerRadius="20" HeightRequest="50" HorizontalOptions="CenterAndExpand"/>
             <Button Text="Reset" BackgroundColor="#e96125" Margin="85,10,0,0" TextColor="White" HeightRequest="50" CornerRadius="20"  Grid.Column="1"/>
         </Grid>
         <Button Text="Login" x:Name="login" BackgroundColor="#e96125" Grid.Row="8" TextColor="White" CornerRadius="20" HeightRequest="50" Margin="0,10,0,0" Clicked="login_Clicked"/>

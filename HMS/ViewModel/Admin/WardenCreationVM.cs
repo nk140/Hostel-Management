@@ -26,10 +26,7 @@ namespace HMS.ViewModel.Admin
             IsCheck1 = true;
             Check1Clicked = new Command(check1Clicked);
             Check2Clicked = new Command(check2Clicked);
-            //Gender.Add(new GenderModel() { name = "Male" });
-            //Gender.Add(new GenderModel() { name = "Female" });
         }
-
 
         MasterServices web;
 
@@ -332,7 +329,6 @@ namespace HMS.ViewModel.Admin
                         
                 }
             }
-            //Role = role_;
             OnPropertyChanged("Role");
         }
 
