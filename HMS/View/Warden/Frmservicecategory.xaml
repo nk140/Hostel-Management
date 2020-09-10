@@ -21,7 +21,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <ListView  x:Name="_listView" ItemsSource="{Binding WardenServiceData}" Margin="0,0,0,0" WidthRequest="410"  VerticalOptions="FillAndExpand" HasUnevenRows="true">
+                    <ListView  x:Name="_listView" ItemsSource="{Binding WardenServiceData}" VerticalScrollBarVisibility="Never" Margin="0,0,0,0" WidthRequest="410"  VerticalOptions="FillAndExpand" HasUnevenRows="true">
                         <ListView.Header>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label WidthRequest="150" HeightRequest="40" Text="Id" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>

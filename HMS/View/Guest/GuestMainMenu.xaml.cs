@@ -20,6 +20,7 @@ namespace HMS.View.Guest
             base.OnAppearing();
             guestmenulist = new ObservableCollection<GuestMenu>
             {
+                new GuestMenu {Title="News Feed",TargetType=typeof(NewsFeed)},
                 new GuestMenu {Title="Guest Registration",TargetType=typeof(GuestRegistration)},
                 // new GuestMenu {Title="Room Detail",TargetType=typeof(GuestRoomDetails)},
                 //  new GuestMenu {Title="View Room Image & Video",TargetType=typeof(Imagevideoview)},
@@ -29,7 +30,6 @@ namespace HMS.View.Guest
                 new GuestMenu {Title="Logout",TargetType=typeof(FrmLogin)}
             };
             ListViewMenu.ItemsSource = guestmenulist;
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(GuestRegistration)));
         }
         private async void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

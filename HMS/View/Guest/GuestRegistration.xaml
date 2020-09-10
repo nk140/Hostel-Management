@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:HMS.ViewModel.Guest"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
              mc:Ignorable="d"
-             Title="Guest Registration"
+             Title="Edit Guest Info"
              x:Class="HMS.View.Guest.GuestRegistration">
     <ContentPage.BindingContext>
         <vm:GuestRegistrationViewModel></vm:GuestRegistrationViewModel>
@@ -43,11 +43,12 @@
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="5">
                 <controls:BetterEntry Placeholder="Date Of Birth"  Keyboard="Text" x:Name="txtrole" Text="{Binding DateOfBirth}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="6">
-                <controls:BetterEntry Placeholder="Gender" Keyboard="Text" x:Name="txtgender" Text="{Binding Gender}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-            </Frame>
+            <StackLayout Orientation="Horizontal" Grid.Row="6">
+                <RadioButton Text="Male"    IsChecked="{Binding IsCheck1}"/>
+                <RadioButton Text="Female"  IsChecked="{Binding IsCheck2}"/>
+            </StackLayout>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="7">
-                <controls:BetterEntry Placeholder="Username" Keyboard="Text" x:Name="txtusername" Text="{Binding Username}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="Username" Keyboard="Text" IsEnabled="False" x:Name="txtusername" Text="{Binding Username}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="8">
                 <controls:BetterEntry Placeholder="Enter New Password" Keyboard="Default" IsPassword="True" x:Name="txtnewpassword" Text="{Binding Newpassword}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>

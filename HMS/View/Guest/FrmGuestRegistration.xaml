@@ -32,7 +32,8 @@
             <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding GuestRegistrationModel.phoneNo}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <StackLayout Orientation="Horizontal" Grid.Row="3">
-            
+            <RadioButton x:Name="maleOption" Text="Male" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}"/>
+            <RadioButton x:Name="femaleoption" Text="Female" IsChecked="{Binding IsCheck2}" Command="{Binding Check2Clicked}"/>
         </StackLayout>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="4">
             <controls:BetterEntry Placeholder="Enter Email" Keyboard="Email" Text="{Binding GuestRegistrationModel.email}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>

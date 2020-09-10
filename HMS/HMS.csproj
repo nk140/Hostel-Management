@@ -94,6 +94,9 @@
     <EmbeddedResource Update="View\Guest\Imagevideoview.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\Guest\NewsFeed.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Guest\Roombookingandstatusview.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -34,15 +34,53 @@ namespace HMS.ViewModel.Guest
         #endregion
         #region commands
         public ICommand SaveCommand => new Command(OnSaveCommand);
+        public Command Check1Clicked { get; set; }
+        public Command Check2Clicked { get; set; }
         #endregion
+        bool _check1;
+        public bool IsCheck1 { get { return _check1; } set { if (_check1 != value) { _check1 = value; OnPropertyChanged(); } } }
+        bool _check2;
+        public bool IsCheck2 { get { return _check2; } set { if (_check2 != value) { _check2 = value; OnPropertyChanged(); } } }
         public GuestRegBeforeLoginVM()
         {
             guestServices = new GuestServices(this);
+            IsCheck1 = true;
+            Check1Clicked = new Command(check1Clicked);
+            Check2Clicked = new Command(check2Clicked);
+        }
+        private void check2Clicked()
+        {
+            if (IsCheck2 == true)
+                IsCheck1 = false;
+            else
+                IsCheck1 = true;
+        }
+
+        private void check1Clicked()
+        {
+            if (IsCheck1 == true)
+            {
+
+                IsCheck2 = false;
+
+            }
+            else
+            {
+                IsCheck2 = true;
+            }
         }
         public async void OnSaveCommand()
         {
             string emailpattern = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
             Regex emailRegx = new Regex(emailpattern);
+            if(IsCheck1==true)
+            {
+                GuestRegistrationModel.gender = "Male";
+            }
+            else
+            {
+                GuestRegistrationModel.gender = "Female";
+            }
             if (GuestRegistrationModel.guestName == null || GuestRegistrationModel.guestName.Length == 0)
             {
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Name", "OK");
@@ -82,7 +120,7 @@ namespace HMS.ViewModel.Guest
                 guestServices.SaveGuestData(GuestRegistrationModel);
             }
         }
-        public void GenerateRandomPassword()
+        public async void GenerateRandomPassword()
         {
             int length = 4;
             StringBuilder str_build = new StringBuilder();
@@ -97,7 +135,7 @@ namespace HMS.ViewModel.Guest
             }
             temppassword = str_build.ToString();
         }
-        public void Sendsms()
+        public async void Sendsms()
         {
              GenerateRandomPassword();
             try
@@ -108,7 +146,7 @@ namespace HMS.ViewModel.Guest
                 mail.From = new MailAddress("nk8059168@gmail.com");
                 mail.To.Add(GuestRegistrationModel.email);
                 mail.Subject = "New Password";
-                mail.Body = "Hello" +" "+ GuestRegistrationModel.userName + " " + "You Have Sucessfully Registered and new password is" + " " + temppassword;
+                mail.Body = "Hello" +" "+ GuestRegistrationModel.userName + " " + "You Have Sucessfully Registered and your password is" + " " + temppassword;
 
                 SmtpServer.Port = 587;
                 SmtpServer.Host = "smtp.gmail.com";
@@ -125,6 +163,7 @@ namespace HMS.ViewModel.Guest
         public async void Success(string result)
         {
             GuestRegistrationModel = new GuestRegistrationModel();
+            IsCheck1 = true;
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged("GuestRegistrationModel");
         }

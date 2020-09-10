@@ -42,7 +42,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:GuestRegistration />
+                <views:NewsFeed />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

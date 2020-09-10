@@ -12,6 +12,7 @@ namespace HMS.Models
         public string phoneNo { get; set; }
         public string aadharNo { get; set; }
         public string userName { get; set; }
+        public string gender { get; set; }
         public string password { get; set; }
     }
     public class GuestRegResponse

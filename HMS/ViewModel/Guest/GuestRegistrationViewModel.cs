@@ -1,4 +1,5 @@
 ﻿using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace HMS.ViewModel.Guest
 {
@@ -214,6 +215,10 @@ namespace HMS.ViewModel.Guest
             }
         }
         #endregion
+        bool _check1;
+        public bool IsCheck1 { get { return _check1; } set { if (_check1 != value) { _check1 = value; OnPropertyChanged(); } } }
+        bool _check2;
+        public bool IsCheck2 { get { return _check2; } set { if (_check2 != value) { _check2 = value; OnPropertyChanged(); } } }
         public GuestRegistrationViewModel()
         {
             FirstName = SecureStorage.GetAsync("firstName").GetAwaiter().GetResult();
@@ -225,7 +230,14 @@ namespace HMS.ViewModel.Guest
             Email = SecureStorage.GetAsync("email").GetAwaiter().GetResult();
             DateOfBirth = SecureStorage.GetAsync("dateOfBirth").GetAwaiter().GetResult();
             Gender = SecureStorage.GetAsync("gender").GetAwaiter().GetResult();
-            Username = "Kavitha";
+            if(Gender!=null)
+            {
+                if (Gender == "Male")
+                    IsCheck1 = true;
+                else
+                    IsCheck2 = true;
+            }
+            //Username = "";
         }
     }
 }
