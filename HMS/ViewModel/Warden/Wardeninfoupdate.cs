@@ -1,6 +1,7 @@
 ﻿using HMS.Interface;
 using HMS.Models;
 using HMS.Services;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -160,6 +161,7 @@ namespace HMS.ViewModel.Warden
         #endregion
         public async void OnUpdateWardenInfoCommand()
         {
+            validation();
             if (Newpassword == CnfPassword)
             {
                 WardenRegistration warden = new WardenRegistration();
@@ -176,6 +178,31 @@ namespace HMS.ViewModel.Warden
             }
             else
                 await App.Current.MainPage.DisplayAlert("", "Password Doesn't match", "OK");
+        }
+        public void validation()
+        {
+            string emailpattern = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
+            Regex emailRegx = new Regex(emailpattern);
+            if (string.IsNullOrEmpty(Name) || Name.Length == 0)
+                App.Current.MainPage.DisplayAlert("HMS", "Enter Name", "OK");
+            else if (string.IsNullOrEmpty(Mobileno) || Mobileno.Length == 0)
+                App.Current.MainPage.DisplayAlert("HMS", "Enter phone no", "OK");
+            else if (Mobileno.Length != 10)
+                App.Current.MainPage.DisplayAlert("HMS", "Please Enter 10 digit mobile no.", "OK");
+            else if (string.IsNullOrEmpty(Aadharno) || Aadharno.Length == 0)
+                App.Current.MainPage.DisplayAlert("HMS", "Enter AAdhar no.", "OK");
+            else if (Aadharno.Length != 9)
+                App.Current.MainPage.DisplayAlert("HMS", "Please Enter 9 digit Aadhar no.", "OK");
+            else if (string.IsNullOrEmpty(Email) || Email.Length == 0)
+                App.Current.MainPage.DisplayAlert("HMS", "Enter email.", "OK");
+            else if (string.IsNullOrEmpty(Fulladdress) || Fulladdress.Length == 0)
+                App.Current.MainPage.DisplayAlert("HMS", "Enter Address.", "OK");
+            else if (emailRegx.IsMatch(Email) == false)
+            {
+                App.Current.MainPage.DisplayAlert("HMS", "Enter Valid Email Address", "OK");
+            }
+            else if (string.IsNullOrEmpty(Newpassword) || Newpassword.Length == 0)
+                App.Current.MainPage.DisplayAlert("HMS", "Enter New Password", "Ok");
         }
         public void wardenregistrationresponse(string result)
         {

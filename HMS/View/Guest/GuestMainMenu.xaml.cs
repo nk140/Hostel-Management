@@ -26,7 +26,7 @@ namespace HMS.View.Guest
                 //  new GuestMenu {Title="View Room Image & Video",TargetType=typeof(Imagevideoview)},
                    new GuestMenu {Title="Facility Details",TargetType=typeof(RoomFacility)},
                     new GuestMenu {Title="Request for room & view status",TargetType=typeof(Roombookingandstatusview)},
-                //new GuestMenu {Title="Contact Warden",TargetType=typeof(Contactwarden)},
+                new GuestMenu {Title="Contact Warden",TargetType=typeof(Contactwarden)},
                 new GuestMenu {Title="Logout",TargetType=typeof(FrmLogin)}
             };
             ListViewMenu.ItemsSource = guestmenulist;
