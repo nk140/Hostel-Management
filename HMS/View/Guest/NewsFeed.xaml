@@ -15,7 +15,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
-            <ListView ItemsSource="{Binding NewsFeeds}" SeparatorVisibility="None" HasUnevenRows="True" VerticalScrollBarVisibility="Never">
+            <ListView ItemsSource="{Binding NewsFeeds}" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None" VerticalScrollBarVisibility="Never">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

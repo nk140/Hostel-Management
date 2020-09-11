@@ -76,6 +76,9 @@
     <EmbeddedResource Update="View\Guest\Contactwarden.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\Guest\Feedback.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Guest\FrmGuestRegistration.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
