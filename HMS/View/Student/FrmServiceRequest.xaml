@@ -1,101 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:controls="clr-namespace:HMS.Controls"
              x:Class="HMS.View.Student.FrmServiceRequest"
              Title="Service Request">
-    <ContentPage.Content>
-
-        <StackLayout
-            Orientation="Vertical"
-             Margin="20,20,20,0"
-            >
-            <Label
-                    Text="Select Service Type"
-                    TextColor="#2D295F" 
-                    FontAttributes="None"
-                    FontSize="Medium"    />
-                    <StackLayout>
-                        <Entry 
-                            Placeholder="Select Service Type"     
-                            TextColor="Black" 
-                            VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand"
-                            IsEnabled="False"                        
-                            Text="{Binding ServiceType}"/>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer                           
-                                Command="{Binding SetServiceTypeVisibility}"
-                                NumberOfTapsRequired="1">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-
-                    <Frame 
-                    x:Name="f_service_type"
-                    HasShadow="True"
-                    IsVisible="{Binding AreaVisible}"                      
-                    Margin="10,0,10,0"  >
-                        <StackLayout 
-                        Orientation="Vertical">
-                            <ListView 
-                                x:Name="lv_service_type"    
-                                HeightRequest="180"
-                                ItemsSource="{Binding AreaModelList}"
-                                VerticalOptions="Fill"                            
-                                >
-
-                                
-
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell >
-                                            <StackLayout Orientation="Horizontal">
-
-                                                <Label Text="Ascd"
-                                               HorizontalOptions="StartAndExpand"
-                                               HorizontalTextAlignment="Start"
-                                               VerticalTextAlignment="Center"/>
-
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-
-                            </ListView>
-
-                        </StackLayout>
-
-                    </Frame>
-
-            <Label
-                Text="Description"
-                TextColor="#2D295F"
-                Margin="0,10,0,0"/>
-            <Entry
-                Placeholder="Enter Description"
-                TextColor="Black"/>
-
-            <StackLayout
-                Orientation="Horizontal"
-                Margin="5,30,5,5">
-                <Button
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="#ffa500"
-                    WidthRequest="100"
-                    CornerRadius="10"
-                    TextColor="Wheat"
-                    Text="Cancel"/>
-                <Button
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="#ffa500"
-                    WidthRequest="100"
-                    CornerRadius="10"
-                    TextColor="Wheat"
-                    Text="Requset"/>
-                </StackLayout>
-
-        </StackLayout>
-
-
-    </ContentPage.Content>
+    <AbsoluteLayout>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.03,0.8,0.08">
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Service Category" TextMemberPath="name" DisplayMemberPath="name" Margin="-17" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.16,0.8,0.08">
+            <controls:BetterEntry Placeholder="Enter Description" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
+        </Frame>
+        <Button Text="Request" BackgroundColor="#e96125" AbsoluteLayout.LayoutFlags="All" Command="{Binding SaveRequestCommand}" TextColor="White" CornerRadius="30" AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.08"/>
+    </AbsoluteLayout>
 </ContentPage>

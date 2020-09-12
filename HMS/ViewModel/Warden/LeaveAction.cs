@@ -11,6 +11,7 @@ namespace HMS.ViewModel.Warden
     {
         WardenService warden;
         private ObservableCollection<ParentStudentLeaveStatus> parentStudentLeaveStatuses = new ObservableCollection<ParentStudentLeaveStatus>();
+        public int counter;
         #region lisproperties
         public ObservableCollection<ParentStudentLeaveStatus> ParentStudentLeaveData
         {
@@ -37,11 +38,35 @@ namespace HMS.ViewModel.Warden
         }
         public async void OnApproveCommand(ParentStudentLeaveStatus obj)
         {
-
+            if(counter==1 || counter>1)
+                await App.Current.MainPage.DisplayAlert("HMS", "Rejected leave can't be approve", "OK");
+            else
+            {
+                var ans = await App.Current.MainPage.DisplayAlert("HMS", "Do you really want to approve the leave.", "OK", "Cancel");
+                if (ans)
+                {
+                    counter = counter + 1;
+                    if (counter > 1)
+                        await App.Current.MainPage.DisplayAlert("HMS", "You already approve.", "OK");
+                }
+            }
+            
         }
         public async void OnRejectCommand(ParentStudentLeaveStatus obj)
         {
-
+            if (counter == 1 || counter > 1)
+                await App.Current.MainPage.DisplayAlert("HMS", "Approved leave can't reject", "OK");
+            else
+            {
+                var ans = await App.Current.MainPage.DisplayAlert("HMS", "Do you really want to reject the leave.", "OK", "Cancel");
+                if (ans)
+                {
+                    counter = counter + 1;
+                    if (counter > 1)
+                        await App.Current.MainPage.DisplayAlert("HMS", "You Already rejected the leave", "OK");
+                }
+            }
+           
         }
         public void OnUpdateLeaveStatusCommand()
         {

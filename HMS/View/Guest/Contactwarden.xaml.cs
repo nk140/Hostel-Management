@@ -70,6 +70,12 @@ namespace HMS.View.Guest
                         }
                     }
                 }
+                if(infoModels==null)
+                {
+                    _listView.ItemsSource = null;
+                    App.Current.MainPage.DisplayAlert("HMS", "No contact no found for the entered name", "OK");
+                }
+                else
                 _listView.ItemsSource = infoModels;
             }
             catch (Exception ex)

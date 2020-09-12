@@ -61,10 +61,19 @@ namespace HMS.View.Parrent
                     foreach (var items in wardenInfoModels)
                     {
                         if (txtsearchbykeyword.Text == items.firstName)
-                            selectedtextdata.Add(items);
+                        {
+                            if (!string.IsNullOrEmpty(items.contact))
+                                selectedtextdata.Add(items);
+                        }
                     }
                 }
-                _listView.ItemsSource = selectedtextdata;
+                if (selectedtextdata == null || selectedtextdata.Count==0)
+                {
+                    _listView.ItemsSource = null;
+                    App.Current.MainPage.DisplayAlert("HMS", "No contact no found for the entered name", "OK");
+                }
+                else
+                    _listView.ItemsSource = selectedtextdata;
             }
             catch (Exception ex)
             {

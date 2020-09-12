@@ -1,4 +1,5 @@
-﻿using HMS.Interface;
+﻿using Acr.UserDialogs;
+using HMS.Interface;
 using HMS.Models;
 using HMS.Utils;
 using Newtonsoft.Json;
@@ -17,7 +18,7 @@ namespace HMS.Services
         RegistrationI registrationCallback;
         RoomTypeI roomTypeCallback;
         ContactWardenI ContactWardenCallback;
-
+        Iservicecategory iservicecategory;
         public StudentService(ProfileI callback)
         {
             profileCallback = callback;
@@ -41,6 +42,10 @@ namespace HMS.Services
         public StudentService(ContactWardenI callback)
         {
             ContactWardenCallback = callback;
+        }
+        public StudentService(Iservicecategory servicecategorydata)
+        {
+            iservicecategory = servicecategorydata;
         }
         public async void GetProfiile()
         {
@@ -133,7 +138,43 @@ namespace HMS.Services
             //return response;
 
         }
+        public async void GetServiceType()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.GetAllServiceType);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
 
+                    ObservableCollection<WardenServiceModel> leaveType = JsonConvert.DeserializeObject<ObservableCollection<WardenServiceModel>>(result);
+                    if (leaveType.Count > 0)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        iservicecategory.getallservicecategory(leaveType);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        await App.Current.MainPage.DisplayAlert(" ", "Data Not found", "OK");
+                    }
+
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await App.Current.MainPage.DisplayAlert(" ", "Data Error", "OK");
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+            }
+        }
         public async void GetAllWarden()
         {
 
