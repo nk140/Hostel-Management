@@ -64,8 +64,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BetterEntryRenderer.cs" />
+    <Compile Include="BorderlessTimePickerRenderer.cs" />
     <Compile Include="CustomPickerRenderer_IOS.cs" />
     <Compile Include="CustomViewCellRender.cs" />
+    <Compile Include="Datepickerrender.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

@@ -11,7 +11,7 @@ namespace HMS.ViewModel.Warden
     {
         WardenService warden;
         private ObservableCollection<ParentStudentLeaveStatus> parentStudentLeaveStatuses = new ObservableCollection<ParentStudentLeaveStatus>();
-        public int counter;
+        public int approvecounter, rejectcounter;
         #region lisproperties
         public ObservableCollection<ParentStudentLeaveStatus> ParentStudentLeaveData
         {
@@ -38,32 +38,31 @@ namespace HMS.ViewModel.Warden
         }
         public async void OnApproveCommand(ParentStudentLeaveStatus obj)
         {
-            if(counter==1 || counter>1)
+            if (rejectcounter == 1 || rejectcounter > 1)
                 await App.Current.MainPage.DisplayAlert("HMS", "Rejected leave can't be approve", "OK");
+            else if (approvecounter == 1 || approvecounter > 1)
+                await App.Current.MainPage.DisplayAlert("HMS", "You Have already approve the leave.", "OK");
             else
             {
                 var ans = await App.Current.MainPage.DisplayAlert("HMS", "Do you really want to approve the leave.", "OK", "Cancel");
                 if (ans)
                 {
-                    counter = counter + 1;
-                    if (counter > 1)
-                        await App.Current.MainPage.DisplayAlert("HMS", "You already approve.", "OK");
+                    approvecounter = approvecounter + 1;
                 }
             }
-            
         }
         public async void OnRejectCommand(ParentStudentLeaveStatus obj)
         {
-            if (counter == 1 || counter > 1)
+            if (approvecounter == 1 || approvecounter > 1)
                 await App.Current.MainPage.DisplayAlert("HMS", "Approved leave can't reject", "OK");
+            else if (rejectcounter == 1 || rejectcounter > 1)
+                await App.Current.MainPage.DisplayAlert("HMS", "You have already rejected the leave", "OK");
             else
             {
                 var ans = await App.Current.MainPage.DisplayAlert("HMS", "Do you really want to reject the leave.", "OK", "Cancel");
                 if (ans)
                 {
-                    counter = counter + 1;
-                    if (counter > 1)
-                        await App.Current.MainPage.DisplayAlert("HMS", "You Already rejected the leave", "OK");
+                    rejectcounter = rejectcounter + 1;
                 }
             }
            

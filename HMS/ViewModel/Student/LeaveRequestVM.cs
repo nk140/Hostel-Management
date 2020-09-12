@@ -121,9 +121,6 @@ namespace HMS.ViewModel.Student
                     }
                     else
                     {
-                        App.Current.MainPage.DisplayAlert("", "Data Saved", "OK");
-                        LeaveType = "";
-                        Reason = "";
                         LeaveRequest.reason = Reason;
                         LeaveRequest.remarks = Reason;
                         LeaveRequest.hostelAdmissionId = Constants.AdmissioonId;
@@ -151,7 +148,7 @@ namespace HMS.ViewModel.Student
 
         public async Task SaveLeaveRequest(string result)
         {
-            App.Current.MainPage.DisplayAlert("", "Data Saved", "OK");
+            await App.Current.MainPage.DisplayAlert("", "Data Saved", "OK");
         }
     }
 }

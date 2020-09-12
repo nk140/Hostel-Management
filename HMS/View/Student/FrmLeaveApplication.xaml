@@ -1,8 +1,40 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:Controls="clr-namespace:HMS.Controls"
              x:Class="HMS.View.Student.FrmLeaveApplication"
              Title="Leave Request">
-    <ContentPage.Content>
+    <ScrollView>
+        <Grid Margin="10" RowSpacing="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="0">
+                <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Text="{Binding LeaveType}" PlaceholderText="Search by Leave type" TextMemberPath="name" DisplayMemberPath="name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="1">
+                <Controls:DatePickers x:Name="dp_start_date" Margin="-7"  Placeholder="Enter Start Date" Unfocused="from_date_selected"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
+                <Controls:BorderlessTimePicker  x:Name="tp_start_time" Margin="-7"  Unfocused="from_t_selected" Format="HH:mm"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="3">
+                <Controls:DatePickers x:Name="dp_end_date" Margin="-7" Placeholder="Enter End Date" Unfocused="to_date_selected"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
+                <Controls:BorderlessTimePicker x:Name="tp_end_time" Margin="-7" Unfocused="to_t_selected" Format="HH:mm"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="5">
+                <Controls:BetterEntry Text="{Binding Reason}" Placeholder="Enter Reason" Margin="-17" TextColor="Black"/>
+            </Frame>
+            <Button Text="Request Leave" Command="{Binding SaveCommand}" Margin="10" TextColor="White" CornerRadius="30" Grid.Row="6" BackgroundColor="#e96125"/>
+        </Grid>
+    </ScrollView>
+    <!--<ContentPage.Content>
 
 
         <StackLayout
@@ -145,5 +177,5 @@
 
         </StackLayout>
 
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>

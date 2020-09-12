@@ -96,8 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetterEntryRender.cs" />
+    <Compile Include="BorderlessTimePickerRenderer.cs" />
     <Compile Include="CustomPickerRenderer_Droid.cs" />
     <Compile Include="CustomViewCellRender.cs" />
+    <Compile Include="DatePickersRender.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
