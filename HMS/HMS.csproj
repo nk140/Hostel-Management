@@ -118,6 +118,9 @@
     <EmbeddedResource Update="View\Parent\FrmParentRegistration.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\Parent\FrmParentRegistrationBeforLogin.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Parent\FrmParentRoomates.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

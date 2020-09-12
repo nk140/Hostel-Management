@@ -1,4 +1,5 @@
 ﻿using HMS.View.Guest;
+using HMS.View.Parent;
 using HMS.View.Student;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
@@ -35,7 +36,8 @@ namespace HMS.View
 
         private void parent_Clicked(object sender, EventArgs e)
         {
-
+            App.Current.MainPage.Navigation.PopPopupAsync(true);
+            Application.Current.MainPage = new NavigationPage(new FrmParentRegistrationBeforLogin());
         }
     }
 }

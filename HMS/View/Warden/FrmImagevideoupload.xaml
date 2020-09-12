@@ -16,12 +16,11 @@
             <controls:BetterEntry x:Name="txtblockno" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17"  TextColor="#2D295F" Placeholder="Enter Block No" />
         </Frame>
         <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.47,0.5,0.8,0.08">
-            <controls:BetterEntry x:Name="txthostelname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17"  TextColor="#2D295F" Placeholder="Enter Hostel Name" />
+            <controls:BetterEntry x:Name="txthostelname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17"  TextColor="#2D295F" Placeholder="Enter Hostel Name"/>
         </Frame>
         <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.47,0.6,0.8,0.08">
-            <controls:BetterEntry x:Name="txtroomname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17"  TextColor="#2D295F" Placeholder="Enter Room Name" />
+            <controls:BetterEntry x:Name="txtroomname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17"  TextColor="#2D295F" Placeholder="Enter Room Name"/>
         </Frame>
-        <Button Text="Upload" x:Name="btnupload" Clicked="btnupload_Clicked" BackgroundColor="#e96125" TextColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.16,0.8,0.4,0.1" CornerRadius="20"/>
-        <Button Text="Cancel" x:Name="btncancel" BackgroundColor="#e96125" TextColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.9,0.8,0.4,0.1" CornerRadius="20"/>
+        <Button Text="Upload" x:Name="btnupload" Clicked="btnupload_Clicked" BackgroundColor="#e96125" TextColor="White" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.8,0.4,0.1" CornerRadius="20"/>
     </AbsoluteLayout>
 </ContentPage>

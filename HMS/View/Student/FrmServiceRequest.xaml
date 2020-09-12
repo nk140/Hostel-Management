@@ -10,6 +10,6 @@
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.16,0.8,0.08">
             <controls:BetterEntry Placeholder="Enter Description" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
         </Frame>
-        <Button Text="Request" BackgroundColor="#e96125" AbsoluteLayout.LayoutFlags="All" Command="{Binding SaveRequestCommand}" TextColor="White" CornerRadius="30" AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.08"/>
+        <Button Text="Request Service" BackgroundColor="#e96125" AbsoluteLayout.LayoutFlags="All" Command="{Binding SaveRequestCommand}" TextColor="White" CornerRadius="30" AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.08"/>
     </AbsoluteLayout>
 </ContentPage>

@@ -12,14 +12,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label
                 HorizontalOptions="Center"
@@ -27,13 +19,13 @@
                 TextColor="Black"
                 FontSize="30"
                 Text="Password reset"/>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="8">
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="0">
                 <controls:BetterEntry Placeholder="Enter New Password" Keyboard="Default" IsPassword="True" x:Name="txtnewpassword" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="9">
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
                 <controls:BetterEntry Placeholder="Confirm Password" Keyboard="Default" x:Name="txtcnfpassword" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
-            <Button x:Name="btnupdate" CornerRadius="25" Text="Update"  Grid.Row="10" TextColor="White" BackgroundColor="#e96125"/>
+            <Button x:Name="btnupdate" CornerRadius="25" Text="Update"  Grid.Row="2" TextColor="White" BackgroundColor="#e96125"/>
         </Grid>
     </ScrollView>
 </ContentPage>
