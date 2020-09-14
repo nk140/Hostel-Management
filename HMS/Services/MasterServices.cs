@@ -96,9 +96,9 @@ namespace HMS.Services
         }
         public async void RoomList()
         {
+            UserDialogs.Instance.ShowLoading();
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
-
             var json = "";
             try
             {
@@ -106,17 +106,20 @@ namespace HMS.Services
 
                 if ((int)response.StatusCode == 200)
                 {
+                    UserDialogs.Instance.HideLoading();
                     json = await response.Content.ReadAsStringAsync();
                     ObservableCollection<RoomListModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomListModel>>(json);
                     await roomListCallback.LoadRoomList(batchData);
                 }
                 else
                 {
+                    UserDialogs.Instance.HideLoading();
                     await roomListCallback.Failer();
                 }
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("", "No Data Found.", "OK");
                 //await roomListCallback.Failer();
             }

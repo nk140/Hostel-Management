@@ -112,14 +112,8 @@
                     </Frame>
 
                     <StackLayout Orientation="Horizontal">
-                        <Button   Margin="60,40,30,0"
-                      Text="CANCEL" Grid.Row="0" Grid.Column="1"
-                      BackgroundColor="#e96125"
-                      Command="{Binding CancelCommand}"
-                      TextColor="White"
-                      CornerRadius="10"/>
-                        <Button   Margin="30,40,40,0"
-                      Text="SAVE" Grid.Row="0" Grid.Column="1"
+                        <Button   Margin="110,40,40,0" WidthRequest="150"
+                      Text="Create Hostel"
                       BackgroundColor="#e96125"
                       Command="{Binding SaveCommand}"
                       TextColor="White"

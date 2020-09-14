@@ -308,19 +308,11 @@
                         <Button
                     HorizontalOptions="CenterAndExpand"
                     BackgroundColor="#e96125"
-                    WidthRequest="100"
-                    CornerRadius="10"
-                    
-                    TextColor="Wheat"
-                    Text="Cancel"/>
-                        <Button
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="#e96125"
-                    WidthRequest="100"
+                    WidthRequest="150"
                     CornerRadius="10"
                     TextColor="Wheat"
                     Command="{Binding SaveCommand}"
-                    Text="Save"/>
+                    Text="Create Room"/>
                     </StackLayout>
 
 

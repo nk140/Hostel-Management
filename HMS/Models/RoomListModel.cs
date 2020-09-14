@@ -6,7 +6,10 @@
         public string hostelName { get; set; }
         public string hostelAddress { get; set; }
         public string numberOfSeatsAval { get; set; }
-
-
+    }
+    public class RoomList
+    {
+        public string id { get; set; }
+        public string name { get; set; }
     }
 }

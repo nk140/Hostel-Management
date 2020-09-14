@@ -1,8 +1,20 @@
-﻿namespace HMS.Models
+﻿using System.Collections.Generic;
+
+namespace HMS.Models
 {
     public class LeaveTypeModel
     {
         public string id { get; set; }
         public string name { get; set; }
+    }
+    public class LeaveTypeerrorresponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public List<Leavetypeerror> errors { get; set; }
+    }
+    public class Leavetypeerror
+    {
+        public string message { get; set; }
     }
 }

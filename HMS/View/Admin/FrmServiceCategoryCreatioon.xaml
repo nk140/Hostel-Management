@@ -21,23 +21,14 @@
             <StackLayout
                 Orientation="Horizontal"
                 Margin="20">
-
                 <Button
                     HorizontalOptions="CenterAndExpand"
                     BackgroundColor="#e96125"
-                    WidthRequest="100"
-                    CornerRadius="10"
-                    
-                    TextColor="Wheat"
-                    Text="Cancel"/>
-                <Button
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="#e96125"
-                    WidthRequest="100"
+                    WidthRequest="210"
                     CornerRadius="10"
                     Command="{Binding SaveCommand}"
                     TextColor="Wheat"
-                    Text="Save"/>
+                    Text="Create Service Category"/>
 
             </StackLayout>
 

@@ -187,15 +187,9 @@
                        TextColor="Black"
                        ReturnType="Next" />
                         </Frame>
-                        <StackLayout Orientation="Horizontal">
-                        <Button   Margin="60,40,30,0"
-                      Text="CANCEL" Grid.Row="0" Grid.Column="1"
-                      BackgroundColor="#e96125"
-                      Command="{Binding CancelCommand}"
-                      TextColor="White"
-                      CornerRadius="10"/>
-                        <Button   Margin="30,40,40,0"
-                      Text="SAVE" Grid.Row="0" Grid.Column="1"
+                    <StackLayout Orientation="Horizontal">
+                        <Button   Margin="100,40,40,0" WidthRequest="160"
+                      Text="Create Area" 
                       BackgroundColor="#e96125"
                       Command="{Binding SaveCommand}"
                       TextColor="White"

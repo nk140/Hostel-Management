@@ -7,7 +7,7 @@ namespace HMS.Interface
 {
     public interface StudentLeaveRequestI
     {
-        Task ServiceFaild();
+        Task ServiceFaild(string result);
 
         Task GetAllLeaveType(ObservableCollection<LeaveTypeModel> leaveTypes);
 

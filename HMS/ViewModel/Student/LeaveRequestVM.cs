@@ -130,14 +130,13 @@ namespace HMS.ViewModel.Student
 
                         web.SaveLeaveRequest(LeaveRequest);
                     }
-
                 });
             }
         }
 
-        public async Task ServiceFaild()
+        public async Task ServiceFaild(string result)
         {
-
+            await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
         }
 
         public async Task GetAllLeaveType(ObservableCollection<LeaveTypeModel> leaveTypes)
@@ -148,7 +147,7 @@ namespace HMS.ViewModel.Student
 
         public async Task SaveLeaveRequest(string result)
         {
-            await App.Current.MainPage.DisplayAlert("", "Data Saved", "OK");
+            await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
         }
     }
 }

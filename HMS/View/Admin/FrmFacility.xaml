@@ -11,7 +11,7 @@
 
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <Controls:BetterEntry
-                    Placeholder="Facility "
+                    Placeholder="Enter Facility"
                     Margin="-16"
                     FontSize="Default"
                     PlaceholderColor="#003366" 
@@ -22,23 +22,14 @@
             <StackLayout
                 Orientation="Horizontal"
                 Margin="20">
-
                 <Button
                     HorizontalOptions="CenterAndExpand"
                     BackgroundColor="#e96125"
-                    WidthRequest="100"
-                    CornerRadius="10"
-                    
-                    TextColor="Wheat"
-                    Text="Cancel"/>
-                <Button
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="#e96125"
-                    WidthRequest="100"
+                    WidthRequest="150"
                     CornerRadius="10"
                     Command="{Binding SaveData}"
                     TextColor="Wheat"
-                    Text="Save"/>
+                    Text="Save Facility"/>
 
             </StackLayout>
 

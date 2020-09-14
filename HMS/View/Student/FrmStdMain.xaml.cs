@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Essentials;
@@ -20,10 +21,10 @@ namespace HMS.View.Student
             {
                 new StudentMenuItem {Title="News Feed",TargetType=typeof(StudentNewsFeed)},
                 new StudentMenuItem {Title="Profile",TargetType=typeof(FrmStudentProfile)},
-                 new StudentMenuItem {Title="Room List",TargetType=typeof(FrmRoomList)},
+                new StudentMenuItem {Title="Room List",TargetType=typeof(FrmRoomList)},
                   new StudentMenuItem {Title="Service Request",TargetType=typeof(FrmServiceRequest)},
                    new StudentMenuItem {Title="Leave Request",TargetType=typeof(FrmLeaveApplication)},
-                    new StudentMenuItem {Title="Complaint Register",TargetType=typeof(FrmComplaintRegister)},
+                   // new StudentMenuItem {Title="Complaint Register",TargetType=typeof(FrmComplaintRegister)},
                 new StudentMenuItem {Title="Contact Warden",TargetType=typeof(FrmContactWarden)},
                 new StudentMenuItem {Title="Logout",TargetType=typeof(FrmLogin)}
             };
@@ -48,6 +49,11 @@ namespace HMS.View.Student
                     IsPresented = false;
                 }
             }
+        }
+
+        private async void studentleaveapproval_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushPopupAsync(new StudentNotificationxaml());
         }
     }
 }

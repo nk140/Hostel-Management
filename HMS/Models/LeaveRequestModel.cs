@@ -1,4 +1,6 @@
-﻿namespace HMS.Models
+﻿using System.Collections.Generic;
+
+namespace HMS.Models
 {
     public class LeaveRequestModel
     {
@@ -10,13 +12,21 @@
         public string remarks { get; set; }
         public string hostelLeaveTypeId { get; set; }
         public string academicYear { get; set; }
-
-        /*"":"1", 
-"":"2018-12-10T13:45:00.000Z",
-"":"2018-12-10T13:45:00.000Z",
-"":"test", 
-"":"test", 
-"":"7", 
-"":"2015" */
+    }
+    public class LeaveResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
+    public class LeaveErrorResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public List<LeaveError> errors { get; set; }
+    }
+    public class LeaveError
+    {
+        public string message { get; set; }
     }
 }

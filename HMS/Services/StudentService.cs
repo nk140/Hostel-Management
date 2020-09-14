@@ -96,7 +96,7 @@ namespace HMS.Services
 
         public async void GetAllLeaveType()
         {
-
+            LeaveTypeerrorresponse leaveTypeerrorresponse;
             try
             {
                 var client = new HttpClient();
@@ -115,21 +115,22 @@ namespace HMS.Services
                     }
                     else
                     {
-                        await leaveRequestCallback.ServiceFaild();
+                        result = await response.Content.ReadAsStringAsync();
+                        leaveTypeerrorresponse = JsonConvert.DeserializeObject<LeaveTypeerrorresponse>(result);
+                        await leaveRequestCallback.ServiceFaild(leaveTypeerrorresponse.errors[0].message);
                     }
 
                 }
                 else
                 {
-                    await leaveRequestCallback.ServiceFaild();
-                    await App.Current.MainPage.DisplayAlert(" ", "Data Error", "OK");
-
+                    result = await response.Content.ReadAsStringAsync();
+                    leaveTypeerrorresponse = JsonConvert.DeserializeObject<LeaveTypeerrorresponse>(result);
+                    await leaveRequestCallback.ServiceFaild(leaveTypeerrorresponse.errors[0].message);
                 }
             }
             catch (Exception ex)
             {
-                await leaveRequestCallback.ServiceFaild();
-                await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+                await App.Current.MainPage.DisplayAlert("HMS",ex.ToString(), "OK");
             }
 
 
@@ -218,6 +219,8 @@ namespace HMS.Services
 
         public async void SaveLeaveRequest(LeaveRequestModel model)
         {
+            LeaveErrorResponse leaveErrorResponse;
+            LeaveResponse leaveResponse;
             try
             {
                 var client = new HttpClient();
@@ -232,19 +235,20 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     string resultHostel = await response.Content.ReadAsStringAsync();
-                    await leaveRequestCallback.SaveLeaveRequest("");
+                    leaveResponse = JsonConvert.DeserializeObject<LeaveResponse>(resultHostel);
+                    await leaveRequestCallback.SaveLeaveRequest(leaveResponse.message);
                 }
                 else
                 {
-                    await leaveRequestCallback.ServiceFaild();
-                    await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    leaveErrorResponse = JsonConvert.DeserializeObject<LeaveErrorResponse>(resultHostel);
+                    await leaveRequestCallback.ServiceFaild(leaveErrorResponse.errors[0].message);
                 }
 
             }
             catch (Exception e)
             {
-                await leaveRequestCallback.ServiceFaild();
-                await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+                await App.Current.MainPage.DisplayAlert("HMS",e.ToString(), "OK");
             }
         }
 

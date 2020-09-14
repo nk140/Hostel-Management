@@ -21,7 +21,7 @@
                     <DataTemplate>
                         <ViewCell >
                             <Frame
-                               VerticalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand" CornerRadius="30"
                                 Margin="14">
                                  <StackLayout Orientation="Vertical"
                                               VerticalOptions="FillAndExpand">
@@ -33,21 +33,24 @@
 
                                   <Image
                                       HorizontalOptions="FillAndExpand"
+                                      Aspect="AspectFill"
                                       Source="images.jpg"/>
-
-                                   <Label
+                                        <Label Text="Hostel Name" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" VerticalTextAlignment="center"/>
+                                        <Label
                                     Text="{ Binding hostelName}"
                                      HorizontalOptions="StartAndExpand"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"/>
-                                <Label
+                                        <Label Text="Hostel Address" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" VerticalTextAlignment="center"/>
+                                        <Label
                                     Text="{Binding hostelAddress}"
                                      HorizontalOptions="StartAndExpand"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"/>
+                                        <Label Text="No of Seat Available" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" VerticalTextAlignment="center"/>
+                                        <Label Text="{Binding numberOfSeatsAval}" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
 
-                              
-                              </StackLayout>
+                                    </StackLayout>
                                
 
                             </StackLayout>

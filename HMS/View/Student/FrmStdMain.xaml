@@ -35,7 +35,18 @@
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Text="Notification"  x:Name="studentleaveapproval" Clicked="studentleaveapproval_Clicked">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="notification" />
+                    <On Platform="Android" Value="notification.png" />
+                    <On Platform="WinPhone" Value="notification.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        </MasterDetailPage.ToolbarItems>
+        <MasterDetailPage.Detail>
         <NavigationPage>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
