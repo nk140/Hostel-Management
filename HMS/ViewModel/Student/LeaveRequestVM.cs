@@ -125,8 +125,8 @@ namespace HMS.ViewModel.Student
                         LeaveRequest.remarks = Reason;
                         LeaveRequest.hostelAdmissionId = Constants.AdmissioonId;
                         LeaveRequest.academicYear = Constants.AcadamicYear;
-                        LeaveRequest.leaveFromDate = StartDate + "T" + StartTime;
-                        LeaveRequest.leaveToDate = EndDate + "T" + EndTime;
+                        LeaveRequest.leaveFromDate = StartDate + "T" + StartTime+"Z";
+                        LeaveRequest.leaveToDate = EndDate + "T" + EndTime+"Z";
 
                         web.SaveLeaveRequest(LeaveRequest);
                     }

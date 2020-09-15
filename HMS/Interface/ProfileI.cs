@@ -7,5 +7,6 @@ namespace HMS.Interface
     {
         void LoadStudentProfile(StudentProfileModel profiles);
         Task ServiceFaild();
+        void UpdatedSucessfully(string result);
     }
 }

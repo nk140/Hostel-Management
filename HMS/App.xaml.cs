@@ -13,6 +13,7 @@ namespace HMS
     public partial class App : Application
     {
         public static string userid;
+        public static string studentid;
         public App()
         {
             InitializeComponent();

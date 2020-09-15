@@ -14,12 +14,13 @@
                 ItemsSource="{Binding RoomList}"
                 VerticalOptions="Fill"
                 HasUnevenRows="True"
+                 VerticalScrollBarVisibility="Never"
                  SeparatorVisibility="None"
                 >
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell >
+                        <ViewCell>
                             <Frame
                                VerticalOptions="FillAndExpand" CornerRadius="30"
                                 Margin="14">

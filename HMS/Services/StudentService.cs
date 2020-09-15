@@ -93,7 +93,43 @@ namespace HMS.Services
             //return response;
 
         }
+        public async void UpdateProfile(ProfileUpdate profileUpdate)
+        {
+            ProfileUpdateResponse profileUpdateResponse;
+            ProfileUpdateErrorresponse profileUpdateErrorresponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
+                string jsn = JsonConvert.SerializeObject(profileUpdate);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.StudentProfileUpdate, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    profileUpdateResponse = JsonConvert.DeserializeObject<ProfileUpdateResponse>(resultHostel);
+                    profileCallback.UpdatedSucessfully(profileUpdateResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    profileUpdateErrorresponse = JsonConvert.DeserializeObject<ProfileUpdateErrorresponse>(resultHostel);
+                    profileCallback.UpdatedSucessfully(profileUpdateErrorresponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
         public async void GetAllLeaveType()
         {
             LeaveTypeerrorresponse leaveTypeerrorresponse;
@@ -130,7 +166,7 @@ namespace HMS.Services
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("HMS",ex.ToString(), "OK");
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
 
 
@@ -248,7 +284,7 @@ namespace HMS.Services
             }
             catch (Exception e)
             {
-                await App.Current.MainPage.DisplayAlert("HMS",e.ToString(), "OK");
+                await App.Current.MainPage.DisplayAlert("HMS", e.ToString(), "OK");
             }
         }
 

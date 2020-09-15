@@ -18,7 +18,7 @@
         <CollectionView x:Name="collectionView" ItemsSource="{Binding ParentStudentLeaveData}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
+                    <!--<SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Approve"
@@ -32,7 +32,7 @@
                                            Command="{Binding Source={x:Reference studentleaveaction}, Path=BindingContext.RejectCommand}"
                                            CommandParameter="{Binding}" />
                             </SwipeItems>
-                        </SwipeView.RightItems>
+                        </SwipeView.RightItems>-->
                         <Frame VerticalOptions="FillAndExpand" BorderColor="DarkBlue" Margin="20,10,20,10" CornerRadius="20">
                             <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal" Spacing="3">
@@ -64,8 +64,11 @@
                                     <Label Text="{Binding isParentApproved}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                             </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference studentleaveaction}, Path=BindingContext.LeaveActionOption}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
                         </Frame>
-                    </SwipeView>
+                    <!--</SwipeView>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

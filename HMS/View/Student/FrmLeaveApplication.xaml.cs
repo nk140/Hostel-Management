@@ -40,29 +40,28 @@ namespace HMS.View.Student
         private void from_date_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-
-             Vm.StartDate = dp_start_date.Date.ToString("yyy-mm-dd");
+            // Vm.StartDate = dp_start_date.Date.ToString("yyy-MMM-dd");
+            var result = string.Format("{0:yyy-MM-dd}", dp_start_date.Date);
+            Vm.StartDate = result;
         }
 
         private void to_date_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-            Vm.EndDate = dp_end_date.Date.ToString("yyy-mm-dd");
+            var result = string.Format("{0:yyy-MM-dd}", dp_end_date.Date);
+            Vm.EndDate = result;
         }
 
         private void from_t_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-
-            Vm.StartTime = tp_start_time.Time.Hours.ToString() + ":" + tp_start_time.Time.Minutes + "." + tp_start_time.Time.Seconds;
-
+            Vm.StartTime = tp_start_time.Time.Hours.ToString() + ":" + tp_start_time.Time.Minutes.ToString() + ":" + tp_start_time.Time.Seconds.ToString();
         }
 
         private void to_t_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-            Vm.EndTime = tp_end_time.Time.Hours.ToString() + ":" + tp_end_time.Time.Minutes + "." + tp_end_time.Time.Seconds;
-
+            Vm.EndTime = tp_end_time.Time.Hours.ToString() + ":" + tp_end_time.Time.Minutes.ToString() + "." + tp_end_time.Time.Seconds.ToString();
         }
 
         private void txtsearchbykeyword_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
@@ -76,9 +75,9 @@ namespace HMS.View.Student
                     {
                         foreach (var items in Vm.LeaveTypeList)
                         {
-                            if(!string.IsNullOrEmpty(items.name))
+                            if (!string.IsNullOrEmpty(items.name))
                             {
-                                if(!string.IsNullOrEmpty(txtsearchbykeyword.Text))
+                                if (!string.IsNullOrEmpty(txtsearchbykeyword.Text))
                                 {
                                     if (items.name.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.name.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
                                         leaveTypes.Add(items);

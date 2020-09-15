@@ -27,6 +27,7 @@ namespace HMS.View
             var usertype = Convert.ToString(SecureStorage.GetAsync("type").GetAwaiter().GetResult());
             if (usertype == "student")
             {
+                App.userid= Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
                 Application.Current.MainPage = new Student.FrmStdMain();
             }
             else if (usertype == "warden")

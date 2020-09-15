@@ -51,6 +51,7 @@
         public static string SaveLeaveRequest = "/hostelandmess/api/v1/leave/applyforleave";
         public static string StudentRegister = "/hostelandmess/api/v1/student/studentregister";
         public static string GetAllWarden = "/hostelandmess/api/v1/leave/wardeninfo";
+        public static string StudentProfileUpdate = "/hostelandmess/api/v1/student/studentphoneupdate";
         #endregion
 
         #region Warden

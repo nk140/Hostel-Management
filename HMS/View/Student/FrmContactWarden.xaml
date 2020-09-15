@@ -10,6 +10,7 @@
             <ListView 
                 x:Name="lv_contact"    
                 ItemsSource="{Binding Warden}"
+                VerticalScrollBarVisibility="Never"
                  VerticalOptions="FillAndExpand"
                 HasUnevenRows="True"
                  SeparatorVisibility="None"

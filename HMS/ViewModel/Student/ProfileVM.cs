@@ -1,8 +1,14 @@
-﻿using Xamarin.Essentials;
+﻿using HMS.Interface;
+using HMS.Models;
+using HMS.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace HMS.ViewModel.Student
 {
-    public class ProfileVM : BaseViewModel
+    public class ProfileVM : BaseViewModel,ProfileI
     {
         private string studentname;
         private string phoneno;
@@ -11,6 +17,8 @@ namespace HMS.ViewModel.Student
         private string floorNo;
         private string roomno;
         private string bedno;
+        public ProfileUpdate profileUpdate;
+        public StudentService studentService;
         #region properties
         public string StudentName
         {
@@ -97,6 +105,10 @@ namespace HMS.ViewModel.Student
             }
         }
         #endregion
+        #region Commands
+        public ICommand UpdateCommand => new Command(OnUpdateCommand);
+
+        #endregion
         public ProfileVM()
         {
             StudentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult();
@@ -106,6 +118,38 @@ namespace HMS.ViewModel.Student
             FloorNo = "13";
             Roomno = "34";
             BedNo = "3";
+            studentService = new StudentService(this);
+        }
+        public async void OnUpdateCommand()
+        {
+            if (string.IsNullOrEmpty(Phoneno))
+                await App.Current.MainPage.DisplayAlert("HMS", "Please enter mobile no.", "OK");
+            else if (Phoneno.Length != 10)
+                await App.Current.MainPage.DisplayAlert("HMS", "Please enter 10 digit mobile no.", "OK");
+            else
+            {
+                profileUpdate = new ProfileUpdate();
+                profileUpdate.studentId = App.userid;
+                profileUpdate.stuPhoneNo = Phoneno;
+                studentService.UpdateProfile(profileUpdate);
+            }
+        }
+
+        public void LoadStudentProfile(StudentProfileModel profiles)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task ServiceFaild()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async void UpdatedSucessfully(string result)
+        {
+            phoneno = string.Empty;
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            OnPropertyChanged();
         }
     }
 }

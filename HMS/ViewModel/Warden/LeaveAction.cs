@@ -29,7 +29,7 @@ namespace HMS.ViewModel.Warden
         #region Commands
         public ICommand UpdateLeaveStatusCommand => new Command(OnUpdateLeaveStatusCommand);
         public ICommand ApproveCommand => new Command<ParentStudentLeaveStatus>(OnApproveCommand);
-        public ICommand RejectCommand => new Command<ParentStudentLeaveStatus>(OnRejectCommand);
+        public ICommand LeaveActionOption => new Command<ParentStudentLeaveStatus>(OnLeaveActionOption);
         #endregion
         public LeaveAction()
         {
@@ -51,21 +51,17 @@ namespace HMS.ViewModel.Warden
                 }
             }
         }
-        public async void OnRejectCommand(ParentStudentLeaveStatus obj)
+        public async void OnLeaveActionOption(ParentStudentLeaveStatus obj)
         {
-            if (approvecounter == 1 || approvecounter > 1)
-                await App.Current.MainPage.DisplayAlert("HMS", "Approved leave can't reject", "OK");
-            else if (rejectcounter == 1 || rejectcounter > 1)
-                await App.Current.MainPage.DisplayAlert("HMS", "You have already rejected the leave", "OK");
+            var result = await App.Current.MainPage.DisplayActionSheet("Choose what action you take", "Cancel", null, "Approve", "Reject");
+            if (result.Equals("Approve"))
+            {
+
+            }
             else
             {
-                var ans = await App.Current.MainPage.DisplayAlert("HMS", "Do you really want to reject the leave.", "OK", "Cancel");
-                if (ans)
-                {
-                    rejectcounter = rejectcounter + 1;
-                }
+
             }
-           
         }
         public void OnUpdateLeaveStatusCommand()
         {
