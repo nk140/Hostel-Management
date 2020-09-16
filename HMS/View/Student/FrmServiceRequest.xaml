@@ -5,10 +5,10 @@
              Title="Service Request">
     <AbsoluteLayout>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.03,0.8,0.08">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Service Category" TextMemberPath="name" DisplayMemberPath="name" Margin="-17" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Text="{Binding Servicecategoryname}" PlaceholderText="Search by Service Category" TextMemberPath="name" DisplayMemberPath="name" Margin="-17" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.16,0.8,0.08">
-            <controls:BetterEntry Placeholder="Enter Description" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Enter Description" Text="{Binding Servicedescription}" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
         </Frame>
         <Button Text="Request Service" BackgroundColor="#e96125" AbsoluteLayout.LayoutFlags="All" Command="{Binding SaveRequestCommand}" TextColor="White" CornerRadius="30" AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.08"/>
     </AbsoluteLayout>

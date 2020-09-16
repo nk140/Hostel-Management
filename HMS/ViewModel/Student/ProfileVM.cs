@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Student
 {
-    public class ProfileVM : BaseViewModel,ProfileI
+    public class ProfileVM : BaseViewModel, ProfileI
     {
         private string studentname;
         private string phoneno;
@@ -112,7 +112,10 @@ namespace HMS.ViewModel.Student
         public ProfileVM()
         {
             StudentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult();
-            Phoneno = "9977556645";
+            if (string.IsNullOrEmpty(App.studentupdatedphoneno) || App.studentupdatedphoneno.Length == 0)
+                Phoneno = SecureStorage.GetAsync("mobileNo").GetAwaiter().GetResult();
+            else
+                Phoneno = App.studentupdatedphoneno;
             Email = SecureStorage.GetAsync("email").GetAwaiter().GetResult();
             HostelName = "Dream Hostel";
             FloorNo = "13";

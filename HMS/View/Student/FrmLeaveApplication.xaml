@@ -12,170 +12,34 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="0">
-                <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Text="{Binding LeaveType}" PlaceholderText="Search by Leave type" TextMemberPath="name" DisplayMemberPath="name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen" Margin="-17"/>
+                <Controls:BetterEntry Text="{Binding Hosteladmissionid}" Placeholder="Enter Hostel Admission id(Only 13,19,21,22,24,25,26)" Margin="-17" TextColor="Black"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="1">
-                <Controls:DatePickers x:Name="dp_start_date" Margin="-7"  Placeholder="Enter Start Date" Unfocused="from_date_selected"/>
+                <Controls:BetterEntry Text="{Binding Academicyear}" Keyboard="Numeric" MaxLength="4" Placeholder="Enter Hostel Acadmic Year" Margin="-17" TextColor="Black"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
-                <Controls:BorderlessTimePicker  x:Name="tp_start_time" Margin="-7"  Unfocused="from_t_selected" Format="hh:mm tt"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Text="{Binding LeaveType}" PlaceholderText="Search by Leave type" TextMemberPath="name" DisplayMemberPath="name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="3">
+                <Controls:DatePickers x:Name="dp_start_date" Margin="-7"  Placeholder="Enter Start Date" Unfocused="from_date_selected"/>
+            </Frame>
+            <!--<Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
+                <Controls:BorderlessTimePicker  x:Name="tp_start_time" Margin="-7"  Unfocused="from_t_selected" Format="HH:mm:ss tt"/>
+            </Frame>-->
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="5">
                 <Controls:DatePickers x:Name="dp_end_date" Margin="-7"  Placeholder="Enter End Date"  Unfocused="to_date_selected"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
-                <Controls:BorderlessTimePicker x:Name="tp_end_time" Margin="-7" Unfocused="to_t_selected" Format="hh:mm tt"/>
-            </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="5">
+            <!--<Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="6">
+                <Controls:BorderlessTimePicker x:Name="tp_end_time" Margin="-7" Unfocused="to_t_selected" Format="HH:mm:ss tt"/>
+            </Frame>-->
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="7">
                 <Controls:BetterEntry Text="{Binding Reason}" Placeholder="Enter Reason" Margin="-17" TextColor="Black"/>
             </Frame>
-            <Button Text="Request Leave" Command="{Binding SaveCommand}" Margin="10" TextColor="White" CornerRadius="30" Grid.Row="6" BackgroundColor="#e96125"/>
+            <Button Text="Request Leave" Command="{Binding SaveCommand}" Margin="10" TextColor="White" CornerRadius="30" Grid.Row="8" BackgroundColor="#e96125"/>
         </Grid>
     </ScrollView>
-    <!--<ContentPage.Content>
-
-
-        <StackLayout
-            Orientation="Vertical"
-            Margin="20,30,20,0">
-            <Label
-                Text="Leave Type"
-                TextColor="#2D295F" />
-            <StackLayout>
-                <Entry
-                Placeholder="Select Leave Type"
-                TextColor="Black"
-                    IsEnabled="False" 
-                Text="{ Binding LeaveType}"/>
-                       
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer                           
-                                Command="{Binding SetTypeVisibility}"
-                                NumberOfTapsRequired="1">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-
-                    <Frame 
-                    x:Name="f_type_list"
-                    HasShadow="True"
-                    IsVisible="{Binding TypeVisible}"                      
-                    Margin="10,0,10,0"  >
-                        <StackLayout 
-                        Orientation="Vertical">
-                            <ListView 
-                                x:Name="lv_type_list"    
-                                HeightRequest="{Binding TypeHeight}"
-                                ItemsSource="{Binding LeaveTypeList}"
-                                VerticalOptions="Fill"                            
-                             ItemTapped="OnSelectedLeaveTypeItem" >
-
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell >
-                                            <StackLayout Orientation="Horizontal">
-
-                                                <Label Text="{Binding name}"
-                                               HorizontalOptions="StartAndExpand"
-                                               HorizontalTextAlignment="Start"
-                                               VerticalTextAlignment="Center"/>
-
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-
-                            </ListView>
-
-                        </StackLayout>
-
-                    </Frame>
-            
-
-            <Label
-                Text="Start Date"
-                TextColor="#2D295F" />
-            <DatePicker
-                    x:Name="dp_start_date"
-                    HorizontalOptions="FillAndExpand"
-                    Unfocused="from_date_selected"
-                    
-                    Format="dd-MMM-yyyy"/>
-
-            <Label
-                Text="Start Time"
-                TextColor="#2D295F" />
-            <TimePicker
-                    x:Name="tp_start_time"
-                    HorizontalOptions="FillAndExpand"
-                     Unfocused="from_t_selected"
-                    
-                    Format="HH:mm"/>
-
-
-            <Label
-                Text="End Date"
-                TextColor="#2D295F" />
-            <DatePicker
-                    x:Name="dp_end_date"
-                    HorizontalOptions="FillAndExpand"
-                    Unfocused="to_date_selected"
-                    
-                    Format="dd-MMM-yyyy"/>
-
-            <Label
-                Text="End Tiime"
-                TextColor="#2D295F" />
-            <TimePicker
-                    x:Name="tp_end_time"
-                    HorizontalOptions="FillAndExpand"
-                    Unfocused="to_t_selected"
-                    
-                    Format="HH:mm"/>
-
-            <Label
-                Text="Reason"
-                TextColor="#2D295F" />
-            <Entry
-                Placeholder="Enter Reason"
-                TextColor="Black"
-                Text="{Binding Reason}"/>
-
-            <Label
-                Text="Description"
-                TextColor="#2D295F"
-                IsVisible="false"/>
-            <Entry
-                Placeholder="Enter Description"
-                TextColor="Black"
-                IsVisible="false"/>
-
-            <StackLayout
-                Orientation="Horizontal"
-                Margin="5,30,5,5">
-                <Button
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="#ffa500"
-                    WidthRequest="100"
-                    CornerRadius="10"
-                    
-                    TextColor="Wheat"
-                    Text="Cancel"/>
-                <Button
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="#ffa500"
-                    WidthRequest="100"
-                    CornerRadius="10"
-                    TextColor="Wheat"
-                    Command="{Binding SaveCommand}"
-
-                    Text="Save"/>
-            </StackLayout>
-
-
-        </StackLayout>
-
-    </ContentPage.Content>-->
 </ContentPage>

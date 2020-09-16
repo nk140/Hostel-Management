@@ -58,16 +58,7 @@ namespace HMS.ViewModel
             UserModel = userData;
             if (UserModel.userType != null)
             {
-                if (UserModel.userType == "student")
-                {
-                    UserDialogs.Instance.HideLoading();
-                    await SecureStorage.SetAsync("userId", userData.id.ToString());
-                    await SecureStorage.SetAsync("type", userData.userType);
-                    await SecureStorage.SetAsync("studentName", userData.studentName);
-                    await SecureStorage.SetAsync("email", userData.email);
-                    await navigationPage.NavigateHomeForm();
-                }
-                else if (UserModel.userType == "warden")
+                 if (UserModel.userType == "warden")
                 {
                     UserDialogs.Instance.HideLoading();
                     await SecureStorage.SetAsync("userId", userData.id.ToString());
@@ -335,6 +326,16 @@ namespace HMS.ViewModel
                 //UserDialogs.Instance.HideLoading();
                 //await navigationPage.NavigateHomeForm();
             }
+        }
+        public async void StudentLoginSucess(StudentModel studentModel)
+        {
+            UserDialogs.Instance.HideLoading();
+            await SecureStorage.SetAsync("userId", studentModel.id.ToString());
+            await SecureStorage.SetAsync("type", studentModel.userType);
+            await SecureStorage.SetAsync("studentName", studentModel.studentName);
+            await SecureStorage.SetAsync("email", studentModel.email);
+            await SecureStorage.SetAsync("mobileNo", studentModel.mobileNo);
+            await navigationPage.NavigateHomeForm();
         }
         public Task ProccessFailed()
         {

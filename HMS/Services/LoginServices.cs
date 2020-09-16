@@ -20,7 +20,8 @@ namespace HMS.Services
 
         public async void UserLogin(UserModel userModel_)
         {
-
+            UserModel userModel;
+            StudentModel studentModel;
             try
             {
                 var client = new HttpClient();
@@ -35,9 +36,19 @@ namespace HMS.Services
                 string result = await response.Content.ReadAsStringAsync();
                 if ((int)response.StatusCode == 200)
                 {
-                    UserModel userModel = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
-                    UserDialogs.Instance.HideLoading();
-                    loginEvent.UserLoginSuccess(userModel);
+                    userModel = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
+                    if (userModel.userType == "student")
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        userModel = new UserModel();
+                        studentModel = JsonConvert.DeserializeObject<StudentModel>(await response.Content.ReadAsStringAsync());
+                        loginEvent.StudentLoginSucess(studentModel);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        loginEvent.UserLoginSuccess(userModel);
+                    }
                 }
                 else
                 {

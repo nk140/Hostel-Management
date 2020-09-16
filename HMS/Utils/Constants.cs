@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace HMS.Utils
 {
     public class Constants
@@ -16,4 +18,5 @@ namespace HMS.Utils
         public static string AcadamicYear = "2015";
         public static string UserName = "";
     }
+
 }

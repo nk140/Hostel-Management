@@ -14,6 +14,7 @@ namespace HMS
     {
         public static string userid;
         public static string studentid;
+        public static string studentupdatedphoneno;
         public App()
         {
             InitializeComponent();
@@ -25,7 +26,9 @@ namespace HMS
             {
                 var usertype = SecureStorage.GetAsync("type").GetAwaiter().GetResult();
                 if (usertype == "student")
+                {
                     Application.Current.MainPage = new FrmStdMain();
+                }
                 else if (usertype == "warden")
                     Application.Current.MainPage = new FrmWardenMain();
                 else if (usertype == "admin")

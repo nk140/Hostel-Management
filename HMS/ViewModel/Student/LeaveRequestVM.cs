@@ -2,6 +2,7 @@
 using HMS.Models;
 using HMS.Services;
 using HMS.Utils;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -25,7 +26,7 @@ namespace HMS.ViewModel.Student
         long typeHeight_;
         bool TypeVisible_;
 
-        string leaveType_ = "", reason_ = "";
+        string leaveType_ = "", reason_ = "",hosteladmissionid="",academicyear="",leavetypeid;
 
         public string StartDate, EndDate, StartTime, EndTime;
 
@@ -52,7 +53,42 @@ namespace HMS.ViewModel.Student
             get { return reason_; }
             set { reason_ = value; OnPropertyChanged("Reason"); }
         }
-
+        public string Hosteladmissionid
+        {
+            get
+            {
+                return hosteladmissionid;
+            }
+            set
+            {
+                hosteladmissionid = value;
+                OnPropertyChanged();
+            }
+        }
+        public string LeaveTypeId
+        {
+            get
+            {
+                return leavetypeid;
+            }
+            set
+            {
+                leavetypeid = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Academicyear
+        {
+            get
+            {
+                return academicyear;
+            }
+            set
+            {
+                academicyear = value;
+                OnPropertyChanged();
+            }
+        }
         public long TypeHeight
         {
             get { return typeHeight_; }
@@ -115,25 +151,37 @@ namespace HMS.ViewModel.Student
                     {
                         App.Current.MainPage.DisplayAlert("", "Please Enter Leave Type", "OK");
                     }
-                    else if (Reason.Length == 0)
+                    else if (string.IsNullOrEmpty(Hosteladmissionid) || Hosteladmissionid.Length == 0)
+                        App.Current.MainPage.DisplayAlert("HMS", "Please Enter Admission id", "OK");
+                    else if (Reason.Length == 0 ||string.IsNullOrEmpty(Reason))
                     {
                         App.Current.MainPage.DisplayAlert("", "Please Enter Reason", "OK");
                     }
+                    else if(string.IsNullOrEmpty(LeaveTypeId)|| LeaveTypeId.Length==0)
+                        App.Current.MainPage.DisplayAlert("HMS", "Please Enter Leave type id", "OK");
+                    else if(string.IsNullOrEmpty(StartDate) || StartDate.Length==0)
+                        App.Current.MainPage.DisplayAlert("HMS", "Please enter start date", "OK");
+                    else if (string.IsNullOrEmpty(EndDate) || EndDate.Length == 0)
+                        App.Current.MainPage.DisplayAlert("HMS", "Please enter end date", "OK");
+                    else if(string.IsNullOrEmpty(Academicyear) || Academicyear.Length==0)
+                        App.Current.MainPage.DisplayAlert("HMS", "Please enter acadmic year", "OK");
+                    else if(Academicyear.Length!=4)
+                        App.Current.MainPage.DisplayAlert("HMS", "year should be in 4 digit.", "OK");
                     else
                     {
                         LeaveRequest.reason = Reason;
                         LeaveRequest.remarks = Reason;
-                        LeaveRequest.hostelAdmissionId = Constants.AdmissioonId;
-                        LeaveRequest.academicYear = Constants.AcadamicYear;
-                        LeaveRequest.leaveFromDate = StartDate + "T" + StartTime+"Z";
-                        LeaveRequest.leaveToDate = EndDate + "T" + EndTime+"Z";
+                        LeaveRequest.hostelAdmissionId = Hosteladmissionid;
+                        LeaveRequest.academicYear = Academicyear;
+                        LeaveRequest.hostelLeaveTypeId = LeaveTypeId;
+                        LeaveRequest.leaveFromDate = StartDate + "T" + "00:00:00.000Z";
+                        LeaveRequest.leaveToDate = EndDate + "T" + "00:00:00.000Z";
 
                         web.SaveLeaveRequest(LeaveRequest);
                     }
                 });
             }
         }
-
         public async Task ServiceFaild(string result)
         {
             await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
@@ -147,7 +195,14 @@ namespace HMS.ViewModel.Student
 
         public async Task SaveLeaveRequest(string result)
         {
+            Reason = string.Empty;
+            Hosteladmissionid = string.Empty;
+            Academicyear = string.Empty;
+            LeaveTypeId = string.Empty;
+            StartDate = string.Empty;
+            EndDate = string.Empty;
             await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
+            OnPropertyChanged();
         }
     }
 }

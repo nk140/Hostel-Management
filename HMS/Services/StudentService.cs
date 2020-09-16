@@ -259,6 +259,7 @@ namespace HMS.Services
             LeaveResponse leaveResponse;
             try
             {
+                UserDialogs.Instance.ShowLoading();
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
@@ -270,12 +271,14 @@ namespace HMS.Services
 
                 if ((int)response.StatusCode == 200)
                 {
+                    UserDialogs.Instance.HideLoading();
                     string resultHostel = await response.Content.ReadAsStringAsync();
                     leaveResponse = JsonConvert.DeserializeObject<LeaveResponse>(resultHostel);
                     await leaveRequestCallback.SaveLeaveRequest(leaveResponse.message);
                 }
                 else
                 {
+                    UserDialogs.Instance.HideLoading();
                     string resultHostel = await response.Content.ReadAsStringAsync();
                     leaveErrorResponse = JsonConvert.DeserializeObject<LeaveErrorResponse>(resultHostel);
                     await leaveRequestCallback.ServiceFaild(leaveErrorResponse.errors[0].message);
@@ -284,11 +287,10 @@ namespace HMS.Services
             }
             catch (Exception e)
             {
+                UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("HMS", e.ToString(), "OK");
             }
         }
-
-
         public async void SaveStudentRegister(RegistrationModel model)
         {
             try

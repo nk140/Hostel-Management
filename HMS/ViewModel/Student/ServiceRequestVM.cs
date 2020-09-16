@@ -14,6 +14,8 @@ namespace HMS.ViewModel.Student
     {
         private ObservableCollection<WardenServiceModel> wardenServiceModels = new ObservableCollection<WardenServiceModel>();
         StudentService studentService;
+        private string servicecategoryname;
+        private string servicedescription;
         #region Listproperties
         public ObservableCollection<WardenServiceModel> WardenServiceModels
         {
@@ -28,6 +30,32 @@ namespace HMS.ViewModel.Student
             }
         }
         #endregion
+        #region properties
+        public string Servicecategoryname
+        {
+            get
+            {
+                return servicecategoryname;
+            }
+            set
+            {
+                servicecategoryname = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Servicedescription
+        {
+            get
+            {
+                return servicedescription;
+            }
+            set
+            {
+                servicedescription = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
         #region commands
         public ICommand SaveRequestCommand => new Command(OnSaveRequestCommand);
         #endregion
@@ -38,7 +66,21 @@ namespace HMS.ViewModel.Student
         }
         public async void OnSaveRequestCommand()
         {
+            try
+            {
+                if (string.IsNullOrEmpty(Servicecategoryname) || Servicecategoryname.Length == 0)
+                    await App.Current.MainPage.DisplayAlert("HMS", "Enter Service Category", "OK");
+                else if (string.IsNullOrEmpty(Servicedescription) || Servicedescription.Length == 0)
+                    await App.Current.MainPage.DisplayAlert("HMS", "Enter Description", "OK");
+                else
+                {
 
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public void getallservicecategory(ObservableCollection<WardenServiceModel> wardenServiceModels)
         {

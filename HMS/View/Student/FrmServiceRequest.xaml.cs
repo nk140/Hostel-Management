@@ -50,6 +50,7 @@ namespace HMS.View.Student
         private void txtsearchbykeyword_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbykeyword.Text = ((WardenServiceModel)e.SelectedItem).name;
+            vm.Servicecategoryname = txtsearchbykeyword.Text;
         }
     }
 }

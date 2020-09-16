@@ -10,9 +10,11 @@ namespace HMS.View.Student
     public partial class FrmLeaveApplication : ContentPage
     {
         public ObservableCollection<LeaveTypeModel> leaveTypes;
+        string result1, result2;
         public FrmLeaveApplication()
         {
             InitializeComponent();
+            dp_start_date.MinimumDate = DateTime.Now.Date;
         }
 
         LeaveRequestVM Vm;
@@ -22,48 +24,31 @@ namespace HMS.View.Student
             Vm = new LeaveRequestVM();
             BindingContext = Vm;
         }
-
-        private void OnSelectedLeaveTypeItem(object sender, ItemTappedEventArgs e)
-        {
-
-            //   LeaveTypeModel md = (LeaveTypeModel)lv_type_list.SelectedItem;
-            //   int cnt = Vm.LeaveTypeList.IndexOf(md);
-            //   if (cnt >= 0)
-            //   {
-            //       Vm.TypeSelection(cnt);
-            //   }
-
-            //((ListView)sender).SelectedItem = null;
-        }
-
-
         private void from_date_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-            // Vm.StartDate = dp_start_date.Date.ToString("yyy-MMM-dd");
-            var result = string.Format("{0:yyy-MM-dd}", dp_start_date.Date);
-            Vm.StartDate = result;
+              result1 = string.Format("{0:yyy-MM-dd}", dp_start_date.Date);
         }
-
         private void to_date_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-            var result = string.Format("{0:yyy-MM-dd}", dp_end_date.Date);
-            Vm.EndDate = result;
+           result2 = string.Format("{0:yyy-MM-dd}", dp_end_date.Date);
+            Validation();
         }
-
-        private void from_t_selected(object sender, FocusEventArgs e)
+        public void Validation()
         {
-            //Add Note
-            Vm.StartTime = tp_start_time.Time.Hours.ToString() + ":" + tp_start_time.Time.Minutes.ToString() + ":" + tp_start_time.Time.Seconds.ToString();
+            DateTime startdateTime = dp_start_date.Date;
+            DateTime enddate = dp_end_date.Date;
+            if (startdateTime > enddate || enddate<startdateTime)
+                App.Current.MainPage.DisplayAlert("HMS", "Check your start date and end date", "OK");
+            else if (enddate == startdateTime)
+                App.Current.MainPage.DisplayAlert("HMS", "end date can't equal to start date", "OK");
+            else
+            {
+                Vm.StartDate = result1;
+                Vm.EndDate = result2;
+            }
         }
-
-        private void to_t_selected(object sender, FocusEventArgs e)
-        {
-            //Add Note
-            Vm.EndTime = tp_end_time.Time.Hours.ToString() + ":" + tp_end_time.Time.Minutes.ToString() + "." + tp_end_time.Time.Seconds.ToString();
-        }
-
         private void txtsearchbykeyword_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try
@@ -93,13 +78,12 @@ namespace HMS.View.Student
 
             }
         }
-
         private void txtsearchbykeyword_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbykeyword.Text = ((LeaveTypeModel)e.SelectedItem).name;
             Vm.LeaveType = txtsearchbykeyword.Text;
             var id = ((LeaveTypeModel)e.SelectedItem).id;
-            Vm.LeaveRequest.hostelLeaveTypeId = id;
+            Vm.LeaveTypeId = id;
         }
     }
 }

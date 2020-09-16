@@ -28,6 +28,7 @@ namespace HMS.View
             if (usertype == "student")
             {
                 App.userid= Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
+                App.studentupdatedphoneno = SecureStorage.GetAsync("mobileNo").GetAwaiter().GetResult();
                 Application.Current.MainPage = new Student.FrmStdMain();
             }
             else if (usertype == "warden")
