@@ -55,5 +55,10 @@ namespace HMS.View.Student
         {
             await Navigation.PushPopupAsync(new StudentNotificationxaml());
         }
+
+        private void user_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

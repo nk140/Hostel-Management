@@ -45,6 +45,15 @@
                 </OnPlatform>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
+        <ToolbarItem  x:Name="user" Clicked="user_Clicked">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="users"/>
+                    <On Platform="Android" Value="users.png"/>
+                    <On Platform="WinPhone" Value="users.png"/>
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
         </MasterDetailPage.ToolbarItems>
         <MasterDetailPage.Detail>
         <NavigationPage>

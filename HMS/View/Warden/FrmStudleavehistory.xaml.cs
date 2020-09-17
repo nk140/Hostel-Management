@@ -32,11 +32,11 @@ namespace HMS.View.Warden
                     {
                         foreach (var items in vm.Studentleavedata)
                         {
-                            if (!string.IsNullOrEmpty(items.hostelLeaveTypeId))
+                            if (!string.IsNullOrEmpty(items.leaveTypeName))
                             {
                                 if (!string.IsNullOrEmpty(txtsearchbykeyword.Text))
                                 {
-                                    if (items.hostelLeaveTypeId.ToString().StartsWith(txtsearchbykeyword.Text))
+                                    if (items.leaveTypeName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.leaveTypeName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
                                         studentLeaveHistories.Add(items);
                                 }
                             }
@@ -55,13 +55,13 @@ namespace HMS.View.Warden
         {
             try
             {
-                txtsearchbykeyword.Text = ((StudentLeaveHistory)e.SelectedItem).hostelLeaveTypeId.ToString();
+                txtsearchbykeyword.Text = ((StudentLeaveHistory)e.SelectedItem).leaveTypeName.ToString();
                 studentLeaveHistories1 = new ObservableCollection<StudentLeaveHistory>();
                 if (studentLeaveHistories != null)
                 {
                     foreach (var items in studentLeaveHistories)
                     {
-                        if (items.hostelLeaveTypeId == txtsearchbykeyword.Text)
+                        if (items.leaveTypeName == txtsearchbykeyword.Text)
                             studentLeaveHistories1.Add(items);
                     }
                 }

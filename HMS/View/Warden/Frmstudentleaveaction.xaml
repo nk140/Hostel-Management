@@ -13,7 +13,7 @@
     </ContentPage.BindingContext>-->
     <StackLayout Orientation="Vertical">
         <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Leave Id" TextMemberPath="hostelLeaveId" DisplayMemberPath="hostelLeaveId" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Leavetype name" TextMemberPath="leaveType" DisplayMemberPath="leaveType" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
         </Frame>
         <CollectionView x:Name="collectionView" ItemsSource="{Binding ParentStudentLeaveData}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
             <CollectionView.ItemTemplate>

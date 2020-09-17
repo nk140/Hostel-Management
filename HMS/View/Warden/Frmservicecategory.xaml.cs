@@ -37,11 +37,11 @@ namespace HMS.View.Warden
                     {
                         foreach (var items in vm.WardenServiceData)
                         {
-                            if (!string.IsNullOrEmpty(items.id.ToString()))
+                            if (!string.IsNullOrEmpty(items.name))
                             {
                                 if (!string.IsNullOrEmpty(txtsearchbykeyword.Text))
                                 {
-                                    if (items.id.ToString().StartsWith(txtsearchbykeyword.Text))
+                                    if (items.name.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.name.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
                                         serviceCategories.Add(items);
                                 }
                             }
@@ -59,11 +59,11 @@ namespace HMS.View.Warden
         {
             try
             {
-                txtsearchbykeyword.Text = ((WardenServiceModel)e.SelectedItem).id.ToString();
+                txtsearchbykeyword.Text = ((WardenServiceModel)e.SelectedItem).name.ToString();
                 serviceCategories1 = new ObservableCollection<WardenServiceModel>();
                 foreach (var items in serviceCategories)
                 {
-                    if (items.id.ToString() == txtsearchbykeyword.Text)
+                    if (items.name.ToString() == txtsearchbykeyword.Text)
                         serviceCategories1.Add(items);
                 }
                 _listView.ItemsSource = serviceCategories1;

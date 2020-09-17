@@ -12,7 +12,7 @@
     </ContentPage.BindingContext>-->
     <StackLayout Orientation="Vertical">
         <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Leave Id" TextMemberPath="hostelLeaveTypeId" DisplayMemberPath="hostelLeaveTypeId" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Leave Name" TextMemberPath="leaveTypeName" DisplayMemberPath="leaveTypeName" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
         </Frame>
         <ListView  x:Name="_listView"  ItemsSource="{Binding Studentleavedata}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  HasUnevenRows="true">
             <ListView.ItemTemplate>
@@ -31,6 +31,10 @@
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="HostelLeaveId:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                     <Label Text="{Binding hostelLeaveTypeId}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Spacing="3">
+                                    <Label Text="Leave Name:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="{Binding leaveTypeName}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="Reason:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>

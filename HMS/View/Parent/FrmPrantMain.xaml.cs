@@ -1,4 +1,6 @@
 ﻿using HMS.Models;
+using HMS.View.Student;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Essentials;
@@ -52,6 +54,16 @@ namespace HMS.View.Parrent
                     IsPresented = false;
                 }
             }
+        }
+
+        private void user_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void studentleavenotification_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushPopupAsync(new StudentNotificationxaml());
         }
     }
 }

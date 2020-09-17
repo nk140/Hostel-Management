@@ -50,5 +50,10 @@ namespace HMS.View.Guest
                 }
             }
         }
+
+        private void user_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
