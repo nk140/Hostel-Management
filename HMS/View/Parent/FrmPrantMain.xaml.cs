@@ -21,11 +21,11 @@ namespace HMS.View.Parrent
             parentmenuList = new ObservableCollection<ParentMenuItem>
             {
                 new ParentMenuItem {Title="News Feed",TargetType=typeof(FrmParentNewsFeed)},
-                new ParentMenuItem {Title="Parent Registration",TargetType=typeof(FrmParentRegistration) },
+                //new ParentMenuItem {Title="Parent Registration",TargetType=typeof(FrmParentRegistration) },
                 new ParentMenuItem {Title="Hostel Detail",TargetType=typeof(FrmParentHostelDetails)},
                 new ParentMenuItem {Title="Student Detail",TargetType=typeof(FrmParentStudentDetails)},
                 new ParentMenuItem {Title="Roomates",TargetType=typeof(FrmParentRoomates)},
-                new ParentMenuItem {Title="Leave Applied",TargetType=typeof(FrmParentLeaves)},
+                //new ParentMenuItem {Title="Leave Applied",TargetType=typeof(FrmParentLeaves)},
                 new ParentMenuItem {Title="Warden Details",TargetType=typeof(FrmWardenDetails)},
                 new ParentMenuItem {Title="Logout",TargetType=typeof(FrmLogin)},
             };

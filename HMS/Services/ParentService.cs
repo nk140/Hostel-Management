@@ -14,9 +14,14 @@ namespace HMS.Services
     public class ParentService
     {
         IWardenDetail wardenDetail;
+        Iparent iparent;
         public ParentService(IWardenDetail wardenDetaildata)
         {
             wardenDetail = wardenDetaildata;
+        }
+        public ParentService(Iparent callback)
+        {
+            iparent = callback;
         }
         public async void GetAllWardenData()
         {
@@ -56,6 +61,41 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("HMS",ex.ToString(), "OK");
+            }
+        }
+        public async void SaveParentDetail(ParentRegistration model)
+        {
+            ParentRegistrationResponse parentRegistrationResponse;
+            ParentRegistrationErrorResponse parentRegistrationErrorResponse;
+            string resultHostel;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string json = JsonConvert.SerializeObject(model);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.ParentRegistration, content);
+                resultHostel = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    resultHostel = await response.Content.ReadAsStringAsync();
+                    parentRegistrationResponse = JsonConvert.DeserializeObject<ParentRegistrationResponse>(resultHostel);
+                    iparent.Success(parentRegistrationResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    resultHostel = await response.Content.ReadAsStringAsync();
+                    parentRegistrationErrorResponse = JsonConvert.DeserializeObject<ParentRegistrationErrorResponse>(resultHostel);
+                    iparent.servicefailed(parentRegistrationErrorResponse.errors[0].message);
+                }
+            }
+            catch(Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
     }

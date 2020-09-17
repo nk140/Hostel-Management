@@ -54,6 +54,7 @@
                            PlaceholderColor="#003366" 
                            Text="{Binding Registration.phoneNo}"
                              Keyboard="Telephone"
+                            MaxLength="10"
                            TextColor="Black"
                            ReturnType="Next" />
 

@@ -293,6 +293,8 @@ namespace HMS.Services
         }
         public async void SaveStudentRegister(RegistrationModel model)
         {
+            RegistrationResponse registrationResponse;
+            RegistrationErrorResponse registrationErrorResponse;
             try
             {
                 var client = new HttpClient();
@@ -307,19 +309,20 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     string resultHostel = await response.Content.ReadAsStringAsync();
-                    await registrationCallback.RegistrationSuccess(resultHostel);
+                    registrationResponse = JsonConvert.DeserializeObject<RegistrationResponse>(resultHostel);
+                    registrationCallback.RegistrationSuccess(registrationResponse.message);
                 }
                 else
                 {
-                    await registrationCallback.ServiceFaild();
-                    await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    registrationErrorResponse = JsonConvert.DeserializeObject<RegistrationErrorResponse>(resultHostel);
+                    registrationCallback.ServiceFaild(registrationErrorResponse.errors[0].message);
                 }
 
             }
             catch (Exception e)
             {
-                await registrationCallback.ServiceFaild();
-                await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+                await App.Current.MainPage.DisplayAlert("HMS",e.ToString(), "OK");
             }
         }
 

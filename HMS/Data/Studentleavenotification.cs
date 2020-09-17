@@ -10,69 +10,69 @@ namespace HMS.Data
             studentlevanotifications = new List<Studentlevanotificationmodel>();
             studentlevanotifications.Add(new Studentlevanotificationmodel
             {
-                leavenotification = "Parent Approved Leave for Hostelleave id 7",
+                leavenotification = "Parent Approved Leave of ravi",
                 IsReadChecked = false
             });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Casual Leave taken By Student(Leave Id 66)",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Emergency Leave taken By Student(Leave Id 6)",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Parent Approved Leave for Hostelleave id 6",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Parent Approved Leave for Hostelleave id 6",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Emergency Leave taken By Student(Leave Id 6)",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Emergency Leave taken By Student(Leave Id 6)",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Emergency Leave taken By Student(Leave Id 6)",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Emergency Leave taken By Student(Leave Id 6)",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Emergency Leave taken By Student(Leave Id 6)",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Parent Approved Leave for Hostelleave id 7",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Parent Approved Leave for Hostelleave id 7",
-                IsReadChecked = false
-            });
-            studentlevanotifications.Add(new Studentlevanotificationmodel
-            {
-                leavenotification = "Parent Approved Leave for Hostelleave id 7",
-                IsReadChecked = false
-            });
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Casual Leave taken By Ravi",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Sick Leave taken by manish",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Parent Approved Leave of manish",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Parent Approved Leave of nisha",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Late leave taken by manish",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Emergency Leave taken By sarita",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Emergency Leave taken by saroj",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Emergency Leave taken by saroj",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Emergency Leave taken by saroj",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Emergency Leave taken by saroj",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Parent reject leave of saroj",
+            //    IsReadChecked = false
+            //});
+            //studentlevanotifications.Add(new Studentlevanotificationmodel
+            //{
+            //    leavenotification = "Parent reject leave of sarita",
+            //    IsReadChecked = false
+            //});
         }
     }
     public class Studentlevanotificationmodel

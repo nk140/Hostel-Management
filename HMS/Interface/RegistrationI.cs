@@ -5,7 +5,7 @@ namespace HMS.Interface
 {
     public interface RegistrationI
     {
-        Task ServiceFaild();
-        Task RegistrationSuccess(String result);
+        void ServiceFaild(string result);
+        void RegistrationSuccess(String result);
     }
 }

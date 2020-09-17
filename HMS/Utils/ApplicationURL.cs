@@ -69,5 +69,8 @@
         #region GUEST
         public static string GuestRegistration = "/hostelandmess/api/v1/student/guestregister";
         #endregion
+        #region Parent
+        public static string ParentRegistration = "/hostelandmess/api/v1/student/parentregister";
+        #endregion
     }
 }

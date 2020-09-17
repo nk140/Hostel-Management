@@ -4,6 +4,7 @@ using HMS.Services;
 using HMS.Utils;
 using System;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -16,7 +17,6 @@ namespace HMS.ViewModel.Student
 
             web = new StudentService(this);
             web.GetAllLeaveType();
-
         }
         StudentService web;
         private ObservableCollection<LeaveTypeModel> leaveTypeModel_ = new ObservableCollection<LeaveTypeModel>();
@@ -26,7 +26,7 @@ namespace HMS.ViewModel.Student
         long typeHeight_;
         bool TypeVisible_;
 
-        string leaveType_ = "", reason_ = "",hosteladmissionid="",academicyear="",leavetypeid;
+        string leaveType_ = "", reason_ = "", hosteladmissionid = "", academicyear = "", leavetypeid;
 
         public string StartDate, EndDate, StartTime, EndTime;
 
@@ -110,9 +110,7 @@ namespace HMS.ViewModel.Student
             LeaveRequest.hostelLeaveTypeId = LeaveTypeList[index].id;
 
             OnPropertyChanged("CountryName");
-
         }
-
         public Command SetTypeVisibility
         {
             get
@@ -153,19 +151,19 @@ namespace HMS.ViewModel.Student
                     }
                     else if (string.IsNullOrEmpty(Hosteladmissionid) || Hosteladmissionid.Length == 0)
                         App.Current.MainPage.DisplayAlert("HMS", "Please Enter Admission id", "OK");
-                    else if (Reason.Length == 0 ||string.IsNullOrEmpty(Reason))
+                    else if (Reason.Length == 0 || string.IsNullOrEmpty(Reason))
                     {
                         App.Current.MainPage.DisplayAlert("", "Please Enter Reason", "OK");
                     }
-                    else if(string.IsNullOrEmpty(LeaveTypeId)|| LeaveTypeId.Length==0)
+                    else if (string.IsNullOrEmpty(LeaveTypeId) || LeaveTypeId.Length == 0)
                         App.Current.MainPage.DisplayAlert("HMS", "Please Enter Leave type id", "OK");
-                    else if(string.IsNullOrEmpty(StartDate) || StartDate.Length==0)
+                    else if (string.IsNullOrEmpty(StartDate) || StartDate.Length == 0)
                         App.Current.MainPage.DisplayAlert("HMS", "Please enter start date", "OK");
                     else if (string.IsNullOrEmpty(EndDate) || EndDate.Length == 0)
                         App.Current.MainPage.DisplayAlert("HMS", "Please enter end date", "OK");
-                    else if(string.IsNullOrEmpty(Academicyear) || Academicyear.Length==0)
+                    else if (string.IsNullOrEmpty(Academicyear) || Academicyear.Length == 0)
                         App.Current.MainPage.DisplayAlert("HMS", "Please enter acadmic year", "OK");
-                    else if(Academicyear.Length!=4)
+                    else if (Academicyear.Length != 4)
                         App.Current.MainPage.DisplayAlert("HMS", "year should be in 4 digit.", "OK");
                     else
                     {
@@ -184,7 +182,7 @@ namespace HMS.ViewModel.Student
         }
         public async Task ServiceFaild(string result)
         {
-            await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
 
         public async Task GetAllLeaveType(ObservableCollection<LeaveTypeModel> leaveTypes)
@@ -201,7 +199,7 @@ namespace HMS.ViewModel.Student
             LeaveTypeId = string.Empty;
             StartDate = string.Empty;
             EndDate = string.Empty;
-            await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged();
         }
     }

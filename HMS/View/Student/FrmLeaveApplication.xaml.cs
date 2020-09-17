@@ -16,9 +16,7 @@ namespace HMS.View.Student
             InitializeComponent();
             dp_start_date.MinimumDate = DateTime.Now.Date;
         }
-
         LeaveRequestVM Vm;
-
         protected override void OnAppearing()
         {
             Vm = new LeaveRequestVM();
@@ -41,8 +39,6 @@ namespace HMS.View.Student
             DateTime enddate = dp_end_date.Date;
             if (startdateTime > enddate || enddate<startdateTime)
                 App.Current.MainPage.DisplayAlert("HMS", "Check your start date and end date", "OK");
-            else if (enddate == startdateTime)
-                App.Current.MainPage.DisplayAlert("HMS", "end date can't equal to start date", "OK");
             else
             {
                 Vm.StartDate = result1;

@@ -7,45 +7,45 @@
              Title="Parent Registration"
              x:Class="HMS.View.Parent.FrmParentRegistrationBeforLogin">
     <ScrollView>
-    <Grid Margin="10" RowSpacing="18">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Frame BackgroundColor="Transparent"  BorderColor="Black" CornerRadius="30" Grid.Row="0">
-            <controls:BetterEntry x:Name="txtparentname" TextColor="Black" Margin="-17" Placeholder="Enter the name"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="1">
-            <controls:BetterEntry x:Name="txtpwardname" TextColor="Black" Margin="-17" Placeholder="Enter the ward name"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
-            <controls:BetterEntry x:Name="txtwarddetail" TextColor="Black" Margin="-17" Placeholder="Enter the ward Branch and semester"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="3">
-            <controls:BetterEntry x:Name="txtaddress" TextColor="Black" Margin="-17" Placeholder="Enter the Address"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
-            <controls:BetterEntry x:Name="txtcity" TextColor="Black" Margin="-17" Placeholder="Enter the City"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="5">
-            <controls:BetterEntry x:Name="txtphone" Keyboard="Telephone" MaxLength="10" Margin="-17" TextColor="Black" Placeholder="Enter the Phone"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="6">
-            <controls:BetterEntry x:Name="txtemail" Keyboard="Email" TextColor="Black" Margin="-17" Placeholder="Enter the Email"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="7">
-            <controls:BetterEntry x:Name="txtusername" TextColor="Black" Margin="-17" Placeholder="Enter the Username"/>
-        </Frame>
-        <Button x:Name="Btnregister" CornerRadius="30" Grid.Row="8" Text="Register" BackgroundColor="#e96125" TextColor="White"/>
-        <Button x:Name="Btnbacklogin" Clicked="Btnbacklogin_Clicked" CornerRadius="30" Grid.Row="9" Text=" Back To Login" BackgroundColor="#e96125" TextColor="White"/>
-    </Grid>
+        <Grid Margin="10" RowSpacing="18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="Transparent"  BorderColor="Black" CornerRadius="30" Grid.Row="0">
+                <controls:BetterEntry x:Name="txtparentname" Text="{Binding ParentRegistrations.parentName}" TextColor="Black" Margin="-17" Placeholder="Enter the parent name"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="1">
+                <controls:BetterEntry Text="{Binding ParentRegistrations.address}" TextColor="Black" Margin="-17" Placeholder="Enter the Address"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
+                <controls:BetterEntry Text="{Binding ParentRegistrations.email}" TextColor="Black" Margin="-17" Placeholder="Enter the email"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="3">
+                <controls:BetterEntry Text="{Binding ParentRegistrations.phoneNo}" Keyboard="Telephone" MaxLength="10" TextColor="Black" Margin="-17" Placeholder="Enter the Phone no"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
+                <controls:BetterEntry Text="{Binding ParentRegistrations.aadharNo}" Keyboard="Numeric" MaxLength="12" TextColor="Black" Margin="-17" Placeholder="Enter the Aaadhar no"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="5">
+                <controls:BetterEntry Text="{Binding ParentRegistrations.userName}" Keyboard="Text" Margin="-17" TextColor="Black" Placeholder="Enter the Username"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="6">
+                <controls:BetterEntry Text="{Binding ParentRegistrations.password}" IsPassword="True" TextColor="Black" Margin="-17" Placeholder="Enter the Password"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="7">
+                <controls:BetterEntry Text="{Binding Cnfpassword}" TextColor="Black" Margin="-17" Placeholder="Confirm Password"/>
+            </Frame>
+            <Button x:Name="Btnregister" CornerRadius="30" Grid.Row="8" Command="{Binding SaveCommands}" Text="Register" BackgroundColor="#e96125" TextColor="White"/>
+            <Button x:Name="Btnbacklogin" Clicked="Btnbacklogin_Clicked" CornerRadius="30" Grid.Row="9" Text=" Back To Login" BackgroundColor="#e96125" TextColor="White"/>
+        </Grid>
     </ScrollView>
 </ContentPage>
