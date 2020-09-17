@@ -24,7 +24,7 @@
                 <Button
                     HorizontalOptions="CenterAndExpand"
                     BackgroundColor="#e96125"
-                    WidthRequest="210"
+                    WidthRequest="250"
                     CornerRadius="10"
                     Command="{Binding SaveCommand}"
                     TextColor="Wheat"

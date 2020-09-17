@@ -4,8 +4,6 @@ namespace HMS.Models
 {
     public class LeaveRequestModel
     {
-
-        public string hostelAdmissionId { get; set; }
         public string leaveFromDate { get; set; }
         public string leaveToDate { get; set; }
         public string reason { get; set; }

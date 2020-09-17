@@ -16,6 +16,7 @@ namespace HMS.ViewModel.Guest
     public class GuestRegBeforeLoginVM : BaseViewModel, IGuestRegistration
     {
         private GuestRegistrationModel guestRegistrationModel_ = new GuestRegistrationModel();
+        public string cnfpassword;
         public string temppassword;
         GuestServices guestServices;
         #region properties
@@ -28,7 +29,19 @@ namespace HMS.ViewModel.Guest
             set
             {
                 guestRegistrationModel_ = value;
-                OnPropertyChanged();
+                OnPropertyChanged("GuestRegistrationModel");
+            }
+        }
+        public string Cnfpassword
+        {
+            get
+            {
+                return cnfpassword;
+            }
+            set
+            {
+                cnfpassword = value;
+                OnPropertyChanged("Cnfpassword");
             }
         }
         #endregion
@@ -73,7 +86,8 @@ namespace HMS.ViewModel.Guest
         {
             string emailpattern = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
             Regex emailRegx = new Regex(emailpattern);
-            if(IsCheck1==true)
+            var result = Cnfpassword;
+            if (IsCheck1 == true)
             {
                 GuestRegistrationModel.gender = "Male";
             }
@@ -109,63 +123,31 @@ namespace HMS.ViewModel.Guest
             {
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Aadhar no", "OK");
             }
-            else if (GuestRegistrationModel.userName == null || GuestRegistrationModel.userName.Length == 0)
+            else if (GuestRegistrationModel.aadharNo.Length != 9)
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter 9 digit Aadhar no", "OK");
+            else if (GuestRegistrationModel.userName.Length==0 || string.IsNullOrEmpty(GuestRegistrationModel.userName))
             {
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Username", "OK");
             }
+            else if (GuestRegistrationModel.password.Length == 0 || string.IsNullOrEmpty(GuestRegistrationModel.password))
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter Username", "OK");
+            else if (Cnfpassword.Length == 0 || string.IsNullOrEmpty(Cnfpassword))
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter Confirm password", "OK");
+            else if (GuestRegistrationModel.password != Cnfpassword)
+                await App.Current.MainPage.DisplayAlert("HMS", "Password Not match", "OK");
             else
             {
-                Sendsms();
-                GuestRegistrationModel.password = temppassword;
                 guestServices.SaveGuestData(GuestRegistrationModel);
-            }
-        }
-        public async void GenerateRandomPassword()
-        {
-            int length = 4;
-            StringBuilder str_build = new StringBuilder();
-            Random random = new Random();
-            char letter;
-            for (int i = 0; i < length; i++)
-            {
-                double flt = random.NextDouble();
-                int shift = Convert.ToInt32(Math.Floor(25 * flt));
-                letter = Convert.ToChar(shift + 65);
-                str_build.Append(letter);
-            }
-            temppassword = str_build.ToString();
-        }
-        public async void Sendsms()
-        {
-             GenerateRandomPassword();
-            try
-            {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-                mail.From = new MailAddress("nk8059168@gmail.com");
-                mail.To.Add(GuestRegistrationModel.email);
-                mail.Subject = "New Password";
-                mail.Body = "Hello" +" "+ GuestRegistrationModel.userName + " " + "You Have Sucessfully Registered and your password is" + " " + temppassword;
-
-                SmtpServer.Port = 587;
-                SmtpServer.Host = "smtp.gmail.com";
-                SmtpServer.EnableSsl = true;
-                SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("nk8059168@gmail.com", "Nitesh935@");
-                SmtpServer.Send(mail);
-            }
-            catch (Exception ex)
-            {
-
             }
         }
         public async void Success(string result)
         {
             GuestRegistrationModel = new GuestRegistrationModel();
             IsCheck1 = true;
+            Cnfpassword = string.Empty;
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged("GuestRegistrationModel");
+            OnPropertyChanged("Cnfpassword");
         }
     }
 }

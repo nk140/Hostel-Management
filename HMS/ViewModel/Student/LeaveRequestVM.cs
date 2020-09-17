@@ -26,7 +26,7 @@ namespace HMS.ViewModel.Student
         long typeHeight_;
         bool TypeVisible_;
 
-        string leaveType_ = "", reason_ = "", hosteladmissionid = "", academicyear = "", leavetypeid;
+        string leaveType_ = "", reason_ = "", academicyear = "", leavetypeid;
 
         public string StartDate, EndDate, StartTime, EndTime;
 
@@ -52,18 +52,6 @@ namespace HMS.ViewModel.Student
         {
             get { return reason_; }
             set { reason_ = value; OnPropertyChanged("Reason"); }
-        }
-        public string Hosteladmissionid
-        {
-            get
-            {
-                return hosteladmissionid;
-            }
-            set
-            {
-                hosteladmissionid = value;
-                OnPropertyChanged();
-            }
         }
         public string LeaveTypeId
         {
@@ -149,8 +137,6 @@ namespace HMS.ViewModel.Student
                     {
                         App.Current.MainPage.DisplayAlert("", "Please Enter Leave Type", "OK");
                     }
-                    else if (string.IsNullOrEmpty(Hosteladmissionid) || Hosteladmissionid.Length == 0)
-                        App.Current.MainPage.DisplayAlert("HMS", "Please Enter Admission id", "OK");
                     else if (Reason.Length == 0 || string.IsNullOrEmpty(Reason))
                     {
                         App.Current.MainPage.DisplayAlert("", "Please Enter Reason", "OK");
@@ -169,7 +155,6 @@ namespace HMS.ViewModel.Student
                     {
                         LeaveRequest.reason = Reason;
                         LeaveRequest.remarks = Reason;
-                        LeaveRequest.hostelAdmissionId = Hosteladmissionid;
                         LeaveRequest.academicYear = Academicyear;
                         LeaveRequest.hostelLeaveTypeId = LeaveTypeId;
                         LeaveRequest.leaveFromDate = StartDate + "T" + "00:00:00.000Z";
@@ -194,7 +179,6 @@ namespace HMS.ViewModel.Student
         public async Task SaveLeaveRequest(string result)
         {
             Reason = string.Empty;
-            Hosteladmissionid = string.Empty;
             Academicyear = string.Empty;
             LeaveTypeId = string.Empty;
             StartDate = string.Empty;
