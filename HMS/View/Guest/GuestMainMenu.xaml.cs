@@ -21,7 +21,7 @@ namespace HMS.View.Guest
             guestmenulist = new ObservableCollection<GuestMenu>
             {
                 new GuestMenu {Title="News Feed",TargetType=typeof(NewsFeed)},
-                new GuestMenu {Title="Guest Registration",TargetType=typeof(GuestRegistration)},
+                new GuestMenu {Title="Set Password",TargetType=typeof(SetPassword)},
                 // new GuestMenu {Title="Room Detail",TargetType=typeof(GuestRoomDetails)},
                 //  new GuestMenu {Title="View Room Image & Video",TargetType=typeof(Imagevideoview)},
                    new GuestMenu {Title="Facility Details",TargetType=typeof(RoomFacility)},
@@ -50,7 +50,6 @@ namespace HMS.View.Guest
                 }
             }
         }
-
         private void user_Clicked(object sender, EventArgs e)
         {
 

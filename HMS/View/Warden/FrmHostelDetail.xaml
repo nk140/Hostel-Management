@@ -13,10 +13,10 @@
     <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
         <AbsoluteLayout>
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Orientation="Vertical" Spacing="5">
-                <Frame CornerRadius="35" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.23,0.25,0.5,0.06" BorderColor="Black">
+                <Frame CornerRadius="35" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.23,0.28,0.5,0.06" BorderColor="Black">
                     <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding hostelName}" Margin="-16" DisplayMemberPath="hostelName" TextMemberPath="hostelName" TextColor="#2D295F" PlaceholderText="Search From Hostel Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
                 </Frame>
-                <Grid Margin="0,10,0,0">
+                <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.4,0.4,0.5,0.9">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -28,7 +28,7 @@
                     <ListView  x:Name="_listView" ItemsSource="{Binding HostalMasterData}"  Margin="0,0,0,0" WidthRequest="410"  VerticalOptions="FillAndExpand" HasUnevenRows="true" VerticalScrollBarVisibility="Never">
                         <ListView.Header>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label WidthRequest="150" HeightRequest="40" Text="Id" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="150" HeightRequest="40" Text="Hostel No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="200" HeightRequest="40" Text="Hostel Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </ListView.Header>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             Title="Warden Assignment"
+             x:Class="HMS.View.Admin.WardenAssignment">
+    <AbsoluteLayout>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.06,0.79,0.08">
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding CountryName}" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Warden Name"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.18,0.79,0.08">
+            <controls:BetterEntry Placeholder="Enter Hostel to be assign" Text="{Binding DisciplinaryReason}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-17"/>
+        </Frame>
+        <Button Text="Assign"  TextColor="White" BackgroundColor="#e96125" CornerRadius="30"  AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.3,0.55,0.08"/>
+    </AbsoluteLayout>
+</ContentPage>

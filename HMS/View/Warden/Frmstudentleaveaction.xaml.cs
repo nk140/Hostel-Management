@@ -34,8 +34,11 @@ namespace HMS.View.Warden
                         {
                             if (!string.IsNullOrEmpty(items.leaveType.ToString()))
                             {
-                                if (items.leaveType.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.leaveType.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
-                                    parentStudentLeaveStatuses.Add(items);
+                                if (!string.IsNullOrEmpty(txtsearchbykeyword.Text))
+                                {
+                                    if (items.leaveType.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.leaveType.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
+                                        parentStudentLeaveStatuses.Add(items);
+                                }
                             }
                         }
                         txtsearchbykeyword.ItemsSource = parentStudentLeaveStatuses;

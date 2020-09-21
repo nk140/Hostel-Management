@@ -4,6 +4,7 @@
              x:Class="HMS.View.FrmLogin"
              BackgroundColor="White">
     <AbsoluteLayout>
+        <Image Source="christ.png" WidthRequest="50" HeightRequest="50" IsAnimationPlaying="True" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0,0.5,0.25"/>
         <Frame BackgroundColor="Transparent" CornerRadius="25" BorderColor="#663399" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.3,0.8,0.07">
             <controls:BetterEntry Placeholder="Username" FontSize="Default" PlaceholderColor="#003366" Text="{Binding UserModel.userName}" TextColor="Black" Margin="-17"/>
         </Frame>

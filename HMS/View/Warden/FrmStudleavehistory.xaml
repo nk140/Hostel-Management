@@ -20,17 +20,9 @@
                     <ViewCell>
                         <Frame VerticalOptions="FillAndExpand" BorderColor="DarkBlue" Margin="20,10,20,10" CornerRadius="20">
                             <StackLayout Orientation="Vertical">
-                                <!--<StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="StudId:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding stuId}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                </StackLayout>-->
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="StudName:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                     <Label Text="{Binding stuName}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="HostelLeaveId:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding hostelLeaveTypeId}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="Leave Name:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
@@ -63,56 +55,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-    <!--<ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
-        <AbsoluteLayout>
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView  x:Name="_listView"  ItemsSource="{Binding Studentleavedata}" Margin="1,0,1,0" WidthRequest="1851"  VerticalOptions="FillAndExpand" HasUnevenRows="true">
-                        <ListView.Header>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label WidthRequest="150" HeightRequest="40" Text="StudId" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="200" HeightRequest="40" Text="StudName" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="150" HeightRequest="40" Text="HostelLeaveTypeId" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="150" HeightRequest="40" Text="Reason" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="150" HeightRequest="40" Text="LeaveFromDate"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="150" HeightRequest="40" Text="LeaveToDate"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="150" HeightRequest="40" Text="MobileNo"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="150" HeightRequest="40" Text="IsApproved"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                            </StackLayout>
-                        </ListView.Header>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding stuId}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label WidthRequest="200" HeightRequest="40" Text="{Binding stuName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding hostelLeaveTypeId}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding reason}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding leaveFromDate}"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding leaveToDate}"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding mobileNo}"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding isApproved}"  TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </StackLayout>
-        </AbsoluteLayout>
-    </ScrollView>-->
 </ContentPage>

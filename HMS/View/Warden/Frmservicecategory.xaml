@@ -12,7 +12,7 @@
                 <Frame CornerRadius="30" BackgroundColor="Transparent" BorderColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.3,0.4,0.7,0.06">
                     <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" DisplayMemberPath="name" TextMemberPath="name"  PlaceholderText="Search From Service name"  Margin="-11" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
                 </Frame>
-                <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.3,0.5,0.6,0.9">
+                <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.3,0.58,0.6,0.9">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -21,10 +21,10 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <ListView  x:Name="_listView" ItemsSource="{Binding WardenServiceData}" VerticalScrollBarVisibility="Never" Margin="0,0,0,0" WidthRequest="410"  VerticalOptions="FillAndExpand" HasUnevenRows="true">
+                    <ListView  x:Name="_listView" ItemsSource="{Binding WardenServiceData}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand" HasUnevenRows="true">
                         <ListView.Header>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label WidthRequest="150" HeightRequest="40" Text="Id" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="150" HeightRequest="40" Text="Category No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="200" HeightRequest="40" Text="Category Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </ListView.Header>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="View Area"
+             x:Name="viewarea"
+             x:Class="HMS.View.Admin.ViewArea">
+    <StackLayout Orientation="Vertical" Spacing="9">
+        <CollectionView x:Name="arealist"  VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+            <CollectionView.Header>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label WidthRequest="150" HeightRequest="40" Text="Area No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="200" HeightRequest="40" Text="Area Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           IconImageSource="edit.jpg"
+                                           BackgroundColor="Green" />
+                                <SwipeItem Text="Cancel"
+                                           IconImageSource="reject.png"
+                                           BackgroundColor="Red" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="CenterAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label WidthRequest="150" HeightRequest="40" Text="{Binding id}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding areaname}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

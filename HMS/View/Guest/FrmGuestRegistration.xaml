@@ -10,6 +10,7 @@
     <ContentPage.BindingContext>
         <vm:GuestRegBeforeLoginVM></vm:GuestRegBeforeLoginVM>
     </ContentPage.BindingContext>
+    <ScrollView>
     <Grid Margin="0,14,0,0" RowSpacing="7">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -52,7 +53,8 @@
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="8">
             <controls:BetterEntry Placeholder="Confirm Password" Keyboard="Text"  Text="{Binding Cnfpassword}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
-        <Button Text="Register" BackgroundColor="#e96125"  Command="{Binding SaveCommand}" Grid.Row="9" TextColor="White" CornerRadius="20" HeightRequest="50" HorizontalOptions="CenterAndExpand"/>
-        <Button Text="Login" x:Name="login" BackgroundColor="#e96125" Grid.Row="10" TextColor="White" CornerRadius="20" HeightRequest="50" Margin="0,10,0,0" Clicked="login_Clicked"/>
+        <Button Text="Register" BackgroundColor="#e96125"  Command="{Binding SaveCommand}" Grid.Row="9" TextColor="White" CornerRadius="30" HeightRequest="50" WidthRequest="190"   HorizontalOptions="CenterAndExpand"/>
+        <Button Text="Login"  x:Name="login" BackgroundColor="Transparent" Grid.Row="10" TextColor="Black" CornerRadius="10" HeightRequest="50" WidthRequest="190"  HorizontalOptions="CenterAndExpand" Clicked="login_Clicked"/>
     </Grid>
+    </ScrollView>
 </ContentPage>

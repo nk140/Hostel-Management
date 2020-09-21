@@ -7,7 +7,7 @@
 
         <StackLayout
             Orientation="Vertical"
-            Margin="20,40,20,0">
+            Margin="20,40,20,0" Spacing="6">
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <controls:BetterEntry
                     Placeholder="Service Category" 
@@ -17,6 +17,9 @@
                     Text="{Binding Category.name}"
                     TextColor="Black"
                     ReturnType="Next" />
+            </Frame>
+            <Frame BackgroundColor="Transparent" CornerRadius="25" BorderColor="black" HeightRequest="70">
+                <controls:XEditor Placeholder="Enter Description" Keyboard="Text" PlaceholderColor="Black" FontSize="17" Margin="-9"/>
             </Frame>
             <StackLayout
                 Orientation="Horizontal"
@@ -29,11 +32,7 @@
                     Command="{Binding SaveCommand}"
                     TextColor="Wheat"
                     Text="Create Service Category"/>
-
             </StackLayout>
-
-
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

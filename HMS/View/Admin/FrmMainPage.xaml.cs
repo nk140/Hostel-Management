@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using HMS.View.Student;
 using HMS.View.Warden;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -29,12 +30,17 @@ namespace HMS.View.Admin
                    new HomeMenuItem {Title="Floor",TargetType=typeof(FrmFloor)},
                     new HomeMenuItem {Title="Room",TargetType=typeof(FrmRoom)},
                     new HomeMenuItem {Title="Room Bed",TargetType=typeof(FrmRoomBed)},
+                    new HomeMenuItem {Title="Contact Student Parent",TargetType=typeof(FrmStudentParentContact)},
+                    new HomeMenuItem {Title="Warden Assignment",TargetType=typeof(WardenAssignment)},
+                    new HomeMenuItem {Title="Contact warden",TargetType=typeof(FrmContactWarden)},
                     new HomeMenuItem {Title="Service Category",TargetType=typeof(FrmServiceCategoryCreatioon)},
                     new HomeMenuItem{Title="Disciplinary type",TargetType=typeof(Disciplinary)},
                     new HomeMenuItem {Title="Facility",TargetType=typeof(FrmFacility)},
                     new HomeMenuItem {Title="Room Type",TargetType=typeof(FrmRoomType)},
+                    new HomeMenuItem {Title="Student Leave Status",TargetType=typeof(Frmstudentleaveaction)},
                     new HomeMenuItem {Title="Upload Hostel Images and Videos",TargetType=typeof(UploadImageAndVideo)},
                     new HomeMenuItem {Title="Create Warden",TargetType=typeof(FrmWardenCreatioin)},
+                    new HomeMenuItem {Title="Call Guest",TargetType=typeof(Frmcallguest)},
                 new HomeMenuItem {Title="Logout",TargetType=typeof(FrmLogin)}
             };
             ListViewMenu.ItemsSource = menuItems;

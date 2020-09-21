@@ -70,6 +70,7 @@
     <Compile Include="Datepickerrender.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="XEditorRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,5 +240,14 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\christ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splashpage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\edit.jpg" />
   </ItemGroup>
 </Project>

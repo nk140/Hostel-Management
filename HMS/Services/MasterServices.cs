@@ -180,8 +180,6 @@ namespace HMS.Services
 
                     ObservableCollection<StateModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<StateModel>>(result);
                     await countryCallback.LoadStateList(batchData);
-
-
                 }
                 else
                 {
