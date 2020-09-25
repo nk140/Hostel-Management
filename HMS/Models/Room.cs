@@ -11,4 +11,17 @@
         public string Images { get; set; }
         public string No { get; set; }
     }
+    public class RoomNameList
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string noOfBed { get; set; }
+        public string hostelRoomTypeId { get; set; }
+    }
+    public class RoomNameResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
 }

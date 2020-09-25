@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             Title="View Room Bed"
+             x:Name="viewroombed"
+             x:Class="HMS.View.Admin.ViewRoomBed">
+    <StackLayout Orientation="Vertical" Spacing="9">
+        <Label Text="View Room Bed" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+        <StackLayout Orientation="Horizontal" Margin="10">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
+                <forms:AutoSuggestBox x:Name="txtsearchbyroombed" HorizontalOptions="FillAndExpand" TextMemberPath="bedNo" DisplayMemberPath="bedNo" PlaceholderText="Search from bed name"  Margin="-17" TextChanged="txtsearchbyroombed_TextChanged" SuggestionChosen="txtsearchbyroombed_SuggestionChosen"/>
+            </Frame>
+            <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>
+        </StackLayout>
+        <CollectionView x:Name="roombeddata" ItemsSource="{Binding RoomBedDatas}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+            <CollectionView.Header>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label WidthRequest="150" HeightRequest="40" Text="Bed No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="200" HeightRequest="40" Text="Bed Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           IconImageSource="edit.jpg"
+                                           BackgroundColor="Green"
+                                           Command="{Binding Source={x:Reference viewroombed}, Path=BindingContext.EditCommand}"
+                                           CommandParameter="{Binding}"/>
+                                
+                                <SwipeItem Text="Delete"
+                                           IconImageSource="reject.png"
+                                           Command="{Binding Source={x:Reference viewroombed}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Red" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label WidthRequest="150" HeightRequest="40" Text="{Binding bedId}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding bedNo}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

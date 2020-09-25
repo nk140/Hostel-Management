@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:controls="clr-namespace:HMS.Controls"
+                 mc:Ignorable="d"
+             x:Class="HMS.View.Admin.FilterPopup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+                     ScaleIn="1.2"  
+                      ScaleOut="0.8"  
+                      DurationIn="400"  
+                      DurationOut="300"  
+                      EasingIn="SinOut"  
+                      EasingOut="SinIn"  
+            PositionIn="Left"
+            PositionOut="Left"/>
+    </pages:PopupPage.Animation>
+    <Frame BackgroundColor="White" VerticalOptions="StartAndExpand" Margin="0,110,0,0"  HorizontalOptions="End" CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Text="Sort By Area No" HorizontalTextAlignment="Center" Grid.Row="0"/>
+            <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
+                <controls:CustomPicker  x:Name="ddgender" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
+                    <controls:CustomPicker.Items>
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </controls:CustomPicker.Items>
+                </controls:CustomPicker>
+            </Frame>
+            <Button Text="Apply" x:Name="btnapply" Clicked="btnapply_Clicked" Grid.Row="2"/>
+        </Grid>
+    </Frame>
+</pages:PopupPage>

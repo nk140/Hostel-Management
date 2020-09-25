@@ -2,8 +2,89 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
              Title="Edit Hostel"
              x:Class="HMS.View.Admin.EditHostel">
+    <ContentPage.Content>
+        <ScrollView 
+            Orientation="Vertical">
+            <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+                <Label Text="Edit Hostel" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+                <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                VerticalOptions="StartAndExpand" Spacing="16">
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <forms:AutoSuggestBox x:Name="txtsearchbykeyword" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding HostelModel.areaId}" IsEnabled="False"  TextColor="#2D295F" PlaceholderText="Area No"/>
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="Hostel Name" 
+                       FontSize="Default"
+                       Margin="-16"
+                       Text="{Binding HostelModel.hostelName}"
+                       PlaceholderColor="#003366" 
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <RadioButton Text="Male" x:Name="male" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}" TextColor="#e96125" FontSize="15"  GroupName="Gender"/>
+                        <RadioButton Text="Female" x:Name="female" IsChecked="{Binding IsCheck2}" Command="{Binding Check2Clicked}" TextColor="#e96125" FontSize="15"  GroupName="Gender"/>
+                    </StackLayout>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="Address" 
+                       FontSize="Default"
+                       Margin="-16"
+                       Text="{Binding HostelModel.addressLine1}"
+                       PlaceholderColor="#003366" 
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="Phone Number" 
+                       FontSize="Default"
+                       Margin="-16"
+                       Keyboard="Telephone"
+                       Text="{Binding HostelModel.phoneNo}"
+                       MaxLength="10"
+                       PlaceholderColor="#003366" 
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="ZipCode" 
+                       FontSize="Default"
+                       Margin="-16"
+                       Keyboard="Numeric"
+                       Text="{Binding HostelModel.zipCode}"
+                       MaxLength="6"
+                       PlaceholderColor="#003366" 
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <Controls:BetterEntry Placeholder="Email" 
+                       FontSize="Default"
+                       Margin="-16"
+                       Text="{Binding HostelModel.email}"
+                       PlaceholderColor="#003366" 
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Button   Margin="110,40,40,0" WidthRequest="150"
+                      Text="Update Hostel"
+                      BackgroundColor="#e96125"
+                      TextColor="White"
+                      Command="{Binding UpdateHostelCommand}"
+                      CornerRadius="10"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

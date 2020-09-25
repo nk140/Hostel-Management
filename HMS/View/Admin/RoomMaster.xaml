@@ -25,8 +25,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Text="Room Master" HorizontalTextAlignment="Center" Grid.Row="0" TextColor="Black" FontSize="20"/>
-            <Button x:Name="btnviewroom" Text="View Room" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="1" />
-            <Button x:Name="btnnewroom" Text="New Room" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="2"/>
+            <Button x:Name="btnviewroom" Text="View Room" Clicked="btnviewroom_Clicked" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="1" />
+            <Button x:Name="btnnewroom" Text="New Room" Clicked="btnnewroom_Clicked" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="2"/>
         </Grid>
     </Frame>
 </Pages:PopupPage>

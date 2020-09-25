@@ -10,4 +10,14 @@ namespace HMS.Interface
     {
         void getallservicecategory(ObservableCollection<WardenServiceModel> wardenServiceModels);
     }
+    public interface IEditservicecategory
+    {
+        void getallservicecategory(string result);
+        void failer(string result);
+    }
+    public interface IDeleteservicecategory
+    {
+        void Deleteservicecategory(string result);
+        void failer(string result);
+    }
 }

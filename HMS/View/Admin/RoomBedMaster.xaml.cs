@@ -17,5 +17,15 @@ namespace HMS.View.Admin
         {
             InitializeComponent();
         }
+
+        private async void btnviewroombed_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new ViewRoomBed(App.roomname, App.hostelid));
+        }
+
+        private async void btnnewroombed_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new FrmRoomBed());
+        }
     }
 }

@@ -17,5 +17,15 @@ namespace HMS.View.Admin
         {
             InitializeComponent();
         }
+
+        private async void btnviewroom_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new ViewRoom(App.hostelid, App.blockid));
+        }
+
+        private async void btnnewroom_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new FrmRoom());
+        }
     }
 }

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             Title="View Room"
+             x:Name="viewroom"
+             x:Class="HMS.View.Admin.ViewRoom">
+    <StackLayout Orientation="Vertical" Spacing="9">
+        <Label Text="View Room" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+        <StackLayout Orientation="Horizontal" Margin="10">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
+                <forms:AutoSuggestBox x:Name="txtsearchbyroomname" HorizontalOptions="FillAndExpand" TextMemberPath="name" DisplayMemberPath="name" PlaceholderText="Search from Room name"  Margin="-17" TextChanged="txtsearchbyroomname_TextChanged" SuggestionChosen="txtsearchbyroomname_SuggestionChosen"/>
+            </Frame>
+            <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>
+        </StackLayout>
+        <CollectionView x:Name="FloorDetaillists1" ItemsSource="{Binding RoomNameLists}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+            <CollectionView.Header>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label WidthRequest="150" HeightRequest="40" Text="Room Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="200" HeightRequest="40" Text="No Of Beds" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           IconImageSource="edit.jpg"
+                                           BackgroundColor="Green"
+                                           Command="{Binding Source={x:Reference viewroom}, Path=BindingContext.EditCommand}"
+                                           CommandParameter="{Binding}"/>
+                                <SwipeItem Text="View Bed"
+                                           IconImageSource="edit.jpg"
+                                           BackgroundColor="Green"
+                                           Command="{Binding Source={x:Reference viewroom}, Path=BindingContext.ViewRoomBedCommand}"
+                                           CommandParameter="{Binding}"/>
+                                <SwipeItem Text="Delete"
+                                           IconImageSource="reject.png"
+                                           Command="{Binding Source={x:Reference viewroom}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Red" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label WidthRequest="150" HeightRequest="40" Text="{Binding name}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding noOfBed}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

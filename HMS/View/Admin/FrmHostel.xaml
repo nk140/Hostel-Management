@@ -83,6 +83,7 @@
                         <Controls:BetterEntry Placeholder="ZipCode" 
                        FontSize="Default"
                        Margin="-16"
+                       MaxLength="6"
                        PlaceholderColor="#003366" 
                        Text="{Binding Zipcode}"
                        TextColor="Black"

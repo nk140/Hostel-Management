@@ -17,5 +17,15 @@ namespace HMS.View.Admin
         {
             InitializeComponent();
         }
+
+        private async void btnviewhostel_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new ViewHostel(App.areaid));
+        }
+
+        private async void btnnewHostel_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new FrmHostel());
+        }
     }
 }

@@ -19,38 +19,6 @@
                     <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                         <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" Margin="-16" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
                     </Frame>
-                    <Frame 
-                    x:Name="f_area_list"
-                    HasShadow="True"
-                    IsVisible="false"                      
-                    Margin="10,0,10,0"  >
-                        <StackLayout 
-                        Orientation="Vertical">
-                            <ListView 
-                                x:Name="lv_area"    
-                                VerticalOptions="Fill"                            
-                              ItemTapped="OnSelectedAreaItem" >
-
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell >
-                                            <StackLayout Orientation="Horizontal">
-
-                                                <Label Text="{Binding areaName}"
-                                               HorizontalOptions="StartAndExpand"
-                                               HorizontalTextAlignment="Start"
-                                               VerticalTextAlignment="Center"/>
-
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-
-                            </ListView>
-
-                        </StackLayout>
-
-                    </Frame>
                     <StackLayout>
                         <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                             <Controls:BetterEntry 

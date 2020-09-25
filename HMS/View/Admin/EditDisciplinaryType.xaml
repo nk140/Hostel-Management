@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             x:Class="HMS.View.Admin.EditDisciplinaryType">
+    <ScrollView 
+            Orientation="Vertical">
+        <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+            <Label Text="Edit Disciplinary Type" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+            <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                VerticalOptions="StartAndExpand" Spacing="16">
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <Controls:BetterEntry Placeholder="Disciplinary No" 
+                       FontSize="Default"
+                       PlaceholderColor="#003366"
+                       Margin="-16"
+                       Text="{Binding UpdateDisciplinaryTypes.id}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                </Frame>
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <Controls:BetterEntry Placeholder="Disciplinary Type" 
+                       FontSize="Default"
+                       PlaceholderColor="#003366"
+                       Margin="-16"
+                       Text="{Binding UpdateDisciplinaryTypes.name}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                </Frame>
+                <StackLayout Orientation="Horizontal">
+                    <Button HorizontalOptions="CenterAndExpand" WidthRequest="160"
+                      Text="Update Disciplinary Type"
+                      Command="{Binding UpdateDisciplinaryTypeCommand}"
+                      BackgroundColor="#e96125"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

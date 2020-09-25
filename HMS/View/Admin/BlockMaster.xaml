@@ -25,8 +25,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Text="Block Master" HorizontalTextAlignment="Center" Grid.Row="0" TextColor="Black" FontSize="20"/>
-            <Button x:Name="btnviewblock" Text="View Block" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="1" />
-            <Button x:Name="btnnewblock" Text="New Block" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="2"/>
+            <Button x:Name="btnviewblock" Text="View Block" Clicked="btnviewblock_Clicked" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="1" />
+            <Button x:Name="btnnewblock" Text="New Block" Clicked="btnnewblock_Clicked" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="2"/>
         </Grid>
     </Frame>
 </Page:PopupPage>

@@ -26,8 +26,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Text="Hostel Master" HorizontalTextAlignment="Center" Grid.Row="0" TextColor="Black" FontSize="20"/>
-            <Button x:Name="btnviewhostel" Text="View Hostel" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="1" />
-            <Button x:Name="btnnewfloor" Text="New Hostel" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="2"/>
+            <Button x:Name="btnviewhostel" Text="View Hostel" Clicked="btnviewhostel_Clicked" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="1" />
+            <Button x:Name="btnnewHostel" Clicked="btnnewHostel_Clicked" Text="New Hostel" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Grid.Row="2"/>
         </Grid>
     </Frame>
 </Page:PopupPage>

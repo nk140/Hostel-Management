@@ -2,8 +2,52 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:Controls="clr-namespace:HMS.Controls"
              mc:Ignorable="d"
              Title="Edit Room"
              x:Class="HMS.View.Admin.EditRoom">
+    <ScrollView 
+            Orientation="Vertical">
+        <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+            <Label Text="Edit Room" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+            <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                Spacing="16"
+                VerticalOptions="StartAndExpand">
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <Controls:BetterEntry Placeholder="Enter Room Name" 
+                       FontSize="Default"
+                       Keyboard="Text"
+                       Margin="-16"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding Name}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                </Frame>
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <Controls:BetterEntry Placeholder="No of Beds" 
+                       FontSize="Default"
+                       Keyboard="Numeric"
+                       Margin="-16"
+                       MaxLength="2"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding NoOfBed}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                </Frame>
+                <StackLayout Orientation="Horizontal">
+                    <Button  HorizontalOptions="CenterAndExpand"  WidthRequest="150"
+                      Text="Update Room" 
+                      Command="{Binding UpdateRoomCommand}"
+                      BackgroundColor="#e96125"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

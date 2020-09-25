@@ -13,4 +13,28 @@ namespace HMS.Interface
         Task Failer(int index);
 
     }
+    public interface RoomBedI1
+    {
+        void LoadRoomBedList(ObservableCollection<RoomBedData> roomBedDatas);
+        void Failer(string result);
+
+    }
+    public interface EditRoomBedI
+    {
+       // Task LoadAreaList(ObservableCollection<AreaModel> AreaList);
+       // Task LoadHostelList(ObservableCollection<HostelModel> HostelList);
+      //  Task LoadRoomTypeList(ObservableCollection<RoomTypeModel> roomTypeModels);
+        void EditRoomBedSucess(string result);
+        void Failer(string result);
+
+    }
+    public interface DeleteRoomBedI
+    {
+        // Task LoadAreaList(ObservableCollection<AreaModel> AreaList);
+        // Task LoadHostelList(ObservableCollection<HostelModel> HostelList);
+        //  Task LoadRoomTypeList(ObservableCollection<RoomTypeModel> roomTypeModels);
+        void DeleteRoomBedSucess(string result);
+        void Failer(string result);
+
+    }
 }

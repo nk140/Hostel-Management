@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HMS.ViewModel.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,15 @@ namespace HMS.View.Admin
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditBlock : ContentPage
     {
+        EditBlockVM vm;
         public EditBlock()
         {
             InitializeComponent();
+        }
+        public EditBlock(string id,string name)
+        {
+            InitializeComponent();
+            BindingContext = vm = new EditBlockVM(id, name);
         }
     }
 }

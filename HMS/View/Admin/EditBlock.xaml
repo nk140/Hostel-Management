@@ -2,9 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:Controls="clr-namespace:HMS.Controls"
              mc:Ignorable="d"
              Title="Edit Block"
              x:Class="HMS.View.Admin.EditBlock">
-    
+    <ScrollView 
+            Orientation="Vertical">
+        <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+            <Label Text="Edit Block" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+            <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                VerticalOptions="StartAndExpand" Spacing="16">
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <Controls:BetterEntry Placeholder="BlockName" 
+                       FontSize="Default"
+                       PlaceholderColor="#003366"
+                       Margin="-16"
+                       Text="{Binding BlockName}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                </Frame>
+                <StackLayout Orientation="Horizontal">
+                    <Button HorizontalOptions="CenterAndExpand" WidthRequest="160"
+                      Text="Update Block"
+                      Command="{Binding UpdateBlockCommand}"
+                      BackgroundColor="#e96125"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                </StackLayout>
+            </StackLayout>
+            </StackLayout>
+    </ScrollView>
 </ContentPage>

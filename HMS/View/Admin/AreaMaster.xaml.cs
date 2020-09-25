@@ -17,5 +17,15 @@ namespace HMS.View.Admin
         {
             InitializeComponent();
         }
+
+        private async void btnviewarea_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ViewArea());
+        }
+
+        private async void btnnewarea_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new FrmArea());
+        }
     }
 }

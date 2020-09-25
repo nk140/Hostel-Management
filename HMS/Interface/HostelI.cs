@@ -7,4 +7,14 @@ namespace HMS.Interface
         Task ServiceFaild(string responseresult);
         Task PostHostelNameSuccess(string resultHostel);
     }
+    public interface EditHostelI
+    {
+        void ServiceFaild(string responseresult);
+        void PostHostelNameSuccess(string resultHostel);
+    }
+    public interface DeleteHostelI
+    {
+        void ServiceFaild(string responseresult);
+        void DeleteHostelNameSuccess(string resultHostel);
+    }
 }

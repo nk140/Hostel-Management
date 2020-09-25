@@ -15,6 +15,12 @@ namespace HMS
         public static string userid;
         public static string studentid;
         public static string studentupdatedphoneno;
+        public static string areaid;
+        public static string hostelid;
+        public static string floorid;
+        public static string blockid;
+        public static string roomid;
+        public static string roomname;
         public App()
         {
             InitializeComponent();

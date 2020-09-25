@@ -13,6 +13,7 @@
                  BackgroundColor="White">
                 <ListView x:Name="ListViewMenu" ItemSelected="ListViewMenu_ItemSelected"
                   HasUnevenRows="True"
+                  SelectionMode="Single"
                   BackgroundColor="White">
                     <d:ListView.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

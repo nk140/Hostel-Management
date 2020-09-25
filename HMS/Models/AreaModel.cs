@@ -14,6 +14,49 @@ namespace HMS.Models
         public string stateId { get; set; }
         public string areaName { get; set; }
     }
+    public class UpdateAreModel
+    {
+        public string userId { get; set; }
+        public string areaId { get; set; }
+        public string areaName { get; set; }
+        public string stateId { get; set; }
+    }
+    public class UpdateAreaResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
+    public class UpdateAreaErrorResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public List<UpdateAreaError> errors { get; set; }
+    }
+    public class UpdateAreaError
+    {
+        public string message { get; set; }
+    }
+    public class DeleteAreaResppnse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
+    public class DeleteAreaErrorResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public List<DeleteError> errors { get; set; }
+    }
+    public class DeleteError
+    {
+        public List<DelError> message { get; set; }
+    }
+    public class DelError
+    {
+        public string message { get; set; }
+    }
     public class AreaResponse
     {
         public string status { get; set; }

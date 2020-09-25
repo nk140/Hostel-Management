@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HMS.ViewModel.Student
 {
-    public class RoomListVM : BaseViewModel, RoomListI
+    public class RoomListVM : BaseViewModel, RoomListI1
     {
         public RoomListVM()
         {

@@ -3,12 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Admin" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
              Title="View Area"
              x:Name="viewarea"
              x:Class="HMS.View.Admin.ViewArea">
+    <!--<ContentPage.BindingContext>
+        <vm:ViewAreaVM></vm:ViewAreaVM>
+    </ContentPage.BindingContext>-->
     <StackLayout Orientation="Vertical" Spacing="9">
-        <CollectionView x:Name="arealist"  VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Horizontal" Margin="10">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
+                <forms:AutoSuggestBox x:Name="txtsearchbyareaname" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" PlaceholderText="Search from Area name"  Margin="-17" TextChanged="txtsearchbyareaname_TextChanged" SuggestionChosen="txtsearchbyareaname_SuggestionChosen"/>
+            </Frame>
+           <!-- <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
+        </StackLayout>
+        <CollectionView x:Name="arealist" ItemsSource="{Binding AreaLists}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Label WidthRequest="150" HeightRequest="40" Text="Area No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
@@ -22,16 +32,25 @@
                             <SwipeItems>
                                 <SwipeItem Text="Edit"
                                            IconImageSource="edit.jpg"
+                                           Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.EditCommand}"
+                                           CommandParameter="{Binding}"
                                            BackgroundColor="Green" />
-                                <SwipeItem Text="Cancel"
+                                <SwipeItem Text="View Hostel"
+                                           IconImageSource="edit.jpg"
+                                           Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.ViewHostelCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Green" />
+                                <SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
+                                           Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}"
                                            BackgroundColor="Red" />
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="CenterAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label WidthRequest="150" HeightRequest="40" Text="{Binding id}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding areaname}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding areaName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </Frame>
                     </SwipeView>

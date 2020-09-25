@@ -8,4 +8,14 @@ namespace HMS.Interface
         void Getnewsfeedlist(ObservableCollection<NewsFeed> newsFeeds);
         void Servicefailed();
     }
+    public interface IEditnewsfeeddata
+    {
+        void UpdateNewsFeed(string result);
+        void Servicefailed(string result);
+    }
+    public interface IDeletenewsfeeddata
+    {
+        void Deletenewsfeedlist(string result);
+        void Servicefailed(string result);
+    }
 }

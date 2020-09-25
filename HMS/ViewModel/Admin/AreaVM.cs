@@ -19,10 +19,6 @@ namespace HMS.ViewModel.Admin
             // send id into base 64 formate
             web.GetCountryDetails();
         }
-
-
-
-
         #region DeclareVariableAndObj
 
         private CountryModel CountryList = new CountryModel();

@@ -26,14 +26,14 @@ namespace HMS.View.Admin
         private void OnSelectedAreaItem(object sender, ItemTappedEventArgs e)
         {
 
-            AreaModel md = (AreaModel)lv_area.SelectedItem;
-            int cnt = VM.AreaModelList.IndexOf(md);
-            if (cnt >= 0)
-            {
-                VM.AreaSelection(cnt);
-            }
+         //   AreaModel md = (AreaModel)lv_area.SelectedItem;
+         //   int cnt = VM.AreaModelList.IndexOf(md);
+         //   if (cnt >= 0)
+         //   {
+         //       VM.AreaSelection(cnt);
+         //   }
 
-         ((ListView)sender).SelectedItem = null;
+         //((ListView)sender).SelectedItem = null;
         }
 
         private void OnSelectedHostelItem(object sender, ItemTappedEventArgs e)

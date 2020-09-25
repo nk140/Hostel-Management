@@ -10,4 +10,16 @@ namespace HMS.Interface
         Task ServiceFaild(string result);
         Task PostFloorSuccess(string resultHostel);
     }
+    public interface EditFloorI
+    {
+       // Task LoadRoomType(ObservableCollection<RoomTypeModel> RoomTypes);
+        void ServiceFaild(string result);
+        void FloorEditSucess(string resultHostel);
+    }
+    public interface DeleteFloorI
+    {
+        // Task LoadRoomType(ObservableCollection<RoomTypeModel> RoomTypes);
+        void ServiceFaild(string result);
+        void DeleteFloorSucess(string resultHostel);
+    }
 }

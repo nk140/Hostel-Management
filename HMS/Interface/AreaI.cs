@@ -9,4 +9,14 @@ namespace HMS.Interface
         Task PostAreaNameSuccess(string result);
 
     }
+    public interface EditAreaI
+    {
+        void servicefailed(string result);
+        void UpdateAreaDetailSucess(string result);
+    }
+    public interface DeleteAreaI
+    {
+        void servicefailed(string result);
+        void DeleteAreaSucess(string result);
+    }
 }

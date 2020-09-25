@@ -16,24 +16,22 @@
             <local:ImageSourceConverter x:Key="UrlToImage"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="0.1*"/>
-            </Grid.RowDefinitions>
-            <ListView ItemsSource="{Binding NewsFeeds}" SeparatorVisibility="None" HasUnevenRows="True" VerticalScrollBarVisibility="Never">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding newsTitle}" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0"/>
-                                <Image Source="{Binding linkUrl}" Grid.Row="1" Aspect="AspectFill"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-    </ScrollView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding NewsFeeds}" SeparatorVisibility="None" HasUnevenRows="True" VerticalScrollBarVisibility="Never">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding newsTitle}" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0"/>
+                            <Image Source="{Binding linkUrl}" Grid.Row="1" Aspect="AspectFill"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>
