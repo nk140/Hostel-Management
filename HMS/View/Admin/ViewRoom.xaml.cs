@@ -1,5 +1,6 @@
 ﻿using HMS.Models;
 using HMS.ViewModel.Admin;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -70,6 +71,12 @@ namespace HMS.View.Admin
                 }
                 FloorDetaillists1.ItemsSource = roomNameLists1;
             }
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PopModalAsync(true);
+           // await App.Current.MainPage.Navigation.PushPopupAsync(new FilterRoomPopup(App.hostelid), true);
         }
     }
 }

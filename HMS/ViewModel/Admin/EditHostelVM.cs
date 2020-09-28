@@ -116,12 +116,14 @@ namespace HMS.ViewModel.Admin
                 }
                 if(validate())
                 {
+                    updateHostel.userId = App.userid;
                     updateHostel.hostelId = HostelModel.id;
                     updateHostel.hostelName = HostelModel.hostelName;
-                    updateHostel.phone = HostelModel.phone;
+                    updateHostel.phone = HostelModel.phoneNo;
                     updateHostel.email = HostelModel.email;
                     updateHostel.addressLine1 = HostelModel.addressLine1;
                     updateHostel.zipCode = HostelModel.zipCode;
+                    updateHostel.hostelForGender = HostelModel.hostelForGender;
                     updateHostel.areaId = AreaIds;
                     web.UpdateHostel(updateHostel);
                 }
@@ -140,12 +142,12 @@ namespace HMS.ViewModel.Admin
                 App.Current.MainPage.DisplayAlert("HMS", "Hostel Name required", "OK");
                 return false;
             }
-            else if (string.IsNullOrEmpty(HostelModel.phone) || HostelModel.phone.Length == 0)
+            else if (string.IsNullOrEmpty(HostelModel.phoneNo) || HostelModel.phoneNo.Length == 0)
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Phone No required", "OK");
                 return false;
             }
-            else if (HostelModel.phone.Length != 10)
+            else if (HostelModel.phoneNo.Length != 10)
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Phone No should be 10 digit", "OK");
                 return false;

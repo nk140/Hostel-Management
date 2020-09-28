@@ -1,5 +1,6 @@
 ﻿using HMS.Models;
 using HMS.ViewModel.Admin;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,17 +25,17 @@ namespace HMS.View.Admin
         {
             InitializeComponent();
         }
-        public ViewFloor(string hostelid,string blockid)
+        public ViewFloor(string hostelid)
         {
             InitializeComponent();
             id = hostelid;
-            this.blockid = blockid;
-            BindingContext = vm = new ViewFloorVM(hostelid,blockid);
+           // this.blockid = blockid;
+            BindingContext = vm = new ViewFloorVM(hostelid);
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = vm = new ViewFloorVM(id, blockid);
+            BindingContext = vm = new ViewFloorVM(id);
         }
         protected override void OnDisappearing()
         {
@@ -83,6 +84,11 @@ namespace HMS.View.Admin
                 }
                 FloorDetaillists1.ItemsSource = floorDatas1;
             }
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushPopupAsync(new FIlterFloorPopup(App.areaid));
         }
     }
 }

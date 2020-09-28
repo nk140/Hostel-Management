@@ -86,8 +86,9 @@ namespace HMS.Services
         {
             EditRoomTypeI = callback;
         }
-        public MasterServices(DeleteRoomTypeI callback)
+        public MasterServices(RoomI room,DeleteRoomTypeI callback)
         {
+            roomCallback = room;
             DeleteRoomTypeI = callback;
         }
         public MasterServices(IDeleteservicecategory callback)
@@ -149,7 +150,11 @@ namespace HMS.Services
         {
             this.masterCallback = masterI;
         }
-
+        public MasterServices(MasterI masterI,RoomListI roomlists)
+        {
+            this.masterCallback = masterI;
+            roomListI = roomlists;
+        }
         public MasterServices(WardenCreatrI call)
         {
             wardenCallback = call;
@@ -1586,8 +1591,6 @@ namespace HMS.Services
 
                     ObservableCollection<AreaModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<AreaModel>>(result);
                     await masterCallback.LoadAreaList(batchData);
-
-
                 }
                 else
                 {

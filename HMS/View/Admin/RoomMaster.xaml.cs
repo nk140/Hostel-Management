@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace HMS.View.Admin
 
         private async void btnviewroom_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewRoom(App.hostelid, App.blockid));
+            await App.Current.MainPage.Navigation.PushPopupAsync(new ViewRoomByHostel(), true);
         }
 
         private async void btnnewroom_Clicked(object sender, EventArgs e)

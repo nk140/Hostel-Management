@@ -22,26 +22,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Text="Sort By Hostel No And Block No" HorizontalTextAlignment="Center" Grid.Row="0"/>
+            <Label Text="Sort By Hostel No" HorizontalTextAlignment="Center" Grid.Row="0"/>
             <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
-                <controls:CustomPicker  x:Name="ddgender" Title="Select Hostel No" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
-                    <controls:CustomPicker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
-                    </controls:CustomPicker.Items>
-                </controls:CustomPicker>
+                <controls:CustomPicker  x:Name="ddgenders" Title="Select Hostel No" SelectedIndexChanged="ddgenders_SelectedIndexChanged" ItemsSource="{Binding HostelLists}" ItemDisplayBinding="{Binding id}" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
-                <controls:CustomPicker  x:Name="ddgender" Title="Select Block No"  TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
-                    <controls:CustomPicker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
-                    </controls:CustomPicker.Items>
-                </controls:CustomPicker>
-            </Frame>
-            <Button Text="Apply" x:Name="btnapply"  Grid.Row="2"/>
+            <Button Text="Apply" x:Name="btnapply" Clicked="btnapply_Clicked"  Grid.Row="2"/>
         </Grid>
     </Frame>
 </Page:PopupPage>

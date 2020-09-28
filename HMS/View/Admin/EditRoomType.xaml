@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             x:Class="HMS.View.Admin.EditRoomType">
+    <ContentPage.Content>
+
+        <ScrollView 
+            Orientation="Vertical">
+            <StackLayout 
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical">
+                <Label Text="Edit Room Type" HorizontalTextAlignment="Center" FontSize="25" TextColor="Black"/>
+                <StackLayout 
+                Orientation="Vertical"
+                Margin="20,20,20,0"
+                Spacing="16"
+                VerticalOptions="StartAndExpand">
+
+                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <controls:BetterEntry Placeholder="RoomTypeName" 
+                       FontSize="Default"
+                       Margin="-16"
+                       PlaceholderColor="#003366" 
+                       Text="{Binding UpdateRoomTypeModel.hostelRoomTypeName}"
+                       TextColor="Black"
+                       ReturnType="Next" />
+                    </Frame>
+
+                    <!--<Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                        <controls:BetterEntry Placeholder="No Of Ocupants" 
+                       FontSize="Default"
+                       Margin="-16"
+                       PlaceholderColor="#003366"
+                               Keyboard="Numeric"
+                       Text="{Binding RoomType.noOfOccupants}"
+                       TextColor="Black"
+                       ReturnType="Done" />
+                    </Frame>-->
+                    <!-- IsVisible="{Binding ClassVisible}"  Replace it-->
+
+                    <StackLayout Orientation="Horizontal">
+                        <Button   Margin="100,40,40,0" WidthRequest="190"
+                      Text="Update Room Type" 
+                      BackgroundColor="#e96125"
+                      Command="{Binding UpdateCommand}"
+                      TextColor="White"
+                      CornerRadius="10"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

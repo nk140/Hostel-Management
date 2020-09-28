@@ -24,7 +24,7 @@
                 <CollectionView  x:Name="_listView" ItemsSource="{Binding WardenServiceData}" VerticalScrollBarVisibility="Never" SelectionMode="None"  VerticalOptions="FillAndExpand">
                     <CollectionView.Header>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label WidthRequest="150" HeightRequest="40" Text="Service No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Label WidthRequest="150" HeightRequest="40" Text="Serial No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             <Label WidthRequest="200" HeightRequest="40" Text="Service Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     </CollectionView.Header>

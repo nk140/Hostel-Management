@@ -1,5 +1,6 @@
 ﻿using HMS.Models;
 using HMS.ViewModel.Admin;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -77,6 +78,11 @@ namespace HMS.View.Admin
                 }
                 blocklist.ItemsSource = blockModels1;
             }
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushPopupAsync(new PopupBlock(App.areaid));
         }
     }
 }

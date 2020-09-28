@@ -21,6 +21,7 @@ namespace HMS
         public static string blockid;
         public static string roomid;
         public static string roomname;
+        public static string filterno;
         public App()
         {
             InitializeComponent();

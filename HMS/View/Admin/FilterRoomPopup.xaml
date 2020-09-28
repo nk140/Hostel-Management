@@ -26,15 +26,11 @@
             </Grid.RowDefinitions>
             <Label Text="Sort By Hostel No And Block No" HorizontalTextAlignment="Center" Grid.Row="0"/>
             <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
-                <controls:CustomPicker  x:Name="ddgender" Title="Select Hostel No" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
-                    <controls:CustomPicker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
-                    </controls:CustomPicker.Items>
+                <controls:CustomPicker  x:Name="ddgender2" Title="Select Hostel No" ItemsSource="{Binding HostelLists}" ItemDisplayBinding="{Binding id}" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
                 </controls:CustomPicker>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
-                <controls:CustomPicker  x:Name="ddgender" Title="Select Block No"  TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
+                <controls:CustomPicker  x:Name="ddgender" Title="Select Block No" ItemsSource="{Binding BlockModelList}" ItemDisplayBinding="{Binding id}" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
                     <controls:CustomPicker.Items>
                         <x:String>Male</x:String>
                         <x:String>Female</x:String>

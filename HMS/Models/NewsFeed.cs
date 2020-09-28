@@ -14,13 +14,15 @@ namespace HMS.Models
     }
     public class UpdateNewsFeed
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string newsTitle { get; set; }
         public string newsDescription { get; set; }
         public string startDate { get; set; }
         public string lastDate { get; set; }
         public string linkId { get; set; }
         public string displayfor { get; set; }
+        public string startTime { get; set; }
+        public string lastTime { get; set; }
     }
     public class UpdateNewsFeedResponse
     {

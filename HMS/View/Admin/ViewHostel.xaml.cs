@@ -34,6 +34,11 @@ namespace HMS.View.Admin
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            if(!string.IsNullOrEmpty(App.filterno))
+            {
+                BindingContext = vm = new ViewHostelVM(App.filterno);
+            }
+            else
             BindingContext = vm = new ViewHostelVM(areaids);
         }
         protected override void OnDisappearing()

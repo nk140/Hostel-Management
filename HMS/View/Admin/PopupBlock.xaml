@@ -25,14 +25,10 @@
             </Grid.RowDefinitions>
             <Label Text="Sort By Hostel No" HorizontalTextAlignment="Center" Grid.Row="0"/>
             <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
-                <controls:CustomPicker  x:Name="ddgender" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
-                    <controls:CustomPicker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
-                    </controls:CustomPicker.Items>
+                <controls:CustomPicker  x:Name="ddgender11" ItemsSource="{Binding HostelLists}" ItemDisplayBinding="{Binding id}" TitleColor="Black" SelectedIndexChanged="ddgender11_SelectedIndexChanged" BackgroundColor="Transparent" FontSize="17" Margin="-7">
                 </controls:CustomPicker>
             </Frame>
-            <Button Text="Apply" x:Name="btnapply"  Grid.Row="2"/>
+            <Button Text="Apply" x:Name="btnblockfilterapply" Clicked="btnblockfilterapply_Clicked" Grid.Row="2"/>
         </Grid>
     </Frame>
 </Page:PopupPage>

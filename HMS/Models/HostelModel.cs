@@ -17,6 +17,7 @@ namespace HMS.Models
     }
     public class UpdateHostel
     {
+        public string userId { get; set; }
         public string hostelId { get; set; }
         public string hostelName { get; set; }
         public string hostelForGender { get; set; }

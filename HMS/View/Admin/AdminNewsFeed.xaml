@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HMS.Converts"
-             xmlns:vm="clr-namespace:HMS.ViewModel"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Admin"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="News Feed"
+             x:Name="viewnewsfeed"
              x:Class="HMS.View.Admin.AdminNewsFeed">
     <ContentPage.BindingContext>
         <vm:NewsFeedViewModel></vm:NewsFeedViewModel>
@@ -21,17 +22,31 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding NewsFeeds}" SeparatorVisibility="None" HasUnevenRows="True" VerticalScrollBarVisibility="Never">
-            <ListView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding NewsFeeds}"  VerticalScrollBarVisibility="Never">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           IconImageSource="edit.jpg"
+                                           Command="{Binding Source={x:Reference viewnewsfeed}, Path=BindingContext.EditCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Green" />
+                                <SwipeItem Text="Delete"
+                                           IconImageSource="reject.png"
+                                           Command="{Binding Source={x:Reference viewnewsfeed}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Red" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding newsTitle}" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0"/>
                             <Image Source="{Binding linkUrl}" Grid.Row="1" Aspect="AspectFill"/>
                         </StackLayout>
-                    </ViewCell>
+                    </SwipeView>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </ContentPage>

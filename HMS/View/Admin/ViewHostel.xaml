@@ -13,16 +13,16 @@
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
                 <forms:AutoSuggestBox x:Name="txtsearchbyhostelname" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" PlaceholderText="Search from Hostel name"  Margin="-17" TextChanged="txtsearchbyhostelname_TextChanged" SuggestionChosen="txtsearchbyhostelname_SuggestionChosen"/>
             </Frame>
-            <Image Source="filter.png" HeightRequest="30" WidthRequest="30">
+            <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                 </Image.GestureRecognizers>
-            </Image>
+            </Image>-->
         </StackLayout>
         <CollectionView x:Name="viewhostel" ItemsSource="{Binding HostelLists}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label WidthRequest="150" HeightRequest="40" Text="Hostel No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="150" HeightRequest="40" Text="Serial No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                     <Label WidthRequest="200" HeightRequest="40" Text="Hostel Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                 </StackLayout>
             </CollectionView.Header>

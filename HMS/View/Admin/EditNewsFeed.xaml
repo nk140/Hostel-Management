@@ -31,9 +31,8 @@
                 <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                     <Controls:XEditor Placeholder="News Description" 
                        FontSize="Default"
-                       Keyboard="Numeric"
-                       Margin="-16"
-                       MaxLength="2"
+                       Keyboard="Text"
+                       Margin="-8"
                        PlaceholderColor="#003366" 
                        Text="{Binding UpdateNewsFeeds.newsDescription}"
                        TextColor="Black"/>
@@ -44,9 +43,15 @@
                 <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                     <Controls:DatePickers x:Name="dp_last_date" Margin="-7"  Placeholder="Enter last Date" DateSelected="dp_last_date_DateSelected"/>
                 </Frame>
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <Controls:BorderlessTimePicker x:Name="starttime" Unfocused="starttime_Unfocused" Format="HH:mm:ss:tt"/>
+                </Frame>
+                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <Controls:BorderlessTimePicker x:Name="endtime" Unfocused="endtime_Unfocused" Format="HH:mm:ss:tt"/>
+                </Frame>
                 <StackLayout Orientation="Horizontal">
                     <Button  HorizontalOptions="CenterAndExpand"  WidthRequest="150"
-                      Text="Update Room" 
+                      Text="Update News" 
                       Command="{Binding UpdateNewsFeedCommand}"
                       BackgroundColor="#e96125"
                       TextColor="White"

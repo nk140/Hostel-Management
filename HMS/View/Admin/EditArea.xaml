@@ -16,7 +16,7 @@
                 Margin="20,40,20,0"
                 VerticalOptions="StartAndExpand" Spacing="16">
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
-                <forms:AutoSuggestBox x:Name="txtsearchbystate" Margin="-16"  VerticalOptions="FillAndExpand" Text="{Binding Statename}" HorizontalOptions="FillAndExpand" DisplayMemberPath="state" TextMemberPath="state" TextColor="#2D295F" PlaceholderText="state Name"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbystate" Margin="-16"  VerticalOptions="FillAndExpand" Text="{Binding Statename}" IsEnabled="False" HorizontalOptions="FillAndExpand" DisplayMemberPath="state" TextMemberPath="state" TextColor="#2D295F" PlaceholderText="state Name"/>
             </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <Controls:BetterEntry 

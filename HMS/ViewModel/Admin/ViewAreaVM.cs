@@ -44,8 +44,8 @@ namespace HMS.ViewModel.Admin
         public async void OnViewHostelCommand(AreaModel obj)
         {
             App.areaid = obj.id;
-            await App.Current.MainPage.DisplayAlert("HMS", "Cant View Hostel From Here.", "OK");
-           // await App.Current.MainPage.Navigation.PushModalAsync(new ViewHostel(App.areaid));
+           // await App.Current.MainPage.DisplayAlert("HMS", "Cant View Hostel From Here.", "OK");
+            await App.Current.MainPage.Navigation.PushModalAsync(new ViewHostel(App.areaid));
             //await App.Current.MainPage.Navigation.PushModalAsync(new EditArea(obj.id,obj.areaName));
         }
         public async void OnDeleteCommand(AreaModel obj)
@@ -78,9 +78,9 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", index.ToString(), "OK");
         }
 
         public async void servicefailed(string result)
@@ -119,7 +119,7 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnEditCommand(BlockModel obj)
         {
-            App.hostelid = obj.hostelId;
+           // App.hostelid = obj.hostelId;
             App.blockid = obj.id;
             await App.Current.MainPage.Navigation.PushModalAsync(new EditBlock(obj.id, obj.name));
         }
@@ -128,7 +128,7 @@ namespace HMS.ViewModel.Admin
             obj.hostelId = hostelids;
             App.hostelid = obj.hostelId;
             App.blockid = obj.id;
-            //await App.Current.MainPage.Navigation.PushModalAsync(new ViewFloor(obj.hostelId,obj.id));
+            await App.Current.MainPage.Navigation.PushModalAsync(new ViewFloor(obj.hostelId));
         }
         public async void OnDeleteCommand(BlockModel obj)
         {
@@ -162,7 +162,7 @@ namespace HMS.ViewModel.Admin
 
         public async Task ServiceFailed(int index)
         {
-            
+            await App.Current.MainPage.DisplayAlert("HMS", index.ToString(), "OK");
         }
 
         public async void ServiceFaild(string result)
@@ -176,6 +176,68 @@ namespace HMS.ViewModel.Admin
             web.GetAllBlock(hostelids);
         }
     }
+    public class ViewFilteredBlockVM : BaseViewModel, MasterI
+    {
+        MasterServices web;
+        string hostelids;
+        private ObservableCollection<HostelModel> hostelPresentmodels_ = new ObservableCollection<HostelModel>();
+        public ObservableCollection<HostelModel> HostelLists
+        {
+            get { return hostelPresentmodels_; }
+            set { hostelPresentmodels_ = value; OnPropertyChanged("HostelLists"); }
+        }
+        private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
+        //private ObservableCollection<StateModel> stateModels = new ObservableCollection<StateModel>();
+        public ObservableCollection<AreaModel> AreaLists
+        {
+            get { return areaPresentmodels_; }
+            set { areaPresentmodels_ = value; OnPropertyChanged("AreaLists"); }
+        }
+        public ViewFilteredBlockVM()
+        {
+            //hostelids = hosteId;
+            web = new MasterServices(this);
+            web.GetAllArea();
+            //web.GetAllHostel(App.areaid);
+        }
+        public void selectedarea(string id)
+        {
+            web.GetAllHostel(id);
+        }
+        public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        {
+            AreaLists = AreaList;
+            OnPropertyChanged("AreaLists");
+        }
+
+        public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+           // BlockModelList = BlockList;
+           // OnPropertyChanged("BlockModelList");
+        }
+
+        public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        {
+            HostelLists = HostelList;
+            OnPropertyChanged("HostelLists");
+        }
+
+        public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ServiceFailed(int index)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ViewFloorVM : BaseViewModel, MasterI,DeleteFloorI
     {
         private ObservableCollection<FloorData> floorModel_ = new ObservableCollection<FloorData>();
@@ -190,18 +252,18 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<FloorData>(OnEditCommand);
         public ICommand ViewRoomCommand => new Command<FloorData>(OnViewRoomCommand);
         public ICommand DeleteCommand => new Command<FloorData>(OnDeleteCommand);
-        public ViewFloorVM(string hostelid,string blockid)
+        public ViewFloorVM(string hostelid)
         {
-            this.blockid = blockid;
+            //this.blockid = blockid;
             hostelids = hostelid;
             App.hostelid = hostelids;
-            App.blockid = blockid;
+           // App.blockid = blockid;
             web = new MasterServices((MasterI)this,(DeleteFloorI)this);
             web.GetAllFloor(hostelids);
         }
         public async void OnEditCommand(FloorData obj)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new EditFloor(obj.id.ToString(),obj.floorNo,obj.hostelId.ToString(),obj.noOfRooms.ToString(),blockid));
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditFloor(obj.id.ToString(),obj.floorNo,obj.hostelId.ToString(),obj.noOfRooms.ToString(),App.blockid));
         }
         public async void OnViewRoomCommand(FloorData obj)
         {
@@ -254,6 +316,81 @@ namespace HMS.ViewModel.Admin
             web.GetAllFloor(hostelids);
         }
     }
+    public class ViewFilteredFloorVM : BaseViewModel, MasterI
+    {
+        private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
+        public ObservableCollection<AreaModel> AreaLists
+        {
+            get { return areaPresentmodels_; }
+            set { areaPresentmodels_ = value; OnPropertyChanged("AreaLists"); }
+        }
+        private ObservableCollection<HostelModel> hostelPresentmodels_ = new ObservableCollection<HostelModel>();
+        public ObservableCollection<HostelModel> HostelLists
+        {
+            get { return hostelPresentmodels_; }
+            set { hostelPresentmodels_ = value; OnPropertyChanged("HostelLists"); }
+        }
+        private ObservableCollection<BlockModel> blockModels_ = new ObservableCollection<BlockModel>();
+        public ObservableCollection<BlockModel> BlockModelList
+        {
+            get { return blockModels_; }
+            set { blockModels_ = value; OnPropertyChanged("BlockModelList"); }
+        }
+        public string blockid;
+        string hostelids;
+        MasterServices web;
+        public ViewFilteredFloorVM()
+        {
+            //this.blockid = blockid;
+            //hostelids = hostelid;
+            //App.hostelid = hostelids;
+            //App.blockid = blockid;
+            web = new MasterServices((MasterI)this);
+            web.GetAllArea();
+        }
+        public void selectedarea(string id)
+        {
+            web.GetAllHostel(id);
+        }
+        public void selectedhostel(string id)
+        {
+            web.GetAllBlock(id);
+        }
+        public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        {
+            AreaLists = AreaList;
+            OnPropertyChanged("AreaLists");
+        }
+
+        public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+            BlockModelList = BlockList;
+            OnPropertyChanged("BlockModelList");
+        }
+
+        public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            //FloorModelList = FloorList;
+           // OnPropertyChanged("FloorModelList");
+        }
+
+        public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        {
+            HostelLists = HostelList;
+            OnPropertyChanged("HostelLists");
+        }
+
+        public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ServiceFailed(int index)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ViewRoomVM : BaseViewModel,RoomListI, DeleteRoomI
     {
         MasterServices web;
@@ -340,6 +477,186 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("RoomNameLists");
         }
     }
+    public class ViewRoomTypeVM : BaseViewModel,RoomI,DeleteRoomTypeI
+    {
+        MasterServices web;
+        private ObservableCollection<RoomTypeModel> roomTypeModel_ = new ObservableCollection<RoomTypeModel>();
+        public ObservableCollection<RoomTypeModel> RoomTypeModels
+        {
+            get
+            {
+                return roomTypeModel_;
+            }
+            set
+            {
+                roomTypeModel_ = value;
+                OnPropertyChanged("RoomTypeModels");
+            }
+        }
+        public ICommand EditCommand => new Command<RoomTypeModel>(OnEditCommand);
+        public ICommand DeleteCommand => new Command<RoomTypeModel>(OnDeleteCommand);
+        public ViewRoomTypeVM()
+        {
+            web = new MasterServices((RoomI)this,(DeleteRoomTypeI)this);
+            web.GetAllRomType1();
+        }
+        public async void OnEditCommand(RoomTypeModel obj)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditRoomType(obj.id, App.userid, obj.name, App.hostelid));
+        }
+        public async void OnDeleteCommand(RoomTypeModel obj)
+        {
+            web.DeleteRoomType(obj.id);
+        }
+        public async Task LoadRoomType(ObservableCollection<RoomTypeModel> RoomTypes)
+        {
+            RoomTypeModels = RoomTypes;
+            OnPropertyChanged("RoomTypeModels");
+        }
+
+        public Task PostRoomSuccess(string resultHostel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task ServiceFaild(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+        }
+
+        //public Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public Task ServiceFailed(int index)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        void DeleteRoomTypeI.ServiceFaild(string result)
+        {
+            App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+        }
+
+        public async void DeleteRoomTypeSuccess(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            web.GetAllRomType1();
+        }
+    }
+
+    public class ViewFilteredRoomVM : BaseViewModel, MasterI, RoomListI
+    {
+        MasterServices web;
+        private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
+        public ObservableCollection<AreaModel> AreaLists
+        {
+            get { return areaPresentmodels_; }
+            set { areaPresentmodels_ = value; OnPropertyChanged("AreaLists"); }
+        }
+        private ObservableCollection<HostelModel> hostelPresentmodels_ = new ObservableCollection<HostelModel>();
+        public ObservableCollection<HostelModel> HostelLists
+        {
+            get { return hostelPresentmodels_; }
+            set { hostelPresentmodels_ = value; OnPropertyChanged("HostelLists"); }
+        }
+        private ObservableCollection<BlockModel> blockModels_ = new ObservableCollection<BlockModel>();
+        public ObservableCollection<BlockModel> BlockModelList
+        {
+            get { return blockModels_; }
+            set { blockModels_ = value; OnPropertyChanged("BlockModelList"); }
+        }
+        private ObservableCollection<FloorData> floorModel_ = new ObservableCollection<FloorData>();
+        public ObservableCollection<FloorData> FloorModelList
+        {
+            get { return floorModel_; }
+            set { floorModel_ = value; OnPropertyChanged("FloorList"); }
+        }
+        public ViewFilteredRoomVM()
+        {
+            //App.hostelid = hostelid;
+            //App.blockid = blockid;
+            web = new MasterServices(this);
+            web.GetAllArea();
+           // web.GetAllHostel();
+           // web.GetAllBlock(hostelid);
+        }
+        public void selectedarea(string id)
+        {
+            web.GetAllHostel(id);
+        }
+        public void selectedblock(string hostelid)
+        {
+            web.GetAllBlock(hostelid);
+            web.GetAllFloor(hostelid);
+        }
+        public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        {
+            AreaLists = AreaList;
+            OnPropertyChanged("AreaLists");
+        }
+
+        public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+            BlockModelList = BlockList;
+            OnPropertyChanged("BlockModelList");
+        }
+
+        public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            FloorModelList = FloorList;
+            OnPropertyChanged("FloorModelList");
+        }
+
+        public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        {
+            HostelLists = HostelList;
+            OnPropertyChanged("HostelLists");
+        }
+
+        public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ServiceFailed(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
+        {
+           // RoomNameLists = roomLists;
+           // OnPropertyChanged("RoomNameLists");
+        }
+
+        public void ServiceFaild(string result)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class ViewRoomBedVM : BaseViewModel,RoomBedI1, DeleteRoomBedI
     {
         MasterServices web;
@@ -392,6 +709,117 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("RoomBedDatas");
         }
     }
+    public class  ViewFilteredRoombedVM : BaseViewModel, MasterI, RoomListI
+    {
+        MasterServices web;
+        string hostelids;
+        string roomnames;
+        private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
+        //private ObservableCollection<StateModel> stateModels = new ObservableCollection<StateModel>();
+        public ObservableCollection<AreaModel> AreaLists
+        {
+            get { return areaPresentmodels_; }
+            set { areaPresentmodels_ = value; OnPropertyChanged("AreaLists"); }
+        }
+        private ObservableCollection<HostelModel> hostelPresentmodels_ = new ObservableCollection<HostelModel>();
+        public ObservableCollection<HostelModel> HostelLists
+        {
+            get { return hostelPresentmodels_; }
+            set { hostelPresentmodels_ = value; OnPropertyChanged("HostelLists"); }
+        }
+        private ObservableCollection<BlockModel> blockModels_ = new ObservableCollection<BlockModel>();
+        public ObservableCollection<BlockModel> BlockModelList
+        {
+            get { return blockModels_; }
+            set { blockModels_ = value; OnPropertyChanged("BlockModelList"); }
+        }
+        private ObservableCollection<RoomNameList> roomNameLists = new ObservableCollection<RoomNameList>();
+        public ObservableCollection<RoomNameList> RoomNameLists
+        {
+            get
+            {
+                return roomNameLists;
+            }
+            set
+            {
+                roomNameLists = value;
+                OnPropertyChanged("RoomNameLists");
+            }
+        }
+        private ObservableCollection<RoomBedData> roomBedDatas = new ObservableCollection<RoomBedData>();
+        public ObservableCollection<RoomBedData> RoomBedDatas
+        {
+            get
+            {
+                return roomBedDatas;
+            }
+            set
+            {
+                roomBedDatas = value;
+                OnPropertyChanged("RoomBedDatas");
+            }
+        }
+        public ViewFilteredRoombedVM()
+        {
+            web = new MasterServices((MasterI)this,(RoomListI)this);
+            web.GetAllArea();
+        }
+        public void selectedarea(string areaid)
+        {
+            web.GetAllHostel(areaid);
+        }
+        public void selectedhostel(string hostelid)
+        {
+            web.GetAllBlock(hostelid);
+        }
+        public void selectedhostelandblock(string hostelid,string blockid)
+        {
+            web.RoomListname(hostelid, blockid);
+        }
+        public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        {
+            AreaLists = AreaList;
+            OnPropertyChanged("AreaLists");
+        }
+
+        public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+            BlockModelList = BlockList;
+            OnPropertyChanged("BlockModelList");
+        }
+
+        public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        {
+            HostelLists = HostelList;
+            OnPropertyChanged("HostelLists");
+        }
+
+        public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ServiceFailed(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
+        {
+            roomNameLists = roomLists;
+            OnPropertyChanged("roomNameLists");
+        }
+
+        public async void ServiceFaild(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+        }
+    }
 
     public class ViewHostelVM : BaseViewModel, MasterI,DeleteHostelI
     {
@@ -408,7 +836,9 @@ namespace HMS.ViewModel.Admin
         public ICommand DeleteCommand => new Command<HostelModel>(OnDeleteCommand);
         public ViewHostelVM(string areaid)
         {
+           // MessagingCenter.Subscribe<FilterPopup>(this,"")
             AreaId = areaid;
+            App.areaid = AreaId;
             web = new MasterServices((MasterI)this, (DeleteHostelI)this);
             web.GetAllHostel(areaid);
         }
@@ -422,7 +852,7 @@ namespace HMS.ViewModel.Admin
         {
             App.hostelid = obj.id;
            // App.areaid = obj.areaId;
-           // await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(obj.id));
+            await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(obj.id));
         }
         public async void OnDeleteCommand(HostelModel obj)
         {
@@ -454,9 +884,9 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", index.ToString(), "OK");
         }
 
         public async void ServiceFaild(string responseresult)
@@ -468,6 +898,56 @@ namespace HMS.ViewModel.Admin
         {
             await App.Current.MainPage.DisplayAlert("HMS", resultHostel, "OK");
             web.GetAllHostel(AreaId);
+        }
+    }
+    public class ViewFilteredHostelVM : BaseViewModel, MasterI
+    {
+        MasterServices web;
+        string AreaId;
+        private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
+        //private ObservableCollection<StateModel> stateModels = new ObservableCollection<StateModel>();
+        public ObservableCollection<AreaModel> AreaLists
+        {
+            get { return areaPresentmodels_; }
+            set { areaPresentmodels_ = value; OnPropertyChanged("AreaLists"); }
+        }
+        public ViewFilteredHostelVM()
+        {
+           // AreaId = areaid;
+            web = new MasterServices(this);
+            web.GetAllArea();
+            //web.GetAllHostel(areaid);
+        }
+        public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        {
+            AreaLists = AreaList;
+            OnPropertyChanged("AreaLists");
+        }
+
+        public Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        {
+            //HostelLists = HostelList;
+            //OnPropertyChanged("HostelLists");
+        }
+
+        public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ServiceFailed(int index)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -36,7 +36,10 @@ namespace HMS.View
             else if (usertype == "parent")
                 Application.Current.MainPage = new FrmPrantMain();
             else if (usertype == "admin")
+            {
+                App.userid = Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
                 Application.Current.MainPage = new Admin.FrmMainPage();
+            }
             else if (usertype == "guest")
                 Application.Current.MainPage = new GuestMainMenu();
             else

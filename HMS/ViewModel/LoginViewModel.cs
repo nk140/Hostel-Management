@@ -264,7 +264,7 @@ namespace HMS.ViewModel
                 else if (UserModel.userType == "admin")
                 {
                     UserDialogs.Instance.HideLoading();
-                    await SecureStorage.SetAsync("userId", userData.id.ToString());
+                    await SecureStorage.SetAsync("userId", userData.userId.ToString());
                     await SecureStorage.SetAsync("type", userData.userType);
                     await navigationPage.NavigateHomeForm();
                 }

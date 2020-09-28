@@ -40,7 +40,6 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnEditCommand(WardenServiceModel obj)
         {
-
             await App.Current.MainPage.Navigation.PushModalAsync(new EditServiceCategory(obj.id.ToString(), obj.name,App.userid));
         }
         public async void OnDeleteCommand(WardenServiceModel obj)

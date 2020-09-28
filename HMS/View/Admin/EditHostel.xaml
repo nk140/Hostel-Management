@@ -18,9 +18,9 @@
                 Orientation="Vertical"
                 Margin="20,20,20,0"
                 VerticalOptions="StartAndExpand" Spacing="16">
-                    <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                    <!--<Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                         <forms:AutoSuggestBox x:Name="txtsearchbykeyword" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding HostelModel.areaId}" IsEnabled="False"  TextColor="#2D295F" PlaceholderText="Area No"/>
-                    </Frame>
+                    </Frame>-->
                     <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                         <Controls:BetterEntry Placeholder="Hostel Name" 
                        FontSize="Default"

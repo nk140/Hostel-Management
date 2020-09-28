@@ -26,14 +26,21 @@ namespace HMS.ViewModel.Admin
             }
         }
         public ICommand UpdateNewsFeedCommand => new Command(OnUpdateNewsFeedCommand);
-        public EditNewsFeedVM()
+        public EditNewsFeedVM(string id, string title, string description, string startdates, string lastdates, string linkId)
         {
+            UpdateNewsFeeds.id = id;
+            UpdateNewsFeeds.newsTitle = title;
+            UpdateNewsFeeds.newsDescription = description;
+            UpdateNewsFeeds.startDate = startdates;
+            UpdateNewsFeeds.lastDate = lastdates;
+            UpdateNewsFeeds.linkId = linkId;
             web = new MasterServices((IEditnewsfeeddata)this);
         }
         public async void OnUpdateNewsFeedCommand()
         {
             if(validate())
             {
+                UpdateNewsFeeds.displayfor = "Admin";
                 web.Updatenewsfeed(UpdateNewsFeeds);
             }
         }
@@ -52,6 +59,16 @@ namespace HMS.ViewModel.Admin
             else if(UpdateNewsFeeds.lastDate.Length==0 || string.IsNullOrEmpty(UpdateNewsFeeds.lastDate))
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Last Date Required", "OK");
+                return false;
+            }
+            else if(UpdateNewsFeeds.startTime.Length==0 || string.IsNullOrEmpty(UpdateNewsFeeds.startTime))
+            {
+                App.Current.MainPage.DisplayAlert("HMS", "Start Time Required", "OK");
+                return false;
+            }
+            else if (UpdateNewsFeeds.lastTime.Length == 0 || string.IsNullOrEmpty(UpdateNewsFeeds.lastTime))
+            {
+                App.Current.MainPage.DisplayAlert("HMS", "Last Time Required", "OK");
                 return false;
             }
             return true;

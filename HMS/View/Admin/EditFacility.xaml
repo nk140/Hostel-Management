@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             x:Class="HMS.View.Admin.EditFacility">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Margin="20,40,20,0" Spacing="16">
+
+            <Label Text="Edit Facility" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center"/>
+            <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                <Controls:BetterEntry
+                    Placeholder="Enter Facility"
+                    Margin="-16"
+                    FontSize="Default"
+                    PlaceholderColor="#003366" 
+                    Text="{Binding UpdateFacility.name}"
+                    TextColor="Black"
+                    ReturnType="Next" />
+            </Frame>
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="20">
+                <Button
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="#e96125"
+                    WidthRequest="150"
+                    CornerRadius="10"
+                    Command="{Binding UpdateCommand}"
+                    TextColor="Wheat"
+                    Text="Save Facility"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

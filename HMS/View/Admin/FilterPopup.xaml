@@ -25,11 +25,7 @@
             </Grid.RowDefinitions>
             <Label Text="Sort By Area No" HorizontalTextAlignment="Center" Grid.Row="0"/>
             <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
-                <controls:CustomPicker  x:Name="ddgender" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
-                    <controls:CustomPicker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
-                    </controls:CustomPicker.Items>
+                <controls:CustomPicker  x:Name="ddgender" ItemsSource="{Binding AreaLists}" Title="Select Area No" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddgender_SelectedIndexChanged" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
                 </controls:CustomPicker>
             </Frame>
             <Button Text="Apply" x:Name="btnapply" Clicked="btnapply_Clicked" Grid.Row="2"/>

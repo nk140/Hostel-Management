@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using HMS.ViewModel.Admin;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,11 @@ namespace HMS.View.Admin
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterRoomPopup : PopupPage
     {
+        ViewFilteredRoomVM vm;
         public FilterRoomPopup()
         {
             InitializeComponent();
+            BindingContext = vm = new ViewFilteredRoomVM();
         }
     }
 }

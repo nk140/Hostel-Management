@@ -13,7 +13,7 @@
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
                 <forms:AutoSuggestBox x:Name="txtsearchbyroombed" HorizontalOptions="FillAndExpand" TextMemberPath="bedNo" DisplayMemberPath="bedNo" PlaceholderText="Search from bed name"  Margin="-17" TextChanged="txtsearchbyroombed_TextChanged" SuggestionChosen="txtsearchbyroombed_SuggestionChosen"/>
             </Frame>
-            <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>
+            <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
         </StackLayout>
         <CollectionView x:Name="roombeddata" ItemsSource="{Binding RoomBedDatas}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
