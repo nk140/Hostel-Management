@@ -86,7 +86,7 @@ namespace HMS.Services
         {
             EditRoomTypeI = callback;
         }
-        public MasterServices(RoomI room,DeleteRoomTypeI callback)
+        public MasterServices(RoomI room, DeleteRoomTypeI callback)
         {
             roomCallback = room;
             DeleteRoomTypeI = callback;
@@ -150,7 +150,7 @@ namespace HMS.Services
         {
             this.masterCallback = masterI;
         }
-        public MasterServices(MasterI masterI,RoomListI roomlists)
+        public MasterServices(MasterI masterI, RoomListI roomlists)
         {
             this.masterCallback = masterI;
             roomListI = roomlists;
@@ -230,9 +230,11 @@ namespace HMS.Services
             this.masterCallback = master;
             this.roomBedI = editRoom;
         }
-        public MasterServices(RoomBedI bedI)
+        public MasterServices(MasterI master,RoomBedI bedI,RoomListI roomListI)
         {
+            this.masterCallback = master;
             roomBedCallback = bedI;
+            this.roomListI = roomListI;
         }
         public MasterServices(IDisciplinary disciplinarys)
         {
@@ -460,14 +462,15 @@ namespace HMS.Services
                 {
                     UserDialogs.Instance.HideLoading();
                     json = await response.Content.ReadAsStringAsync();
-                    roomNameResponse = JsonConvert.DeserializeObject<RoomNameResponse>(json);
-                    if (roomNameResponse.message.Equals("No Data Found !!"))
+                    var jsonresult = json;
+                    if (jsonresult.Contains("No Data Found!!"))
                     {
+                        roomNameResponse = JsonConvert.DeserializeObject<RoomNameResponse>(json);
                         roomListI.ServiceFaild(roomNameResponse.message);
                     }
                     else
                     {
-                        ObservableCollection<RoomNameList> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
+                        ObservableCollection<RoomNameList>batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
                         roomListI.LoadRoomList(batchData);
                     }
                 }
@@ -1888,7 +1891,7 @@ namespace HMS.Services
 
         }
 
-        public async void SaveRoomBed(string hostelId, string bedNo)
+        public async void SaveRoomBed(string hostelId, string bedNo,string userId,string hostelRoomId)
         {
             HttpResponseMessage response;
             RoomResponse roomResponse;
@@ -1899,7 +1902,7 @@ namespace HMS.Services
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
 
-                string json = @"{""hostelId"" : """ + hostelId + @""",""bedNo"" : """ + bedNo + @"""}";
+                string json = @"{""hostelId"" : """ + hostelId + @""",""bedNo"" : """ + bedNo + @""",""userId"":"""+ userId+ @""",""hostelRoomId"":"""+ hostelRoomId + @"""}";
 
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");

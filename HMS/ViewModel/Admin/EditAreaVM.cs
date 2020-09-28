@@ -118,7 +118,7 @@ namespace HMS.ViewModel.Admin
         }
         public void Statelist(string id)
         {
-            web.StateListForEditing(id);
+           // web.StateListForEditing(id);
         }
         public async Task LoadAreaList(ObservableCollection<AreaModel> areaList)
         {
@@ -145,6 +145,7 @@ namespace HMS.ViewModel.Admin
         {
             StateModel = stateList;
             Statename = StateModel[0].state;
+            OnPropertyChanged("Statename");
             OnPropertyChanged("StateModel");
         }
 

@@ -2,7 +2,7 @@
 <Page:PopupPage  xmlns:Page="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:controls="clr-namespace:HMS.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
                  mc:Ignorable="d"
              x:Class="HMS.View.Admin.ViewHostelByArea">
     <Page:PopupPage.Animation>
@@ -26,8 +26,9 @@
             </Grid.RowDefinitions>
             <Label Text="View Hostel By Area" HorizontalTextAlignment="Center" Grid.Row="0" TextColor="Black" FontSize="20"/>
             <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="10">
-                <controls:CustomPicker  x:Name="ddarea" ItemsSource="{Binding AreaLists}" Title="Select Area No" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddarea_SelectedIndexChanged" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
-                </controls:CustomPicker>
+                <forms:AutoSuggestBox x:Name="txtselectbyarea" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" Margin="-16" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtselectbyarea_TextChanged" SuggestionChosen="txtselectbyarea_SuggestionChosen"/>
+                <!--<controls:CustomPicker  x:Name="ddarea" ItemsSource="{Binding AreaLists}" Title="Select Area No" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddarea_SelectedIndexChanged" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7">
+                </controls:CustomPicker>-->
             </Frame>
             <Button Text="View Hostel" x:Name="btnviewhostelbyarea" Clicked="btnviewhostelbyarea_Clicked" Grid.Row="2"/>
         </Grid>

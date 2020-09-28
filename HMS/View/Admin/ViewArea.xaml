@@ -21,7 +21,7 @@
         <CollectionView x:Name="arealist" ItemsSource="{Binding AreaLists}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label WidthRequest="150" HeightRequest="40" Text="Area No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="150" HeightRequest="40" Text="Serial No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                     <Label WidthRequest="200" HeightRequest="40" Text="Area Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                 </StackLayout>
             </CollectionView.Header>
@@ -35,11 +35,11 @@
                                            Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.EditCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Green" />
-                                <SwipeItem Text="View Hostel"
+                                <!--<SwipeItem Text="View Hostel"
                                            IconImageSource="edit.jpg"
                                            Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.ViewHostelCommand}"
                                            CommandParameter="{Binding}"
-                                           BackgroundColor="Green" />
+                                           BackgroundColor="Green" />-->
                                 <SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
                                            Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.DeleteCommand}"

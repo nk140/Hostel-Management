@@ -80,6 +80,7 @@ namespace HMS.Models
         public string hostelBlockId { get; set; }
         public string floorId { get; set; }
         public string noOfBeds { get; set; }
+        public string userId { get; set; }
     }
     public class RoomResponse
     {

@@ -18,7 +18,8 @@ namespace HMS.View.Admin
         RoomBedVM Vm;
         MasterServices web;
         ObservableCollection<AreaModel> ListArea;
-        ObservableCollection<RoomTypeModel> roomListModels;
+        ObservableCollection<RoomNameList> roomListModels;
+        ObservableCollection<BlockModel> blockModels;
         protected override void OnAppearing()
         {
             Vm = new RoomBedVM();
@@ -107,10 +108,10 @@ namespace HMS.View.Admin
             {
                 if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
                 {
-                    roomListModels = new ObservableCollection<RoomTypeModel>();
-                    if (Vm.RoomTypeLists != null)
+                    roomListModels = new ObservableCollection<RoomNameList>();
+                    if (Vm.RoomNameList != null)
                     {
-                        foreach (var items in Vm.RoomTypeLists)
+                        foreach (var items in Vm.RoomNameList)
                         {
                             if(!string.IsNullOrEmpty(items.name))
                             {
@@ -136,13 +137,52 @@ namespace HMS.View.Admin
         {
             try
             {
-                txtsearchbyroomname.Text = ((RoomTypeModel)e.SelectedItem).name;
-                EntryName.Text = ((RoomTypeModel)e.SelectedItem).name + "/";
+                txtsearchbyroomname.Text = ((RoomNameList)e.SelectedItem).name;
+                EntryName.Text = ((RoomNameList)e.SelectedItem).name + "/";
+                App.roomid = ((RoomNameList)e.SelectedItem).id;
             }
             catch (Exception ex)
             {
 
             }
+        }
+
+        private void txtsearchbyblock_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+                {
+                    blockModels = new ObservableCollection<BlockModel>();
+                    if (Vm.BlockModelList != null)
+                    {
+                        foreach (var items in Vm.BlockModelList)
+                        {
+                            if (!string.IsNullOrEmpty(items.name))
+                            {
+                                if (txtsearchbyblock.Text != string.Empty)
+                                {
+                                    if (items.name.ToUpper().StartsWith(txtsearchbyblock.Text.ToUpper()) || items.name.ToLower().StartsWith(txtsearchbyblock.Text.ToLower()))
+                                        blockModels.Add(items);
+                                }
+
+                            }
+                        }
+                        txtsearchbyblock.ItemsSource = blockModels;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void txtsearchbyblock_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
+            txtsearchbyblock.Text = ((BlockModel)e.SelectedItem).name;
+            App.blockid = ((BlockModel)e.SelectedItem).id;
+            Vm.Selectedblock(App.blockid);
         }
     }
 }

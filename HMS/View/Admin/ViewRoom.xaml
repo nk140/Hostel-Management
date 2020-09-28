@@ -36,11 +36,11 @@
                                            BackgroundColor="Green"
                                            Command="{Binding Source={x:Reference viewroom}, Path=BindingContext.EditCommand}"
                                            CommandParameter="{Binding}"/>
-                                <SwipeItem Text="View Bed"
+                                <!--<SwipeItem Text="View Bed"
                                            IconImageSource="edit.jpg"
                                            BackgroundColor="Green"
                                            Command="{Binding Source={x:Reference viewroom}, Path=BindingContext.ViewRoomBedCommand}"
-                                           CommandParameter="{Binding}"/>
+                                           CommandParameter="{Binding}"/>-->
                                 <SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
                                            Command="{Binding Source={x:Reference viewroom}, Path=BindingContext.DeleteCommand}"

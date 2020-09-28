@@ -36,11 +36,11 @@
                                            Command="{Binding Source={x:Reference viewhostels}, Path=BindingContext.EditCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Green" />
-                                <SwipeItem Text="View Blocks"
+                                <!--<SwipeItem Text="View Blocks"
                                            IconImageSource="edit.jpg"
                                            Command="{Binding Source={x:Reference viewhostels}, Path=BindingContext.ViewBlockCommand}"
                                            CommandParameter="{Binding}"
-                                           BackgroundColor="Green" />
+                                           BackgroundColor="Green" />-->
                                 <SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
                                            Command="{Binding Source={x:Reference viewhostels}, Path=BindingContext.DeleteCommand}"

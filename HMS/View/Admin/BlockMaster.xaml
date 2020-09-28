@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                  mc:Ignorable="d"
+                 Title="Block Master"
              x:Class="HMS.View.Admin.BlockMaster">
     <Page:PopupPage.Animation>
         <animations:ScaleAnimation   

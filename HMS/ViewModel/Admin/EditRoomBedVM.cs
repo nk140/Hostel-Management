@@ -54,7 +54,7 @@ namespace HMS.ViewModel.Admin
                 await App.Current.MainPage.DisplayAlert("HMS", "Bed Name Required", "OK");
             else
             {
-                updateRoomBed.userId = "5";
+                updateRoomBed.userId = App.userid;
                 web.UpdateRoomBed(updateRoomBed);
             }
         }

@@ -7,16 +7,16 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Admin
 {
-    public class RoomBedVM : BaseViewModel, RoomBedI
+    public class RoomBedVM : BaseViewModel,MasterI,RoomBedI,RoomListI
     {
         public RoomBedVM()
         {
 
             AreaVisible = false;
             HostelVisible = false;
-            web = new MasterServices(this);
+            web = new MasterServices((MasterI)this,(RoomBedI)this,(RoomListI)this);
             web.GetAllArea1();
-            web.GetAllRomTypeForRoomBed();
+           // web.GetAllRomTypeForRoomBed();
         }
 
         MasterServices web;
@@ -24,6 +24,8 @@ namespace HMS.ViewModel.Admin
         private ObservableCollection<AreaModel> areamodels_ = new ObservableCollection<AreaModel>();
         private ObservableCollection<HostelModel> hostelmodels_ = new ObservableCollection<HostelModel>();
         private ObservableCollection<RoomTypeModel> roomTypeModels = new ObservableCollection<RoomTypeModel>();
+        private ObservableCollection<RoomNameList> roomnamelist = new ObservableCollection<RoomNameList>();
+        private ObservableCollection<BlockModel> blockmodellist = new ObservableCollection<BlockModel>();
         string BedNo_ = "";
         long HostelHeight_ = 0;
         bool HostelVisible_ = false;
@@ -87,7 +89,11 @@ namespace HMS.ViewModel.Admin
             get { return hostelmodels_; }
             set { hostelmodels_ = value; OnPropertyChanged("HostelModelList"); }
         }
-
+        public ObservableCollection<BlockModel> BlockModelList
+        {
+            get { return blockmodellist; }
+            set { blockmodellist = value; OnPropertyChanged("BlockModelList"); }
+        }
         public ObservableCollection<RoomTypeModel> RoomTypeLists
         {
             get
@@ -98,6 +104,18 @@ namespace HMS.ViewModel.Admin
             {
                 roomTypeModels = value;
                 OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<RoomNameList> RoomNameList
+        {
+            get
+            {
+                return roomnamelist;
+            }
+            set
+            {
+                roomnamelist = value;
+                OnPropertyChanged("RoomNameList");
             }
         }
         #region Command
@@ -184,7 +202,7 @@ namespace HMS.ViewModel.Admin
                     }
                     else
                     {
-                        web.SaveRoomBed(hostelId, BedNo);
+                        web.SaveRoomBed(hostelId, BedNo,App.userid,App.roomid);
                     }
                 });
             }
@@ -217,12 +235,15 @@ namespace HMS.ViewModel.Admin
             // display entry selected text value
             HostelName = HostelModelList[index].hostelName;
             hostelId = HostelModelList[index].id;
+            App.hostelid = hostelId;
             OnPropertyChanged("HostelVisible");
             OnPropertyChanged("HostelName");
-
-
+            web.GetAllBlock(hostelId);
         }
-
+        public void Selectedblock(string blockid)
+        {
+            web.RoomListname(App.hostelid,App.blockid);
+        }
         public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
         {
             AreaModelList = new ObservableCollection<AreaModel>();
@@ -252,9 +273,41 @@ namespace HMS.ViewModel.Admin
 
         public async Task LoadRoomTypeList(ObservableCollection<RoomTypeModel> roomTypeModels)
         {
-            RoomTypeLists = new ObservableCollection<RoomTypeModel>();
-            RoomTypeLists = roomTypeModels;
-            OnPropertyChanged("RoomTypeLists");
+            //RoomTypeLists = new ObservableCollection<RoomTypeModel>();
+           // RoomTypeLists = roomTypeModels;
+           // OnPropertyChanged("RoomTypeLists");
+        }
+
+        public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+            BlockModelList = BlockList;
+            OnPropertyChanged("BlockModelList");
+        }
+
+        public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task ServiceFailed(int index)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
+        {
+            RoomNameList = roomLists;
+            OnPropertyChanged("RoomNameList");
+        }
+
+        public async void ServiceFaild(string result)
+        {
+            
         }
     }
 }

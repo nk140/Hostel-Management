@@ -385,9 +385,9 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", "No Area Found", "OK");
         }
     }
 
@@ -811,7 +811,7 @@ namespace HMS.ViewModel.Admin
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
         {
-            roomNameLists = roomLists;
+            RoomNameLists = roomLists;
             OnPropertyChanged("roomNameLists");
         }
 
@@ -949,5 +949,9 @@ namespace HMS.ViewModel.Admin
         {
             throw new NotImplementedException();
         }
+    }
+    public class ViewFacilityVM:BaseViewModel
+    {
+
     }
 }

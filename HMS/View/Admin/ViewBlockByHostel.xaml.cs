@@ -19,6 +19,7 @@ namespace HMS.View.Admin
     {
         ViewFilteredBlockVM vm;
         public ObservableCollection<AreaModel> areaModels;
+        public ObservableCollection<HostelModel> hostelModels;
         public ViewBlockByHostel()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace HMS.View.Admin
         }
         private void ddhostel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            App.hostelid = ddhostel.Items[ddhostel.SelectedIndex];
+            //App.hostelid = ddhostel.Items[ddhostel.SelectedIndex];
         }
 
         private async void btnviewblock_Clicked(object sender, EventArgs e)
@@ -91,8 +92,49 @@ namespace HMS.View.Admin
             }
             else
             {
-                ddhostel.IsEnabled = true;
+                txtsearchbyhostel.IsEnabled = true;
             }
+        }
+
+        private void txtsearchbyhostel_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+                {
+                    hostelModels = new ObservableCollection<HostelModel>();
+                    if (vm.HostelLists != null)
+                    {
+                        foreach (var items in vm.HostelLists)
+                        {
+                            if (!string.IsNullOrEmpty(items.hostelName) || items.hostelName != null)
+                            {
+                                if (txtsearchbyhostel.Text != string.Empty)
+                                {
+
+                                    if (items.hostelName.ToUpper().StartsWith(txtsearchbyhostel.Text.ToUpper()) || items.hostelName.ToLower().StartsWith(txtsearchbyhostel.Text.ToLower()))
+                                        hostelModels.Add(items);
+                                }
+                            }
+                        }
+                        txtsearchbyhostel.ItemsSource = hostelModels;
+                    }
+                    else
+                    {
+                         DisplayAlert("HMS", "No Matching Area Name", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void txtsearchbyhostel_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
+            txtsearchbyhostel.Text = ((HostelModel)e.SelectedItem).hostelName;
+            App.hostelid = ((HostelModel)e.SelectedItem).id;
         }
     }
 }

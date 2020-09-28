@@ -32,13 +32,15 @@
                 <forms:AutoSuggestBox x:Name="txtselectbyarea" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" Margin="-16" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtselectbyarea_TextChanged" SuggestionChosen="txtselectbyarea_SuggestionChosen"/>
             </Frame>
             <Frame x:Name="frmhostel" BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="2" CornerRadius="10">
-                <controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelLists}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbyhostelname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsEnabled="False" DisplayMemberPath="hostelName" Margin="-16" TextMemberPath="hostelName" TextColor="#2D295F" PlaceholderText="Search From Hostel Name" TextChanged="txtsearchbyhostelname_TextChanged" SuggestionChosen="txtsearchbyhostelname_SuggestionChosen"/>
+                <!--<controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelLists}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>-->
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"  NumberOfTapsRequired="1"/>
                 </Frame.GestureRecognizers>
             </Frame>
             <Frame x:Name="frmblock" BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="3" CornerRadius="10">
-                <controls:CustomPicker x:Name="ddblock" ItemsSource="{Binding BlockModelList}" IsEnabled="False" Title="Select block" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddblock_SelectedIndexChanged"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbyblockname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsEnabled="False" DisplayMemberPath="name" Margin="-16" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search From Block Name" TextChanged="txtsearchbyblockname_TextChanged" SuggestionChosen="txtsearchbyblockname_SuggestionChosen"/>
+                <!--<controls:CustomPicker x:Name="ddblock" ItemsSource="{Binding BlockModelList}" IsEnabled="False" Title="Select block" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddblock_SelectedIndexChanged"/>-->
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"  NumberOfTapsRequired="1"/>
                 </Frame.GestureRecognizers>

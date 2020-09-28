@@ -281,6 +281,7 @@ namespace HMS.ViewModel.Admin
                 roomDataModel.hostelBlockId = RoomData.blockId;
                 roomDataModel.floorId = RoomData.floorId;
                 roomDataModel.noOfBeds = RoomData.bedno;
+                roomDataModel.userId = App.userid;
                 web.SaveRoomEntry(roomDataModel);
             }
         }

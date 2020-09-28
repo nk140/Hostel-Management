@@ -66,6 +66,9 @@
 
             </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                <forms:AutoSuggestBox x:Name="txtsearchbyblock" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  DisplayMemberPath="name" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search For Block" TextChanged="txtsearchbyblock_TextChanged" SuggestionChosen="txtsearchbyblock_SuggestionChosen"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <forms:AutoSuggestBox x:Name="txtsearchbyroomname" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  DisplayMemberPath="name" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search For Which Room" TextChanged="txtsearchbyroomname_TextChanged" SuggestionChosen="txtsearchbyroomname_SuggestionChosen" />
             </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
