@@ -17,7 +17,7 @@ namespace HMS.ViewModel.Admin
         MasterServices web;
         UpdateBlock updateBlock = new UpdateBlock();
         private BlockModel blockModel = new BlockModel();
-        private string blockId;
+        private string blockId, hostelid,areaId;
         private string blockname;
         public string BlockId
         {
@@ -65,8 +65,8 @@ namespace HMS.ViewModel.Admin
                     updateBlock.userId=App.userid;
                     updateBlock.blockId = BlockModel.id;
                     updateBlock.blockName = BlockName;
-                    updateBlock.hostelId = App.hostelid;
-                    updateBlock.areaId = App.areaid;
+                    updateBlock.hostelId = hostelid;
+                    updateBlock.areaId = areaId;
                     web.UpdateBlock(updateBlock);
                 }
             }
@@ -89,11 +89,13 @@ namespace HMS.ViewModel.Admin
             }
             return true;
         }
-        public EditBlockVM(string id,string name)
+        public EditBlockVM(string id,string name,string hostelid,string areaid)
         {
             BlockModel.id = id;
             BlockModel.name = name;
             BlockName = name;
+            this.hostelid = hostelid;
+            areaId = areaid;
             web = new MasterServices((MasterI)this,(EditBlockI)this);
         }
         public Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
@@ -129,7 +131,7 @@ namespace HMS.ViewModel.Admin
             await App.Current.MainPage.DisplayAlert("HMS", resultBlock, "OK");
             OnPropertyChanged("BlockName");
             OnPropertyChanged("BlockModel");
-            await App.Current.MainPage.Navigation.PopModalAsync(true);
+            //await App.Current.MainPage.Navigation.PopModalAsync(true);
             //MessagingCenter.Send<EditBlock>((EditBlock)this, "click_profile_tab");
         }
 

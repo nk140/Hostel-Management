@@ -16,6 +16,7 @@ namespace HMS.View.Admin
     public partial class ViewRoomBed : ContentPage
     {
         ViewRoomBedVM vm;
+        string Roomname, HostelId;
         public ObservableCollection<RoomBedData> roomBedDatas;
         public ObservableCollection<RoomBedData> roomBedDatas1;
         public ViewRoomBed()
@@ -25,7 +26,18 @@ namespace HMS.View.Admin
         public ViewRoomBed(string roomname, string hostelid)
         {
             InitializeComponent();
+            Roomname = roomname;
+            HostelId = hostelid;
             BindingContext = vm = new ViewRoomBedVM(roomname, hostelid);
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = vm = new ViewRoomBedVM(Roomname, HostelId);
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
         }
         private void txtsearchbyroombed_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {

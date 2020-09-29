@@ -29,7 +29,7 @@ namespace HMS.View.Admin
         private async void btnblockfilterapply_Clicked(object sender, EventArgs e)
         {
             await App.Current.MainPage.Navigation.PopPopupAsync(true);
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(no));
+           // await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(no));
         }
 
         private void ddgender11_SelectedIndexChanged(object sender, EventArgs e)

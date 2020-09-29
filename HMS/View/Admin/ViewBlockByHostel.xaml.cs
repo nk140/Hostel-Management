@@ -1,6 +1,7 @@
 ﻿using dotMorten.Xamarin.Forms;
 using HMS.Models;
 using HMS.ViewModel.Admin;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,23 @@ namespace HMS.View.Admin
     public partial class ViewBlockByHostel : PopupPage
     {
         ViewFilteredBlockVM vm;
+        string hostelid, areaids;
         public ObservableCollection<AreaModel> areaModels;
         public ObservableCollection<HostelModel> hostelModels;
         public ViewBlockByHostel()
         {
             InitializeComponent();
             BindingContext = vm = new ViewFilteredBlockVM();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            App.hostelid = string.Empty;
+            App.areaid = string.Empty;
         }
         private void ddhostel_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -32,7 +44,24 @@ namespace HMS.View.Admin
 
         private async void btnviewblock_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(App.hostelid));
+            if(string.IsNullOrEmpty(App.hostelid))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Hostel Name", "OK");
+            }
+            else if(string.IsNullOrEmpty(hostelid))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Hostel Name", "OK");
+            }
+            else if (string.IsNullOrEmpty(areaids))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Area Name", "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(hostelid,areaids));
+                await App.Current.MainPage.Navigation.PopPopupAsync(true);
+            }
+            
         }
 
         private async void txtselectbyarea_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
@@ -76,6 +105,7 @@ namespace HMS.View.Admin
                 txtselectbyarea.Text = ((AreaModel)e.SelectedItem).areaName;
                 string value = ((AreaModel)e.SelectedItem).id;
                 App.areaid = value;
+                areaids = App.areaid;
                 vm.selectedarea(App.areaid);
             }
             catch (Exception ex)
@@ -135,6 +165,7 @@ namespace HMS.View.Admin
         {
             txtsearchbyhostel.Text = ((HostelModel)e.SelectedItem).hostelName;
             App.hostelid = ((HostelModel)e.SelectedItem).id;
+            hostelid = App.hostelid;
         }
     }
 }

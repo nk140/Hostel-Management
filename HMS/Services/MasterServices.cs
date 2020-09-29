@@ -82,8 +82,9 @@ namespace HMS.Services
         {
             deleteFasilityI = callback;
         }
-        public MasterServices(EditRoomTypeI callback)
+        public MasterServices(MasterI master,EditRoomTypeI callback)
         {
+            this.masterCallback = master;
             EditRoomTypeI = callback;
         }
         public MasterServices(RoomI room, DeleteRoomTypeI callback)
@@ -463,16 +464,8 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     json = await response.Content.ReadAsStringAsync();
                     var jsonresult = json;
-                    if (jsonresult.Contains("No Data Found!!"))
-                    {
-                        roomNameResponse = JsonConvert.DeserializeObject<RoomNameResponse>(json);
-                        roomListI.ServiceFaild(roomNameResponse.message);
-                    }
-                    else
-                    {
-                        ObservableCollection<RoomNameList>batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
-                        roomListI.LoadRoomList(batchData);
-                    }
+                    ObservableCollection<RoomNameList>batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
+                    roomListI.LoadRoomList(batchData);
                 }
                 else
                 {
@@ -483,8 +476,7 @@ namespace HMS.Services
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await App.Current.MainPage.DisplayAlert("", ex.ToString(), "OK");
-                //await roomListCallback.Failer();
+                roomListI.ServiceFaild("Data Not Found");
             }
         }
         public async void GetRoomBedList(string hostelid)

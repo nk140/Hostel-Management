@@ -25,17 +25,18 @@ namespace HMS.View.Admin
         {
             InitializeComponent();
         }
-        public ViewFloor(string hostelid)
+        public ViewFloor(string hostelid,string blockids)
         {
             InitializeComponent();
             id = hostelid;
+            blockid = blockids;
            // this.blockid = blockid;
-            BindingContext = vm = new ViewFloorVM(hostelid);
+            BindingContext = vm = new ViewFloorVM(hostelid,blockids);
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = vm = new ViewFloorVM(id);
+            BindingContext = vm = new ViewFloorVM(id,blockid);
         }
         protected override void OnDisappearing()
         {

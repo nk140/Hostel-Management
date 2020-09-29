@@ -1,6 +1,7 @@
 ﻿using dotMorten.Xamarin.Forms;
 using HMS.Models;
 using HMS.ViewModel.Admin;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace HMS.View.Admin
     public partial class ViewRoomBedOption : PopupPage
     {
         ViewFilteredRoombedVM vm;
-        string roomname;
+        string roomname, hostelid, blockid,roomnames;
         public ObservableCollection<AreaModel> areaModels;
         public ObservableCollection<BlockModel> blockModels;
         public ObservableCollection<HostelModel> hostelModels;
@@ -27,12 +28,49 @@ namespace HMS.View.Admin
             InitializeComponent();
             BindingContext = vm = new ViewFilteredRoombedVM();
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            roomname = string.Empty;
+            App.hostelid = string.Empty;
+            App.blockid = string.Empty;
+        }
         private async void btnviewroombed_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewRoomBed(roomname, App.hostelid));
+            if(string.IsNullOrEmpty(App.hostelid))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter  Hostel name", "OK");
+            }
+            else if (string.IsNullOrEmpty(hostelid))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter  Hostel name", "OK");
+            }
+            else if(string.IsNullOrEmpty(roomname))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Room name", "OK");
+            }
+            else if (string.IsNullOrEmpty(roomnames))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Room name", "OK");
+            }
+            else if(string.IsNullOrEmpty(App.blockid))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Block name", "OK");
+            }
+            else if (string.IsNullOrEmpty(blockid))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Block name", "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.Navigation.PushModalAsync(new ViewRoomBed(roomnames,hostelid));
+                await App.Current.MainPage.Navigation.PopPopupAsync(true);
+            }
         }
-
         private void txtselectbyarea_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try
@@ -121,6 +159,7 @@ namespace HMS.View.Admin
         private void ddroomname_SelectedIndexChanged(object sender, EventArgs e)
         {
             roomname = ddroomname.Items[ddroomname.SelectedIndex];
+            roomnames = roomname;
         }
 
         private void txtsearchbyhostelname_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
@@ -162,6 +201,7 @@ namespace HMS.View.Admin
         {
             txtsearchbyhostelname.Text = ((HostelModel)e.SelectedItem).hostelName;
             App.hostelid = ((HostelModel)e.SelectedItem).id;
+            hostelid = App.hostelid;
             vm.selectedhostel(App.hostelid);
         }
 
@@ -204,6 +244,7 @@ namespace HMS.View.Admin
         {
             txtsearchbyblockname.Text = ((BlockModel)e.SelectedItem).name;
             App.blockid = ((BlockModel)e.SelectedItem).id;
+            blockid = App.blockid;
             vm.selectedhostelandblock(App.hostelid, App.blockid);
         }
     }

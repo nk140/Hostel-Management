@@ -150,6 +150,9 @@ namespace HMS.ViewModel.Admin
         public async void EditRoomSucess(string resultHostel)
         {
             await App.Current.MainPage.DisplayAlert("HMS", resultHostel, "OK");
+            App.blockid = string.Empty;
+            App.hostelid = string.Empty;
+            App.floorid = string.Empty;
             Id = "";
             Name = "";
             NoOfBed = "";

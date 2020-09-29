@@ -18,10 +18,10 @@ namespace HMS.View.Admin
         {
             InitializeComponent();
         }
-        public EditBlock(string id,string name)
+        public EditBlock(string id,string name,string hostelid,string areaid)
         {
             InitializeComponent();
-            BindingContext = vm = new EditBlockVM(id, name);
+            BindingContext = vm = new EditBlockVM(id, name,hostelid,areaid);
         }
     }
 }

@@ -19,18 +19,22 @@ namespace HMS.View.Admin
         ViewBlockVM vm;
         public ObservableCollection<BlockModel> blockModels;
         public ObservableCollection<BlockModel> blockModels1;
+        string hostelids1,areaids;
         public ViewBlock()
         {
             InitializeComponent();
         }
-        public ViewBlock(string hostelids)
+        public ViewBlock(string hostelids,string areaid)
         {
             InitializeComponent();
-            BindingContext = vm = new ViewBlockVM(hostelids);
+            hostelids1 = hostelids;
+            areaids = areaid;
+            BindingContext = vm = new ViewBlockVM(hostelids,areaid);
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            BindingContext = vm = new ViewBlockVM(hostelids1,areaids);
         }
         protected override void OnDisappearing()
         {

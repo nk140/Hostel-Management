@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Admin
 {
-    public class ViewAreaVM : BaseViewModel, MasterI,DeleteAreaI
+    public class ViewAreaVM : BaseViewModel, MasterI, DeleteAreaI
     {
         private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
         private ObservableCollection<StateModel> stateModels = new ObservableCollection<StateModel>();
@@ -33,7 +33,7 @@ namespace HMS.ViewModel.Admin
         public ICommand DeleteCommand => new Command<AreaModel>(OnDeleteCommand);
         public ViewAreaVM()
         {
-            web = new MasterServices((MasterI)this,(DeleteAreaI)this);
+            web = new MasterServices((MasterI)this, (DeleteAreaI)this);
             web.GetAllArea();
         }
         public async void OnEditCommand(AreaModel obj)
@@ -44,7 +44,7 @@ namespace HMS.ViewModel.Admin
         public async void OnViewHostelCommand(AreaModel obj)
         {
             App.areaid = obj.id;
-           // await App.Current.MainPage.DisplayAlert("HMS", "Cant View Hostel From Here.", "OK");
+            // await App.Current.MainPage.DisplayAlert("HMS", "Cant View Hostel From Here.", "OK");
             await App.Current.MainPage.Navigation.PushModalAsync(new ViewHostel(App.areaid));
             //await App.Current.MainPage.Navigation.PushModalAsync(new EditArea(obj.id,obj.areaName));
         }
@@ -58,7 +58,7 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("AreaLists");
         }
 
-        public  Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        public Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
         {
             throw new NotImplementedException();
         }
@@ -94,10 +94,10 @@ namespace HMS.ViewModel.Admin
             web.GetAllArea();
         }
     }
-    public class ViewBlockVM : BaseViewModel, MasterI,DeleteBlockI
+    public class ViewBlockVM : BaseViewModel, MasterI, DeleteBlockI
     {
         MasterServices web;
-        string hostelids;
+        string hostelids,areaids;
         private ObservableCollection<BlockModel> blockModels_ = new ObservableCollection<BlockModel>();
         public ObservableCollection<BlockModel> BlockModelList
         {
@@ -107,10 +107,11 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<BlockModel>(OnEditCommand);
         public ICommand ViewFloorCommand => new Command<BlockModel>(OnViewFloorCommand);
         public ICommand DeleteCommand => new Command<BlockModel>(OnDeleteCommand);
-        public ViewBlockVM(string hosteId)
+        public ViewBlockVM(string hosteId,string areaids)
         {
             hostelids = hosteId;
-            web = new MasterServices((MasterI)this,(DeleteBlockI)this);
+            this.areaids = areaids;
+            web = new MasterServices((MasterI)this, (DeleteBlockI)this);
             web.GetAllBlock(hosteId);
             //MessagingCenter.Subscribe<EditBlock>(this, "Updated Block", (obj) =>
             //{
@@ -119,16 +120,16 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnEditCommand(BlockModel obj)
         {
-           // App.hostelid = obj.hostelId;
+            // App.hostelid = obj.hostelId;
             App.blockid = obj.id;
-            await App.Current.MainPage.Navigation.PushModalAsync(new EditBlock(obj.id, obj.name));
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditBlock(obj.id, obj.name,hostelids,areaids));
         }
         public async void OnViewFloorCommand(BlockModel obj)
         {
             obj.hostelId = hostelids;
             App.hostelid = obj.hostelId;
             App.blockid = obj.id;
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewFloor(obj.hostelId));
+            //await App.Current.MainPage.Navigation.PushModalAsync(new ViewFloor(obj.hostelId));
         }
         public async void OnDeleteCommand(BlockModel obj)
         {
@@ -147,17 +148,17 @@ namespace HMS.ViewModel.Admin
 
         public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
         {
-           
+
         }
 
         public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
         {
-           
+
         }
 
         public async Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
         {
-           
+
         }
 
         public async Task ServiceFailed(int index)
@@ -212,8 +213,8 @@ namespace HMS.ViewModel.Admin
 
         public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
         {
-           // BlockModelList = BlockList;
-           // OnPropertyChanged("BlockModelList");
+            // BlockModelList = BlockList;
+            // OnPropertyChanged("BlockModelList");
         }
 
         public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
@@ -238,7 +239,7 @@ namespace HMS.ViewModel.Admin
         }
     }
 
-    public class ViewFloorVM : BaseViewModel, MasterI,DeleteFloorI
+    public class ViewFloorVM : BaseViewModel, MasterI, DeleteFloorI
     {
         private ObservableCollection<FloorData> floorModel_ = new ObservableCollection<FloorData>();
         public ObservableCollection<FloorData> FloorModelList
@@ -252,23 +253,23 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<FloorData>(OnEditCommand);
         public ICommand ViewRoomCommand => new Command<FloorData>(OnViewRoomCommand);
         public ICommand DeleteCommand => new Command<FloorData>(OnDeleteCommand);
-        public ViewFloorVM(string hostelid)
+        public ViewFloorVM(string hostelid,string blockid)
         {
             //this.blockid = blockid;
             hostelids = hostelid;
-            App.hostelid = hostelids;
-           // App.blockid = blockid;
-            web = new MasterServices((MasterI)this,(DeleteFloorI)this);
+            this.blockid = blockid;
+            // App.blockid = blockid;
+            web = new MasterServices((MasterI)this, (DeleteFloorI)this);
             web.GetAllFloor(hostelids);
         }
         public async void OnEditCommand(FloorData obj)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new EditFloor(obj.id.ToString(),obj.floorNo,obj.hostelId.ToString(),obj.noOfRooms.ToString(),App.blockid));
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditFloor(obj.id.ToString(), obj.floorNo, obj.hostelId.ToString(), obj.noOfRooms.ToString(),blockid));
         }
         public async void OnViewRoomCommand(FloorData obj)
         {
             App.floorid = obj.id.ToString();
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewRoom(obj.hostelId.ToString(), App.blockid));
+           // await App.Current.MainPage.Navigation.PushModalAsync(new ViewRoom(obj.hostelId.ToString(), App.blockid));
         }
         public async void OnDeleteCommand(FloorData obj)
         {
@@ -276,12 +277,12 @@ namespace HMS.ViewModel.Admin
         }
         public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
         {
-            
+
         }
 
         public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
         {
-           
+
         }
 
         public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
@@ -292,17 +293,17 @@ namespace HMS.ViewModel.Admin
 
         public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
         {
-            
+
         }
 
         public async Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
         {
-            
+
         }
 
         public async Task ServiceFailed(int index)
         {
-            
+
         }
 
         public async void ServiceFaild(string result)
@@ -371,7 +372,7 @@ namespace HMS.ViewModel.Admin
         public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
         {
             //FloorModelList = FloorList;
-           // OnPropertyChanged("FloorModelList");
+            // OnPropertyChanged("FloorModelList");
         }
 
         public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
@@ -391,9 +392,10 @@ namespace HMS.ViewModel.Admin
         }
     }
 
-    public class ViewRoomVM : BaseViewModel,RoomListI, DeleteRoomI
+    public class ViewRoomVM : BaseViewModel, RoomListI, DeleteRoomI
     {
         MasterServices web;
+        string blockids, floorids, hostelids;
         private ObservableCollection<RoomNameList> roomNameLists = new ObservableCollection<RoomNameList>();
         public ObservableCollection<RoomNameList> RoomNameLists
         {
@@ -410,16 +412,17 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<RoomNameList>(OnEditCommand);
         public ICommand ViewRoomBedCommand => new Command<RoomNameList>(OnViewRoomBedCommand);
         public ICommand DeleteCommand => new Command<RoomNameList>(OnDeleteCommand);
-        public ViewRoomVM(string hostelid,string blockid)
+        public ViewRoomVM(string hostelid, string blockid,string floorid)
         {
-            App.hostelid = hostelid;
-            App.blockid = blockid;
+            hostelids = hostelid;
+            blockids = blockid;
+            floorids = floorid;
             web = new MasterServices((RoomListI)this, (DeleteRoomI)this);
-            web.RoomListname(App.hostelid, App.blockid);
+            web.RoomListname(hostelids, blockids);
         }
         public async void OnEditCommand(RoomNameList obj)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new EditRoom(obj.id,obj.name,App.hostelid,obj.hostelRoomTypeId,App.blockid,App.floorid,obj.noOfBed));
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditRoom(obj.id, obj.name,hostelids, obj.hostelRoomTypeId,blockids,floorids, obj.noOfBed));
         }
         public async void OnViewRoomBedCommand(RoomNameList obj)
         {
@@ -429,11 +432,12 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(RoomNameList obj)
         {
             web.DeleteRoom(obj.id);
-            web.RoomListname(App.hostelid, App.blockid);
         }
         public async void DeleteRoomSucess(string resultHostel)
         {
             await App.Current.MainPage.DisplayAlert("HMS", resultHostel, "OK");
+            web.RoomListname(App.hostelid, App.blockid);
+            OnPropertyChanged("RoomNameLists");
         }
 
         //public Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
@@ -463,7 +467,7 @@ namespace HMS.ViewModel.Admin
 
         public async void ServiceFaild(string result)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", "No Data Found", "OK");
         }
 
         public Task ServiceFailed(int index)
@@ -477,7 +481,7 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("RoomNameLists");
         }
     }
-    public class ViewRoomTypeVM : BaseViewModel,RoomI,DeleteRoomTypeI
+    public class ViewRoomTypeVM : BaseViewModel, RoomI, DeleteRoomTypeI
     {
         MasterServices web;
         private ObservableCollection<RoomTypeModel> roomTypeModel_ = new ObservableCollection<RoomTypeModel>();
@@ -497,7 +501,7 @@ namespace HMS.ViewModel.Admin
         public ICommand DeleteCommand => new Command<RoomTypeModel>(OnDeleteCommand);
         public ViewRoomTypeVM()
         {
-            web = new MasterServices((RoomI)this,(DeleteRoomTypeI)this);
+            web = new MasterServices((RoomI)this, (DeleteRoomTypeI)this);
             web.GetAllRomType1();
         }
         public async void OnEditCommand(RoomTypeModel obj)
@@ -599,8 +603,8 @@ namespace HMS.ViewModel.Admin
             //App.blockid = blockid;
             web = new MasterServices(this);
             web.GetAllArea();
-           // web.GetAllHostel();
-           // web.GetAllBlock(hostelid);
+            // web.GetAllHostel();
+            // web.GetAllBlock(hostelid);
         }
         public void selectedarea(string id)
         {
@@ -640,24 +644,24 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", "Some Data is not available.", "OK");
         }
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
         {
-           // RoomNameLists = roomLists;
-           // OnPropertyChanged("RoomNameLists");
+            // RoomNameLists = roomLists;
+            // OnPropertyChanged("RoomNameLists");
         }
 
-        public void ServiceFaild(string result)
+        public async void ServiceFaild(string result)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
     }
 
-    public class ViewRoomBedVM : BaseViewModel,RoomBedI1, DeleteRoomBedI
+    public class ViewRoomBedVM : BaseViewModel, RoomBedI1, DeleteRoomBedI
     {
         MasterServices web;
         string hostelids;
@@ -677,7 +681,7 @@ namespace HMS.ViewModel.Admin
         }
         public ICommand EditCommand => new Command<RoomBedData>(OnEditCommand);
         public ICommand DeleteCommand => new Command<RoomBedData>(OnDeleteCommand);
-        public ViewRoomBedVM(string roomname,string hostelid)
+        public ViewRoomBedVM(string roomname, string hostelid)
         {
             hostelids = hostelid;
             roomnames = roomname;
@@ -709,7 +713,7 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("RoomBedDatas");
         }
     }
-    public class  ViewFilteredRoombedVM : BaseViewModel, MasterI, RoomListI
+    public class ViewFilteredRoombedVM : BaseViewModel, MasterI, RoomListI
     {
         MasterServices web;
         string hostelids;
@@ -761,7 +765,7 @@ namespace HMS.ViewModel.Admin
         }
         public ViewFilteredRoombedVM()
         {
-            web = new MasterServices((MasterI)this,(RoomListI)this);
+            web = new MasterServices((MasterI)this, (RoomListI)this);
             web.GetAllArea();
         }
         public void selectedarea(string areaid)
@@ -772,7 +776,7 @@ namespace HMS.ViewModel.Admin
         {
             web.GetAllBlock(hostelid);
         }
-        public void selectedhostelandblock(string hostelid,string blockid)
+        public void selectedhostelandblock(string hostelid, string blockid)
         {
             web.RoomListname(hostelid, blockid);
         }
@@ -804,9 +808,9 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", "Data Not Available.", "OK");
         }
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
@@ -821,7 +825,7 @@ namespace HMS.ViewModel.Admin
         }
     }
 
-    public class ViewHostelVM : BaseViewModel, MasterI,DeleteHostelI
+    public class ViewHostelVM : BaseViewModel, MasterI, DeleteHostelI
     {
         MasterServices web;
         string AreaId;
@@ -836,7 +840,7 @@ namespace HMS.ViewModel.Admin
         public ICommand DeleteCommand => new Command<HostelModel>(OnDeleteCommand);
         public ViewHostelVM(string areaid)
         {
-           // MessagingCenter.Subscribe<FilterPopup>(this,"")
+            // MessagingCenter.Subscribe<FilterPopup>(this,"")
             AreaId = areaid;
             App.areaid = AreaId;
             web = new MasterServices((MasterI)this, (DeleteHostelI)this);
@@ -851,8 +855,8 @@ namespace HMS.ViewModel.Admin
         public async void OnViewBlockCommand(HostelModel obj)
         {
             App.hostelid = obj.id;
-           // App.areaid = obj.areaId;
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(obj.id));
+            // App.areaid = obj.areaId;
+           // await App.Current.MainPage.Navigation.PushModalAsync(new ViewBlock(obj.id));
         }
         public async void OnDeleteCommand(HostelModel obj)
         {
@@ -913,7 +917,7 @@ namespace HMS.ViewModel.Admin
         }
         public ViewFilteredHostelVM()
         {
-           // AreaId = areaid;
+            // AreaId = areaid;
             web = new MasterServices(this);
             web.GetAllArea();
             //web.GetAllHostel(areaid);
@@ -950,7 +954,7 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
     }
-    public class ViewFacilityVM:BaseViewModel
+    public class ViewFacilityVM : BaseViewModel
     {
 
     }

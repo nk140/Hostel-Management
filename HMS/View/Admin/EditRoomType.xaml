@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
              x:Class="HMS.View.Admin.EditRoomType">
     <ContentPage.Content>
@@ -19,7 +19,12 @@
                 Margin="20,20,20,0"
                 Spacing="16"
                 VerticalOptions="StartAndExpand">
-
+                    <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod"  CornerRadius="30">
+                        <forms:AutoSuggestBox x:Name="txtselectbyarea" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" Margin="-16" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtselectbyarea_TextChanged" SuggestionChosen="txtselectbyarea_SuggestionChosen"/>
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="2" CornerRadius="30">
+                        <forms:AutoSuggestBox x:Name="txtsearchbyhostel" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"   DisplayMemberPath="hostelName" Margin="-16" TextMemberPath="hostelName" TextColor="#2D295F" PlaceholderText="Search From Hostel Name" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen"/>
+                    </Frame>
                     <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                         <controls:BetterEntry Placeholder="RoomTypeName" 
                        FontSize="Default"

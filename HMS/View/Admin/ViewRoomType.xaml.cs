@@ -23,7 +23,15 @@ namespace HMS.View.Admin
             InitializeComponent();
             BindingContext = vm = new ViewRoomTypeVM();
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = vm = new ViewRoomTypeVM();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
         private void txtsearchbyroomtypename_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try

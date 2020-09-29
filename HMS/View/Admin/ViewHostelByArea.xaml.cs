@@ -1,6 +1,7 @@
 ﻿using dotMorten.Xamarin.Forms;
 using HMS.Models;
 using HMS.ViewModel.Admin;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -18,18 +19,38 @@ namespace HMS.View.Admin
     public partial class ViewHostelByArea : PopupPage
     {
         ViewFilteredHostelVM vm;
+        string areaids;
         public ObservableCollection<AreaModel> areaModels;
         public ViewHostelByArea()
         {
             InitializeComponent();
             BindingContext = vm = new ViewFilteredHostelVM();
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            App.areaid = string.Empty;
+        }
         private async void btnviewhostelbyarea_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new ViewHostel(App.areaid));
+            if(string.IsNullOrEmpty(App.areaid))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Area Name", "OK");
+            }
+            else if(string.IsNullOrEmpty(areaids))
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "Please Enter Area Name", "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.Navigation.PushModalAsync(new ViewHostel(areaids));
+                await App.Current.MainPage.Navigation.PopPopupAsync(true);
+            }
         }
-
         private void ddarea_SelectedIndexChanged(object sender, EventArgs e)
         {
             //App.areaid = ddarea.Items[ddarea.SelectedIndex];
@@ -77,6 +98,7 @@ namespace HMS.View.Admin
                 txtselectbyarea.Text = ((AreaModel)e.SelectedItem).areaName;
                 string value = ((AreaModel)e.SelectedItem).id;
                 App.areaid = value;
+                areaids = App.areaid;
                // vm.selectedarea(App.areaid);
             }
             catch (Exception ex)

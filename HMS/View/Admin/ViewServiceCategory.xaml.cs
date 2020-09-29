@@ -23,7 +23,15 @@ namespace HMS.View.Admin
             InitializeComponent();
             BindingContext = serviceCategory = new ServiceCategory();
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = serviceCategory = new ServiceCategory();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
         private void txtsearchbyservicename_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try

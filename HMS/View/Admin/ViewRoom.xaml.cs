@@ -17,16 +17,25 @@ namespace HMS.View.Admin
     public partial class ViewRoom : ContentPage
     {
         ViewRoomVM vm;
+        string blockids, hostelids, floorids;
         public ObservableCollection<RoomNameList> roomNameLists;
         public ObservableCollection<RoomNameList> roomNameLists1;
         public ViewRoom()
         {
             InitializeComponent();
         }
-        public ViewRoom(string hostelid,string blockid)
+        public ViewRoom(string hostelid,string blockid,string floorid)
         {
             InitializeComponent();
-            BindingContext = vm = new ViewRoomVM(hostelid, blockid);
+            hostelids = hostelid;
+            blockids = blockid;
+            floorids = floorid;
+            BindingContext = vm = new ViewRoomVM(hostelid, blockid,floorid);
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = vm = new ViewRoomVM(hostelids, blockids,floorids);
         }
         private void txtsearchbyroomname_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {

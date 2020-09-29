@@ -6,7 +6,7 @@
             Orientation="Vertical"
             Spacing="16"
             Margin="20,30,20,0">
-
+            <Label Text="Create Room Bed" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center"/>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <forms:AutoSuggestBox x:Name="txtsearchbykeyword" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding AreaName}" DisplayMemberPath="areaName" TextMemberPath="areaName" TextColor="#2D295F" PlaceholderText="Search From Area Name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
             </Frame>

@@ -44,7 +44,7 @@
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Button Text="View Block" x:Name="btnviewblock" Grid.Row="4" Clicked="btnviewblock_Clicked_1"/>
+            <Button Text="View Floor" x:Name="btnviewblock" Grid.Row="4" Clicked="btnviewblock_Clicked_1"/>
         </Grid>
     </Frame>
 </Page:PopupPage>
