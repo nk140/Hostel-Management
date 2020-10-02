@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HMS.ViewModel.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,15 @@ namespace HMS.View.Admin
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditDisciplinaryType : ContentPage
     {
+        EditDisciplinaryTypeVM vm;
         public EditDisciplinaryType()
         {
             InitializeComponent();
+        }
+        public EditDisciplinaryType(string id,string disciplinaryname,string userid)
+        {
+            InitializeComponent();
+            BindingContext = vm = new EditDisciplinaryTypeVM(id,disciplinaryname,userid);
         }
     }
 }

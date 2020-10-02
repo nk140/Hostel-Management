@@ -8,12 +8,14 @@ namespace HMS.Interface
     {
         Task LoadRoomType(ObservableCollection<RoomTypeModel> RoomTypes);
         Task ServiceFaild(string result);
+        void NoListFound(string result);
         Task PostRoomSuccess(string resultHostel);
     }
     public interface RoomListI
     {
         void LoadRoomList(ObservableCollection<RoomNameList> roomLists);
         void ServiceFaild(string result);
+        void NoListFound(string result);
        // Task PostRoomSuccess(string resultHostel);
     }
     public interface EditRoomI

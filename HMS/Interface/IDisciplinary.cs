@@ -1,8 +1,16 @@
-﻿namespace HMS.Interface
+﻿using HMS.Models;
+using System.Collections.ObjectModel;
+
+namespace HMS.Interface
 {
     public interface IDisciplinary
     {
         void SaveDisciplinaryType(string result);
+    }
+    public interface ViewIDisciplinary
+    {
+        void LoadDisciplinaryList(ObservableCollection<ViewDisciplinaryType> viewDisciplinaryTypes);
+        void ServiceFailed(string result);
     }
     public interface IEditDisciplinary
     {

@@ -14,6 +14,8 @@ namespace HMS.Services
     {
 
         ProfileI profileCallback;
+        HostelAdmissionI hostelAdmissionI;
+        Iupdatestudentpassword iupdatestudentpassword;
         StudentLeaveRequestI leaveRequestCallback;
         RegistrationI registrationCallback;
         RoomTypeI roomTypeCallback;
@@ -23,12 +25,18 @@ namespace HMS.Services
         {
             profileCallback = callback;
         }
-
+        public StudentService(Iupdatestudentpassword updatestudentpassword)
+        {
+            iupdatestudentpassword = updatestudentpassword;
+        }
         public StudentService(StudentLeaveRequestI callback)
         {
             leaveRequestCallback = callback;
         }
-
+        public StudentService(HostelAdmissionI hostel)
+        {
+            hostelAdmissionI = hostel;
+        }
         public StudentService(RegistrationI callback)
         {
             registrationCallback = callback;
@@ -122,6 +130,80 @@ namespace HMS.Services
                     string resultHostel = await response.Content.ReadAsStringAsync();
                     profileUpdateErrorresponse = JsonConvert.DeserializeObject<ProfileUpdateErrorresponse>(resultHostel);
                     profileCallback.UpdatedSucessfully(profileUpdateErrorresponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void UpdateStudentPassword(UpdateStudPassword updateStudPassword)
+        {
+            UpdateStudPasswordResponse updateStudPasswordResponse;
+            UpdateStudErrorResponse updateStudErrorResponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+
+                string jsn = JsonConvert.SerializeObject(updateStudPassword);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.UpdateStudentPassword, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    updateStudPasswordResponse = JsonConvert.DeserializeObject<UpdateStudPasswordResponse>(resultHostel);
+                    iupdatestudentpassword.UpdatedSucessfully(updateStudPasswordResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    updateStudErrorResponse = JsonConvert.DeserializeObject<UpdateStudErrorResponse>(resultHostel);
+                    iupdatestudentpassword.ServiceFaild(updateStudErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void SaveHostelAdmission(HostelAdmission hostelAdmission)
+        {
+            HostelAdmissionResponse hostelAdmissionResponse;
+            HostelAdmissionErrorResponse hostelAdmissionErrorResponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+
+                string jsn = JsonConvert.SerializeObject(hostelAdmission);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.HostelAdmission, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    hostelAdmissionResponse = JsonConvert.DeserializeObject<HostelAdmissionResponse>(resultHostel);
+                    hostelAdmissionI.Sucess(hostelAdmissionResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    hostelAdmissionErrorResponse = JsonConvert.DeserializeObject<HostelAdmissionErrorResponse>(resultHostel);
+                    hostelAdmissionI.failed(hostelAdmissionErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)

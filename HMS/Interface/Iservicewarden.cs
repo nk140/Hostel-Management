@@ -6,6 +6,6 @@ namespace HMS.Interface
     public interface Iservicewarden
     {
         void GetServicelist(ObservableCollection<WardenServiceModel> servicelists);
-
+        void Servicefailed(string result);
     }
 }

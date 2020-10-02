@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using HMS.View.Parrent;
 using HMS.View.Student;
 using HMS.View.Warden;
 using Rg.Plugins.Popup.Extensions;
@@ -24,7 +25,7 @@ namespace HMS.View.Admin
             menuItems = new ObservableCollection<HomeMenuItem>
             {
                 new HomeMenuItem {Title="News Feed",TargetType=typeof(AdminNewsFeed)},
-                //new HomeMenuItem {Title="Area Creation",TargetType=typeof(FrmArea)},
+                new HomeMenuItem {Title="Set Password",TargetType=typeof(FrmParentRegistration)},
                 new HomeMenuItem {Title="Area Master",TargetType=typeof(AreaMaster)},
                 new HomeMenuItem {Title="Hostel Master",TargetType=typeof(HostelMaster)},
                 new HomeMenuItem {Title="Block Master",TargetType=typeof(BlockMaster)},
@@ -32,19 +33,14 @@ namespace HMS.View.Admin
                 new HomeMenuItem {Title="Room Master",TargetType=typeof(RoomMaster)},
                 new HomeMenuItem {Title="Room Bed Master",TargetType=typeof(RoomBedMaster)},
                 new HomeMenuItem {Title="Room Type Master",TargetType=typeof(RoomTypeMaster)},
-                 //new HomeMenuItem {Title="Hostel",TargetType=typeof(FrmHostel)},
-                 // new HomeMenuItem {Title="Block",TargetType=typeof(FrmBloack)},
-                 //  new HomeMenuItem {Title="Floor",TargetType=typeof(FrmFloor)},
-                 //   new HomeMenuItem {Title="Room",TargetType=typeof(FrmRoom)},
-                 //   new HomeMenuItem {Title="Room Bed",TargetType=typeof(FrmRoomBed)},
                     new HomeMenuItem {Title="Contact Student Parent",TargetType=typeof(FrmStudentParentContact)},
                     new HomeMenuItem {Title="Warden Assignment",TargetType=typeof(WardenAssignment)},
                     new HomeMenuItem {Title="Contact warden",TargetType=typeof(FrmContactWarden)},
                     new HomeMenuItem {Title="Service Category Master",TargetType=typeof(ServiceCategoryMaster)},
-                    //new HomeMenuItem {Title="Service Category",TargetType=typeof(FrmServiceCategoryCreatioon)},
-                    new HomeMenuItem{Title="Disciplinary type",TargetType=typeof(Disciplinary)},
-                    new HomeMenuItem {Title="Facility",TargetType=typeof(FrmFacility)},
-                    //new HomeMenuItem {Title="Room Type",TargetType=typeof(FrmRoomType)},
+                    new HomeMenuItem {Title="Facility Master",TargetType=typeof(FacilityMaster)},
+                    new HomeMenuItem {Title="Disciplinary Master",TargetType=typeof(DisciplinaryMaster)},
+                    new HomeMenuItem {Title="Student Leave History",TargetType=typeof(FrmStudleavehistory)},
+                    new HomeMenuItem {Title="Leave Action",TargetType=typeof(Frmstudentleaveaction)},
                     new HomeMenuItem {Title="Student Leave Status",TargetType=typeof(Frmstudentleaveaction)},
                     new HomeMenuItem {Title="Upload Hostel Images and Videos",TargetType=typeof(UploadImageAndVideo)},
                     new HomeMenuItem {Title="Create Warden",TargetType=typeof(FrmWardenCreatioin)},

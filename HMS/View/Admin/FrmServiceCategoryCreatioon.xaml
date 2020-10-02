@@ -19,7 +19,7 @@
                     ReturnType="Next" />
             </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="25" BorderColor="black" HeightRequest="70">
-                <controls:XEditor Placeholder="Enter Description" Keyboard="Text" PlaceholderColor="Black" FontSize="17" Margin="-9"/>
+                <controls:XEditor Placeholder="Enter Description" Text="{Binding Description}" Keyboard="Text" PlaceholderColor="Black" FontSize="17" Margin="-9"/>
             </Frame>
             <StackLayout
                 Orientation="Horizontal"

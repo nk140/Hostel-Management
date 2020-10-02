@@ -25,6 +25,38 @@ namespace HMS.Models
         public string Parentof { get; set; }
         public string contactno { get; set; }
     }
+    public class UpdatePassword
+    {
+       public string userId { get; set; }
+       public string password { get; set; }
+    }
+    public class UpdatePasswordResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
+    public class UpdatePasswordErrorResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public List<UpdatePasswordError> errors { get; set; }
+    }
+    public class UpdatePasswordError
+    {
+        public string message { get; set; }
+    }
+    public class StudentParentDetail
+    {
+        public string parentName { get; set; }
+        public string parentPhoneNo { get; set; }
+        public string studentName { get; set; }
+        public string studentId { get; set; }
+    }
+    public class childleavehistory
+    {
+
+    }
     public class Studenterrorresponse
     {
         public string status { get; set; }

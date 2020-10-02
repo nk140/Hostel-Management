@@ -184,5 +184,21 @@ namespace HMS.View.Admin
             App.blockid = ((BlockModel)e.SelectedItem).id;
             Vm.Selectedblock(App.blockid);
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (Vm.BlockModelList.Count == 0 || Vm.BlockModelList == null)
+                App.Current.MainPage.DisplayAlert("HMS", "No block found", "OK");
+            else
+                txtsearchbyblock.IsEnabled = true;
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            if (Vm.RoomNameList.Count == 0 || Vm.RoomNameList == null)
+                App.Current.MainPage.DisplayAlert("HMS", "No block found", "OK");
+            else
+                txtsearchbyroomname.IsEnabled = true;
+        }
     }
 }

@@ -108,5 +108,10 @@ namespace HMS.ViewModel.Admin
         {
             throw new NotImplementedException();
         }
+
+        public void NoListFound(string result)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

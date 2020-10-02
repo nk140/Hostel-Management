@@ -84,6 +84,16 @@ namespace HMS.ViewModel.Parent
                 App.Current.MainPage.DisplayAlert("HMS", "Enter 12 digit aadhar no", "OK");
                 return false;
             }
+            else if (string.IsNullOrEmpty(ParentRegistrations.studentAadharNo) || ParentRegistrations.studentAadharNo.Length == 0)
+            {
+                App.Current.MainPage.DisplayAlert("HMS", "Enter Student Aaadhar no", "OK");
+                return false;
+            }
+            else if (ParentRegistrations.studentAadharNo.Length != 12)
+            {
+                App.Current.MainPage.DisplayAlert("HMS", "Enter 12 digit aadhar no", "OK");
+                return false;
+            }
             else if (ParentRegistrations.address.Length == 0 || string.IsNullOrEmpty(ParentRegistrations.address))
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Enter Address", "OK");

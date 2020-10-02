@@ -294,9 +294,11 @@ namespace HMS.ViewModel.Admin
             throw new System.NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new System.NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", "No block data.", "OK");
+            BlockModelList.Clear();
+            OnPropertyChanged("BlockModelList");
         }
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
@@ -307,7 +309,14 @@ namespace HMS.ViewModel.Admin
 
         public async void ServiceFaild(string result)
         {
-            
+            await App.Current.MainPage.DisplayAlert("HMS", "No Room list data.", "OK");
+            RoomNameList.Clear();
+            OnPropertyChanged("RoomNameList");
+        }
+
+        public async void NoListFound(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", "No Data.", "OK");
         }
     }
 }

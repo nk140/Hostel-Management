@@ -63,5 +63,12 @@ namespace HMS.ViewModel.Admin
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
+
+        public async void Servicefailed(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            WardenServiceData.Clear();
+            OnPropertyChanged("WardenServiceData");
+        }
     }
 }

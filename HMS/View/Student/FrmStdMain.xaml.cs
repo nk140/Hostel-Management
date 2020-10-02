@@ -20,6 +20,7 @@ namespace HMS.View.Student
             studentmenulist = new ObservableCollection<StudentMenuItem>
             {
                 new StudentMenuItem {Title="News Feed",TargetType=typeof(StudentNewsFeed)},
+                new StudentMenuItem {Title="Set Password",TargetType=typeof(SetPassword)},
                 new StudentMenuItem {Title="Profile",TargetType=typeof(FrmStudentProfile)},
                 new StudentMenuItem {Title="Room List",TargetType=typeof(FrmRoomList)},
                   new StudentMenuItem {Title="Service Request",TargetType=typeof(FrmServiceRequest)},

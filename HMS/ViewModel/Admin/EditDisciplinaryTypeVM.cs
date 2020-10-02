@@ -52,8 +52,11 @@ namespace HMS.ViewModel.Admin
             App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
 
-        public EditDisciplinaryTypeVM()
+        public EditDisciplinaryTypeVM(string id, string disciplinaryname, string userid)
         {
+            UpdateDisciplinaryTypes.id = id;
+            UpdateDisciplinaryTypes.name = disciplinaryname;
+            UpdateDisciplinaryTypes.userId = userid;
             web = new MasterServices((IEditDisciplinary)this);
         }
     }

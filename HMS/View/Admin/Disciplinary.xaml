@@ -11,6 +11,7 @@
         <vm:DisciplinaryTypeVM></vm:DisciplinaryTypeVM>
     </ContentPage.BindingContext>
     <AbsoluteLayout>
+        <Label Text="Create Disciplinary" TextColor="Black" FontSize="25" HorizontalTextAlignment="Center"/>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.42,0.06,0.79,0.08">
             <controls:BetterEntry Placeholder="Enter Disciplinary Type" Text="{Binding DisciplinaryReason}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-17"/>
         </Frame>

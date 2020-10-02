@@ -46,6 +46,7 @@
         public static string UpdateServicecategory = "/hostelandmesstest/api/v1/hostel/servicecategoryupdate";
         public static string DeleteServiceCategory = "/hostelandmesstest/api/v1/hostel/deleteservicecategory";
         public static string FasilityInsertion = "/hostelandmesstest/api/v1/hostel/hostelfacilitysetup";
+        public static string FacilityList = "/hostelandmesstest/api/v1/hostel/facilitylist";
         public static string UpdateFacility = "/hostelandmesstest/api/v1/hostel/facilityupdate";
         public static string DeleteFacility = "/hostelandmesstest/api/v1/hostel/deletehostelfacility";
         public static string RoomInsertion = "/hostelandmesstest/api/v1/hostel/roomsetup";
@@ -61,17 +62,21 @@
         public static string GetAllRole = "/hostelandmesstest/api/v1/warden/roles";
         public static string SaveWarden = "/hostelandmesstest/api/v1/warden/addwarden";
         public static string SaveDisciplinaryType = "/hostelandmesstest/api/v1/hostel/disciplinarytype";
+        public static string DisciplinaryList = "/hostelandmesstest/api/v1/hostel/disciplinarytype";
         public static string UpdateDisciplinaryType = "/hostelandmesstest/api/v1/hostel/disciplinarytypeupdate";
         public static string DeleteDisciplinaryType = "/hostelandmesstest/api/v1/hostel/deletedisciplinarytype";
+        public static string ParentStudentList = "/hostelandmesstest/api/v1/student/parentstudentlist";
         #endregion
 
         #region Student
         public static string GetProfiile = "/hostelandmesstest/api/v1/student/studentprofile";
+        public static string HostelAdmission = "/hostelandmesstest/api/v1/auth/admission";
         public static string GetLeaveTypeList = "/hostelandmesstest/api/v1/leave/allleavetype";
         public static string SaveLeaveRequest = "/hostelandmesstest/api/v1/leave/applyforleave";
         public static string StudentRegister = "/hostelandmesstest/api/v1/student/studentregister";
         public static string GetAllWarden = "/hostelandmesstest/api/v1/leave/wardeninfo";
         public static string StudentProfileUpdate = "/hostelandmesstest/api/v1/student/studentphoneupdate";
+        public static string UpdateStudentPassword = "/hostelandmesstest/api/v1/student/studentpasswordupdate";
         #endregion
 
         #region Warden
@@ -93,6 +98,7 @@
         #endregion
         #region Parent
         public static string ParentRegistration = "/hostelandmesstest/api/v1/student/parentregister";
+        public static string UpdatePassword = "/hostelandmesstest/api/v1/student/passwordupdate";
         #endregion
     }
 }

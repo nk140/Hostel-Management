@@ -16,7 +16,7 @@
                 Orientation="Vertical"
                 Margin="20,20,20,0"
                 VerticalOptions="StartAndExpand" Spacing="16">
-                <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                <!--<Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                     <Controls:BetterEntry Placeholder="Disciplinary No" 
                        FontSize="Default"
                        PlaceholderColor="#003366"
@@ -24,7 +24,7 @@
                        Text="{Binding UpdateDisciplinaryTypes.id}"
                        TextColor="Black"
                        ReturnType="Next" />
-                </Frame>
+                </Frame>-->
                 <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                     <Controls:BetterEntry Placeholder="Disciplinary Type" 
                        FontSize="Default"
@@ -35,7 +35,7 @@
                        ReturnType="Next" />
                 </Frame>
                 <StackLayout Orientation="Horizontal">
-                    <Button HorizontalOptions="CenterAndExpand" WidthRequest="160"
+                    <Button HorizontalOptions="CenterAndExpand" WidthRequest="200"
                       Text="Update Disciplinary Type"
                       Command="{Binding UpdateDisciplinaryTypeCommand}"
                       BackgroundColor="#e96125"

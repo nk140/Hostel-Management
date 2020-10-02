@@ -7,6 +7,13 @@ namespace HMS.Models
         public string id { get; set; }
         public string areaName { get; set; }
         public string stateId { get; set; }
+       
+    }
+    public class AreaModelResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
     }
     public class SaveAreaModel
     {
@@ -50,10 +57,6 @@ namespace HMS.Models
         public List<DeleteError> errors { get; set; }
     }
     public class DeleteError
-    {
-        public List<DelError> message { get; set; }
-    }
-    public class DelError
     {
         public string message { get; set; }
     }

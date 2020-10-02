@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
@@ -6,6 +8,13 @@ namespace HMS.Models
     {
         public string name { get; set; }
         public string userId { get; set; }
+    }
+    public class ViewDisciplinaryType:JsonProperty
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class UpdateDisciplinaryType
     {

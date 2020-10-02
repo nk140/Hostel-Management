@@ -82,7 +82,7 @@ namespace HMS.ViewModel.Admin
                 App.Current.MainPage.DisplayAlert("HMS", "Block id required", "OK");
                 return false;
             }
-            else if(string.IsNullOrEmpty(BlockModel.name)|| BlockModel.name.Length==0)
+            else if(string.IsNullOrEmpty(BlockName)|| BlockName.Length==0)
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Block name required", "OK");
                 return false;
@@ -141,6 +141,11 @@ namespace HMS.ViewModel.Admin
         }
 
         public Task ServiceFailed(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NoListFound(string result)
         {
             throw new NotImplementedException();
         }

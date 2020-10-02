@@ -15,7 +15,8 @@
                       DurationIn="400"  
                       DurationOut="300"  
                       EasingIn="SinOut"  
-                      EasingOut="SinIn"  
+                      EasingOut="SinIn"
+                      
       HasBackgroundAnimation="False"/>
     </Page:PopupPage.Animation>
     <Frame BackgroundColor="Transparent" BorderColor="Black" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" CornerRadius="25">

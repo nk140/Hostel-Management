@@ -19,6 +19,7 @@ namespace HMS.Models
         public string email { get; set; } //
         public string phoneNo { get; set; } //
         public string aadharNo { get; set; } //
+        public string studentAadharNo { get; set; }
         public string userName { get; set; } //
         public string password { get; set; } //
     }

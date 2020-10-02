@@ -15,11 +15,11 @@
         <StackLayout
            Orientation="Vertical">
             <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-                <forms:AutoSuggestBox x:Name="txtsearchbykeyword"  PlaceholderText="Search By Parent name" TextMemberPath="Name" DisplayMemberPath="Name" HorizontalOptions="FillAndExpand" Margin="-10" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbykeyword"  PlaceholderText="Search By Parent name" TextMemberPath="parentName" DisplayMemberPath="parentName" HorizontalOptions="FillAndExpand" Margin="-10" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
             </Frame>
             <ListView 
                 x:Name="lv_contact"  
-                ItemsSource="{Binding Parentlist}"
+                ItemsSource="{Binding StudentParentDetails}"
                  VerticalOptions="FillAndExpand"
                 HasUnevenRows="True"
                 SelectionMode="None"
@@ -36,11 +36,11 @@
                                 <StackLayout
                                     Orientation="Vertical">
                                     <Label
-                                    Text="{Binding Name}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
+                                    Text="{Binding parentName}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
                                     <Label
-                                    Text="{Binding Parentof}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
+                                    Text="{Binding studentName}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
                                     <Label
-                                    Text="{Binding contactno}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
+                                    Text="{Binding parentPhoneNo}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
                                     <StackLayout Margin="0,-70,-193,0"  VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand">
                                         <Image Source="user.png" WidthRequest="100"/>
                                     </StackLayout>

@@ -12,38 +12,47 @@ namespace HMS.View.Warden
     public partial class FrmStudentParentContact : ContentPage
     {
         StudentParentInfo vm;
-        public ObservableCollection<Parents> parents;
-        public ObservableCollection<Parents> GetParents;
+        public ObservableCollection<StudentParentDetail> studentParentDetails;
+        public ObservableCollection<StudentParentDetail> studentParentDetails1;
         public FrmStudentParentContact()
         {
             InitializeComponent();
             BindingContext = vm = new StudentParentInfo();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = vm = new StudentParentInfo();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
         private void txtsearchbykeyword_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
         {
             try
             {
-                if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+                if (e.Reason == dotMorten.Xamarin.Forms.AutoSuggestionBoxTextChangeReason.UserInput)
                 {
-                    parents = new ObservableCollection<Parents>();
-                    if (vm.Parentlist != null)
+                    studentParentDetails = new ObservableCollection<StudentParentDetail>();
+                    if (vm.StudentParentDetails != null)
                     {
-                        foreach (var data in vm.Parentlist)
+                        foreach (var items in vm.StudentParentDetails)
                         {
-                            if (!string.IsNullOrEmpty(data.Name))
+                            if (!string.IsNullOrEmpty(items.parentName))
                             {
                                 if (!string.IsNullOrEmpty(txtsearchbykeyword.Text))
                                 {
-                                    if (data.Name.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || data.Name.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
-                                        parents.Add(data);
+                                    if (items.parentName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.parentName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
+                                        studentParentDetails.Add(items);
                                 }
                             }
                         }
-                        txtsearchbykeyword.ItemsSource = parents;
+                        txtsearchbykeyword.ItemsSource = studentParentDetails;
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }
@@ -51,23 +60,16 @@ namespace HMS.View.Warden
 
         private void txtsearchbykeyword_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
         {
-            try
+            txtsearchbykeyword.Text = ((StudentParentDetail)e.SelectedItem).parentName;
+            studentParentDetails1 = new ObservableCollection<StudentParentDetail>();
+            if (studentParentDetails != null)
             {
-                txtsearchbykeyword.Text = ((Parents)e.SelectedItem).Name;
-                if (parents != null)
+                foreach (var items in studentParentDetails)
                 {
-                    GetParents = new ObservableCollection<Parents>();
-                    foreach (var items in parents)
-                    {
-                        if (items.Name == txtsearchbykeyword.Text)
-                            GetParents.Add(items);
-                    }
+                    if (txtsearchbykeyword.Text == items.parentName)
+                        studentParentDetails1.Add(items);
                 }
-                lv_contact.ItemsSource = GetParents;
-            }
-            catch (Exception ex)
-            {
-
+                lv_contact.ItemsSource = studentParentDetails1;
             }
         }
     }

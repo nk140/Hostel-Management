@@ -34,5 +34,12 @@ namespace HMS.ViewModel.Warden
             WardenServiceData = servicelists;
             OnPropertyChanged();
         }
+
+        public async void Servicefailed(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            WardenServiceData.Clear();
+            OnPropertyChanged("WardenServiceData");
+        }
     }
 }

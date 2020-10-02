@@ -17,7 +17,7 @@ namespace HMS.ViewModel.Admin
         ServiceCategoryModel model;
         MasterServices web;
 
-
+        private string description;
 
         public ServiceCategoryModel Category
         {
@@ -26,9 +26,18 @@ namespace HMS.ViewModel.Admin
         }
 
 
-
-
-
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                description = value;
+                OnPropertyChanged("Description");
+            }
+        }
         public Command SaveCommand
         {
             get
@@ -38,6 +47,10 @@ namespace HMS.ViewModel.Admin
                     if (Category.name == null || Category.name.Length == 0)
                     {
                         App.Current.MainPage.DisplayAlert("", "Enter Category Name", "OK");
+                    }
+                    else if (string.IsNullOrEmpty(Description) || Description.Length == 0)
+                    {
+                        App.Current.MainPage.DisplayAlert("", "Enter Description", "OK");
                     }
                     else
                     {
@@ -58,7 +71,9 @@ namespace HMS.ViewModel.Admin
         {
             await App.Current.MainPage.DisplayAlert("", result, "OK");
             Category.name = "";
+            Description = "";
             OnPropertyChanged("Category");
+            OnPropertyChanged("Description");
         }
     }
 }

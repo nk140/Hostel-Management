@@ -27,6 +27,12 @@ namespace HMS.Models
         public string floorNo { get; set; }
         public int noOfRooms { get; set; }
     }
+    public class FloorDataResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
     public class UpdateFloorData
     {
         public string floorId { get; set; }

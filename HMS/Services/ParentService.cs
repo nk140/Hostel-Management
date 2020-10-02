@@ -15,6 +15,8 @@ namespace HMS.Services
     {
         IWardenDetail wardenDetail;
         Iparent iparent;
+        iUpdatePassword iupdatePassword;
+        iviewchildleave iviewchildleave;
         public ParentService(IWardenDetail wardenDetaildata)
         {
             wardenDetail = wardenDetaildata;
@@ -22,6 +24,14 @@ namespace HMS.Services
         public ParentService(Iparent callback)
         {
             iparent = callback;
+        }
+        public ParentService(iUpdatePassword iUpdatePassword)
+        {
+            this.iupdatePassword = iUpdatePassword;
+        }
+        public ParentService(iviewchildleave viewchildleave)
+        {
+            iviewchildleave = viewchildleave;
         }
         public async void GetAllWardenData()
         {
@@ -60,7 +70,7 @@ namespace HMS.Services
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await App.Current.MainPage.DisplayAlert("HMS",ex.ToString(), "OK");
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
         public async void SaveParentDetail(ParentRegistration model)
@@ -92,11 +102,50 @@ namespace HMS.Services
                     iparent.servicefailed(parentRegistrationErrorResponse.errors[0].message);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
+        }
+        public async void SetPassword(UpdatePassword updatePassword)
+        {
+            UpdatePasswordResponse updatePasswordResponse;
+            UpdatePasswordErrorResponse updatePasswordErrorResponse;
+            string resultHostel;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string json = JsonConvert.SerializeObject(updatePassword);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.UpdatePassword, content);
+                resultHostel = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    resultHostel = await response.Content.ReadAsStringAsync();
+                    updatePasswordResponse = JsonConvert.DeserializeObject<UpdatePasswordResponse>(resultHostel);
+                    iupdatePassword.UpdatepasswordSuccess(updatePasswordResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    resultHostel = await response.Content.ReadAsStringAsync();
+                    updatePasswordErrorResponse = JsonConvert.DeserializeObject<UpdatePasswordErrorResponse>(resultHostel);
+                    iupdatePassword.servicefailed(updatePasswordErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void GetChildLeaveHistory()
+        {
+
         }
     }
 }

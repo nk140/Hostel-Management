@@ -26,6 +26,7 @@ namespace HMS.Services
         DeleteBlockI DeleteBlockI;
         ServiceCategoryI categoryCallback;
         FasilityI fasilityCallback;
+        ViewFacilityI viewFacilityI;
         EditFasilityI editFasilityI;
         DeleteFasilityI deleteFasilityI;
         FloorI floorCallback;
@@ -44,6 +45,7 @@ namespace HMS.Services
         RoomListI1 roomListCallback;
         WardenCreatrI wardenCallback;
         IDisciplinary disciplinary;
+        ViewIDisciplinary ViewIDisciplinary;
         IEditDisciplinary editDisciplinary;
         IDeleteDisciplinary deleteDisciplinary;
         IEditnewsfeeddata editnewsfeeddata;
@@ -58,8 +60,9 @@ namespace HMS.Services
         {
             editDisciplinary = callback;
         }
-        public MasterServices(IDeleteDisciplinary callback)
+        public MasterServices(ViewIDisciplinary view, IDeleteDisciplinary callback)
         {
+            ViewIDisciplinary = view;
             deleteDisciplinary = callback;
         }
         public MasterServices(IEditnewsfeeddata callback)
@@ -78,11 +81,12 @@ namespace HMS.Services
         {
             editFasilityI = callback;
         }
-        public MasterServices(DeleteFasilityI callback)
+        public MasterServices(ViewFacilityI view, DeleteFasilityI callback)
         {
+            viewFacilityI = view;
             deleteFasilityI = callback;
         }
-        public MasterServices(MasterI master,EditRoomTypeI callback)
+        public MasterServices(MasterI master, EditRoomTypeI callback)
         {
             this.masterCallback = master;
             EditRoomTypeI = callback;
@@ -106,6 +110,12 @@ namespace HMS.Services
         {
             roomBed = master;
             this.DeleteRoomBedI = deleteRoomBedI;
+        }
+        public MasterServices(RoomBedI1 master,MasterI masters,RoomI room)
+        {
+            roomBed = master;
+            masterCallback = masters;
+            roomCallback=room
         }
         public MasterServices(EditRoomBedI editRoomBedI)
         {
@@ -231,7 +241,7 @@ namespace HMS.Services
             this.masterCallback = master;
             this.roomBedI = editRoom;
         }
-        public MasterServices(MasterI master,RoomBedI bedI,RoomListI roomListI)
+        public MasterServices(MasterI master, RoomBedI bedI, RoomListI roomListI)
         {
             this.masterCallback = master;
             roomBedCallback = bedI;
@@ -446,6 +456,70 @@ namespace HMS.Services
                 //await roomListCallback.Failer();
             }
         }
+        public async void ViewFacility()
+        {
+            UserDialogs.Instance.ShowLoading();
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+            var json = "";
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.FacilityList);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    json = await response.Content.ReadAsStringAsync();
+                    ObservableCollection<ViewFacility> batchData = JsonConvert.DeserializeObject<ObservableCollection<ViewFacility>>(json);
+                    viewFacilityI.LoadFacilityList(batchData);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    viewFacilityI.ServiceFaild("No Facility List");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                viewFacilityI.ServiceFaild("Something went wron please contact from administrator.");
+                //await roomListCallback.Failer();
+            }
+        }
+        public async void ViewDisciplinaryType()
+        {
+            UserDialogs.Instance.ShowLoading();
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+            var json = "";
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.DisciplinaryList);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    json = await response.Content.ReadAsStringAsync();
+                    ObservableCollection<ViewDisciplinaryType> batchData = JsonConvert.DeserializeObject<ObservableCollection<ViewDisciplinaryType>>(json);
+                    for (int i = 0; i < batchData.Count; i++)
+                    {
+                        batchData[i].listcount = i.ToString();
+                    }
+                    ViewIDisciplinary.LoadDisciplinaryList(batchData);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    ViewIDisciplinary.ServiceFailed("No Disciplinary List");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ViewIDisciplinary.ServiceFailed("Something went wron please contact from administrator.");
+                //await roomListCallback.Failer();
+            }
+        }
         public async void RoomListname(string hostelid, string blockid)
         {
             RoomNameResponse roomNameResponse;
@@ -464,8 +538,16 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     json = await response.Content.ReadAsStringAsync();
                     var jsonresult = json;
-                    ObservableCollection<RoomNameList>batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
-                    roomListI.LoadRoomList(batchData);
+                    if (jsonresult.Equals("No Data Found"))
+                    {
+                        roomNameResponse = JsonConvert.DeserializeObject<RoomNameResponse>(jsonresult);
+                        roomListI.NoListFound(roomNameResponse.message);
+                    }
+                    else
+                    {
+                        ObservableCollection<RoomNameList> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
+                        roomListI.LoadRoomList(batchData);
+                    }
                 }
                 else
                 {
@@ -481,6 +563,7 @@ namespace HMS.Services
         }
         public async void GetRoomBedList(string hostelid)
         {
+            RoomBedResponses roomBedResponse;
             UserDialogs.Instance.ShowLoading();
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
@@ -494,8 +577,16 @@ namespace HMS.Services
                 {
                     UserDialogs.Instance.HideLoading();
                     json = await response.Content.ReadAsStringAsync();
-                    ObservableCollection<RoomBedData> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomBedData>>(json);
-                    roomBed.LoadRoomBedList(batchData);
+                    if (json.Equals("No Data Found"))
+                    {
+                        roomBedResponse = JsonConvert.DeserializeObject<RoomBedResponses>(json);
+                        roomBed.NoListFound(roomBedResponse.message);
+                    }
+                    else
+                    {
+                        ObservableCollection<RoomBedData> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomBedData>>(json);
+                        roomBed.LoadRoomBedList(batchData);
+                    }
                 }
                 else
                 {
@@ -506,7 +597,7 @@ namespace HMS.Services
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await App.Current.MainPage.DisplayAlert("", ex.ToString(), "OK");
+                roomBed.Failer("Data Not Found");
                 //await roomListCallback.Failer();
             }
         }
@@ -848,7 +939,7 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     string result = await response.Content.ReadAsStringAsync();
                     deleteAreaErrorResponse = JsonConvert.DeserializeObject<DeleteAreaErrorResponse>(result);
-                    deleteAreaI.servicefailed(deleteAreaErrorResponse.errors[0].message[0].message);
+                    deleteAreaI.servicefailed(deleteAreaErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)
@@ -883,7 +974,7 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     string result = await response.Content.ReadAsStringAsync();
                     deleteAreaErrorResponse = JsonConvert.DeserializeObject<DeleteAreaErrorResponse>(result);
-                    DeleteBlockI.ServiceFaild(deleteAreaErrorResponse.errors[0].message[0].message);
+                    DeleteBlockI.ServiceFaild(deleteAreaErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)
@@ -953,7 +1044,7 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     string result = await response.Content.ReadAsStringAsync();
                     deleteAreaErrorResponse = JsonConvert.DeserializeObject<DeleteAreaErrorResponse>(result);
-                    deleteHostelI1.ServiceFaild(deleteAreaErrorResponse.errors[0].message[0].message);
+                    deleteHostelI1.ServiceFaild(deleteAreaErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)
@@ -1324,7 +1415,7 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     string result = await response.Content.ReadAsStringAsync();
                     deleteAreaErrorResponse = JsonConvert.DeserializeObject<DeleteAreaErrorResponse>(result);
-                    deleteFloor.ServiceFaild(deleteAreaErrorResponse.errors[0].message[0].message);
+                    deleteFloor.ServiceFaild(deleteAreaErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)
@@ -1433,7 +1524,7 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     string result = await response.Content.ReadAsStringAsync();
                     deleteAreaErrorResponse = JsonConvert.DeserializeObject<DeleteAreaErrorResponse>(result);
-                    deleteRoomI.ServiceFaild(deleteAreaErrorResponse.errors[0].message[0].message);
+                    deleteRoomI.ServiceFaild(deleteAreaErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)
@@ -1468,7 +1559,7 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     string result = await response.Content.ReadAsStringAsync();
                     deleteAreaErrorResponse = JsonConvert.DeserializeObject<DeleteAreaErrorResponse>(result);
-                    DeleteRoomBedI.Failer(deleteAreaErrorResponse.errors[0].message[0].message);
+                    DeleteRoomBedI.Failer(deleteAreaErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)
@@ -1516,6 +1607,7 @@ namespace HMS.Services
         }
         public async void GetAllRomType1()
         {
+            RoomTypeResponses roomTypeResponse;
 
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
@@ -1527,11 +1619,17 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     string result = await response.Content.ReadAsStringAsync();
+                    if (result.Equals("No Data Found"))
+                    {
+                        roomTypeResponse = JsonConvert.DeserializeObject<RoomTypeResponses>(result);
+                        roomCallback.NoListFound(roomTypeResponse.message);
+                    }
+                    else
+                    {
+                        ObservableCollection<RoomTypeModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomTypeModel>>(result);
+                        await roomCallback.LoadRoomType(batchData);
 
-                    ObservableCollection<RoomTypeModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomTypeModel>>(result);
-                    await roomCallback.LoadRoomType(batchData);
-
-
+                    }
                 }
                 else
                 {
@@ -1540,7 +1638,7 @@ namespace HMS.Services
             }
             catch (Exception ex)
             {
-                await roomCallback.ServiceFaild(ex.ToString());
+                await roomCallback.ServiceFaild("No Rooms Available");
             }
         }
         public async void GetAllRomTypeForRoomBed()
@@ -1572,7 +1670,7 @@ namespace HMS.Services
         }
         public async void GetAllArea()
         {
-
+            AreaModelResponse areaModelResponse;
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
@@ -1583,9 +1681,16 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     string result = await response.Content.ReadAsStringAsync();
-
-                    ObservableCollection<AreaModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<AreaModel>>(result);
-                    await masterCallback.LoadAreaList(batchData);
+                    if (result.Equals("No Data Found"))
+                    {
+                        areaModelResponse = JsonConvert.DeserializeObject<AreaModelResponse>(result);
+                        masterCallback.NoListFound(areaModelResponse.message);
+                    }
+                    else
+                    {
+                        ObservableCollection<AreaModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<AreaModel>>(result);
+                        await masterCallback.LoadAreaList(batchData);
+                    }
                 }
                 else
                 {
@@ -1602,6 +1707,7 @@ namespace HMS.Services
 
         public async void GetAllHostel(string areaId)
         {
+            HostelModelResponse hostelModelResponse;
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
             client.DefaultRequestHeaders.Add("areaId", areaId.ToString());
@@ -1616,10 +1722,10 @@ namespace HMS.Services
 
                     ObservableCollection<HostelModel> batchData;
 
-                    if (result.Contains("No Data Found"))
+                    if (result.Equals("No Data Found"))
                     {
-                        batchData = new ObservableCollection<HostelModel>();
-                        await masterCallback.LoadHostelList(batchData);
+                        hostelModelResponse = JsonConvert.DeserializeObject<HostelModelResponse>(result);
+                        masterCallback.NoListFound(hostelModelResponse.message);
                     }
                     else
                     {
@@ -1642,7 +1748,7 @@ namespace HMS.Services
 
         public async void GetAllBlock(string id)
         {
-
+            BlockModelResponse blockModelResponse;
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
             client.DefaultRequestHeaders.Add("hostelId", id);
@@ -1653,7 +1759,11 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     string result = await response.Content.ReadAsStringAsync();
-
+                    if (result.Equals("No Data Found"))
+                    {
+                        blockModelResponse = JsonConvert.DeserializeObject<BlockModelResponse>(result);
+                        masterCallback.NoListFound(blockModelResponse.message);
+                    }
                     ObservableCollection<BlockModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<BlockModel>>(result);
                     await masterCallback.LoadBlockList(batchData);
 
@@ -1705,7 +1815,7 @@ namespace HMS.Services
 
         public async void GetAllFloor(string hostelId)
         {
-
+            FloorDataResponse floorDataResponse;
             var client = new HttpClient();
             client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
@@ -1717,6 +1827,11 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     string result = await response.Content.ReadAsStringAsync();
+                    if (result.Equals("No Data Found"))
+                    {
+                        floorDataResponse = JsonConvert.DeserializeObject<FloorDataResponse>(result);
+                        masterCallback.NoListFound(floorDataResponse.message);
+                    }
                     ObservableCollection<FloorData> batchData = JsonConvert.DeserializeObject<ObservableCollection<FloorData>>(result);
                     await masterCallback.LoadFloorList(batchData);
                 }
@@ -1883,7 +1998,7 @@ namespace HMS.Services
 
         }
 
-        public async void SaveRoomBed(string hostelId, string bedNo,string userId,string hostelRoomId)
+        public async void SaveRoomBed(string hostelId, string bedNo, string userId, string hostelRoomId)
         {
             HttpResponseMessage response;
             RoomResponse roomResponse;
@@ -1894,7 +2009,7 @@ namespace HMS.Services
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
 
-                string json = @"{""hostelId"" : """ + hostelId + @""",""bedNo"" : """ + bedNo + @""",""userId"":"""+ userId+ @""",""hostelRoomId"":"""+ hostelRoomId + @"""}";
+                string json = @"{""hostelId"" : """ + hostelId + @""",""bedNo"" : """ + bedNo + @""",""userId"":""" + userId + @""",""hostelRoomId"":""" + hostelRoomId + @"""}";
 
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");

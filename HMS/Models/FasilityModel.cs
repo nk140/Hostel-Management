@@ -7,6 +7,11 @@ namespace HMS.Models
         public string userId { get; set; }
         public string name { get; set; }
     }
+    public class ViewFacility
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+    }
     public class UpdateFacility
     {
         public string id { get; set; }

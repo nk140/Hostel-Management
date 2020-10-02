@@ -21,6 +21,7 @@ namespace HMS.Services
         Iwardenleaveaction leaveaction;
         Inewsfeeddata inewsfeeddata;
         Inewstudentdata inewstudentdata;
+        iViewParent iViewParent;
         public WardenService(Iservicewarden callbackservice)
         {
             service = callbackservice;
@@ -48,6 +49,10 @@ namespace HMS.Services
         public WardenService(Istudentleave callbackmaster)
         {
             studentleavemaster = callbackmaster;
+        }
+        public WardenService(iViewParent viewParent)
+        {
+            iViewParent = viewParent;
         }
         public async void GetParentLeaveApproval()
         {
@@ -118,6 +123,42 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void  GetParentDetails()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.ParentStudentList);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<StudentParentDetail> leaveType = JsonConvert.DeserializeObject<ObservableCollection<StudentParentDetail>>(result);
+                    if (leaveType.Count > 0)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        iViewParent.LoadParentData(leaveType);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        iViewParent.Servicefailed("No Parent record");
+                    }
+
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    iViewParent.Servicefailed("No Data record");
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                iViewParent.Servicefailed("Something Went wrong");
             }
         }
         public async void GetNewsFeedDatalist()
@@ -241,7 +282,7 @@ namespace HMS.Services
             catch
             {
                 UserDialogs.Instance.HideLoading();
-                await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+                service.Servicefailed("No Service List Found");
             }
         }
         public async void GetHostelDetailList()

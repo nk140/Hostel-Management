@@ -17,6 +17,7 @@ namespace HMS.Interface
     {
         void LoadRoomBedList(ObservableCollection<RoomBedData> roomBedDatas);
         void Failer(string result);
+        void NoListFound(string result);
 
     }
     public interface EditRoomBedI

@@ -7,7 +7,7 @@
              x:Name="viewfacility"
              x:Class="HMS.View.Admin.ViewFacility">
     <StackLayout Orientation="Vertical" Spacing="9">
-        <Label Text="View Block" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+        <Label Text="View Facility" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
         <StackLayout Orientation="Horizontal" Margin="10">
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
                 <forms:AutoSuggestBox x:Name="txtsearchbyfloor" HorizontalOptions="FillAndExpand" TextMemberPath="name" DisplayMemberPath="name" PlaceholderText="Search from Facility name"  Margin="-17" TextChanged="txtsearchbyfloor_TextChanged" SuggestionChosen="txtsearchbyfloor_SuggestionChosen"/>
@@ -18,7 +18,7 @@
                 </Image.GestureRecognizers>
             </Image>-->
         </StackLayout>
-        <CollectionView x:Name="blocklist" ItemsSource="{Binding FacilityModelList}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+        <CollectionView x:Name="blocklist" ItemsSource="{Binding ViewFacilities}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Label WidthRequest="150" HeightRequest="40" Text="Serial No" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
@@ -32,7 +32,7 @@
                             <SwipeItems>
                                 <SwipeItem Text="Edit"
                                            IconImageSource="edit.jpg"
-                                           Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.EditCommand}"
+                                           Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.EditFacilityCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Green" />
                                 <!--<SwipeItem Text="View Floor"
@@ -42,7 +42,7 @@
                                            BackgroundColor="Green" />-->
                                 <SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
-                                           Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.DeleteCommand}"
+                                           Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.DeleteFacilityCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Red" />
                             </SwipeItems>

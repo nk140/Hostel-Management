@@ -426,6 +426,11 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("RoomData");
             OnPropertyChanged("RoomProperty");
         }
+
+        public void NoListFound(string result)
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
 
     }

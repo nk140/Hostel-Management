@@ -9,6 +9,12 @@ namespace HMS.Models
         public string hostelRoomTypeName { get; set; }
         public string noOfOccupants { get; set; }
     }
+    public class RoomTypeResponses
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
     public class UpdateRoomTypeModel
     {
         public string id { get; set; }

@@ -9,4 +9,9 @@ namespace HMS.Interface
         Task ServiceFaild();
         void UpdatedSucessfully(string result);
     }
+    public interface Iupdatestudentpassword
+    {
+        void ServiceFaild(string result);
+        void UpdatedSucessfully(string result);
+    }
 }

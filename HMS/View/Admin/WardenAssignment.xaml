@@ -7,12 +7,22 @@
              Title="Warden Assignment"
              x:Class="HMS.View.Admin.WardenAssignment">
     <AbsoluteLayout>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.06,0.79,0.08">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Text="{Binding CountryName}" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Warden Name"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.02,0.82,0.08">
+            <forms:AutoSuggestBox x:Name="txtsearchbywarden" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="firstName" DisplayMemberPath="firstName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Warden Name" TextChanged="txtsearchbywarden_TextChanged" SuggestionChosen="txtsearchbywarden_SuggestionChosen"/>
         </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.18,0.79,0.08">
-            <controls:BetterEntry Placeholder="Enter Hostel to be assign" Text="{Binding DisciplinaryReason}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-17"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.14,0.82,0.08">
+            <forms:AutoSuggestBox x:Name="txtsearchbyarea" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Area Name" TextChanged="txtsearchbyarea_TextChanged" SuggestionChosen="txtsearchbyarea_SuggestionChosen"/>
         </Frame>
-        <Button Text="Assign"  TextColor="White" BackgroundColor="#e96125" CornerRadius="30"  AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.3,0.55,0.08"/>
+        <Frame x:Name="frmhostel" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.26,0.82,0.08">
+            <controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelModelList}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding hostelName}" Margin="-17" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>
+            <!--<forms:AutoSuggestBox x:Name="txtsearchbyhostel" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Hostel Name" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen"/>-->
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.45,0.82,0.2">
+            <controls:XEditor x:Name="txtassignedhostellist" Placeholder="Enter Hostel to be assign"  FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-12"/>
+        </Frame>
+        <Button Text="Assign"  TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Command="{Binding AssignWardenCommand}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.67,0.55,0.08"/>
     </AbsoluteLayout>
 </ContentPage>

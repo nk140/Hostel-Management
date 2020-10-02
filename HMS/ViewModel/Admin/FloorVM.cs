@@ -363,6 +363,11 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("FloorData");
             OnPropertyChanged("FloorProp");
         }
+
+        public void NoListFound(string result)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
     }

@@ -1,5 +1,7 @@
 ﻿using HMS.Data;
+using HMS.Interface;
 using HMS.Models;
+using HMS.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -8,38 +10,39 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Warden
 {
-    public class StudentParentInfo : BaseViewModel
+    public class StudentParentInfo : BaseViewModel,iViewParent
     {
-        private ObservableCollection<Parents> parentlist = new ObservableCollection<Parents>();
-        Parentlist parentlists1 = new Parentlist();
+        private ObservableCollection<StudentParentDetail> studentParentDetails = new ObservableCollection<StudentParentDetail>();
+        WardenService web;
         #region list
-        public ObservableCollection<Parents> Parentlist
+        public ObservableCollection<StudentParentDetail> StudentParentDetails
         {
             get
             {
-                return parentlist;
+                return studentParentDetails;
             }
             set
             {
-                parentlist = value;
-                OnPropertyChanged();
+                studentParentDetails = value;
+                OnPropertyChanged("StudentParentDetails");
             }
         }
         #endregion
         #region Tapcommands
-        public ICommand CallCommand => new Command<Parents>(OnCallCommand);
-        public ICommand MessageCommand => new Command<Parents>(OnMessageCommand);
-        public ICommand WhatsappCommand => new Command<Parents>(OnWhatsappCommand);
+        public ICommand CallCommand => new Command<StudentParentDetail>(OnCallCommand);
+        public ICommand MessageCommand => new Command<StudentParentDetail>(OnMessageCommand);
+        public ICommand WhatsappCommand => new Command<StudentParentDetail>(OnWhatsappCommand);
         #endregion
         public StudentParentInfo()
         {
-            Parentlist = new ObservableCollection<Parents>(parentlists1.Parent);
+            web = new WardenService((iViewParent)this);
+            web.GetParentDetails();
         }
-        public async void OnCallCommand(Parents guestModel)
+        public async void OnCallCommand(StudentParentDetail guestModel)
         {
             try
             {
-                PhoneDialer.Open(guestModel.contactno);
+                PhoneDialer.Open(guestModel.parentPhoneNo);
             }
             catch (ArgumentNullException anEx)
             {
@@ -54,11 +57,11 @@ namespace HMS.ViewModel.Warden
                 // Other error has occurred.
             }
         }
-        public async void OnMessageCommand(Parents guestModel)
+        public async void OnMessageCommand(StudentParentDetail guestModel)
         {
             try
             {
-                var message = new SmsMessage("You Have to come to collect refund money", guestModel.contactno);
+                var message = new SmsMessage("You Have to come to collect refund money", guestModel.parentPhoneNo);
                 await Sms.ComposeAsync(message);
             }
             catch (FeatureNotSupportedException ex)
@@ -70,16 +73,27 @@ namespace HMS.ViewModel.Warden
                 await App.Current.MainPage.DisplayAlert("Failed", ex.Message, "OK");
             }
         }
-        public async void OnWhatsappCommand(Parents guestModel)
+        public async void OnWhatsappCommand(StudentParentDetail guestModel)
         {
             try
             {
-                Device.OpenUri(new Uri("whatsapp://send?phone=+91" + guestModel.contactno));
+                Device.OpenUri(new Uri("whatsapp://send?phone=+91" + guestModel.parentPhoneNo));
             }
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Not Installed", "Whatsapp Not Installed", "ok");
             }
+        }
+
+        public void LoadParentData(ObservableCollection<StudentParentDetail> studentParentDetails)
+        {
+            StudentParentDetails = studentParentDetails;
+            OnPropertyChanged("StudentParentDetails");
+        }
+
+        public void Servicefailed(string result)
+        {
+           
         }
     }
 }

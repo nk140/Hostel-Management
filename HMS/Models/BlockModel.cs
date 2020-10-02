@@ -9,6 +9,12 @@ namespace HMS.Models
         public string areaId { get; set; }
         public string hostelId { get; set; }
     }
+    public class BlockModelResponse
+    {
+        public string status { get; set; }
+        public string code { get; set; }
+        public string message { get; set; }
+    }
     public class UpdateBlock
     {
         public string blockId { get; set; }

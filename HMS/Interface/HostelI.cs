@@ -7,6 +7,11 @@ namespace HMS.Interface
         Task ServiceFaild(string responseresult);
         Task PostHostelNameSuccess(string resultHostel);
     }
+    public interface HostelAdmissionI
+    {
+        void Sucess(string result);
+        void failed(string result);
+    }
     public interface EditHostelI
     {
         void ServiceFaild(string responseresult);

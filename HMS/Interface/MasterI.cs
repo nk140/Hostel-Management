@@ -9,6 +9,7 @@ namespace HMS.Interface
         Task LoadAreaList(ObservableCollection<AreaModel> AreaList);
         Task LoadHostelList(ObservableCollection<HostelModel> HostelList);
         Task LoadBlockList(ObservableCollection<BlockModel> BlockList);
+        void NoListFound(string result);
         Task LoadFloorList(ObservableCollection<FloorData> FloorList);
         Task LoadRoomList(ObservableCollection<RoomModel> RoomList);
         Task ServiceFailed(int index);

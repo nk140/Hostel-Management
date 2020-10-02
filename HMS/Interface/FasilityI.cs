@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using HMS.Models;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace HMS.Interface
 {
@@ -6,6 +8,11 @@ namespace HMS.Interface
     {
         Task ServiceFaild(string result);
         Task PostFasilitySuccess(string resultHostel);
+    }
+    public interface ViewFacilityI
+    {
+        void LoadFacilityList(ObservableCollection<ViewFacility> viewFacilities);
+        void ServiceFaild(string result);
     }
     public interface EditFasilityI
     {

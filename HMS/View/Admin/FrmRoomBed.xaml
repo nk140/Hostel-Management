@@ -66,10 +66,16 @@
 
             </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
-                <forms:AutoSuggestBox x:Name="txtsearchbyblock" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  DisplayMemberPath="name" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search For Block" TextChanged="txtsearchbyblock_TextChanged" SuggestionChosen="txtsearchbyblock_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbyblock" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsEnabled="False" DisplayMemberPath="name" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search For Block" TextChanged="txtsearchbyblock_TextChanged" SuggestionChosen="txtsearchbyblock_SuggestionChosen"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
-                <forms:AutoSuggestBox x:Name="txtsearchbyroomname" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  DisplayMemberPath="name" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search For Which Room" TextChanged="txtsearchbyroomname_TextChanged" SuggestionChosen="txtsearchbyroomname_SuggestionChosen" />
+                <forms:AutoSuggestBox x:Name="txtsearchbyroomname" Margin="-16" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsEnabled="False" DisplayMemberPath="name" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search For Which Room" TextChanged="txtsearchbyroomname_TextChanged" SuggestionChosen="txtsearchbyroomname_SuggestionChosen"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <controls:BetterEntry 
