@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             x:Name="viewdisciplinaryaction"
+             Title="View Disciplinary Action"
+             x:Class="HMS.View.Admin.ViewDisciplinaryAction">
+    <StackLayout Orientation="Vertical" Spacing="9">
+        <StackLayout Orientation="Horizontal" Margin="10">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
+                <forms:AutoSuggestBox x:Name="txtsearchbydisciplinaryname" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" PlaceholderText="Search from Disciplinaryaction name"  Margin="-17"/>
+            </Frame>
+            <!-- <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
+        </StackLayout>
+        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+            <CollectionView x:Name="arealist" ItemsSource="{Binding AreaLists}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+                <CollectionView.Header>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label WidthRequest="150" HeightRequest="40" Text="Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <Label WidthRequest="200" HeightRequest="40" Text="Date" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <Label WidthRequest="200" HeightRequest="40" Text="TIme" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Edit"
+                                           IconImageSource="edit.jpg"
+                                           Command="{Binding Source={x:Reference viewdisciplinaryaction}, Path=BindingContext.EditCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Green" />
+                                    <SwipeItem Text="View Hostel"
+                                           IconImageSource="edit.jpg"
+                                           Command="{Binding Source={x:Reference viewdisciplinaryaction}, Path=BindingContext.ViewCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Green" />
+                                    <SwipeItem Text="Delete"
+                                           IconImageSource="reject.png"
+                                           Command="{Binding Source={x:Reference viewdisciplinaryaction}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Red" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label WidthRequest="150" HeightRequest="40" Text="{Binding Studentname}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label WidthRequest="200" HeightRequest="40" Text="{Binding Date}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label WidthRequest="200" HeightRequest="40" Text="{Binding Time}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

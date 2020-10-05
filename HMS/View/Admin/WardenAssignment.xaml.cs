@@ -22,12 +22,12 @@ namespace HMS.View.Admin
         ObservableCollection<HostelModel> hostelModels = new ObservableCollection<HostelModel>();
         List<string> hostellist = new List<string>();
         StringBuilder sb = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         public WardenAssignment()
         {
             InitializeComponent();
             BindingContext = vm = new WardenAssignmentVM();
         }
-
         private void txtsearchbyarea_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try
@@ -61,7 +61,6 @@ namespace HMS.View.Admin
 
             }
         }
-
         private void txtsearchbyarea_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyarea.Text = ((AreaModel)e.SelectedItem).areaName;
@@ -145,21 +144,42 @@ namespace HMS.View.Admin
             //}
             //txtassignedhostellist.Text = sb.ToString();
         }
-
         private void ddhostel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedhostelname = ddhostel.Items[ddhostel.SelectedIndex];
-            sb.Append(selectedhostelname);
-            sb.Append(",");
-            txtassignedhostellist.Text = sb.ToString();
+            //string selectedhostelname = ddhostel.Items[ddhostel.SelectedIndex];
+            //sb.Append(selectedhostelname);
+            //sb.Append(",");
+            //txtassignedhostellist.Text = sb.ToString();
         }
-
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (vm.HostelModelList.Count == 0 || vm.HostelModelList == null)
                 App.Current.MainPage.DisplayAlert("HMS", "No Hostel List", "OK");
             else
-                ddhostel.IsEnabled = true;
+            {
+                lv_role.IsVisible = true;
+                lv_role.IsEnabled = true;
+                lv_role.HeightRequest = (140 * vm.HostelModelList.Count) + 20;
+            }
+        }
+        private void lv_role_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            HostelModel md = (HostelModel)lv_role.SelectedItem;
+            int cnt = vm.HostelModelList.IndexOf(md);
+            if (cnt >= 0)
+            {
+                selectehostel(cnt);
+            }
+        }
+        public void selectehostel(int index)
+        {
+            string hostelname = vm.HostelModelList[index].hostelName;
+            string hostelid = vm.HostelModelList[index].id;
+            sb.Append(hostelname);
+            sb2.Append(hostelid);
+            sb.Append(",");
+            sb2.Append(",");
+            txtassignedhostellist.Text = sb.ToString();
         }
     }
 }

@@ -27,21 +27,30 @@ namespace HMS.View
             var usertype = Convert.ToString(SecureStorage.GetAsync("type").GetAwaiter().GetResult());
             if (usertype == "student")
             {
-                App.userid= Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
+                App.userid = Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
                 App.studentupdatedphoneno = SecureStorage.GetAsync("mobileNo").GetAwaiter().GetResult();
                 Application.Current.MainPage = new Student.FrmStdMain();
             }
             else if (usertype == "warden")
+            {
+                App.userid = Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
                 Application.Current.MainPage = new FrmWardenMain();
+            }
             else if (usertype == "parent")
+            {
+                App.userid = Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
                 Application.Current.MainPage = new FrmPrantMain();
+            }
             else if (usertype == "admin")
             {
                 App.userid = Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
                 Application.Current.MainPage = new Admin.FrmMainPage();
             }
             else if (usertype == "guest")
+            {
+                App.userid = Convert.ToString(SecureStorage.GetAsync("userId").GetAwaiter().GetResult());
                 Application.Current.MainPage = new GuestMainMenu();
+            }
             else
                 Application.Current.MainPage = new FrmRoommateDetails();
         }

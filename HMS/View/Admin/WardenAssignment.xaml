@@ -14,7 +14,31 @@
             <forms:AutoSuggestBox x:Name="txtsearchbyarea" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Area Name" TextChanged="txtsearchbyarea_TextChanged" SuggestionChosen="txtsearchbyarea_SuggestionChosen"/>
         </Frame>
         <Frame x:Name="frmhostel" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.26,0.82,0.08">
-            <controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelModelList}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding hostelName}" Margin="-17" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>
+            <ListView 
+                                x:Name="lv_role"
+                                IsVisible="True"
+                                IsEnabled="False"
+                                ItemsSource="{Binding HostelModelList}"
+                                VerticalOptions="Fill"  
+                                SelectionMode="Single"
+                                ItemSelected="lv_role_ItemSelected">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label Text="{Binding hostelName}"
+                                               HorizontalOptions="StartAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"/>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelModelList}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding hostelName}" Margin="-17" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>-->
             <!--<forms:AutoSuggestBox x:Name="txtsearchbyhostel" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Hostel Name" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen"/>-->
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>

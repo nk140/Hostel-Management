@@ -5,10 +5,10 @@ namespace HMS.Models
     public class WardenModel
     {
 
-        public string roleId { get; set; }
+        //public string roleId { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-        public string isWarden { get; set; }
+        //public string isWarden { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string dateOfBirth { get; set; }

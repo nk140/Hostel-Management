@@ -34,7 +34,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout x:Name="emptyContent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsResponsenotok}" Orientation="Vertical">
+            <!--<StackLayout x:Name="emptyContent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding IsResponsenotok}" Orientation="Vertical">
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
@@ -43,7 +43,7 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Row="1" Source="no_connection.png" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                 </Grid>
-            </StackLayout>
+            </StackLayout>-->
         </Grid>
     </ScrollView>
 </ContentPage>

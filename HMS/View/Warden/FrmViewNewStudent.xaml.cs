@@ -37,11 +37,11 @@ namespace HMS.View.Warden
                     {
                         foreach (var items in vm.GetStudents)
                         {
-                            if (!string.IsNullOrEmpty(items.roomId) || items.roomId != null)
+                            if (!string.IsNullOrEmpty(items.studentName) || items.studentName != null)
                             {
                                 if (txtsearchbykeyword.Text != string.Empty)
                                 {
-                                    if (items.roomId.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.roomId.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
+                                    if (items.studentName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.studentName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
                                         Students.Add(items);
                                 }
                             }
@@ -59,13 +59,13 @@ namespace HMS.View.Warden
         {
             try
             {
-                txtsearchbykeyword.Text = ((Students)e.SelectedItem).roomId;
+                txtsearchbykeyword.Text = ((Students)e.SelectedItem).studentName;
                 students = new ObservableCollection<Students>();
                 if (Students != null)
                 {
                     foreach (var items in Students)
                     {
-                        if (items.roomId == txtsearchbykeyword.Text)
+                        if (items.studentName == txtsearchbykeyword.Text)
                             students.Add(items);
                     }
                 }

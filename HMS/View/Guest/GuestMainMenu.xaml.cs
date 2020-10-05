@@ -40,6 +40,7 @@ namespace HMS.View.Guest
                 {
                     item.Selected = false;
                     SecureStorage.RemoveAll();
+                    App.userid = null;
                     Application.Current.MainPage = new FrmLogin();
                 }
                 else

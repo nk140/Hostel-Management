@@ -1,4 +1,7 @@
-﻿namespace HMS.Models
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+namespace HMS.Models
 {
     public class Room
     {
@@ -11,12 +14,14 @@
         public string Images { get; set; }
         public string No { get; set; }
     }
-    public class RoomNameList
+    public class RoomNameList:JsonProperty
     {
         public string id { get; set; }
         public string name { get; set; }
         public string noOfBed { get; set; }
         public string hostelRoomTypeId { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class RoomNameResponse
     {

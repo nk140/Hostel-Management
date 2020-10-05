@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
+             Title="Hostel Admission"
              x:Class="HMS.View.Student.StudentHostelAdmission">
     <ScrollView>
         <Grid Margin="8" RowSpacing="14">
@@ -21,9 +22,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Unique Id" Keyboard="Text"  Text="{Binding HostelAdmission.studentId}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-            </Frame>
+            <!--<Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
+                <controls:BetterEntry Placeholder="Enter Roll No" Keyboard="Text"  Text="{Binding HostelAdmission.studentId}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>-->
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
                 <controls:BetterEntry Placeholder="Enter Student Name" Keyboard="Text"  Text="{Binding HostelAdmission.firstName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
@@ -34,7 +35,7 @@
                 <forms:AutoSuggestBox x:Name="txtsearchbyhostelname" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" PlaceholderText="Search from Hostel name"  Margin="-17" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen"/>
             </Frame>
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="4">
-                <forms:AutoSuggestBox x:Name="txtsearchbycourse" HorizontalOptions="FillAndExpand" TextMemberPath="" DisplayMemberPath="" PlaceholderText="Search from Course name"  Margin="-17" TextChanged="txtsearchbycourse_TextChanged" SuggestionChosen="txtsearchbycourse_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbycourse" HorizontalOptions="FillAndExpand" TextMemberPath="courseName" DisplayMemberPath="courseName" PlaceholderText="Search from Course name"  Margin="-17" TextChanged="txtsearchbycourse_TextChanged" SuggestionChosen="txtsearchbycourse_SuggestionChosen"/>
             </Frame>
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="5">
                 <forms:AutoSuggestBox x:Name="txtsearchbyroomtypename" HorizontalOptions="FillAndExpand" TextMemberPath="name" DisplayMemberPath="name" PlaceholderText="Search from Room type name"  Margin="-17" TextChanged="txtsearchbyroomtypename_TextChanged" SuggestionChosen="txtsearchbyroomtypename_SuggestionChosen"/>

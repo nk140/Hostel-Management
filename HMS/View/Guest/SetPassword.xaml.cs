@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HMS.ViewModel.Parent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace HMS.View.Guest
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetPassword : ContentPage
     {
+        UpdatePasswordVM vm;
         public SetPassword()
         {
             InitializeComponent();
+            BindingContext = vm = new UpdatePasswordVM();
         }
     }
 }

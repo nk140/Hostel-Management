@@ -111,11 +111,11 @@ namespace HMS.Services
             roomBed = master;
             this.DeleteRoomBedI = deleteRoomBedI;
         }
-        public MasterServices(RoomBedI1 master,MasterI masters,RoomI room)
+        public MasterServices(RoomBedI1 master, MasterI masters, FloorI floor)
         {
             roomBed = master;
             masterCallback = masters;
-            roomCallback=room
+            floorCallback = floor;
         }
         public MasterServices(EditRoomBedI editRoomBedI)
         {
@@ -546,6 +546,10 @@ namespace HMS.Services
                     else
                     {
                         ObservableCollection<RoomNameList> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
+                        for (int i = 0; i < batchData.Count; i++)
+                        {
+                            batchData[i].listcount = i.ToString();
+                        }
                         roomListI.LoadRoomList(batchData);
                     }
                 }
@@ -585,6 +589,10 @@ namespace HMS.Services
                     else
                     {
                         ObservableCollection<RoomBedData> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomBedData>>(json);
+                        for (int i = 0; i < batchData.Count; i++)
+                        {
+                            batchData[i].listcount = i.ToString();
+                        }
                         roomBed.LoadRoomBedList(batchData);
                     }
                 }
@@ -1585,9 +1593,11 @@ namespace HMS.Services
                     string result = await response.Content.ReadAsStringAsync();
 
                     ObservableCollection<RoomTypeModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomTypeModel>>(result);
+                    for (int i = 0; i < batchData.Count; i++)
+                    {
+                        batchData[i].listcount = i.ToString();
+                    }
                     await floorCallback.LoadRoomType(batchData);
-
-
                 }
                 else
                 {
@@ -1689,6 +1699,10 @@ namespace HMS.Services
                     else
                     {
                         ObservableCollection<AreaModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<AreaModel>>(result);
+                        for (int i = 0; i < batchData.Count; i++)
+                        {
+                            batchData[i].listcount = i.ToString();
+                        }
                         await masterCallback.LoadAreaList(batchData);
                     }
                 }
@@ -1730,6 +1744,10 @@ namespace HMS.Services
                     else
                     {
                         batchData = JsonConvert.DeserializeObject<ObservableCollection<HostelModel>>(result);
+                        for (int i = 0; i < batchData.Count; i++)
+                        {
+                            batchData[i].listcount = i.ToString();
+                        }
                         await masterCallback.LoadHostelList(batchData);
                     }
                 }
@@ -1764,9 +1782,15 @@ namespace HMS.Services
                         blockModelResponse = JsonConvert.DeserializeObject<BlockModelResponse>(result);
                         masterCallback.NoListFound(blockModelResponse.message);
                     }
-                    ObservableCollection<BlockModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<BlockModel>>(result);
-                    await masterCallback.LoadBlockList(batchData);
-
+                    else
+                    {
+                        ObservableCollection<BlockModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<BlockModel>>(result);
+                        for (int i = 0; i < batchData.Count; i++)
+                        {
+                            batchData[i].listcount = i.ToString();
+                        }
+                        await masterCallback.LoadBlockList(batchData);
+                    }
 
                 }
                 else
@@ -1832,8 +1856,15 @@ namespace HMS.Services
                         floorDataResponse = JsonConvert.DeserializeObject<FloorDataResponse>(result);
                         masterCallback.NoListFound(floorDataResponse.message);
                     }
-                    ObservableCollection<FloorData> batchData = JsonConvert.DeserializeObject<ObservableCollection<FloorData>>(result);
-                    await masterCallback.LoadFloorList(batchData);
+                    else
+                    {
+                        ObservableCollection<FloorData> batchData = JsonConvert.DeserializeObject<ObservableCollection<FloorData>>(result);
+                        for (int i = 0; i < batchData.Count; i++)
+                        {
+                            batchData[i].listcount = i.ToString();
+                        }
+                        await masterCallback.LoadFloorList(batchData);
+                    }
                 }
                 else
                 {
@@ -2128,7 +2159,7 @@ namespace HMS.Services
                 // string json = @"{""hostelId"" : """ + hostelId + @""",""bedNo"" : """ + bedNo + @"""}";
                 model.lastName = "";
                 model.permanent_address_line_2 = "";
-                model.isWarden = "1";
+                //model.isWarden = "1";
                 model.dateOfBirth = "23/01/1994";
                 model.dateOfJoining = "23/01/1994";
 

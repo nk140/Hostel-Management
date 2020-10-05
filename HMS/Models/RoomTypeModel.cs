@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class RoomTypeModel
+    public class RoomTypeModel:JsonProperty
     {
         public string id { get; set; }
         public string name { get; set; }
         public string hostelRoomTypeName { get; set; }
         public string noOfOccupants { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class RoomTypeResponses
     {

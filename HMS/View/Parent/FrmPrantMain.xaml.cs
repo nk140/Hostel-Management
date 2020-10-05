@@ -43,6 +43,7 @@ namespace HMS.View.Parrent
                 {
                     item.Selected = false;
                     SecureStorage.RemoveAll();
+                    App.userid = null;
                     Application.Current.MainPage = new FrmLogin();
                 }
                 else

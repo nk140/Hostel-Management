@@ -246,21 +246,21 @@ namespace HMS.ViewModel.Admin
                 App.Current.MainPage.DisplayAlert("", "Enter Email Id", "OK");
                 return false;
             }
-            else if (RoleName.Length == 0 || string.IsNullOrEmpty(RoleName))
-            {
-                App.Current.MainPage.DisplayAlert("HMS", "Enter Role", "OK");
-                return false;
-            }
+            //else if (RoleName.Length == 0 || string.IsNullOrEmpty(RoleName))
+            //{
+            //    App.Current.MainPage.DisplayAlert("HMS", "Enter Role", "OK");
+            //    return false;
+            //}
             else if (Warden.gender == null || Warden.gender.Length == 0)
             {
                 App.Current.MainPage.DisplayAlert("", "Select Gender", "OK");
                 return false;
             }
-            else if(Warden.roleId==null || Warden.roleId.Length==0)
-            {
-                App.Current.MainPage.DisplayAlert("", "Select Role", "OK");
-                return false;
-            }
+            //else if(Warden.roleId==null || Warden.roleId.Length==0)
+            //{
+            //    App.Current.MainPage.DisplayAlert("", "Select Role", "OK");
+            //    return false;
+            //}
             else if (Warden.email == null || Warden.email.Length == 0)
             {
                 App.Current.MainPage.DisplayAlert("", "Enter Email Address", "OK");
@@ -294,7 +294,7 @@ namespace HMS.ViewModel.Admin
 
         public void RoleItemSelect(int index)
         {
-            Warden.roleId = Role[index].roleId.ToString();
+           // Warden.roleId = Role[index].roleId.ToString();
             RoleName = Role[index].roleName;
             RoleVisible = false;
             OnPropertyChanged("RoleVisible");

@@ -9,6 +9,15 @@ namespace HMS.Models
         public string name { get; set; }
         public string userId { get; set; }
     }
+    public class DisciplinaryActionbywarden
+    {
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string StudRegno { get; set; }
+        public string Studentname { get; set; }
+        public string DisciplinaryType { get; set; }
+        public string Description { get; set; }
+    }
     public class ViewDisciplinaryType:JsonProperty
     {
         public string id { get; set; }

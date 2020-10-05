@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class AreaModel
+    public class AreaModel:JsonProperty
     {
         public string id { get; set; }
         public string areaName { get; set; }
         public string stateId { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
        
     }
     public class AreaModelResponse

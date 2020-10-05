@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
@@ -20,12 +22,14 @@ namespace HMS.Models
 "blocks_id":"1"
          */
     }
-    public class FloorData
+    public class FloorData:JsonProperty
     {
         public int id { get; set; }
         public int hostelId { get; set; }
         public string floorNo { get; set; }
         public int noOfRooms { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class FloorDataResponse
     {

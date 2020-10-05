@@ -61,7 +61,7 @@ namespace HMS.ViewModel
                  if (UserModel.userType == "warden")
                 {
                     UserDialogs.Instance.HideLoading();
-                    await SecureStorage.SetAsync("userId", userData.id.ToString());
+                    await SecureStorage.SetAsync("userId", userData.userId.ToString());
                     await SecureStorage.SetAsync("type", userData.userType);
                     await SecureStorage.SetAsync("id", UserModel.id.ToString());
                     await SecureStorage.SetAsync("firstName", UserModel.firstName);
@@ -124,7 +124,7 @@ namespace HMS.ViewModel
                 else if (UserModel.userType == "parent")
                 {
                     UserDialogs.Instance.HideLoading();
-                    await SecureStorage.SetAsync("userId", userData.id.ToString());
+                    await SecureStorage.SetAsync("userId", userData.userId.ToString());
                     await SecureStorage.SetAsync("type", userData.userType);
                     await SecureStorage.SetAsync("id", UserModel.id.ToString());
                     await SecureStorage.SetAsync("firstName", UserModel.firstName);
@@ -188,7 +188,7 @@ namespace HMS.ViewModel
                 {
                     UserDialogs.Instance.HideLoading();
                     if (UserModel.userId != 0)
-                        await SecureStorage.SetAsync("userId", userData.id.ToString());
+                        await SecureStorage.SetAsync("userId", userData.userId.ToString());
                     else
                     {
 

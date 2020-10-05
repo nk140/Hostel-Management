@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using HMS.View.Guest;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.ObjectModel;
@@ -23,6 +24,7 @@ namespace HMS.View.Warden
             wardenmenuList = new ObservableCollection<WardenMenuItem>
             {
                 new WardenMenuItem {Title="News Feed.",TargetType=typeof(AdminNewsFeed)},
+                new WardenMenuItem {Title="Set Password.",TargetType=typeof(SetPassword)},
                  //new WardenMenuItem {Title="Warden Registration.",TargetType=typeof(FrmWardenRegistration) },
                 new WardenMenuItem {Title="View Hostel Detail.",TargetType=typeof(FrmHostelDetail)},
                 new WardenMenuItem {Title="New Student Detail.",TargetType=typeof(FrmViewNewStudent)},
@@ -57,6 +59,7 @@ namespace HMS.View.Warden
                 {
                     item.Selected = false;
                     SecureStorage.RemoveAll();
+                    App.userid = null;
                     Application.Current.MainPage = new FrmLogin();
                 }
                 else

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class HostelModel
+    public class HostelModel:JsonProperty
     {
         public string id { get; set; }
         public string hostelName { get; set; }
@@ -13,7 +15,8 @@ namespace HMS.Models
         public string phone { get; set; }
         public string phoneNo { get; set; }
         public string email { get; set; }
-
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class HostelAdmission
     {

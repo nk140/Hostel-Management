@@ -20,9 +20,11 @@ namespace HMS.View.Student
         ObservableCollection<HostelModel> hostelModels;
         ObservableCollection<RoomBedData> roomBedDatas;
         ObservableCollection<RoomTypeModel> roomTypeModels;
+        ObservableCollection<CourseDetailModel> courseDetailModels;
         public StudentHostelAdmission()
         {
             InitializeComponent();
+            BindingContext = vm = new StudentHostelAdmissionVM();
         }
 
         private void txtsearchbyareaname_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
@@ -58,7 +60,7 @@ namespace HMS.View.Student
         private void txtsearchbyareaname_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyareaname.Text = ((AreaModel)e.SelectedItem).areaName;
-            var id= ((AreaModel)e.SelectedItem).id;
+            var id = ((AreaModel)e.SelectedItem).id;
             vm.GethostelList(id);
         }
 
@@ -95,19 +97,45 @@ namespace HMS.View.Student
         private void txtsearchbyhostel_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyhostelname.Text = ((HostelModel)e.SelectedItem).hostelName;
-            var id= ((HostelModel)e.SelectedItem).id;
+            var id = ((HostelModel)e.SelectedItem).id;
             vm.HostelAdmission.hostelId = id;
             vm.GetRoombedlist(id);
         }
 
         private void txtsearchbycourse_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
+            try
+            {
+                if (e.Reason == dotMorten.Xamarin.Forms.AutoSuggestionBoxTextChangeReason.UserInput)
+                {
+                    courseDetailModels = new ObservableCollection<CourseDetailModel>();
+                    if (vm.CourseDetailModels != null)
+                    {
+                        foreach (var items in vm.CourseDetailModels)
+                        {
+                            if (!string.IsNullOrEmpty(items.courseName))
+                            {
+                                if (!string.IsNullOrEmpty(txtsearchbycourse.Text))
+                                {
+                                    if (items.courseName.ToUpper().StartsWith(txtsearchbycourse.Text.ToUpper()) || items.courseName.ToLower().StartsWith(txtsearchbycourse.Text.ToLower()))
+                                        courseDetailModels.Add(items);
+                                }
+                            }
+                        }
+                        txtsearchbycourse.ItemsSource = courseDetailModels;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
+            }
         }
 
         private void txtsearchbycourse_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
-
+            txtsearchbycourse.Text = ((CourseDetailModel)e.SelectedItem).courseName;
+            vm.HostelAdmission.courseId = ((CourseDetailModel)e.SelectedItem).courseId;
         }
 
         private void txtsearchbyroomtypename_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
@@ -143,7 +171,7 @@ namespace HMS.View.Student
         private void txtsearchbyroomtypename_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyroomtypename.Text = ((RoomTypeModel)e.SelectedItem).name;
-            vm.HostelAdmission.roomTypeId= ((RoomTypeModel)e.SelectedItem).id;
+            vm.HostelAdmission.roomTypeId = ((RoomTypeModel)e.SelectedItem).id;
         }
         private void txtsearchbybedname_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
@@ -174,7 +202,6 @@ namespace HMS.View.Student
 
             }
         }
-
         private void txtsearchbybedname_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyroombed.Text = ((RoomBedData)e.SelectedItem).bedNo;

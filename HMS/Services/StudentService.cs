@@ -20,10 +20,32 @@ namespace HMS.Services
         RegistrationI registrationCallback;
         RoomTypeI roomTypeCallback;
         ContactWardenI ContactWardenCallback;
+        IEditWardenDetail editWardenDetail;
+        IDeleteWardenDetail deleteWardenDetail;
         Iservicecategory iservicecategory;
+        Icoursedetail icoursedetail;
+        IDeleteCourse deleteCourse;
+        ISaveCourse saveCourse;
         public StudentService(ProfileI callback)
         {
             profileCallback = callback;
+        }
+        public StudentService(IEditWardenDetail callback)
+        {
+            editWardenDetail = callback;
+        }
+        public StudentService(Icoursedetail coursedetail)
+        {
+            icoursedetail = coursedetail;
+        }
+        public StudentService(Icoursedetail coursedetail,IDeleteCourse ideletecourse)
+        {
+            icoursedetail = coursedetail;
+            deleteCourse = ideletecourse;
+        }
+        public StudentService(ISaveCourse isavecourse)
+        {
+            saveCourse = isavecourse;
         }
         public StudentService(Iupdatestudentpassword updatestudentpassword)
         {
@@ -33,9 +55,15 @@ namespace HMS.Services
         {
             leaveRequestCallback = callback;
         }
-        public StudentService(HostelAdmissionI hostel)
+        public StudentService(ContactWardenI callback, IDeleteWardenDetail ideleteWardenDetail)
+        {
+            ContactWardenCallback = callback;
+            deleteWardenDetail = ideleteWardenDetail;
+        }
+        public StudentService(HostelAdmissionI hostel, Icoursedetail coursedetail)
         {
             hostelAdmissionI = hostel;
+            icoursedetail = coursedetail;
         }
         public StudentService(RegistrationI callback)
         {
@@ -95,11 +123,75 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
             }
 
-
-
-
             //return response;
+        }
+        public async void GetCourseList()
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.Allcourse);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
 
+                    ObservableCollection<CourseDetailModel> profile = JsonConvert.DeserializeObject<ObservableCollection<CourseDetailModel>>(result);
+                    if (profile.Count > 0)
+                    {
+                        icoursedetail.GetCourseList(profile);
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("HMS", "No Course Found", "OK");
+                    }
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert(" ", "Data Error", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+            }
+        }
+        public async void CreateCourse(CourseModel courseModel)
+        {
+            CourseResponse courseResponse;
+            CourseErrorResponse courseErrorResponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+
+                string jsn = JsonConvert.SerializeObject(courseModel);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.coursesetup, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    courseResponse = JsonConvert.DeserializeObject<CourseResponse>(resultHostel);
+                    saveCourse.Sucess(courseResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    courseErrorResponse = JsonConvert.DeserializeObject<CourseErrorResponse>(resultHostel);
+                    saveCourse.servicefailed(courseErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
         }
         public async void UpdateProfile(ProfileUpdate profileUpdate)
         {
@@ -248,7 +340,7 @@ namespace HMS.Services
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+                await App.Current.MainPage.DisplayAlert("HMS", "No Leave Type List Found.", "OK");
             }
 
 
@@ -334,7 +426,78 @@ namespace HMS.Services
             }
 
         }
+        public async void UpdateWardenDetail(UpdateWarden updateWarden)
+        {
+            UpdateWardenResponse updateWardenResponse;
+            UpdateWardenErrorResponse updateWardenErrorResponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
+                string jsn = JsonConvert.SerializeObject(updateWarden);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.EditWarenDetail, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    updateWardenResponse = JsonConvert.DeserializeObject<UpdateWardenResponse>(resultHostel);
+                    editWardenDetail.updatesucessfully(updateWardenResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    updateWardenErrorResponse = JsonConvert.DeserializeObject<UpdateWardenErrorResponse>(resultHostel);
+                    editWardenDetail.servicefailed(updateWardenErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void DeleteWardenDetail(string userId)
+        {
+            DeleteAreaResppnse deleteAreaResppnse;
+            DeleteAreaErrorResponse deleteAreaErrorResponse;
+            HttpResponseMessage response;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                UserDialogs.Instance.ShowLoading();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string json = @"[{""userId"" : """ + userId + @"""}]";
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync(ApplicationURL.DeleteWardenDetail, content);
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    deleteAreaResppnse = JsonConvert.DeserializeObject<DeleteAreaResppnse>(result);
+                    deleteWardenDetail.Deletesucessfully(deleteAreaResppnse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    deleteAreaErrorResponse = JsonConvert.DeserializeObject<DeleteAreaErrorResponse>(result);
+                    deleteWardenDetail.servicefailed(deleteAreaErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
         public async void SaveLeaveRequest(LeaveRequestModel model)
         {
             LeaveErrorResponse leaveErrorResponse;
@@ -404,7 +567,7 @@ namespace HMS.Services
             }
             catch (Exception e)
             {
-                await App.Current.MainPage.DisplayAlert("HMS",e.ToString(), "OK");
+                await App.Current.MainPage.DisplayAlert("HMS", e.ToString(), "OK");
             }
         }
 

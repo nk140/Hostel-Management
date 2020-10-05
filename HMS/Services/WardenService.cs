@@ -22,6 +22,7 @@ namespace HMS.Services
         Inewsfeeddata inewsfeeddata;
         Inewstudentdata inewstudentdata;
         iViewParent iViewParent;
+        IDisciplinaryAction disciplinaryAction;
         public WardenService(Iservicewarden callbackservice)
         {
             service = callbackservice;
@@ -29,6 +30,10 @@ namespace HMS.Services
         public WardenService(Iwardenregistrtion callbackresponse)
         {
             wardenregistration = callbackresponse;
+        }
+        public WardenService(IDisciplinaryAction idisciplinaryaction)
+        {
+            disciplinaryAction = idisciplinaryaction;
         }
         public WardenService(Inewsfeeddata getnewsfeedlist)
         {
@@ -125,7 +130,7 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
-        public async void  GetParentDetails()
+        public async void GetParentDetails()
         {
             try
             {
@@ -247,6 +252,10 @@ namespace HMS.Services
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("", ex.ToString(), "OK");
             }
+        }
+        public async void SaveDisciplinaryActionTaken(DisciplinaryActionbywarden disciplinaryActionbywarden)
+        {
+
         }
         public async void GetServicelist()
         {

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             Title="Warden Detail"
+             x:Name="wardendetails"
+             x:Class="HMS.View.Admin.WardenDetails">
+    <StackLayout
+           Orientation="Vertical" >
+        <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Margin="30">
+            <forms:AutoSuggestBox x:Name="txtsearchbywarden" HorizontalOptions="FillAndExpand" TextMemberPath="firstName" DisplayMemberPath="firstName" PlaceholderText="Search from Warden name"  Margin="-17" TextChanged="txtsearchbywarden_TextChanged" SuggestionChosen="txtsearchbywarden_SuggestionChosen"/>
+        </Frame>
+        <CollectionView 
+                x:Name="lv_contact"    
+                ItemsSource="{Binding Warden}"
+                VerticalScrollBarVisibility="Never"
+                 VerticalOptions="FillAndExpand">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           IconImageSource="edit.jpg"
+                                           BackgroundColor="Green"
+                                           Command="{Binding Source={x:Reference wardendetails}, Path=BindingContext.EditCommand}"
+                                           CommandParameter="{Binding}"/>
+                                <!--<SwipeItem Text="View Room"
+                                           IconImageSource="edit.jpg"
+                                           BackgroundColor="Green"
+                                           Command="{Binding Source={x:Reference viewfloor}, Path=BindingContext.ViewRoomCommand}"
+                                           CommandParameter="{Binding}"/>-->
+                                <SwipeItem Text="Delete"
+                                           IconImageSource="reject.png"
+                                           Command="{Binding Source={x:Reference wardendetails}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="Red" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame
+                                 VerticalOptions="FillAndExpand"
+                                CornerRadius="25"
+                                BorderColor="Black"
+                                Margin="20,10,20,10">
+                            <StackLayout
+                                    Orientation="Vertical">
+                                <Label
+                                    Text="{Binding firstName}"/>
+                                <Label
+                                    Text="{Binding contact}"/>
+                            </StackLayout>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

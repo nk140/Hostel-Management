@@ -12,6 +12,7 @@
         <vm:ViewAreaVM></vm:ViewAreaVM>
     </ContentPage.BindingContext>-->
     <StackLayout Orientation="Vertical" Spacing="9">
+        <Label Text="View Area" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center"/>
         <StackLayout Orientation="Horizontal" Margin="10">
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
                 <forms:AutoSuggestBox x:Name="txtsearchbyareaname" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" PlaceholderText="Search from Area name"  Margin="-17" TextChanged="txtsearchbyareaname_TextChanged" SuggestionChosen="txtsearchbyareaname_SuggestionChosen"/>
@@ -49,7 +50,7 @@
                         </SwipeView.RightItems>
                         <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label WidthRequest="150" HeightRequest="40" Text="{Binding id}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="150" HeightRequest="40" Text="{Binding listcount}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="200" HeightRequest="40" Text="{Binding areaName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </Frame>

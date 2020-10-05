@@ -26,6 +26,7 @@ namespace HMS.View.Admin
             {
                 new HomeMenuItem {Title="News Feed",TargetType=typeof(AdminNewsFeed)},
                 new HomeMenuItem {Title="Set Password",TargetType=typeof(FrmParentRegistration)},
+                new HomeMenuItem {Title="Course Master",TargetType=typeof(CourseMaster)},
                 new HomeMenuItem {Title="Area Master",TargetType=typeof(AreaMaster)},
                 new HomeMenuItem {Title="Hostel Master",TargetType=typeof(HostelMaster)},
                 new HomeMenuItem {Title="Block Master",TargetType=typeof(BlockMaster)},
@@ -35,6 +36,7 @@ namespace HMS.View.Admin
                 new HomeMenuItem {Title="Room Type Master",TargetType=typeof(RoomTypeMaster)},
                     new HomeMenuItem {Title="Contact Student Parent",TargetType=typeof(FrmStudentParentContact)},
                     new HomeMenuItem {Title="Warden Assignment",TargetType=typeof(WardenAssignment)},
+                    new HomeMenuItem {Title="Warden Detail",TargetType=typeof(WardenDetails)},
                     new HomeMenuItem {Title="Contact warden",TargetType=typeof(FrmContactWarden)},
                     new HomeMenuItem {Title="Service Category Master",TargetType=typeof(ServiceCategoryMaster)},
                     new HomeMenuItem {Title="Facility Master",TargetType=typeof(FacilityMaster)},
@@ -59,6 +61,7 @@ namespace HMS.View.Admin
                 {
                     item.Selected = false;
                     SecureStorage.RemoveAll();
+                    App.userid = null;
                     Application.Current.MainPage = new FrmLogin();
                 }
                 else

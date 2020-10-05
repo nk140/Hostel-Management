@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
@@ -38,12 +40,14 @@ namespace HMS.Models
     {
         public string message { get; set; }
     }
-    public class RoomBedData
+    public class RoomBedData:JsonProperty
     {
         public string bedId { get; set; }
         public string bedNo { get; set; }
         public string hostelRoomId { get; set; }
         public string hostelId { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class RoomBedResponses
     {

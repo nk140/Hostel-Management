@@ -16,47 +16,26 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="0">
-                <forms:AutoSuggestBox x:Name="txtsearchbykeyword" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" PlaceholderText="Search By Student name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtstudentregistrationno" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" PlaceholderText="Enter student registration" TextChanged="txtstudentregistrationno_TextChanged" SuggestionChosen="txtstudentregistrationno_SuggestionChosen"/>
             </Frame>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="1">
-                <controls:BetterEntry Placeholder="Hostel Name" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="Student Name" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="2">
-                <controls:BetterEntry Placeholder="Block" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:DatePickers x:Name="dtofaction" DateSelected="dtofaction_DateSelected" FontSize="17" Margin="-17"/>
             </Frame>
-            <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="3">
-                <controls:BetterEntry Placeholder="Floor" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="2">
+                <controls:BorderlessTimePicker x:Name="timeofaction" Unfocused="timeofaction_Unfocused" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="4">
-                <controls:BetterEntry Placeholder="Room" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <forms:AutoSuggestBox x:Name="txtdisciplinarytype" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" PlaceholderText="Enter disciplinary type" TextChanged="txtdisciplinarytype_TextChanged" SuggestionChosen="txtdisciplinarytype_SuggestionChosen"/>
             </Frame>
-            <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="5">
-                <controls:BetterEntry Placeholder="Room bed" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-            </Frame>
-            <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="6">
-                <controls:CustomPicker x:Name="disciplinary" Title="Select Disciplinary Type" TitleColor="Black" BackgroundColor="Transparent" FontSize="17" Margin="-7" >
-                    <controls:CustomPicker.Items>
-                        <x:String>Misbehave</x:String>
-                        <x:String>Late Fee</x:String>
-                        <x:String>Broke Hostel Property</x:String>
-                    </controls:CustomPicker.Items>
-                </controls:CustomPicker>
-            </Frame>
-            <Frame CornerRadius="25" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="7">
+            <Frame CornerRadius="25" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="5">
                 <controls:XEditor Placeholder="Enter Description" Keyboard="Text" PlaceholderColor="Black" FontSize="17" Margin="-9"/>
             </Frame>
-            <Grid Grid.Row="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="btnupdate" CornerRadius="15" Text="Register Complain" Grid.Column="0" Margin="10,0,0,0" WidthRequest="165" HeightRequest="56" TextColor="White" BackgroundColor="#e96125"/>
-                <Button x:Name="btnreset" CornerRadius="15" Text="Reset"   Grid.Column="1" Margin="70,0,0,0" WidthRequest="130" HeightRequest="46" TextColor="White" BackgroundColor="#e96125"/>
-            </Grid>
+            <Button x:Name="btnupdate" CornerRadius="30" Grid.Row="6" Text="Register Complain" Command="{Binding TakeDisciplinaryActionCommand}" Padding="10,0,0,0" TextColor="White" BackgroundColor="#e96125"/>
         </Grid>
     </ScrollView>
 </ContentPage>

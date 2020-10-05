@@ -77,11 +77,15 @@
         public static string GetAllWarden = "/hostelandmesstest/api/v1/leave/wardeninfo";
         public static string StudentProfileUpdate = "/hostelandmesstest/api/v1/student/studentphoneupdate";
         public static string UpdateStudentPassword = "/hostelandmesstest/api/v1/student/studentpasswordupdate";
+        public static string Allcourse = "/hostelandmesstest/api/v1/area/allCourse";
+        public static string coursesetup = "/hostelandmesstest/api/v1/area/coursesetup";
         #endregion
 
         #region Warden
         public static string GetAllServiceType = "/hostelandmesstest/api/v1/student/allservicetype";
         public static string WardenRegistration = "/hostelandmesstest/api/v1/warden/wardenregister";
+        public static string EditWarenDetail = "/hostelandmesstest/api/v1/warden/wardenupdate";
+        public static string DeleteWardenDetail = "/hostelandmesstest/api/v1/warden/deletewarden";
         public static string GetStudentLeaveHistory = "/hostelandmesstest/api/v1/adminleave/adminstatus";
         public static string GetHostelDetailMaster = "/hostelandmesstest/api/v1/hostel/allHostel";
         public static string GetParentApprovalData = "/hostelandmesstest/api/v1/leave/parentleaves";

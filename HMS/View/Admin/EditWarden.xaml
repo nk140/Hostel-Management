@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             x:Class="HMS.View.Admin.EditWarden">
+    <ScrollView>
+        <StackLayout Orientation="Vertical">
+            <Grid Margin="8" RowSpacing="14">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Text="Edit Warden" FontSize="25" TextColor="White" HorizontalTextAlignment="Center" Grid.Row="0"/>
+                <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+                    <controls:BetterEntry Placeholder="Enter Warden Name" Text="{Binding UpdateWarden.name}" Keyboard="Default" x:Name="txtnewpassword" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                </Frame>
+                <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
+                    <controls:BetterEntry Placeholder="Enter Contact" Text="{Binding UpdateWarden.contactNo}" Keyboard="Telephone" MaxLength="10" x:Name="txtcnfpassword" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                </Frame>
+                <Button x:Name="btnupdate" CornerRadius="25" Text="Edit Warden" Command="{Binding UpdateWardenCommand}" Grid.Row="3" TextColor="White" BackgroundColor="#e96125"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

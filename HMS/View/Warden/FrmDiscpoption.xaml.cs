@@ -14,22 +14,32 @@ namespace HMS.View.Warden
             InitializeComponent();
         }
 
-        private void txtsearchbykeyword_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
+        private void txtdisciplinarytype_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
         {
-            try
-            {
-                if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
-                {
 
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
         }
 
-        private void txtsearchbykeyword_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
+        private void txtdisciplinarytype_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
+
+        }
+
+        private void txtstudentregistrationno_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtstudentregistrationno_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
+
+        }
+
+        private void dtofaction_DateSelected(object sender, DateChangedEventArgs e)
+        {
+
+        }
+
+        private void timeofaction_Unfocused(object sender, FocusEventArgs e)
         {
 
         }

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page:PopupPage  xmlns:Page="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:controls="clr-namespace:HMS.Controls"
+                 mc:Ignorable="d"
+             x:Class="HMS.View.Student.ViewDisciplinaryActionPopup">
+    <Page:PopupPage.Animation>
+        <animations:ScaleAnimation   
+                      PositionIn="Center"  
+                      PositionOut="Center"  
+                      ScaleIn="1.2"  
+                      ScaleOut="0.8"  
+                      DurationIn="400"  
+                      DurationOut="300"  
+                      EasingIn="SinOut"  
+                      EasingOut="SinIn"  
+      HasBackgroundAnimation="False"/>
+    </Page:PopupPage.Animation>
+    <Frame BackgroundColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" CornerRadius="25">
+        <Grid RowSpacing="18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Text="View Disciplinary Action Taken" HorizontalTextAlignment="Center" Grid.Row="0" TextColor="Black" FontSize="20"/>
+            <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="1" CornerRadius="30">
+                <controls:BetterEntry x:Name="txtDate" IsEnabled="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Date" Text="{Binding AreaName}"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="2" CornerRadius="30">
+                <controls:BetterEntry x:Name="txttime" IsEnabled="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Time" Text="{Binding AreaName}"/>
+            </Frame>
+            <Frame x:Name="frmhostel" BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="3" CornerRadius="30">
+                <controls:BetterEntry x:Name="txtstudentregno" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Registration no" IsEnabled="False" />
+                <!--<controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelLists}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>-->
+            </Frame>
+            <Frame x:Name="frmblock" BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="4" CornerRadius="30">
+                <controls:BetterEntry x:Name="txtstudentname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="student name" IsEnabled="False" />
+                <!--<controls:CustomPicker x:Name="ddblock" ItemsSource="{Binding BlockModelList}" IsEnabled="False" Title="Select block" ItemDisplayBinding="{Binding id}" SelectedIndexChanged="ddblock_SelectedIndexChanged"/>-->
+            </Frame>
+            <Frame x:Name="frmroomname" BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="5" CornerRadius="30">
+                <controls:BetterEntry x:Name="txtdisciplinarytype" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Disciplinary Type" IsEnabled="False" />
+            </Frame>
+            <Frame x:Name="frmroomnames" BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="6" CornerRadius="30">
+                <controls:XEditor x:Name="txtdescription" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="5" Placeholder="Description" IsEnabled="False" />
+            </Frame>
+            <Button Text="Close" x:Name="btnclose" Clicked="btnclose_Clicked" CornerRadius="30" TextColor="White" BackgroundColor="#e96125" Grid.Row="7"/>
+        </Grid>
+    </Frame>
+</Page:PopupPage>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  xmlns:controls="clr-namespace:HMS.Controls"
-             Title="Create Warden"
+             Title="Create Warden/Director"
              x:Class="HMS.View.Admin.FrmWardenCreatioin">
     <ContentPage.Content>
         <ScrollView
@@ -71,7 +71,7 @@
                            ReturnType="Next" />
                         </Frame>
 
-                        <StackLayout>
+                        <!--<StackLayout>
                             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                                 <controls:BetterEntry 
                             Placeholder="Select Role"
@@ -88,9 +88,9 @@
                                 NumberOfTapsRequired="1">
                                 </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                        </StackLayout>-->
 
-                        <Frame 
+                        <!--<Frame 
                     x:Name="f_role_list"
                     HasShadow="True"
                     IsVisible="{Binding RoleVisible}"                      
@@ -123,7 +123,7 @@
 
                             </StackLayout>
 
-                        </Frame>
+                        </Frame>-->
 
                         <StackLayout Orientation="Horizontal">
                             <RadioButton Text="Male" FontSize="15" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}" TextColor="#e96125"/>

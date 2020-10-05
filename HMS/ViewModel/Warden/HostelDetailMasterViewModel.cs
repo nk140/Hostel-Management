@@ -19,7 +19,7 @@ namespace HMS.ViewModel.Warden
             set
             {
                 HostelData = value;
-                OnPropertyChanged();
+                OnPropertyChanged("HostelData");
             }
         }
         #endregion

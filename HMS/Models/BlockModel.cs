@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class BlockModel
+    public class BlockModel:JsonProperty
     {
         public string id { get; set; }
         public string name { get; set; }
         public string areaId { get; set; }
         public string hostelId { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class BlockModelResponse
     {

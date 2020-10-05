@@ -7,6 +7,16 @@ namespace HMS.Interface
     {
         void SaveDisciplinaryType(string result);
     }
+    public interface IDisciplinaryAction
+    {
+        void Disciplinaryactiontaken(string result);
+        void servicefailed(string result);
+    }
+    public interface ViewDisciplinaryActionTaken
+    {
+        void LoadTakenDisciplinaryAction(ObservableCollection<DisciplinaryActionbywarden> disciplinaryActionbywardens);
+        void servicefailed(string result);
+    }
     public interface ViewIDisciplinary
     {
         void LoadDisciplinaryList(ObservableCollection<ViewDisciplinaryType> viewDisciplinaryTypes);
