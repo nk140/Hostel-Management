@@ -11,12 +11,26 @@ namespace HMS.Models
     }
     public class DisciplinaryActionbywarden
     {
-        public string Date { get; set; }
-        public string Time { get; set; }
-        public string StudRegno { get; set; }
-        public string Studentname { get; set; }
-        public string DisciplinaryType { get; set; }
-        public string Description { get; set; }
+        public string userId { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
+        public string disciplinaryTypeId { get; set; }
+        public string description { get; set; }
+        public string hostelAdmissionId { get; set; }
+        //[JsonIgnore]
+        //public string Studentname { get; set; }
+    }
+    public class ViewDisciplinaryActionbywarden
+    {
+        public string studentId { get; set; }
+        public string studentName { get; set; }
+        public string hostelAdmissionId { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
+        public string appicationNo { get; set; }
+        public string disciplinaryTypeId { get; set; }
+        public string disciplinaryTypeName { get; set; }
+        public string discription { get; set; }
     }
     public class ViewDisciplinaryType:JsonProperty
     {

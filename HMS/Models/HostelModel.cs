@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class HostelModel:JsonProperty
+    public class HostelModel : JsonProperty
     {
         public string id { get; set; }
         public string hostelName { get; set; }
@@ -32,6 +32,16 @@ namespace HMS.Models
         public string parentAddress { get; set; }
         public string parentPhoneNo { get; set; }
 
+    }
+    public class HostelAdmittedStudentDetails
+    {
+        public string studentId { get; set; }
+        public string studentName { get; set; }
+        public string hostelAdmissionId { get; set; }
+        public string courseName { get; set; }
+        public string hostelName { get; set; }
+        public string roomName { get; set; }
+        public string applicationNo { get; set; }
     }
     public class HostelAdmissionResponse
     {

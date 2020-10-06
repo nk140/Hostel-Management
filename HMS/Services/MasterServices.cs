@@ -52,6 +52,7 @@ namespace HMS.Services
         IDeletenewsfeeddata deletenewsfeeddata;
         IEditservicecategory editservicecategory;
         IDeleteservicecategory deleteservicecategory;
+        IWardenAssignment iwardenAssignment;
         public MasterServices(RoomListI1 callback)
         {
             roomListCallback = callback;
@@ -64,6 +65,10 @@ namespace HMS.Services
         {
             ViewIDisciplinary = view;
             deleteDisciplinary = callback;
+        }
+        public MasterServices(ViewIDisciplinary view)
+        {
+            ViewIDisciplinary = view;
         }
         public MasterServices(IEditnewsfeeddata callback)
         {
@@ -99,6 +104,11 @@ namespace HMS.Services
         public MasterServices(IDeleteservicecategory callback)
         {
             deleteservicecategory = callback;
+        }
+        public MasterServices(MasterI masters,IWardenAssignment wardenassignment)
+        {
+            this.masterCallback = masters;
+            iwardenAssignment = wardenassignment;
         }
         public MasterServices(RoomListI roomListI, DeleteRoomI deleteRoomI)
         {
@@ -156,7 +166,6 @@ namespace HMS.Services
         {
             countryCallback = country;
         }
-
         public MasterServices(MasterI masterI)
         {
             this.masterCallback = masterI;
@@ -426,6 +435,41 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
+        public async void SavewardenAssignment(WardenAssignment wardenAssignment)
+        {
+            UpdateFacilityresponse updateFacilityresponse;
+            UpdateFacilityerrorresponse updateFacilityerrorresponse;
+            HttpResponseMessage response;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                UserDialogs.Instance.ShowLoading();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string json = JsonConvert.SerializeObject(wardenAssignment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync(ApplicationURL.Wardenassignment, content);
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateFacilityresponse = JsonConvert.DeserializeObject<UpdateFacilityresponse>(result);
+                    iwardenAssignment.SaveWardenassignment(updateFacilityresponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateFacilityerrorresponse = JsonConvert.DeserializeObject<UpdateFacilityerrorresponse>(result);
+                    iwardenAssignment.servicefailed(updateFacilityerrorresponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
         public async void RoomList()
         {
             UserDialogs.Instance.ShowLoading();
@@ -471,6 +515,10 @@ namespace HMS.Services
                     UserDialogs.Instance.HideLoading();
                     json = await response.Content.ReadAsStringAsync();
                     ObservableCollection<ViewFacility> batchData = JsonConvert.DeserializeObject<ObservableCollection<ViewFacility>>(json);
+                    for(int i=0;i<batchData.Count;i++)
+                    {
+                        batchData[i].listcount = (i + 1).ToString();
+                    }
                     viewFacilityI.LoadFacilityList(batchData);
                 }
                 else
@@ -503,7 +551,7 @@ namespace HMS.Services
                     ObservableCollection<ViewDisciplinaryType> batchData = JsonConvert.DeserializeObject<ObservableCollection<ViewDisciplinaryType>>(json);
                     for (int i = 0; i < batchData.Count; i++)
                     {
-                        batchData[i].listcount = i.ToString();
+                        batchData[i].listcount = (i+1).ToString();
                     }
                     ViewIDisciplinary.LoadDisciplinaryList(batchData);
                 }
@@ -548,7 +596,7 @@ namespace HMS.Services
                         ObservableCollection<RoomNameList> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomNameList>>(json);
                         for (int i = 0; i < batchData.Count; i++)
                         {
-                            batchData[i].listcount = i.ToString();
+                            batchData[i].listcount = (i+1).ToString();
                         }
                         roomListI.LoadRoomList(batchData);
                     }
@@ -591,7 +639,7 @@ namespace HMS.Services
                         ObservableCollection<RoomBedData> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomBedData>>(json);
                         for (int i = 0; i < batchData.Count; i++)
                         {
-                            batchData[i].listcount = i.ToString();
+                            batchData[i].listcount = (i+1).ToString();
                         }
                         roomBed.LoadRoomBedList(batchData);
                     }
@@ -1637,6 +1685,10 @@ namespace HMS.Services
                     else
                     {
                         ObservableCollection<RoomTypeModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<RoomTypeModel>>(result);
+                        for(int i=0;i<batchData.Count;i++)
+                        {
+                            batchData[i].listcount = (i + 1).ToString();
+                        }
                         await roomCallback.LoadRoomType(batchData);
 
                     }
@@ -1701,7 +1753,7 @@ namespace HMS.Services
                         ObservableCollection<AreaModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<AreaModel>>(result);
                         for (int i = 0; i < batchData.Count; i++)
                         {
-                            batchData[i].listcount = i.ToString();
+                            batchData[i].listcount = (i+1).ToString();
                         }
                         await masterCallback.LoadAreaList(batchData);
                     }
@@ -1715,8 +1767,6 @@ namespace HMS.Services
             {
                 await masterCallback.ServiceFailed(1);
             }
-
-
         }
 
         public async void GetAllHostel(string areaId)
@@ -1746,7 +1796,7 @@ namespace HMS.Services
                         batchData = JsonConvert.DeserializeObject<ObservableCollection<HostelModel>>(result);
                         for (int i = 0; i < batchData.Count; i++)
                         {
-                            batchData[i].listcount = i.ToString();
+                            batchData[i].listcount = (i + 1).ToString();
                         }
                         await masterCallback.LoadHostelList(batchData);
                     }
@@ -1787,7 +1837,7 @@ namespace HMS.Services
                         ObservableCollection<BlockModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<BlockModel>>(result);
                         for (int i = 0; i < batchData.Count; i++)
                         {
-                            batchData[i].listcount = i.ToString();
+                            batchData[i].listcount = (i + 1).ToString();
                         }
                         await masterCallback.LoadBlockList(batchData);
                     }
@@ -1821,9 +1871,11 @@ namespace HMS.Services
                     string result = await response.Content.ReadAsStringAsync();
 
                     ObservableCollection<BlockModel> batchData = JsonConvert.DeserializeObject<ObservableCollection<BlockModel>>(result);
+                    for (int i = 0; i < batchData.Count; i++)
+                    {
+                        batchData[i].listcount = (i + 1).ToString();
+                    }
                     await masterCallback.LoadBlockList(batchData);
-
-
                 }
                 else
                 {
@@ -1861,7 +1913,7 @@ namespace HMS.Services
                         ObservableCollection<FloorData> batchData = JsonConvert.DeserializeObject<ObservableCollection<FloorData>>(result);
                         for (int i = 0; i < batchData.Count; i++)
                         {
-                            batchData[i].listcount = i.ToString();
+                            batchData[i].listcount = (i + 1).ToString();
                         }
                         await masterCallback.LoadFloorList(batchData);
                     }

@@ -15,6 +15,7 @@ namespace HMS.Services
 
         ProfileI profileCallback;
         HostelAdmissionI hostelAdmissionI;
+        ViewHostelAdmittedStudent iviewhosteladmittedstudent;
         Iupdatestudentpassword iupdatestudentpassword;
         StudentLeaveRequestI leaveRequestCallback;
         RegistrationI registrationCallback;
@@ -38,7 +39,7 @@ namespace HMS.Services
         {
             icoursedetail = coursedetail;
         }
-        public StudentService(Icoursedetail coursedetail,IDeleteCourse ideletecourse)
+        public StudentService(Icoursedetail coursedetail, IDeleteCourse ideletecourse)
         {
             icoursedetail = coursedetail;
             deleteCourse = ideletecourse;
@@ -64,6 +65,10 @@ namespace HMS.Services
         {
             hostelAdmissionI = hostel;
             icoursedetail = coursedetail;
+        }
+        public StudentService(ViewHostelAdmittedStudent viewHostelAdmittedStudent)
+        {
+            iviewhosteladmittedstudent = viewHostelAdmittedStudent;
         }
         public StudentService(RegistrationI callback)
         {
@@ -321,6 +326,10 @@ namespace HMS.Services
                     ObservableCollection<LeaveTypeModel> leaveType = JsonConvert.DeserializeObject<ObservableCollection<LeaveTypeModel>>(result);
                     if (leaveType.Count > 0)
                     {
+                        for(int i=0;i<leaveType.Count;i++)
+                        {
+                            leaveType[i].listcount = i.ToString();
+                        }
                         await leaveRequestCallback.GetAllLeaveType(leaveType);
                     }
                     else
@@ -343,11 +352,85 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", "No Leave Type List Found.", "OK");
             }
 
-
-
-
             //return response;
+        }
+        public async void GetHostelStudent()
+        {
+            LeaveTypeerrorresponse leaveTypeerrorresponse;
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
+
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.GetHostelStudent);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+
+                    ObservableCollection<HostelAdmittedStudentDetails> leaveType = JsonConvert.DeserializeObject<ObservableCollection<HostelAdmittedStudentDetails>>(result);
+                    if (leaveType.Count > 0)
+                    {
+                       iviewhosteladmittedstudent.LoadHostelStudent(leaveType);
+                    }
+                    else
+                    {
+                        result = await response.Content.ReadAsStringAsync();
+                        leaveTypeerrorresponse = JsonConvert.DeserializeObject<LeaveTypeerrorresponse>(result);
+                        iviewhosteladmittedstudent.servicefailed(leaveTypeerrorresponse.errors[0].message);
+                    }
+
+                }
+                else
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    leaveTypeerrorresponse = JsonConvert.DeserializeObject<LeaveTypeerrorresponse>(result);
+                    iviewhosteladmittedstudent.servicefailed(leaveTypeerrorresponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "No Leave Type List Found.", "OK");
+            }
+        }
+        public async void GetHostelAdmittedStudentbyappno(string applicationNo)
+        {
+            LeaveTypeerrorresponse leaveTypeerrorresponse;
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("applicationNo", applicationNo);
+
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.GetHostelStudentbyapplicationno);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+
+                    ObservableCollection<HostelAdmittedStudentDetails> leaveType = JsonConvert.DeserializeObject<ObservableCollection<HostelAdmittedStudentDetails>>(result);
+                    if (leaveType.Count > 0)
+                    {
+                        iviewhosteladmittedstudent.LoadHostelStudent(leaveType);
+                    }
+                    else
+                    {
+                        result = await response.Content.ReadAsStringAsync();
+                        leaveTypeerrorresponse = JsonConvert.DeserializeObject<LeaveTypeerrorresponse>(result);
+                        iviewhosteladmittedstudent.servicefailed(leaveTypeerrorresponse.errors[0].message);
+                    }
+
+                }
+                else
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    leaveTypeerrorresponse = JsonConvert.DeserializeObject<LeaveTypeerrorresponse>(result);
+                    iviewhosteladmittedstudent.servicefailed(leaveTypeerrorresponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("HMS", "No Hostel Student  List Found.", "OK");
+            }
         }
         public async void GetServiceType()
         {

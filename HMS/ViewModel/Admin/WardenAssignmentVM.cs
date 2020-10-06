@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Admin
 {
-    public class WardenAssignmentVM : BaseViewModel, MasterI, ContactWardenI
+    public class WardenAssignmentVM : BaseViewModel, MasterI, ContactWardenI,IWardenAssignment
     {
         MasterServices web;
         StudentService student;
@@ -35,17 +35,42 @@ namespace HMS.ViewModel.Admin
             get { return hostelPresentmodels_; }
             set { hostelPresentmodels_ = value; OnPropertyChanged("HostelModelList"); }
         }
+        private WardenAssignment wardenAssignment = new WardenAssignment();
+        public WardenAssignment WardenAssignment
+        {
+            get
+            {
+                return wardenAssignment;
+            }
+            set
+            {
+                wardenAssignment = value;
+                OnPropertyChanged("WardenAssignment");
+            }
+        }
         public ICommand AssignWardenCommand => new Command(OnAssignWardenCommand);
         public WardenAssignmentVM()
         {
-            web = new MasterServices(this);
+            web = new MasterServices((MasterI)this,(IWardenAssignment)this);
             student = new StudentService(this);
             web.GetAllArea();
             student.GetAllWarden();
         }
         public async void OnAssignWardenCommand()
         {
-
+            if (string.IsNullOrEmpty(WardenAssignment.employeeId) || WardenAssignment.employeeId.Length == 0)
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter Warden name", "OK");
+            else if (string.IsNullOrEmpty(WardenAssignment.areaId) || WardenAssignment.areaId.Length == 0)
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter Area Name", "OK");
+            else if (string.IsNullOrEmpty(WardenAssignment.hostelId) || WardenAssignment.hostelId.Length == 0)
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter Hostel Name", "OK");
+            else if (string.IsNullOrEmpty(WardenAssignment.hostelAssigned) || WardenAssignment.hostelAssigned.Length == 0)
+                await App.Current.MainPage.DisplayAlert("HMS", "Enter Hostel Name Assigned", "OK");
+            else
+            {
+                WardenAssignment.userId = App.userid;
+                web.SavewardenAssignment(WardenAssignment);
+            }
         }
         public void GetHostelList(string areaid)
         {
@@ -97,6 +122,18 @@ namespace HMS.ViewModel.Admin
         public void NoListFound(string result)
         {
             throw new NotImplementedException();
+        }
+
+        public async void SaveWardenassignment(string result)
+        {
+            WardenAssignment = new WardenAssignment();
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            OnPropertyChanged("WardenAssignment");
+        }
+
+        public async void servicefailed(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
     }
 }

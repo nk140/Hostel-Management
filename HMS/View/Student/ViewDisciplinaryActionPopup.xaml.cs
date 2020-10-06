@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,19 @@ namespace HMS.View.Student
         {
             InitializeComponent();
         }
-
-        private void btnclose_Clicked(object sender, EventArgs e)
+        public ViewDisciplinaryActionPopup(string date,string time,string studentname,string regno,string disciplinarytype,string description)
         {
-
+            InitializeComponent();
+            txtDate.Text = date;
+            txttime.Text = time;
+            txtstudentname.Text = studentname;
+            txtstudentregno.Text = regno;
+            txtdisciplinarytype.Text = disciplinarytype;
+            txtdescription.Text = description;
+        }
+        private async void btnclose_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopPopupAsync(true);
         }
     }
 }

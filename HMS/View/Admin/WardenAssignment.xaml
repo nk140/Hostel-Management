@@ -13,8 +13,9 @@
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.14,0.82,0.08">
             <forms:AutoSuggestBox x:Name="txtsearchbyarea" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Area Name" TextChanged="txtsearchbyarea_TextChanged" SuggestionChosen="txtsearchbyarea_SuggestionChosen"/>
         </Frame>
-        <Frame x:Name="frmhostel" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.26,0.82,0.08">
-            <ListView 
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.26,0.82,0.06">
+            <Frame x:Name="frmhostel" BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30">
+                <ListView 
                                 x:Name="lv_role"
                                 IsVisible="True"
                                 IsEnabled="False"
@@ -23,29 +24,30 @@
                                 SelectionMode="Single"
                                 ItemSelected="lv_role_ItemSelected">
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell >
-                            <StackLayout Orientation="Horizontal">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <StackLayout Orientation="Horizontal">
 
-                                <Label Text="{Binding hostelName}"
+                                    <Label Text="{Binding hostelName}"
                                                HorizontalOptions="StartAndExpand"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"/>
 
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <!--<controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelModelList}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding hostelName}" Margin="-17" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>-->
-            <!--<forms:AutoSuggestBox x:Name="txtsearchbyhostel" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Hostel Name" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen"/>-->
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
-            </Frame.GestureRecognizers>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.45,0.82,0.2">
-            <controls:XEditor x:Name="txtassignedhostellist" Placeholder="Enter Hostel to be assign"  FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-12"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--<controls:CustomPicker x:Name="ddhostel" ItemsSource="{Binding HostelModelList}" IsEnabled="False" Title="Select Hostel" ItemDisplayBinding="{Binding hostelName}" Margin="-17" SelectedIndexChanged="ddhostel_SelectedIndexChanged"/>-->
+                <!--<forms:AutoSuggestBox x:Name="txtsearchbyhostel" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" TextColor="#2D295F" Margin="-15" PlaceholderText="Search By Hostel Name" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen"/>-->
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+        </StackLayout>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.45,0.5,0.82,0.2">
+            <controls:XEditor x:Name="txtassignedhostellist" Placeholder="Enter Hostel to be assign" Text="{Binding WardenAssignment.hostelAssigned}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-12"/>
         </Frame>
         <Button Text="Assign"  TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Command="{Binding AssignWardenCommand}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.67,0.55,0.08"/>
     </AbsoluteLayout>

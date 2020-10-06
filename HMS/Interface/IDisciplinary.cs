@@ -14,7 +14,7 @@ namespace HMS.Interface
     }
     public interface ViewDisciplinaryActionTaken
     {
-        void LoadTakenDisciplinaryAction(ObservableCollection<DisciplinaryActionbywarden> disciplinaryActionbywardens);
+        void LoadTakenDisciplinaryAction(ObservableCollection<ViewDisciplinaryActionbywarden> disciplinaryActionbywardens);
         void servicefailed(string result);
     }
     public interface ViewIDisciplinary

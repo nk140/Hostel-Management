@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using HMS.Models;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace HMS.Interface
 {
@@ -11,6 +13,11 @@ namespace HMS.Interface
     {
         void Sucess(string result);
         void failed(string result);
+    }
+    public interface ViewHostelAdmittedStudent
+    {
+        void LoadHostelStudent(ObservableCollection<HostelAdmittedStudentDetails> hostelAdmittedStudentDetails);
+        void servicefailed(string result);
     }
     public interface EditHostelI
     {

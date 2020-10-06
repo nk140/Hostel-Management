@@ -58,7 +58,6 @@
         public static string RoomTypeInsertioon = "/hostelandmesstest/api/v1/hostel/hostelroomtypesetup";
         public static string UpdateRoomType = "/hostelandmesstest/api/v1/hostel/roomtypeupdate";
         public static string DeleteRoomType = "/hostelandmesstest/api/v1/hostel/deleteroomtype";
-
         public static string GetAllRole = "/hostelandmesstest/api/v1/warden/roles";
         public static string SaveWarden = "/hostelandmesstest/api/v1/warden/addwarden";
         public static string SaveDisciplinaryType = "/hostelandmesstest/api/v1/hostel/disciplinarytype";
@@ -66,11 +65,14 @@
         public static string UpdateDisciplinaryType = "/hostelandmesstest/api/v1/hostel/disciplinarytypeupdate";
         public static string DeleteDisciplinaryType = "/hostelandmesstest/api/v1/hostel/deletedisciplinarytype";
         public static string ParentStudentList = "/hostelandmesstest/api/v1/student/parentstudentlist";
+        public static string Wardenassignment = "/hostelandmesstest/api/v1/hostel/wardenAssignment";
         #endregion
 
         #region Student
         public static string GetProfiile = "/hostelandmesstest/api/v1/student/studentprofile";
         public static string HostelAdmission = "/hostelandmesstest/api/v1/auth/admission";
+        public static string GetHostelStudent = "/hostelandmesstest/api/v1/hostel/allAdmissionDetails";
+        public static string GetHostelStudentbyapplicationno = "/hostelandmesstest/api/v1/hostel/AdmissionDetails";
         public static string GetLeaveTypeList = "/hostelandmesstest/api/v1/leave/allleavetype";
         public static string SaveLeaveRequest = "/hostelandmesstest/api/v1/leave/applyforleave";
         public static string StudentRegister = "/hostelandmesstest/api/v1/student/studentregister";
@@ -91,6 +93,9 @@
         public static string GetParentApprovalData = "/hostelandmesstest/api/v1/leave/parentleaves";
         public static string Approveleave = "/hostelandmesstest/api/v1/adminleave/adminapprove";
         public static string GetNewAdmittedStudentDetail = "/hostelandmesstest/api/v1/warden/allnewstudentlist";
+        public static string Disciplinaryaction = "/hostelandmesstest/api/v1/hostel/wardendisciplanary";
+        public static string ViewDisciplinaryActionByAppno = "/hostelandmesstest/api/v1/hostel/allWardenDisciplinaryDetails";
+        public static string ViewDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardenDisciplinaryDetails";
         #endregion
         #region NewsFeed
         public static string GetNewsFeedData = "/hostelandmesstest/api/v1/notification/allNotification";

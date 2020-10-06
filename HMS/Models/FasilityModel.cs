@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
@@ -7,10 +9,12 @@ namespace HMS.Models
         public string userId { get; set; }
         public string name { get; set; }
     }
-    public class ViewFacility
+    public class ViewFacility:JsonProperty
     {
         public string id { get; set; }
         public string name { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class UpdateFacility
     {

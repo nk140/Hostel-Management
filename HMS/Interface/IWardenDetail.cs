@@ -20,4 +20,9 @@ namespace HMS.Interface
         void Deletesucessfully(string result);
         void servicefailed(string result);
     }
+    public interface IWardenAssignment
+    {
+        void SaveWardenassignment(string result);
+        void servicefailed(string result);
+    }
 }

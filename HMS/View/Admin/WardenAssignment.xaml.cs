@@ -28,6 +28,14 @@ namespace HMS.View.Admin
             InitializeComponent();
             BindingContext = vm = new WardenAssignmentVM();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
         private void txtsearchbyarea_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try
@@ -64,8 +72,8 @@ namespace HMS.View.Admin
         private void txtsearchbyarea_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyarea.Text = ((AreaModel)e.SelectedItem).areaName;
-            var id = ((AreaModel)e.SelectedItem).id;
-            vm.GetHostelList(id);
+            vm.WardenAssignment.areaId = ((AreaModel)e.SelectedItem).id;
+            vm.GetHostelList(vm.WardenAssignment.areaId);
         }
 
         private void txtsearchbywarden_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
@@ -101,6 +109,7 @@ namespace HMS.View.Admin
         private void txtsearchbywarden_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbywarden.Text = ((WardenInfoModel)e.SelectedItem).firstName;
+            vm.WardenAssignment.employeeId = ((WardenInfoModel)e.SelectedItem).id.ToString();
         }
 
         private void txtsearchbyhostel_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
@@ -159,7 +168,7 @@ namespace HMS.View.Admin
             {
                 lv_role.IsVisible = true;
                 lv_role.IsEnabled = true;
-                lv_role.HeightRequest = (140 * vm.HostelModelList.Count) + 20;
+                lv_role.HeightRequest = (40 * vm.HostelModelList.Count) + 20;
             }
         }
         private void lv_role_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -175,11 +184,13 @@ namespace HMS.View.Admin
         {
             string hostelname = vm.HostelModelList[index].hostelName;
             string hostelid = vm.HostelModelList[index].id;
+            vm.WardenAssignment.hostelId = hostelid;
             sb.Append(hostelname);
             sb2.Append(hostelid);
-            sb.Append(",");
+            //sb.Append(",");
             sb2.Append(",");
             txtassignedhostellist.Text = sb.ToString();
+            vm.WardenAssignment.hostelAssigned = txtassignedhostellist.Text;
         }
     }
 }

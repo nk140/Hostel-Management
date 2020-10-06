@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using HMS.View.Admin;
 using HMS.View.Guest;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -32,6 +33,7 @@ namespace HMS.View.Warden
                 new WardenMenuItem {Title="Contact From Student Parent.",TargetType=typeof(FrmStudentParentContact)},
                // new WardenMenuItem {Title="Contact Director.",TargetType=typeof(FrmDirectorcontact)},
                 new WardenMenuItem {Title="Disciplinary Option",TargetType=typeof(FrmDiscpoption)},
+                new WardenMenuItem {Title="View Disciplinary Action",TargetType=typeof(ViewDisciplinaryAction)},
                 new WardenMenuItem {Title="Student Leave(Approve/Reject)",TargetType=typeof(Frmstudentleaveaction)},
                 new WardenMenuItem {Title="Student Leave History.",TargetType=typeof(FrmStudleavehistory)},
                 new WardenMenuItem {Title="Upload Room Image/Video.",TargetType=typeof(FrmImagevideoupload)},

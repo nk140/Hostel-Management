@@ -14,28 +14,26 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="0">
-                <forms:AutoSuggestBox x:Name="txtstudentregistrationno" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" PlaceholderText="Enter student registration" TextChanged="txtstudentregistrationno_TextChanged" SuggestionChosen="txtstudentregistrationno_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtstudentregistrationno" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" TextMemberPath="applicationNo" DisplayMemberPath="applicationNo" PlaceholderText="Enter student registration" TextChanged="txtstudentregistrationno_TextChanged" SuggestionChosen="txtstudentregistrationno_SuggestionChosen"/>
             </Frame>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="1">
-                <controls:BetterEntry Placeholder="Student Name" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="Student Name" x:Name="txtstudentname" Keyboard="Text"  Text="{Binding DisciplinaryActionbywarden.Studentname}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
+            <!--<Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="2">
+                <controls:DatePickers x:Name="dtofaction" DateSelected="dtofaction_DateSelected" Unfocused="dtofaction_Unfocused" FontSize="17" Margin="-7"/>
+            </Frame>
+            <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="3">
+                <controls:BorderlessTimePicker x:Name="timeofaction" Unfocused="timeofaction_Unfocused" FontSize="17" Margin="-7"/>
+            </Frame>-->
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="2">
-                <controls:DatePickers x:Name="dtofaction" DateSelected="dtofaction_DateSelected" FontSize="17" Margin="-17"/>
+                <forms:AutoSuggestBox x:Name="txtdisciplinarytype" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextMemberPath="name" DisplayMemberPath="name" TextColor="#2D295F" PlaceholderText="Enter disciplinary type" TextChanged="txtdisciplinarytype_TextChanged" SuggestionChosen="txtdisciplinarytype_SuggestionChosen"/>
             </Frame>
-            <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="2">
-                <controls:BorderlessTimePicker x:Name="timeofaction" Unfocused="timeofaction_Unfocused" FontSize="17" Margin="-17"/>
+            <Frame CornerRadius="25" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="3">
+                <controls:XEditor Placeholder="Enter Description" Keyboard="Text" Text="{Binding DisciplinaryActionbywarden.description}" PlaceholderColor="Black" FontSize="17" Margin="7"/>
             </Frame>
-            <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="4">
-                <forms:AutoSuggestBox x:Name="txtdisciplinarytype" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" PlaceholderText="Enter disciplinary type" TextChanged="txtdisciplinarytype_TextChanged" SuggestionChosen="txtdisciplinarytype_SuggestionChosen"/>
-            </Frame>
-            <Frame CornerRadius="25" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="5">
-                <controls:XEditor Placeholder="Enter Description" Keyboard="Text" PlaceholderColor="Black" FontSize="17" Margin="-9"/>
-            </Frame>
-            <Button x:Name="btnupdate" CornerRadius="30" Grid.Row="6" Text="Register Complain" Command="{Binding TakeDisciplinaryActionCommand}" Padding="10,0,0,0" TextColor="White" BackgroundColor="#e96125"/>
+            <Button x:Name="btnupdate" CornerRadius="30" Grid.Row="4" Text="Register Complain" Command="{Binding TakeDisciplinaryActionCommand}" Padding="10,0,0,0" TextColor="White" BackgroundColor="#e96125"/>
         </Grid>
     </ScrollView>
 </ContentPage>

@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class LeaveTypeModel
+    public class LeaveTypeModel:JsonProperty
     {
         public string id { get; set; }
         public string name { get; set; }
+        [JsonIgnore]
+        public string listcount { get; set; }
     }
     public class LeaveTypeerrorresponse
     {

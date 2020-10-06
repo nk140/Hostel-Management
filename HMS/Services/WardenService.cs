@@ -23,9 +23,14 @@ namespace HMS.Services
         Inewstudentdata inewstudentdata;
         iViewParent iViewParent;
         IDisciplinaryAction disciplinaryAction;
+        ViewDisciplinaryActionTaken iviewDisciplinaryActionTaken;
         public WardenService(Iservicewarden callbackservice)
         {
             service = callbackservice;
+        }
+        public WardenService(ViewDisciplinaryActionTaken viewDisciplinaryActionTaken)
+        {
+            iviewDisciplinaryActionTaken = viewDisciplinaryActionTaken;
         }
         public WardenService(Iwardenregistrtion callbackresponse)
         {
@@ -79,6 +84,61 @@ namespace HMS.Services
                 {
                     UserDialogs.Instance.HideLoading();
                     await App.Current.MainPage.DisplayAlert("", "Data Not Found.", "OK");
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("", "Server Error.", "OK");
+            }
+        }
+        public async void GetDisciplinaryAction(string applicationNo)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("applicationNo", applicationNo);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.ViewDisciplinaryActionByAppno);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<ViewDisciplinaryActionbywarden> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ViewDisciplinaryActionbywarden>>(result);
+                    UserDialogs.Instance.HideLoading();
+                    iviewDisciplinaryActionTaken.LoadTakenDisciplinaryAction(parentleave);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    iviewDisciplinaryActionTaken.servicefailed("Data Not Found.");
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("", "Server Error.", "OK");
+            }
+        }
+        public async void GetAllDisciplinaryAction()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.ViewDisciplinaryAction);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<ViewDisciplinaryActionbywarden> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ViewDisciplinaryActionbywarden>>(result);
+                    UserDialogs.Instance.HideLoading();
+                    iviewDisciplinaryActionTaken.LoadTakenDisciplinaryAction(parentleave);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    iviewDisciplinaryActionTaken.servicefailed("Data Not Found.");
                 }
             }
             catch
@@ -255,7 +315,39 @@ namespace HMS.Services
         }
         public async void SaveDisciplinaryActionTaken(DisciplinaryActionbywarden disciplinaryActionbywarden)
         {
+            string resultHostel;
+            WardenResponse wardenResponse;
+            Wardenerrorresponse wardenerrorresponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string json = JsonConvert.SerializeObject(disciplinaryActionbywarden);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.Disciplinaryaction, content);
+                resultHostel = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    resultHostel = await response.Content.ReadAsStringAsync();
+                    wardenResponse = JsonConvert.DeserializeObject<WardenResponse>(resultHostel);
+                    disciplinaryAction.Disciplinaryactiontaken(wardenResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    resultHostel = await response.Content.ReadAsStringAsync();
+                    wardenerrorresponse = JsonConvert.DeserializeObject<Wardenerrorresponse>(resultHostel);
+                    disciplinaryAction.servicefailed(wardenerrorresponse.errors[0].message);
+                }
 
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("", ex.ToString(), "OK");
+            }
         }
         public async void GetServicelist()
         {
@@ -273,6 +365,10 @@ namespace HMS.Services
                     if (leaveType.Count > 0)
                     {
                         UserDialogs.Instance.HideLoading();
+                        for (int i = 0; i < leaveType.Count; i++)
+                        {
+                            leaveType[i].listcount = (i + 1).ToString();
+                        }
                         service.GetServicelist(leaveType);
                     }
                     else
