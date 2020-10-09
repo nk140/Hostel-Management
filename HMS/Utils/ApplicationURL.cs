@@ -81,6 +81,8 @@
         public static string UpdateStudentPassword = "/hostelandmesstest/api/v1/student/studentpasswordupdate";
         public static string Allcourse = "/hostelandmesstest/api/v1/area/allCourse";
         public static string coursesetup = "/hostelandmesstest/api/v1/area/coursesetup";
+        public static string UpdateCourse = "/hostelandmesstest/api/v1/area/courseupdate";
+        public static string DeleteCourse = "/hostelandmesstest/api/v1/area/deletecourse";
         #endregion
 
         #region Warden
@@ -96,6 +98,8 @@
         public static string Disciplinaryaction = "/hostelandmesstest/api/v1/hostel/wardendisciplanary";
         public static string ViewDisciplinaryActionByAppno = "/hostelandmesstest/api/v1/hostel/allWardenDisciplinaryDetails";
         public static string ViewDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardenDisciplinaryDetails";
+        public static string UpdateDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardendisciplinaryupdate";
+        public static string DeleteDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/deletewardendisciplinary";
         #endregion
         #region NewsFeed
         public static string GetNewsFeedData = "/hostelandmesstest/api/v1/notification/allNotification";
@@ -108,6 +112,8 @@
         #region Parent
         public static string ParentRegistration = "/hostelandmesstest/api/v1/student/parentregister";
         public static string UpdatePassword = "/hostelandmesstest/api/v1/student/passwordupdate";
+        public static string GetWardeLeaveDetail = "/hostelandmesstest/api/v1/leave/parentleaves";
+        public static string ActionAgainstWardLeave = "/hostelandmesstest/api/v1/leave/parrentapprove";
         #endregion
     }
 }

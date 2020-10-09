@@ -25,6 +25,7 @@ namespace HMS.Services
         IDeleteWardenDetail deleteWardenDetail;
         Iservicecategory iservicecategory;
         Icoursedetail icoursedetail;
+        IEditCourse ieditcourse;
         IDeleteCourse deleteCourse;
         ISaveCourse saveCourse;
         public StudentService(ProfileI callback)
@@ -44,6 +45,10 @@ namespace HMS.Services
             icoursedetail = coursedetail;
             deleteCourse = ideletecourse;
         }
+        public StudentService(IEditCourse editCourse)
+        {
+            ieditcourse = editCourse;
+        }
         public StudentService(ISaveCourse isavecourse)
         {
             saveCourse = isavecourse;
@@ -51,6 +56,11 @@ namespace HMS.Services
         public StudentService(Iupdatestudentpassword updatestudentpassword)
         {
             iupdatestudentpassword = updatestudentpassword;
+        }
+        public StudentService(ViewHostelAdmittedStudent viewHostelAdmittedStudent, StudentLeaveRequestI callback)
+        {
+            iviewhosteladmittedstudent = viewHostelAdmittedStudent;
+            leaveRequestCallback = callback;
         }
         public StudentService(StudentLeaveRequestI callback)
         {
@@ -198,6 +208,78 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
+        public async void UpdateCourse(UpdateCourseModel updateCourseModel)
+        {
+            ProfileUpdateResponse profileUpdateResponse;
+            ProfileUpdateErrorresponse profileUpdateErrorresponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+
+                string jsn = JsonConvert.SerializeObject(updateCourseModel);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.UpdateCourse, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    profileUpdateResponse = JsonConvert.DeserializeObject<ProfileUpdateResponse>(resultHostel);
+                    ieditcourse.UpdateSucess(profileUpdateResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    profileUpdateErrorresponse = JsonConvert.DeserializeObject<ProfileUpdateErrorresponse>(resultHostel);
+                    ieditcourse.servicefailed(profileUpdateErrorresponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void DeleteCourse(string courseId)
+        {
+            UpdateRoomTypeResponse updateNewsFeedResponse;
+            UpdateRoomErrorTypeResponse updateNewsFeederrorresponse;
+            HttpResponseMessage response;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                UserDialogs.Instance.ShowLoading();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string json = @"[{""courseId"" : """ + courseId + @"""}]";
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync(ApplicationURL.DeleteCourse, content);
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateNewsFeedResponse = JsonConvert.DeserializeObject<UpdateRoomTypeResponse>(result);
+                    deleteCourse.DeleteSucess(updateNewsFeedResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateNewsFeederrorresponse = JsonConvert.DeserializeObject<UpdateRoomErrorTypeResponse>(result);
+                    deleteCourse.servicefailed(updateNewsFeederrorresponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
         public async void UpdateProfile(ProfileUpdate profileUpdate)
         {
             ProfileUpdateResponse profileUpdateResponse;
@@ -326,9 +408,9 @@ namespace HMS.Services
                     ObservableCollection<LeaveTypeModel> leaveType = JsonConvert.DeserializeObject<ObservableCollection<LeaveTypeModel>>(result);
                     if (leaveType.Count > 0)
                     {
-                        for(int i=0;i<leaveType.Count;i++)
+                        for (int i = 0; i < leaveType.Count; i++)
                         {
-                            leaveType[i].listcount = i.ToString();
+                            leaveType[i].listcount = (i+1).ToString();
                         }
                         await leaveRequestCallback.GetAllLeaveType(leaveType);
                     }
@@ -371,7 +453,7 @@ namespace HMS.Services
                     ObservableCollection<HostelAdmittedStudentDetails> leaveType = JsonConvert.DeserializeObject<ObservableCollection<HostelAdmittedStudentDetails>>(result);
                     if (leaveType.Count > 0)
                     {
-                       iviewhosteladmittedstudent.LoadHostelStudent(leaveType);
+                        iviewhosteladmittedstudent.LoadHostelStudent(leaveType);
                     }
                     else
                     {

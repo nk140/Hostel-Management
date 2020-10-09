@@ -7,4 +7,14 @@ namespace HMS.Interface
     {
         void GetStudentLeaveDetail(ObservableCollection<ParentStudentLeaveStatus> parent);
     }
+    public interface IApproveLeave
+    {
+        void approved(string result);
+        void failer(string result);
+    }
+    public interface IRejectLeave
+    {
+        void reject(string result);
+        void failer(string result);
+    }
 }

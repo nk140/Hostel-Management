@@ -19,6 +19,12 @@
         public string userType { get; set; }
         public string applicationNo { get; set; }
         public string studentName { get; set; }
+        public string studentId { get; set; }
+        public string wardenDisciplinaryId { get; set; }
+        public string disciplinaryName { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
+        public string hostelAdmisiionId { get; set; }
     }
     public class StudentModel
     {
@@ -39,5 +45,9 @@
         public string userType { get; set; }
         public string applicationNo { get; set; }
         public string studentName { get; set; }
+        public string wardenDisciplinaryId { get; set; }
+        public string disciplinaryName { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
     }
 }

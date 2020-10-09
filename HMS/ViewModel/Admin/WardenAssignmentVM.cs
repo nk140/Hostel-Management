@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Admin
 {
-    public class WardenAssignmentVM : BaseViewModel, MasterI, ContactWardenI,IWardenAssignment
+    public class WardenAssignmentVM : BaseViewModel, MasterI, ContactWardenI, IWardenAssignment
     {
         MasterServices web;
         StudentService student;
@@ -48,10 +48,36 @@ namespace HMS.ViewModel.Admin
                 OnPropertyChanged("WardenAssignment");
             }
         }
+        private bool islistviewvisible;
+        public bool IsListviewvisible
+        {
+            get
+            {
+                return islistviewvisible;
+            }
+            set
+            {
+                islistviewvisible = value;
+                OnPropertyChanged("islistviewvisible");
+            }
+        }
+        private string selectedhostelname;
+        public string SelectedHostelName
+        {
+            get
+            {
+                return selectedhostelname;
+            }
+            set
+            {
+                selectedhostelname = value;
+                OnPropertyChanged("SelectedHostelName");
+            }
+        }
         public ICommand AssignWardenCommand => new Command(OnAssignWardenCommand);
         public WardenAssignmentVM()
         {
-            web = new MasterServices((MasterI)this,(IWardenAssignment)this);
+            web = new MasterServices((MasterI)this, (IWardenAssignment)this);
             student = new StudentService(this);
             web.GetAllArea();
             student.GetAllWarden();
@@ -100,8 +126,13 @@ namespace HMS.ViewModel.Admin
 
         public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
         {
-            HostelModelList = HostelList;
-            OnPropertyChanged("HostelModelList");
+            if (HostelList.Count != 0)
+            {
+                HostelModelList = HostelList;
+                IsListviewvisible = true;
+                OnPropertyChanged("HostelModelList");
+                OnPropertyChanged("IsListviewvisible");
+            }
         }
 
         public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
@@ -127,10 +158,13 @@ namespace HMS.ViewModel.Admin
         public async void SaveWardenassignment(string result)
         {
             WardenAssignment = new WardenAssignment();
+            IsListviewvisible = false;
+            SelectedHostelName = "";
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged("WardenAssignment");
+            OnPropertyChanged("IsListviewvisible");
+            OnPropertyChanged("SelectedHostelName");
         }
-
         public async void servicefailed(string result)
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");

@@ -11,10 +11,18 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <!--<RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>-->
             </Grid.RowDefinitions>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="0">
                 <Controls:BetterEntry Text="{Binding Academicyear}" Keyboard="Numeric" MaxLength="4" Placeholder="Enter Hostel Acadmic Year(Between 2019-2021)" PlaceholderColor="Black" Margin="-17" TextColor="Black"/>
             </Frame>
+            <!--<Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="1" BorderColor="Black">
+                <forms:AutoSuggestBox x:Name="txtsearchbyapplicationno" HorizontalOptions="FillAndExpand" TextMemberPath="applicationNo" DisplayMemberPath="applicationNo" PlaceholderText="Search from Application No"  Margin="-17" TextChanged="txtsearchbyapplicationno_TextChanged" SuggestionChosen="txtsearchbyapplicationno_SuggestionChosen"/>
+            </Frame>
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="2" BorderColor="Black">
+                <Controls:BetterEntry x:Name="hosteladmissionid" Keyboard="Numeric" MaxLength="4" Text="{Binding HosteladmissionId}" Placeholder="Enter Hostel Admission id" PlaceholderColor="Black" Margin="-17" TextColor="Black"/>
+            </Frame>-->
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="1">
                 <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Text="{Binding LeaveType}" PlaceholderText="Search by Leave type" TextMemberPath="name" DisplayMemberPath="name" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen" Margin="-17"/>
             </Frame>

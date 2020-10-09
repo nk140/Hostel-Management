@@ -17,6 +17,13 @@ namespace HMS.Models
         public string courseName { get; set; }
         public string code { get; set; }
     }
+    public class UpdateCourseModel
+    {
+        public string userId { get; set; }
+        public string courseId { get; set; }
+        public string courseName { get; set; }
+        public string code { get; set; }
+    }
     public class CourseResponse
     {
         public string status { get; set; }

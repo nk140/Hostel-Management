@@ -3,6 +3,7 @@ using HMS.Models;
 using HMS.ViewModel.Student;
 using System;
 using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HMS.View.Student
@@ -10,7 +11,9 @@ namespace HMS.View.Student
     public partial class FrmLeaveApplication : ContentPage
     {
         public ObservableCollection<LeaveTypeModel> leaveTypes;
+        ObservableCollection<HostelAdmittedStudentDetails> hostelAdmittedStudentDetails1;
         string result1, result2;
+        string applicationno;
         public FrmLeaveApplication()
         {
             InitializeComponent();
@@ -21,6 +24,8 @@ namespace HMS.View.Student
         {
             Vm = new LeaveRequestVM();
             BindingContext = Vm;
+            applicationno = SecureStorage.GetAsync("applicationNo").GetAwaiter().GetResult();
+            Vm.gethosteladmissionid(applicationno);
         }
         private void from_date_selected(object sender, FocusEventArgs e)
         {
@@ -74,6 +79,45 @@ namespace HMS.View.Student
 
             }
         }
+
+        //private void txtsearchbyapplicationno_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+        //        {
+        //            hostelAdmittedStudentDetails1 = new ObservableCollection<HostelAdmittedStudentDetails>();
+        //            if (Vm.HostelAdmittedStudentDetails != null)
+        //            {
+        //                foreach (var items in Vm.HostelAdmittedStudentDetails)
+        //                {
+        //                    if (!string.IsNullOrEmpty(items.applicationNo))
+        //                    {
+        //                        if (!string.IsNullOrEmpty(txtsearchbyapplicationno.Text))
+        //                        {
+        //                            if (items.applicationNo.ToUpper().StartsWith(txtsearchbyapplicationno.Text.ToUpper()) || items.applicationNo.ToLower().StartsWith(txtsearchbyapplicationno.Text.ToLower()))
+        //                                hostelAdmittedStudentDetails1.Add(items);
+        //                        }
+        //                    }
+        //                    else
+        //                        Vm.HostelAdmittedStudentDetails.Clear();
+        //                }
+        //                txtsearchbyapplicationno.ItemsSource = hostelAdmittedStudentDetails1;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //}
+
+        //private void txtsearchbyapplicationno_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        //{
+        //    txtsearchbyapplicationno.Text = ((HostelAdmittedStudentDetails)e.SelectedItem).applicationNo;
+        //    Vm.gethosteladmissionid(txtsearchbyapplicationno.Text);
+        //}
+
         private void txtsearchbykeyword_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbykeyword.Text = ((LeaveTypeModel)e.SelectedItem).name;

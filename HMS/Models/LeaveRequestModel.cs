@@ -9,6 +9,7 @@ namespace HMS.Models
         public string reason { get; set; }
         public string remarks { get; set; }
         public string hostelLeaveTypeId { get; set; }
+        public string hostelAdmissionId { get; set; }
         public string academicYear { get; set; }
     }
     public class LeaveResponse

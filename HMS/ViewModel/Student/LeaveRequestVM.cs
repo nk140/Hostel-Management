@@ -10,13 +10,14 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Student
 {
-    public class LeaveRequestVM : BaseViewModel, StudentLeaveRequestI
+    public class LeaveRequestVM : BaseViewModel, StudentLeaveRequestI, ViewHostelAdmittedStudent
     {
         public LeaveRequestVM()
         {
 
-            web = new StudentService(this);
+            web = new StudentService((ViewHostelAdmittedStudent)this, (StudentLeaveRequestI)this);
             web.GetAllLeaveType();
+            web.GetHostelStudent();
         }
         StudentService web;
         private ObservableCollection<LeaveTypeModel> leaveTypeModel_ = new ObservableCollection<LeaveTypeModel>();
@@ -77,6 +78,19 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged();
             }
         }
+        private string hosteladmissionid;
+        public string HosteladmissionId
+        {
+            get
+            {
+                return hosteladmissionid;
+            }
+            set
+            {
+                hosteladmissionid = value;
+                OnPropertyChanged("HosteladmissionId");
+            }
+        }
         public long TypeHeight
         {
             get { return typeHeight_; }
@@ -98,6 +112,19 @@ namespace HMS.ViewModel.Student
             LeaveRequest.hostelLeaveTypeId = LeaveTypeList[index].id;
 
             OnPropertyChanged("CountryName");
+        }
+        private ObservableCollection<HostelAdmittedStudentDetails> hostelAdmittedStudentDetails = new ObservableCollection<HostelAdmittedStudentDetails>();
+        public ObservableCollection<HostelAdmittedStudentDetails> HostelAdmittedStudentDetails
+        {
+            get
+            {
+                return hostelAdmittedStudentDetails;
+            }
+            set
+            {
+                hostelAdmittedStudentDetails = value;
+                OnPropertyChanged("HostelAdmittedStudentDetails");
+            }
         }
         public Command SetTypeVisibility
         {
@@ -156,6 +183,7 @@ namespace HMS.ViewModel.Student
                         LeaveRequest.reason = Reason;
                         LeaveRequest.remarks = Reason;
                         LeaveRequest.academicYear = Academicyear;
+                        LeaveRequest.hostelAdmissionId = HosteladmissionId;
                         LeaveRequest.hostelLeaveTypeId = LeaveTypeId;
                         LeaveRequest.leaveFromDate = StartDate + "T" + "00:00:00.000Z";
                         LeaveRequest.leaveToDate = EndDate + "T" + "00:00:00.000Z";
@@ -183,8 +211,29 @@ namespace HMS.ViewModel.Student
             LeaveTypeId = string.Empty;
             StartDate = string.Empty;
             EndDate = string.Empty;
+            HosteladmissionId = string.Empty;
+            HostelAdmittedStudentDetails.Clear();
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            OnPropertyChanged("HostelAdmittedStudentDetails");
             OnPropertyChanged();
+        }
+        public void gethosteladmissionid(string applicationno)
+        {
+            web.GetHostelAdmittedStudentbyappno(applicationno);
+        }
+        public void LoadHostelStudent(ObservableCollection<HostelAdmittedStudentDetails> hostelAdmittedStudentDetails)
+        {
+            if (hostelAdmittedStudentDetails.Count == 1)
+            {
+                HostelAdmittedStudentDetails = hostelAdmittedStudentDetails;
+                OnPropertyChanged("HostelAdmittedStudentDetails");
+                HosteladmissionId = HostelAdmittedStudentDetails[0].hostelAdmissionId;
+                OnPropertyChanged("HosteladmissionId");
+            }
+        }
+        public void servicefailed(string result)
+        {
+
         }
     }
 }

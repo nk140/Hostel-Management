@@ -58,13 +58,19 @@ namespace HMS.ViewModel
             UserModel = userData;
             if (UserModel.userType != null)
             {
-                 if (UserModel.userType == "warden")
+                if (UserModel.userType == "warden")
                 {
                     UserDialogs.Instance.HideLoading();
                     await SecureStorage.SetAsync("userId", userData.userId.ToString());
                     await SecureStorage.SetAsync("type", userData.userType);
                     await SecureStorage.SetAsync("id", UserModel.id.ToString());
                     await SecureStorage.SetAsync("firstName", UserModel.firstName);
+                    if (UserModel.studentId != null)
+                        await SecureStorage.SetAsync("studentId", UserModel.studentId);
+                    else
+                    {
+
+                    }
                     if (UserModel.dateOfBirth != null)
                         await SecureStorage.SetAsync("dateOfBirth", UserModel.dateOfBirth);
                     else
@@ -128,6 +134,18 @@ namespace HMS.ViewModel
                     await SecureStorage.SetAsync("type", userData.userType);
                     await SecureStorage.SetAsync("id", UserModel.id.ToString());
                     await SecureStorage.SetAsync("firstName", UserModel.firstName);
+                    if (UserModel.hostelAdmisiionId != null)
+                        await SecureStorage.SetAsync("hostelAdmisiionId", UserModel.hostelAdmisiionId);
+                    else
+                    {
+
+                    }
+                    if (UserModel.studentId != null)
+                        await SecureStorage.SetAsync("studentId", UserModel.studentId);
+                    else
+                    {
+
+                    }
                     if (UserModel.dateOfBirth != null)
                         await SecureStorage.SetAsync("dateOfBirth", UserModel.dateOfBirth);
                     else
@@ -178,6 +196,54 @@ namespace HMS.ViewModel
                     }
                     if (UserModel.gender != null)
                         await SecureStorage.SetAsync("gender", UserModel.gender);
+                    else
+                    {
+
+                    }
+                    if (UserModel.wardenDisciplinaryId != null)
+                    {
+                        await SecureStorage.SetAsync("wardenDisciplinaryId", UserModel.wardenDisciplinaryId);
+                    }
+                    else
+                    {
+
+                    }
+                    if (UserModel.disciplinaryName != null)
+                    {
+                        await SecureStorage.SetAsync("disciplinaryName", UserModel.disciplinaryName);
+                    }
+                    else
+                    {
+
+                    }
+                    if (UserModel.studentName != null)
+                    {
+                        await SecureStorage.SetAsync("studentName", UserModel.studentName);
+                    }
+                    else
+                    {
+
+                    }
+                    if (UserModel.date != null)
+                    {
+                        await SecureStorage.SetAsync("date", UserModel.date);
+                    }
+                    else
+                    {
+
+                    }
+                    if (UserModel.time != null)
+                    {
+                        await SecureStorage.SetAsync("time", UserModel.time);
+                    }
+                    else
+                    {
+
+                    }
+                    if (UserModel.applicationNo != null)
+                    {
+                        await SecureStorage.SetAsync("applicationNo", UserModel.applicationNo);
+                    }
                     else
                     {
 
@@ -335,6 +401,46 @@ namespace HMS.ViewModel
             await SecureStorage.SetAsync("studentName", studentModel.studentName);
             await SecureStorage.SetAsync("email", studentModel.email);
             await SecureStorage.SetAsync("mobileNo", studentModel.mobileNo);
+            if (studentModel.applicationNo != null)
+            {
+                await SecureStorage.SetAsync("applicationNo", studentModel.applicationNo);
+            }
+            else
+            {
+
+            }
+            if (studentModel.wardenDisciplinaryId != null)
+            {
+                await SecureStorage.SetAsync("wardenDisciplinaryId", studentModel.wardenDisciplinaryId);
+            }
+            else
+            {
+
+            }
+            if (studentModel.disciplinaryName != null)
+            {
+                await SecureStorage.SetAsync("disciplinaryName", studentModel.disciplinaryName);
+            }
+            else
+            {
+
+            }
+            if (studentModel.date != null)
+            {
+                await SecureStorage.SetAsync("date", studentModel.date);
+            }
+            else
+            {
+
+            }
+            if (studentModel.time != null)
+            {
+                await SecureStorage.SetAsync("time", studentModel.time);
+            }
+            else
+            {
+
+            }
             await navigationPage.NavigateHomeForm();
         }
         public Task ProccessFailed()

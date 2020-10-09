@@ -20,6 +20,16 @@ namespace HMS.Models
         //[JsonIgnore]
         //public string Studentname { get; set; }
     }
+    public class UpdateDisciplinaryActionbywarden
+    {
+        public string userId { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
+        public string disciplinaryTypeId { get; set; }
+        public string description { get; set; }
+        public string hostelAdmissionId { get; set; }
+        public string wardenDisciplinaryId { get; set; }
+    }
     public class ViewDisciplinaryActionbywarden
     {
         public string studentId { get; set; }
@@ -32,7 +42,7 @@ namespace HMS.Models
         public string disciplinaryTypeName { get; set; }
         public string discription { get; set; }
     }
-    public class ViewDisciplinaryType:JsonProperty
+    public class ViewDisciplinaryType : JsonProperty
     {
         public string id { get; set; }
         public string name { get; set; }

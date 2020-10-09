@@ -2,15 +2,67 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
-             Title="Leave Applied"
+             Title="View Ward Leave Applied"
+             x:Name="wardleavereply"
              x:Class="HMS.View.Parrent.FrmParentLeaves">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Parent Leaves"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout Orientation="Vertical">
+        <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Leave Reason" TextMemberPath="leaveType" DisplayMemberPath="leaveType" Margin="-7"/>
+        </Frame>
+        <CollectionView x:Name="collectionView" ItemsSource="{Binding ParentStudentLeaveStatuses}"  SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!--<SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Approve"
+                                           IconImageSource="approved.png"
+                                           BackgroundColor="DarkGreen"
+                                           Command="{Binding Source={x:Reference studentleaveaction}, Path=BindingContext.ApproveCommand}"
+                                           CommandParameter="{Binding}" />
+                                <SwipeItem Text="Reject"
+                                           IconImageSource="reject.png"
+                                           BackgroundColor="DarkRed"
+                                           Command="{Binding Source={x:Reference studentleaveaction}, Path=BindingContext.RejectCommand}"
+                                           CommandParameter="{Binding}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>-->
+                    <Frame VerticalOptions="FillAndExpand" BorderColor="DarkBlue" Margin="20,25,20,10" CornerRadius="20">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal" Spacing="3">
+                                <Label Text="Reason:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding reason}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="3">
+                                <Label Text="Remark:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding reason}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="3">
+                                <Label Text="FromDate:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding fromDate}" FontFamily="{StaticResource BoldFont}" Margin="2" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="3">
+                                <Label Text="ToDate:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding toDate}" FontFamily="{StaticResource BoldFont}" Margin="2" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="3">
+                                <Label Text="LeaveType:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding leaveType}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="3">
+                                <Label Text="Parent Approve:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding isParentApproved}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference wardleavereply}, Path=BindingContext.LeaveActionOption}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <!--</SwipeView>-->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

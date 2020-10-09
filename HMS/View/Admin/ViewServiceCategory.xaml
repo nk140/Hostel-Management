@@ -9,6 +9,7 @@
 
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <Label Text="View Service Category" FontSize="25" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
             <Frame CornerRadius="30" BackgroundColor="Transparent" BorderColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.3,0.4,0.7,0.06">
                 <forms:AutoSuggestBox x:Name="txtsearchbyservicename" HorizontalOptions="FillAndExpand" DisplayMemberPath="name" TextMemberPath="name"  PlaceholderText="Search From Service name" Margin="-11" TextChanged="txtsearchbyservicename_TextChanged" SuggestionChosen="txtsearchbyservicename_SuggestionChosen"/>
             </Frame>
@@ -47,7 +48,7 @@
                                 </SwipeView.RightItems>
                                 <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding id}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <Label WidthRequest="150" HeightRequest="40" Text="{Binding listcount}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                         <Label WidthRequest="200" HeightRequest="40" Text="{Binding name}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                     </StackLayout>
                                 </Frame>

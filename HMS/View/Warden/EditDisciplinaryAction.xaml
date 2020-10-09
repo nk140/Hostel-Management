@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             x:Class="HMS.View.Warden.EditDisciplinaryAction">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Text="Edit Disciplinary Action" Grid.Row="0" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+            <forms:AutoSuggestBox x:Name="txtsearchbydisciplinarytype" HorizontalOptions="FillAndExpand" Text="{Binding DisciplinaryName}" PlaceholderText="Search by disciplinary name" TextMemberPath="name" DisplayMemberPath="name" TextChanged="txtsearchbydisciplinarytype_TextChanged" SuggestionChosen="txtsearchbydisciplinarytype_SuggestionChosen"  Margin="-10"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
+            <controls:BetterEntry x:Name="txtstudname" Placeholder="Description" Text="{Binding UpdateDisciplinaryActionbywarden.description}" Keyboard="Text"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Button x:Name="btnupdate" CornerRadius="25" Text="Update"  Command="{Binding UpdateDisciplinaryAction}"  Grid.Row="3" TextColor="White" BackgroundColor="#e96125"/>
+    </Grid>
+</ContentPage>

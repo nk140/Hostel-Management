@@ -12,12 +12,19 @@ namespace HMS.Services
     public class LoginServices
     {
         LoginI loginEvent;
-
+        iforgetpassword iforgetpassword;
         public LoginServices(LoginI login)
         {
             loginEvent = login;
         }
+        public LoginServices(iforgetpassword forgetpassword)
+        {
+            iforgetpassword = forgetpassword;
+        }
+        public async void ForgetPassword()
+        {
 
+        }
         public async void UserLogin(UserModel userModel_)
         {
             UserModel userModel;

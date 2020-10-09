@@ -1,4 +1,5 @@
 ﻿using HMS.Models;
+using HMS.View.Parent;
 using HMS.View.Student;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -27,7 +28,8 @@ namespace HMS.View.Parrent
                 new ParentMenuItem {Title="Hostel Detail",TargetType=typeof(FrmParentHostelDetails)},
                 new ParentMenuItem {Title="Student Detail",TargetType=typeof(FrmParentStudentDetails)},
                 new ParentMenuItem {Title="Roomates",TargetType=typeof(FrmParentRoomates)},
-                //new ParentMenuItem {Title="Leave Applied",TargetType=typeof(FrmParentLeaves)},
+                new ParentMenuItem {Title="View Ward Disciplinary",TargetType=typeof(ViewWardDisciplinaryAction)},
+                new ParentMenuItem {Title="View Ward Leave Applied",TargetType=typeof(FrmParentLeaves)},
                 new ParentMenuItem {Title="Warden Details",TargetType=typeof(FrmWardenDetails)},
                 new ParentMenuItem {Title="Logout",TargetType=typeof(FrmLogin)},
             };

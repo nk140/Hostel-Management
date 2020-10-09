@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="View Disciplinary Action"
+             Title="View Ward Disciplinary"
              x:Name="viewdisciplinary"
-             x:Class="HMS.View.Student.ViewDisciplinaryAction">
+             x:Class="HMS.View.Parent.ViewWardDisciplinaryAction">
     <StackLayout Orientation="Vertical" Spacing="9">
         <StackLayout Orientation="Horizontal" Margin="10">
             <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30">
@@ -15,7 +15,7 @@
                 </Image.GestureRecognizers>
                 </Image>-->
         </StackLayout>
-        <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding StudentModels}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+        <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding WardModels}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Label WidthRequest="150" HeightRequest="40" Text="Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
@@ -49,7 +49,7 @@
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label WidthRequest="150" HeightRequest="40" Text="{Binding studentName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="200" HeightRequest="40" Text="{Binding date}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding time}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="150" HeightRequest="40" Text="{Binding time}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
                         </Frame>
                     </SwipeView>

@@ -183,13 +183,15 @@ namespace HMS.View.Admin
         public void selectehostel(int index)
         {
             string hostelname = vm.HostelModelList[index].hostelName;
+            txthostelseleted.Text = hostelname;
+            vm.SelectedHostelName = hostelname;
             string hostelid = vm.HostelModelList[index].id;
             vm.WardenAssignment.hostelId = hostelid;
             sb.Append(hostelname);
             sb2.Append(hostelid);
             //sb.Append(",");
             sb2.Append(",");
-            txtassignedhostellist.Text = sb.ToString();
+            txtassignedhostellist.Text = hostelname;
             vm.WardenAssignment.hostelAssigned = txtassignedhostellist.Text;
         }
     }

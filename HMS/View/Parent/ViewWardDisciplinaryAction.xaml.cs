@@ -1,29 +1,27 @@
-﻿using HMS.Models;
-using HMS.ViewModel.Student;
+﻿using HMS.ViewModel.Student;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HMS.View.Student
+namespace HMS.View.Parent
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ViewDisciplinaryAction : ContentPage
+    public partial class ViewWardDisciplinaryAction : ContentPage
     {
-        ViewStudentDisciplinaryActionVM vm;
-        public ViewDisciplinaryAction()
+        ViewWardDisciplinaryActionVM vm;
+        public ViewWardDisciplinaryAction()
         {
             InitializeComponent();
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = vm = new ViewStudentDisciplinaryActionVM();
+            BindingContext = vm = new ViewWardDisciplinaryActionVM();
         }
         protected override void OnDisappearing()
         {
