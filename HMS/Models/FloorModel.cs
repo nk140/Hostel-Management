@@ -22,7 +22,7 @@ namespace HMS.Models
 "blocks_id":"1"
          */
     }
-    public class FloorData:JsonProperty
+    public class FloorData
     {
         public int id { get; set; }
         public int hostelId { get; set; }
@@ -30,6 +30,7 @@ namespace HMS.Models
         public int noOfRooms { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class FloorDataResponse
     {

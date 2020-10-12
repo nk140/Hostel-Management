@@ -21,26 +21,28 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <Label Text="Hostel Admission" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
             <!--<Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
                 <controls:BetterEntry Placeholder="Enter Roll No" Keyboard="Text"  Text="{Binding HostelAdmission.studentId}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>-->
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
                 <controls:BetterEntry Placeholder="Enter Student Name" Keyboard="Text"  Text="{Binding HostelAdmission.firstName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
-            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="2">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="2" BorderColor="Black">
                 <forms:AutoSuggestBox x:Name="txtsearchbyareaname" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" PlaceholderText="Search from Area name"  Margin="-17" TextChanged="txtsearchbyareaname_TextChanged" SuggestionChosen="txtsearchbyareaname_SuggestionChosen"/>
             </Frame>
-            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="3">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="3" BorderColor="Black">
                 <forms:AutoSuggestBox x:Name="txtsearchbyhostelname" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" PlaceholderText="Search from Hostel name"  Margin="-17" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen"/>
             </Frame>
-            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="4">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="4" BorderColor="Black">
                 <forms:AutoSuggestBox x:Name="txtsearchbycourse" HorizontalOptions="FillAndExpand" TextMemberPath="courseName" DisplayMemberPath="courseName" PlaceholderText="Search from Course name"  Margin="-17" TextChanged="txtsearchbycourse_TextChanged" SuggestionChosen="txtsearchbycourse_SuggestionChosen"/>
             </Frame>
-            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="5">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="5" BorderColor="Black">
                 <forms:AutoSuggestBox x:Name="txtsearchbyroomtypename" HorizontalOptions="FillAndExpand" TextMemberPath="name" DisplayMemberPath="name" PlaceholderText="Search from Room type name"  Margin="-17" TextChanged="txtsearchbyroomtypename_TextChanged" SuggestionChosen="txtsearchbyroomtypename_SuggestionChosen"/>
             </Frame>
-            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="6">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="6" BorderColor="Black">
                 <forms:AutoSuggestBox x:Name="txtsearchbyroombed" HorizontalOptions="FillAndExpand" TextMemberPath="bedNo" DisplayMemberPath="bedNo" PlaceholderText="Search from Bed name"  Margin="-17" TextChanged="txtsearchbybedname_TextChanged" SuggestionChosen="txtsearchbybedname_SuggestionChosen"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="7">
@@ -56,6 +58,7 @@
                 <controls:BetterEntry Placeholder="Enter parent phone no" Keyboard="Numeric"  Text="{Binding HostelAdmission.parentPhoneNo}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Button x:Name="btnsave" CornerRadius="25" Text="Register"  Command="{Binding SaveHostelAdmissionCommand}"  Grid.Row="11" TextColor="White" BackgroundColor="#e96125"/>
+            <Button x:Name="btnback" CornerRadius="25" Text="Back To Login" Clicked="btnsave_Clicked"  Grid.Row="12" TextColor="White" BackgroundColor="#e96125"/>
         </Grid>
     </ScrollView>
 </ContentPage>

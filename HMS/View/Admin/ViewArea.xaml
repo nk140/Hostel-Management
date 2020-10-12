@@ -17,7 +17,7 @@
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
                 <forms:AutoSuggestBox x:Name="txtsearchbyareaname" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" PlaceholderText="Search from Area name"  Margin="-17" TextChanged="txtsearchbyareaname_TextChanged" SuggestionChosen="txtsearchbyareaname_SuggestionChosen"/>
             </Frame>
-           <!-- <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
+            <!-- <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
         </StackLayout>
         <CollectionView x:Name="arealist" ItemsSource="{Binding AreaLists}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
@@ -28,33 +28,42 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
+                    <!--<SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Edit"
                                            IconImageSource="edit.jpg"
                                            Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.EditCommand}"
                                            CommandParameter="{Binding}"
-                                           BackgroundColor="Green" />
-                                <!--<SwipeItem Text="View Hostel"
+                                           BackgroundColor="Green" />-->
+                    <!--<SwipeItem Text="View Hostel"
                                            IconImageSource="edit.jpg"
                                            Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.ViewHostelCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Green" />-->
-                                <SwipeItem Text="Delete"
+                    <!--<SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
                                            Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.DeleteCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Red" />
                             </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                        </SwipeView.RightItems>-->
+                    <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                        <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label WidthRequest="150" HeightRequest="40" Text="{Binding listcount}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="200" HeightRequest="40" Text="{Binding areaName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
-                        </Frame>
-                    </SwipeView>
+                            <StackLayout  Orientation="Horizontal" IsVisible="{Binding Isbuttonvisible}" HorizontalOptions="EndAndExpand">
+                                <Button Text="Edit" BackgroundColor="Green" CornerRadius="25" Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.EditCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                                <Button Text="Delete" BackgroundColor="Red" CornerRadius="25" Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference viewarea}, Path=BindingContext.TapCommand}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <!-- </SwipeView>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

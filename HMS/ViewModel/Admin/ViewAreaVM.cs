@@ -18,6 +18,8 @@ namespace HMS.ViewModel.Admin
         private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
         private ObservableCollection<StateModel> stateModels = new ObservableCollection<StateModel>();
         MasterServices web;
+        private AreaModel _OldDisciplinaryData;
+
         public ObservableCollection<AreaModel> AreaLists
         {
             get { return areaPresentmodels_; }
@@ -31,6 +33,7 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<AreaModel>(OnEditCommand);
         public ICommand ViewHostelCommand => new Command<AreaModel>(OnViewHostelCommand);
         public ICommand DeleteCommand => new Command<AreaModel>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<AreaModel>(OnTapCommand);
         public ViewAreaVM()
         {
             web = new MasterServices((MasterI)this, (DeleteAreaI)this);
@@ -40,6 +43,7 @@ namespace HMS.ViewModel.Admin
         {
             App.areaid = obj.id;
             await App.Current.MainPage.Navigation.PushModalAsync(new EditArea(obj.id, obj.areaName, obj.stateId));
+            Hideorshowbutton(obj);
         }
         public async void OnViewHostelCommand(AreaModel obj)
         {
@@ -51,6 +55,43 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(AreaModel obj)
         {
             web.DeleteArea(obj.id);
+            //Hideorshowbutton(obj);
+        }
+        public async void OnTapCommand(AreaModel obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(AreaModel obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in AreaLists)
+                    {
+                        if (_OldDisciplinaryData.areaName == items.areaName)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(AreaModel obj)
+        {
+            var index = AreaLists.IndexOf(obj);
+            AreaLists.Remove(obj);
+            AreaLists.Insert(index, obj);
         }
         public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
         {
@@ -106,6 +147,8 @@ namespace HMS.ViewModel.Admin
         MasterServices web;
         string hostelids, areaids;
         private ObservableCollection<BlockModel> blockModels_ = new ObservableCollection<BlockModel>();
+        private BlockModel _OldDisciplinaryData;
+
         public ObservableCollection<BlockModel> BlockModelList
         {
             get { return blockModels_; }
@@ -114,6 +157,7 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<BlockModel>(OnEditCommand);
         public ICommand ViewFloorCommand => new Command<BlockModel>(OnViewFloorCommand);
         public ICommand DeleteCommand => new Command<BlockModel>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<BlockModel>(OnTapCommand);
         public ViewBlockVM(string hosteId, string areaids)
         {
             hostelids = hosteId;
@@ -141,6 +185,42 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(BlockModel obj)
         {
             web.DeleteBlock(obj.id);
+        }
+        public async void OnTapCommand(BlockModel obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(BlockModel obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in BlockModelList)
+                    {
+                        if (_OldDisciplinaryData.name == items.name)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(BlockModel obj)
+        {
+            var index = BlockModelList.IndexOf(obj);
+            BlockModelList.Remove(obj);
+            BlockModelList.Insert(index, obj);
         }
         public Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
         {
@@ -268,9 +348,12 @@ namespace HMS.ViewModel.Admin
         public string blockid;
         string hostelids;
         MasterServices web;
+        private FloorData _OldDisciplinaryData;
+
         public ICommand EditCommand => new Command<FloorData>(OnEditCommand);
         public ICommand ViewRoomCommand => new Command<FloorData>(OnViewRoomCommand);
         public ICommand DeleteCommand => new Command<FloorData>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<FloorData>(OnTapCommand);
         public ViewFloorVM(string hostelid, string blockid)
         {
             //this.blockid = blockid;
@@ -292,6 +375,42 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(FloorData obj)
         {
             web.DeleteFloor(obj.id.ToString());
+        }
+        public async void OnTapCommand(FloorData obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(FloorData obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in FloorModelList)
+                    {
+                        if (_OldDisciplinaryData.floorNo == items.floorNo)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(FloorData obj)
+        {
+            var index = FloorModelList.IndexOf(obj);
+            FloorModelList.Remove(obj);
+            FloorModelList.Insert(index, obj);
         }
         public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
         {
@@ -427,6 +546,8 @@ namespace HMS.ViewModel.Admin
         MasterServices web;
         string blockids, floorids, hostelids;
         private ObservableCollection<RoomNameList> roomNameLists = new ObservableCollection<RoomNameList>();
+        private RoomNameList _OldDisciplinaryData;
+
         public ObservableCollection<RoomNameList> RoomNameLists
         {
             get
@@ -442,6 +563,7 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<RoomNameList>(OnEditCommand);
         public ICommand ViewRoomBedCommand => new Command<RoomNameList>(OnViewRoomBedCommand);
         public ICommand DeleteCommand => new Command<RoomNameList>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<RoomNameList>(OnTapCommand);
         public ViewRoomVM(string hostelid, string blockid, string floorid)
         {
             hostelids = hostelid;
@@ -462,6 +584,42 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(RoomNameList obj)
         {
             web.DeleteRoom(obj.id);
+        }
+        public async void OnTapCommand(RoomNameList obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(RoomNameList obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in RoomNameLists)
+                    {
+                        if (_OldDisciplinaryData.name == items.name)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(RoomNameList obj)
+        {
+            var index = RoomNameLists.IndexOf(obj);
+            RoomNameLists.Remove(obj);
+            RoomNameLists.Insert(index, obj);
         }
         public async void DeleteRoomSucess(string resultHostel)
         {
@@ -524,6 +682,8 @@ namespace HMS.ViewModel.Admin
     {
         MasterServices web;
         private ObservableCollection<RoomTypeModel> roomTypeModel_ = new ObservableCollection<RoomTypeModel>();
+        private RoomTypeModel _OldDisciplinaryData;
+
         public ObservableCollection<RoomTypeModel> RoomTypeModels
         {
             get
@@ -538,6 +698,7 @@ namespace HMS.ViewModel.Admin
         }
         public ICommand EditCommand => new Command<RoomTypeModel>(OnEditCommand);
         public ICommand DeleteCommand => new Command<RoomTypeModel>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<RoomTypeModel>(OnTapCommand);
         public ViewRoomTypeVM()
         {
             web = new MasterServices((RoomI)this, (DeleteRoomTypeI)this);
@@ -550,6 +711,42 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(RoomTypeModel obj)
         {
             web.DeleteRoomType(obj.id);
+        }
+        public async void OnTapCommand(RoomTypeModel obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(RoomTypeModel obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in RoomTypeModels)
+                    {
+                        if (_OldDisciplinaryData.name == items.name)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(RoomTypeModel obj)
+        {
+            var index = RoomTypeModels.IndexOf(obj);
+            RoomTypeModels.Remove(obj);
+            RoomTypeModels.Insert(index, obj);
         }
         public async Task LoadRoomType(ObservableCollection<RoomTypeModel> RoomTypes)
         {
@@ -720,6 +917,8 @@ namespace HMS.ViewModel.Admin
         string hostelids;
         string roomnames;
         private ObservableCollection<RoomBedData> roomBedDatas = new ObservableCollection<RoomBedData>();
+        private RoomBedData _OldDisciplinaryData;
+
         public ObservableCollection<RoomBedData> RoomBedDatas
         {
             get
@@ -734,6 +933,7 @@ namespace HMS.ViewModel.Admin
         }
         public ICommand EditCommand => new Command<RoomBedData>(OnEditCommand);
         public ICommand DeleteCommand => new Command<RoomBedData>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<RoomBedData>(OnTapCommand);
         public ViewRoomBedVM(string roomname, string hostelid)
         {
             hostelids = hostelid;
@@ -754,7 +954,42 @@ namespace HMS.ViewModel.Admin
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             web.GetRoomBedList(hostelids);
         }
-
+        public async void OnTapCommand(RoomBedData obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(RoomBedData obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in RoomBedDatas)
+                    {
+                        if (_OldDisciplinaryData.bedNo == items.bedNo)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(RoomBedData obj)
+        {
+            var index = RoomBedDatas.IndexOf(obj);
+            RoomBedDatas.Remove(obj);
+            RoomBedDatas.Insert(index, obj);
+        }
         public async void Failer(string result)
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
@@ -895,6 +1130,8 @@ namespace HMS.ViewModel.Admin
         MasterServices web;
         string AreaId;
         private ObservableCollection<HostelModel> hostelPresentmodels_ = new ObservableCollection<HostelModel>();
+        private HostelModel _OldDisciplinaryData;
+
         public ObservableCollection<HostelModel> HostelLists
         {
             get { return hostelPresentmodels_; }
@@ -903,6 +1140,7 @@ namespace HMS.ViewModel.Admin
         public ICommand EditCommand => new Command<HostelModel>(OnEditCommand);
         public ICommand ViewBlockCommand => new Command<HostelModel>(OnViewBlockCommand);
         public ICommand DeleteCommand => new Command<HostelModel>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<HostelModel>(OnTapCommand);
         public ViewHostelVM(string areaid)
         {
             // MessagingCenter.Subscribe<FilterPopup>(this,"")
@@ -926,6 +1164,42 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(HostelModel obj)
         {
             web.DeleteHostel(obj.id);
+        }
+        public async void OnTapCommand(HostelModel obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(HostelModel obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in HostelLists)
+                    {
+                        if (_OldDisciplinaryData.hostelName == items.hostelName)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(HostelModel obj)
+        {
+            var index = HostelLists.IndexOf(obj);
+            HostelLists.Remove(obj);
+            HostelLists.Insert(index, obj);
         }
         public Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
         {
@@ -1034,6 +1308,8 @@ namespace HMS.ViewModel.Admin
     {
         MasterServices web;
         private ObservableCollection<Models.ViewFacility> viewFacilities = new ObservableCollection<Models.ViewFacility>();
+        private Models.ViewFacility _OldDisciplinaryData;
+
         public ObservableCollection<Models.ViewFacility> ViewFacilities
         {
             get
@@ -1048,6 +1324,7 @@ namespace HMS.ViewModel.Admin
         }
         public ICommand DeleteFacilityCommand => new Command<Models.ViewFacility>(OnDeleteFacilityCommand);
         public ICommand EditFacilityCommand => new Command<Models.ViewFacility>(OnEditFacilityCommand);
+        public ICommand TapCommand => new Command<Models.ViewFacility>(OnTapCommand);
         public ViewFacilityVM()
         {
             web = new MasterServices((ViewFacilityI)this, (DeleteFasilityI)this);
@@ -1056,6 +1333,42 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteFacilityCommand(Models.ViewFacility obj)
         {
             web.DeleteFacility(obj.id);
+        }
+        public async void OnTapCommand(Models.ViewFacility obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(Models.ViewFacility obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in ViewFacilities)
+                    {
+                        if (_OldDisciplinaryData.name == items.name)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(Models.ViewFacility obj)
+        {
+            var index = ViewFacilities.IndexOf(obj);
+            ViewFacilities.Remove(obj);
+            ViewFacilities.Insert(index, obj);
         }
         public async void OnEditFacilityCommand(Models.ViewFacility obj)
         {
@@ -1088,6 +1401,8 @@ namespace HMS.ViewModel.Admin
     {
         MasterServices web;
         private ObservableCollection<Models.ViewDisciplinaryType> viewDisciplinaryTypes = new ObservableCollection<Models.ViewDisciplinaryType>();
+        private Models.ViewDisciplinaryType _OldDisciplinaryData;
+
         public ObservableCollection<Models.ViewDisciplinaryType> ViewDisciplinaryTypes
         {
             get
@@ -1102,6 +1417,7 @@ namespace HMS.ViewModel.Admin
         }
         public ICommand DeleteDisciplinaryCommand => new Command<Models.ViewDisciplinaryType>(OnDeleteDisciplinaryCommand);
         public ICommand EditDisciplinaryCommand => new Command<Models.ViewDisciplinaryType>(OnEditDisciplinaryCommand);
+        public ICommand TapCommand => new Command<Models.ViewDisciplinaryType>(OnTapCommand);
         public ViewDisciplinaryTypeVM()
         {
             web = new MasterServices((ViewIDisciplinary)this, (IDeleteDisciplinary)this);
@@ -1120,7 +1436,42 @@ namespace HMS.ViewModel.Admin
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             web.ViewDisciplinaryType();
         }
-
+        public async void OnTapCommand(Models.ViewDisciplinaryType obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(Models.ViewDisciplinaryType obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in ViewDisciplinaryTypes)
+                    {
+                        if (_OldDisciplinaryData.name == items.name)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(Models.ViewDisciplinaryType obj)
+        {
+            var index = ViewDisciplinaryTypes.IndexOf(obj);
+            ViewDisciplinaryTypes.Remove(obj);
+            ViewDisciplinaryTypes.Insert(index, obj);
+        }
         public async void Failer(string result)
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");

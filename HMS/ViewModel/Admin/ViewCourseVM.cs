@@ -15,6 +15,8 @@ namespace HMS.ViewModel.Admin
     {
         StudentService StudentService;
         private ObservableCollection<CourseDetailModel> courseDetailModels = new ObservableCollection<CourseDetailModel>();
+        private CourseDetailModel _OldDisciplinaryData;
+
         public ObservableCollection<CourseDetailModel> CourseDetailModels1
         {
             get
@@ -29,6 +31,7 @@ namespace HMS.ViewModel.Admin
         }
         public ICommand EditCommand => new Command<CourseDetailModel>(OnEditCommand);
         public ICommand DeleteCommand => new Command<CourseDetailModel>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<CourseDetailModel>(OnTapCommand);
         public ViewCourseVM()
         {
             StudentService = new StudentService((Icoursedetail)this, (IDeleteCourse)this);
@@ -41,6 +44,42 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(CourseDetailModel obj)
         {
             StudentService.DeleteCourse(obj.courseId);
+        }
+        public async void OnTapCommand(CourseDetailModel obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(CourseDetailModel obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in CourseDetailModels1)
+                    {
+                        if (_OldDisciplinaryData.courseName == items.courseName)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(CourseDetailModel obj)
+        {
+            var index = CourseDetailModels1.IndexOf(obj);
+            CourseDetailModels1.Remove(obj);
+            CourseDetailModels1.Insert(index, obj);
         }
         public async void GetCourseList(ObservableCollection<CourseDetailModel> courseDetailModels)
         {

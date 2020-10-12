@@ -1,4 +1,6 @@
-﻿namespace HMS.Models
+﻿using Newtonsoft.Json;
+
+namespace HMS.Models
 {
     public class UserModel
     {
@@ -25,6 +27,8 @@
         public string date { get; set; }
         public string time { get; set; }
         public string hostelAdmisiionId { get; set; }
+        [JsonIgnore]
+        public bool Isbuttonvisible { get; set; }
     }
     public class StudentModel
     {
@@ -49,5 +53,7 @@
         public string disciplinaryName { get; set; }
         public string date { get; set; }
         public string time { get; set; }
+        [JsonIgnore]
+        public bool Isbuttonvisible { get; set; }
     }
 }

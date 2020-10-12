@@ -180,6 +180,10 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     ObservableCollection<ViewDisciplinaryActionbywarden> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ViewDisciplinaryActionbywarden>>(result);
+                    for (int i = 0; i < parentleave.Count; i++)
+                    {
+                        parentleave[i].Isbuttonvisible = false;
+                    }
                     UserDialogs.Instance.HideLoading();
                     iviewDisciplinaryActionTaken.LoadTakenDisciplinaryAction(parentleave);
                 }

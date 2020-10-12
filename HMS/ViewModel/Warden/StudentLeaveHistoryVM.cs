@@ -75,9 +75,13 @@ namespace HMS.ViewModel.Warden
             {
                 wardenService.ApproveWardLeave(hosteladmissionids, "Approved");
             }
+            else if(result.Equals("Reject"))
+            {
+                wardenService.ApproveWardLeave(hosteladmissionids, "Reject");
+            }
             else
             {
-                wardenService.ApproveWardLeave(hosteladmissionids, "Rejected");
+
             }
         }
 

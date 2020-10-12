@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace HMS.Services
 {
@@ -44,7 +45,12 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     userModel = JsonConvert.DeserializeObject<UserModel>(await response.Content.ReadAsStringAsync());
-                    if (userModel.userType == "student")
+                    if(userModel.userType==null)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        await App.Current.MainPage.DisplayAlert("HMS", "You have not completed Hostel Admission.", "OK");
+                    }
+                    else if (userModel.userType == "student")
                     {
                         UserDialogs.Instance.HideLoading();
                         userModel = new UserModel();

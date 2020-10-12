@@ -12,6 +12,7 @@ namespace HMS.Models
         public string hostelId { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class BlockModelResponse
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,8 @@ namespace HMS.Models
         public string courseId { get; set; }
         public string courseName { get; set; }
         public string code { get; set; }
+        [JsonIgnore]
+        public bool Isbuttonvisible { get; set; }
     }
     public class CourseModel
     {

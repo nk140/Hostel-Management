@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class AreaModel:JsonProperty
+    public class AreaModel
     {
         public string id { get; set; }
         public string areaName { get; set; }
         public string stateId { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
-       
+        public bool Isbuttonvisible { get; set; }
     }
     public class AreaModelResponse
     {

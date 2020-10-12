@@ -208,5 +208,10 @@ namespace HMS.View.Student
             vm.HostelAdmission.roomId = ((RoomBedData)e.SelectedItem).hostelRoomId;
             vm.HostelAdmission.bedId = ((RoomBedData)e.SelectedItem).bedId;
         }
+
+        private void btnsave_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new FrmLogin();
+        }
     }
 }

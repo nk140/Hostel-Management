@@ -15,7 +15,7 @@
             <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
         </StackLayout>
         <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
-            <CollectionView x:Name="arealist" ItemsSource="{Binding DisciplinaryActionbywardens}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+            <CollectionView x:Name="arealist" ItemsSource="{Binding DisciplinaryActionbywardens}"  VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
                 <CollectionView.Header>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Label WidthRequest="150" HeightRequest="40" Text="Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
@@ -25,8 +25,8 @@
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <SwipeView>
-                            <SwipeView.RightItems>
+                        <!--<SwipeView>-->
+                        <!--<SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem Text="Edit"
                                            IconImageSource="edit.jpg"
@@ -44,15 +44,25 @@
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Red" />
                                 </SwipeItems>
-                            </SwipeView.RightItems>
-                            <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                            </SwipeView.RightItems>-->
+                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                            <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                     <Label WidthRequest="150" HeightRequest="40" Text="{Binding studentName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                     <Label WidthRequest="200" HeightRequest="40" Text="{Binding date}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                     <Label WidthRequest="200" HeightRequest="40" Text="{Binding time}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 </StackLayout>
-                            </Frame>
-                        </SwipeView>
+                                <StackLayout  Orientation="Horizontal" IsVisible="{Binding Isbuttonvisible}" Margin="117,0,0,0">
+                                    <Button Text="Edit" BackgroundColor="Green" CornerRadius="25" Command="{Binding Source={x:Reference viewdisciplinaryaction}, Path=BindingContext.EditCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                                    <Button Text="View" BackgroundColor="Navy" CornerRadius="25"  Command="{Binding Source={x:Reference viewdisciplinaryaction}, Path=BindingContext.ViewCommand}" CommandParameter="{Binding}"  TextColor="White"/>
+                                    <Button Text="Delete" BackgroundColor="Red" CornerRadius="25" Command="{Binding Source={x:Reference viewdisciplinaryaction}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference viewdisciplinaryaction}, Path=BindingContext.TapCommand}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <!--</SwipeView>-->
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

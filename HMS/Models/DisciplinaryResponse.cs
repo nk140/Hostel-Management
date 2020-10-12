@@ -41,13 +41,16 @@ namespace HMS.Models
         public string disciplinaryTypeId { get; set; }
         public string disciplinaryTypeName { get; set; }
         public string discription { get; set; }
+        [JsonIgnore]
+        public bool Isbuttonvisible { get; set; }
     }
-    public class ViewDisciplinaryType : JsonProperty
+    public class ViewDisciplinaryType
     {
         public string id { get; set; }
         public string name { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class UpdateDisciplinaryType
     {

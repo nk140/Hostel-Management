@@ -14,7 +14,7 @@ namespace HMS.Models
         public string Images { get; set; }
         public string No { get; set; }
     }
-    public class RoomNameList:JsonProperty
+    public class RoomNameList
     {
         public string id { get; set; }
         public string name { get; set; }
@@ -22,6 +22,7 @@ namespace HMS.Models
         public string hostelRoomTypeId { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class RoomNameResponse
     {

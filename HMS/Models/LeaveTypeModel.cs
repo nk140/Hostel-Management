@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class LeaveTypeModel:JsonProperty
+    public class LeaveTypeModel
     {
         public string id { get; set; }
         public string name { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class LeaveTypeerrorresponse
     {

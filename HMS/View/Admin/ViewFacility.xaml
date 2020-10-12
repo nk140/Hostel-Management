@@ -27,33 +27,42 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
+                    <!--<SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Edit"
                                            IconImageSource="edit.jpg"
                                            Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.EditFacilityCommand}"
                                            CommandParameter="{Binding}"
-                                           BackgroundColor="Green" />
-                                <!--<SwipeItem Text="View Floor"
+                                           BackgroundColor="Green" />-->
+                    <!--<SwipeItem Text="View Floor"
                                            IconImageSource="edit.jpg"
                                            Command="{Binding Source={x:Reference viewblock}, Path=BindingContext.ViewFloorCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Green" />-->
-                                <SwipeItem Text="Delete"
+                    <!--<SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
                                            Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.DeleteFacilityCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Red" />
                             </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                        </SwipeView.RightItems>-->
+                    <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                        <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label WidthRequest="150" HeightRequest="40" Text="{Binding listcount}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="200" HeightRequest="40" Text="{Binding name}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
-                        </Frame>
-                    </SwipeView>
+                            <StackLayout  Orientation="Horizontal" IsVisible="{Binding Isbuttonvisible}" HorizontalOptions="EndAndExpand">
+                                <Button Text="Edit" BackgroundColor="Green" CornerRadius="25" Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.EditFacilityCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                                <Button Text="Delete" BackgroundColor="Red" CornerRadius="25" Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.DeleteFacilityCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference viewfacility}, Path=BindingContext.TapCommand}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <!--</SwipeView>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

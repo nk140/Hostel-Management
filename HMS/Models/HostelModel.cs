@@ -17,6 +17,7 @@ namespace HMS.Models
         public string email { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class HostelAdmission
     {

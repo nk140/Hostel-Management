@@ -25,34 +25,42 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
+                    <!--<SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="View"
                                            IconImageSource="edit.jpg"
                                            BackgroundColor="Navy"
                                            Command="{Binding Source={x:Reference viewdisciplinary}, Path=BindingContext.ViewCommand}"
-                                           CommandParameter="{Binding}"/>
-                                <!--<SwipeItem Text="View Room"
+                                           CommandParameter="{Binding}"/>-->
+                    <!--<SwipeItem Text="View Room"
                                            IconImageSource="edit.jpg"
                                            BackgroundColor="Green"
                                            Command="{Binding Source={x:Reference viewfloor}, Path=BindingContext.ViewRoomCommand}"
                                            CommandParameter="{Binding}"/>-->
-                                <!--<SwipeItem Text="Delete"
+                    <!--<SwipeItem Text="Delete"
                                            IconImageSource="reject.png"
                                            Command="{Binding Source={x:Reference viewfloor}, Path=BindingContext.DeleteCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="Red" />-->
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                    <!--</SwipeItems>
+                        </SwipeView.RightItems>-->
+                    <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                        <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label WidthRequest="150" HeightRequest="40" Text="{Binding studentName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="200" HeightRequest="40" Text="{Binding date}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                 <Label WidthRequest="150" HeightRequest="40" Text="{Binding time}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </StackLayout>
-                        </Frame>
-                    </SwipeView>
+                            <StackLayout  Orientation="Horizontal" IsVisible="{Binding Isbuttonvisible}" HorizontalOptions="EndAndExpand">
+                                <Button Text="View" BackgroundColor="Navy" CornerRadius="25" Command="{Binding Source={x:Reference viewdisciplinary}, Path=BindingContext.ViewCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference viewdisciplinary}, Path=BindingContext.TapCommand}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <!--</SwipeView>-->
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

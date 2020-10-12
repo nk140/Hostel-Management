@@ -15,9 +15,14 @@ namespace HMS.View.Student
         }
         RegistratioonVM Vm;
 
-        private void BtnLoginClick(object sender, EventArgs e)
+        private async void BtnLoginClick(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new FrmLogin();
+            
+        }
+
+        private  void btnhosteladmission_Clicked(object sender, EventArgs e)
+        {
+             App.Current.MainPage = new StudentHostelAdmission();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace HMS.View.Admin
     public partial class ViewDisciplinaryAction : ContentPage
     {
         ViewDisciplinaryActionVM vm;
+        int counter;
         ObservableCollection<ViewDisciplinaryActionbywarden> viewDisciplinaryActionbywardens;
         ObservableCollection<ViewDisciplinaryActionbywarden> viewDisciplinaryActionbywardens1;
         public ViewDisciplinaryAction()
@@ -71,6 +72,11 @@ namespace HMS.View.Admin
                 }
                 arealist.ItemsSource = viewDisciplinaryActionbywardens1;
             }
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+          
         }
     }
 }

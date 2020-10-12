@@ -142,20 +142,20 @@
                                 Command="{Binding SaveCommand}"
                                 TextColor="White"
                                 Text="Register"/>
-
+                            
                             <Label
                                 HorizontalOptions="Center"
                                 Margin="30,10,30,0"
                                 TextColor="Black"
                                 Text="OR"/>
-                            <Button
+                            <Button x:Name="btnhosteladmission" TextColor="#003366" HorizontalOptions="CenterAndExpand" Margin="30,10,30,0" Text="Hostel Admission" BackgroundColor="Transparent"  CornerRadius="20" Clicked="btnhosteladmission_Clicked"/>
+                            <!--<Button
                                 Margin="30,10,30,0"
                                   Text="Login" Grid.Row="0" Grid.Column="1"
                                   BackgroundColor="White"
                                   Clicked="BtnLoginClick"
                                   TextColor="#003366"
-                                  CornerRadius="10"/>
-
+                                  CornerRadius="10"/>-->
 
                         </StackLayout>
 

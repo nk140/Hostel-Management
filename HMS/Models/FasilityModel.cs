@@ -9,12 +9,13 @@ namespace HMS.Models
         public string userId { get; set; }
         public string name { get; set; }
     }
-    public class ViewFacility:JsonProperty
+    public class ViewFacility
     {
         public string id { get; set; }
         public string name { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class UpdateFacility
     {

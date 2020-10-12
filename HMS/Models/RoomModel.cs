@@ -40,7 +40,7 @@ namespace HMS.Models
     {
         public string message { get; set; }
     }
-    public class RoomBedData:JsonProperty
+    public class RoomBedData
     {
         public string bedId { get; set; }
         public string bedNo { get; set; }
@@ -48,6 +48,7 @@ namespace HMS.Models
         public string hostelId { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
+        public bool Isbuttonvisible { get; set; }
     }
     public class RoomBedResponses
     {

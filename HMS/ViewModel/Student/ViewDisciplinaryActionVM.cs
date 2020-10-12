@@ -30,6 +30,21 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged("DisciplinaryActionbywardens");
             }
         }
+        private bool isbuttonvisible;
+        private ViewDisciplinaryActionbywarden _OldDisciplinaryData;
+
+        public bool Isbuttonvisible
+        {
+            get
+            {
+                return isbuttonvisible;
+            }
+            set
+            {
+                isbuttonvisible = value;
+                OnPropertyChanged("Isbuttonvisible");
+            }
+        }
         public ViewDisciplinaryActionVM()
         {
             wardenService = new WardenService((ViewDisciplinaryActionTaken)this, (IDeleteDisciplinary)this);
@@ -38,17 +53,56 @@ namespace HMS.ViewModel.Student
         public ICommand EditCommand => new Command<ViewDisciplinaryActionbywarden>(OnEditCommand);
         public ICommand ViewCommand => new Command<ViewDisciplinaryActionbywarden>(OnViewCommand);
         public ICommand DeleteCommand => new Command<ViewDisciplinaryActionbywarden>(OnDeleteCommand);
+        public ICommand TapCommand => new Command<ViewDisciplinaryActionbywarden>(OnTapCommand);
         public async void OnEditCommand(ViewDisciplinaryActionbywarden obj)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new EditDisciplinaryAction(obj.disciplinaryTypeName,obj.disciplinaryTypeId,obj.discription,obj.hostelAdmissionId,obj.date,obj.time));
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditDisciplinaryAction(obj.disciplinaryTypeName, obj.disciplinaryTypeId, obj.discription, obj.hostelAdmissionId, obj.date, obj.time));
+            Hideorshowbutton(obj);
         }
         public async void OnViewCommand(ViewDisciplinaryActionbywarden obj)
         {
             await App.Current.MainPage.Navigation.PushPopupAsync(new ViewDisciplinaryActionPopup(obj.date, obj.time, obj.studentName, obj.appicationNo, obj.disciplinaryTypeName, obj.discription));
+            Hideorshowbutton(obj);
         }
         public async void OnDeleteCommand(ViewDisciplinaryActionbywarden obj)
         {
             wardenService.DeleteDisciplinaryActionTaken(obj.disciplinaryTypeId);
+        }
+        public async void OnTapCommand(ViewDisciplinaryActionbywarden obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(ViewDisciplinaryActionbywarden obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in DisciplinaryActionbywardens)
+                    {
+                        if (_OldDisciplinaryData.studentName == items.studentName)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(ViewDisciplinaryActionbywarden obj)
+        {
+            var index = DisciplinaryActionbywardens.IndexOf(obj);
+            DisciplinaryActionbywardens.Remove(obj);
+            DisciplinaryActionbywardens.Insert(index, obj);
         }
         public async void servicefailed(string result)
         {
@@ -117,10 +171,11 @@ namespace HMS.ViewModel.Student
             }
         }
         public ICommand UpdateDisciplinaryAction => new Command(OnUpdateDisciplinaryAction);
-        public EditDisciplinaryActionVM(string disciplinaryname, string discipid,string description,string hostelAdmissionId,string date,string time)
+        public EditDisciplinaryActionVM(string disciplinaryname, string discipid, string description, string hostelAdmissionId, string date, string time)
         {
             DisciplinaryName = disciplinaryname;
             UpdateDisciplinaryActionbywarden.disciplinaryTypeId = discipid;
+            UpdateDisciplinaryActionbywarden.wardenDisciplinaryId = discipid;
             UpdateDisciplinaryActionbywarden.description = description;
             UpdateDisciplinaryActionbywarden.hostelAdmissionId = hostelAdmissionId;
             UpdateDisciplinaryActionbywarden.date = date;
@@ -158,7 +213,7 @@ namespace HMS.ViewModel.Student
 
         public void ServiceFailed(string result)
         {
-           
+
         }
 
         public async void UpdateDisciplinaryType(string result)
@@ -171,6 +226,8 @@ namespace HMS.ViewModel.Student
     public class ViewStudentDisciplinaryActionVM : BaseViewModel
     {
         private ObservableCollection<StudentModel> studentModels = new ObservableCollection<StudentModel>();
+        private StudentModel _OldDisciplinaryData;
+
         public ObservableCollection<StudentModel> StudentModels
         {
             get
@@ -196,14 +253,53 @@ namespace HMS.ViewModel.Student
             });
         }
         public ICommand ViewCommand => new Command<StudentModel>(OnViewCommand);
+        public ICommand TapCommand => new Command<StudentModel>(OnTapCommand);
         public async void OnViewCommand(StudentModel obj)
         {
             await App.Current.MainPage.Navigation.PushPopupAsync(new ViewDisciplinaryActionPopup(obj.date, obj.time, obj.studentName, obj.applicationNo, obj.disciplinaryName, obj.disciplinaryName));
+        }
+        public async void OnTapCommand(StudentModel obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(StudentModel obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in StudentModels)
+                    {
+                        if (_OldDisciplinaryData.studentName == items.studentName)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(StudentModel obj)
+        {
+            var index = StudentModels.IndexOf(obj);
+            StudentModels.Remove(obj);
+            StudentModels.Insert(index, obj);
         }
     }
     public class ViewWardDisciplinaryActionVM : BaseViewModel
     {
         private ObservableCollection<UserModel> wardmodels = new ObservableCollection<UserModel>();
+        private UserModel _OldDisciplinaryData;
+
         public ObservableCollection<UserModel> WardModels
         {
             get
@@ -224,15 +320,52 @@ namespace HMS.ViewModel.Student
                 studentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult(),
                 disciplinaryName = SecureStorage.GetAsync("disciplinaryName").GetAwaiter().GetResult(),
                 applicationNo = SecureStorage.GetAsync("applicationNo").GetAwaiter().GetResult(),
-                studentId= SecureStorage.GetAsync("studentId").GetAwaiter().GetResult(),
+                studentId = SecureStorage.GetAsync("studentId").GetAwaiter().GetResult(),
                 date = SecureStorage.GetAsync("date").GetAwaiter().GetResult(),
                 time = SecureStorage.GetAsync("time").GetAwaiter().GetResult()
             });
         }
         public ICommand ViewCommand => new Command<UserModel>(OnViewCommand);
+        public ICommand TapCommand => new Command<UserModel>(OnTapCommand);
         public async void OnViewCommand(UserModel obj)
         {
             await App.Current.MainPage.Navigation.PushPopupAsync(new ViewDisciplinaryActionPopup(obj.date, obj.time, obj.studentName, obj.applicationNo, obj.disciplinaryName, obj.disciplinaryName));
+        }
+        public async void OnTapCommand(UserModel obj)
+        {
+            Hideorshowbutton(obj);
+        }
+        public void Hideorshowbutton(UserModel obj)
+        {
+            if (_OldDisciplinaryData == obj)
+            {
+                obj.Isbuttonvisible = !obj.Isbuttonvisible;
+                UpdateProduct(obj);
+            }
+            else
+            {
+                if (_OldDisciplinaryData != null)
+                {
+                    foreach (var items in WardModels)
+                    {
+                        if (_OldDisciplinaryData.studentName == items.studentName)
+                        {
+                            _OldDisciplinaryData.Isbuttonvisible = false;
+                            UpdateProduct(_OldDisciplinaryData);
+                            break;
+                        }
+                    }
+                }
+                obj.Isbuttonvisible = true;
+                UpdateProduct(obj);
+            }
+            _OldDisciplinaryData = obj;
+        }
+        public void UpdateProduct(UserModel obj)
+        {
+            var index = WardModels.IndexOf(obj);
+            WardModels.Remove(obj);
+            WardModels.Insert(index, obj);
         }
     }
 }
