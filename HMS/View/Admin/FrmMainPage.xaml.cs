@@ -69,6 +69,7 @@ namespace HMS.View.Admin
                 else
                 {
                     Type page = item.TargetType;
+                    item.Selected = true;
                     Detail = new NavigationPage((Page)Activator.CreateInstance(page));
                     IsPresented = false;
                 }

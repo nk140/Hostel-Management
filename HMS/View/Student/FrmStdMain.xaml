@@ -13,6 +13,7 @@
                  BackgroundColor="White">
                 <ListView x:Name="ListViewMenu" ItemSelected="OnMenuItemSelected"
                   HasUnevenRows="True"
+                  VerticalScrollBarVisibility="Never"
                   BackgroundColor="White">
                     <d:ListView.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

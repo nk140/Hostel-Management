@@ -11,9 +11,9 @@
         <ContentPage Title="Menu" IconImageSource="Menu">
             <StackLayout VerticalOptions="FillAndExpand"
                  BackgroundColor="White">
-                <ListView x:Name="ListViewMenu" ItemSelected="ListViewMenu_ItemSelected"
+                <ListView x:Name="ListViewMenu" ItemSelected="ListViewMenu_ItemSelected" SelectionMode="Single"
                   HasUnevenRows="True"
-                  SelectionMode="Single"
+                  VerticalScrollBarVisibility="Never"
                   BackgroundColor="White">
                     <d:ListView.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -24,16 +24,16 @@
                     </d:ListView.ItemsSource>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <customControls:CustomViewCell SelectedBackgroundColor="#e96125">
-                                <ViewCell.View>
+                            <!--<customControls:CustomViewCell SelectedBackgroundColor="#e96125">-->
+                                <ViewCell>
                                     <Grid Padding="10" MinimumHeightRequest="10">
                                         <Label Text="{Binding Title}" d:Text="{Binding .}" 
                                    FontSize="20"
                                    FontFamily="{StaticResource NormalFont}"
                                    TextColor="Black"/>
                                     </Grid>
-                                </ViewCell.View>
-                            </customControls:CustomViewCell>
+                                </ViewCell>
+                            <!--</customControls:CustomViewCell>-->
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

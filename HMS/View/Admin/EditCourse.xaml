@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Label Text="Edit Course" FontSize="25" TextColor="Black" Grid.Row="0" HorizontalOptions="CenterAndExpand"/>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
-            <controls:BetterEntry Placeholder="Course Name" Keyboard="Text"  Text="{Binding UpdateCourseModel.courseName}" IsEnabled="False" Grid.Row="1" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Course Name" Keyboard="Text"  Text="{Binding UpdateCourseModel.courseName}" IsEnabled="True" Grid.Row="1" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
             <controls:BetterEntry Placeholder="Course Code" Keyboard="Text"  Text="{Binding UpdateCourseModel.code}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>

@@ -30,23 +30,24 @@ namespace HMS.View.Student
         private void from_date_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-              result1 = string.Format("{0:yyy-MM-dd}", dp_start_date.Date);
+            result1 = string.Format("{0:yyy-MM-dd}", dp_start_date.Date);
+            Vm.StartDate = result1;
         }
         private void to_date_selected(object sender, FocusEventArgs e)
         {
             //Add Note
-           result2 = string.Format("{0:yyy-MM-dd}", dp_end_date.Date);
+            result2 = string.Format("{0:yyy-MM-dd}", dp_end_date.Date);
             Validation();
         }
         public void Validation()
         {
             DateTime startdateTime = dp_start_date.Date;
             DateTime enddate = dp_end_date.Date;
-            if (startdateTime > enddate || enddate<startdateTime)
+            if (startdateTime > enddate || enddate < startdateTime)
                 App.Current.MainPage.DisplayAlert("HMS", "Check your start date and end date", "OK");
             else
             {
-                Vm.StartDate = result1;
+                //Vm.StartDate = result1;
                 Vm.EndDate = result2;
             }
         }

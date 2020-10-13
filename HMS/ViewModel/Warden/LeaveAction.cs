@@ -58,6 +58,10 @@ namespace HMS.ViewModel.Warden
             {
 
             }
+            else if (result.Equals("Reject"))
+            {
+
+            }
             else
             {
 

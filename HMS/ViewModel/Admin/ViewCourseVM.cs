@@ -126,7 +126,9 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnUpdateCourseCommand()
         {
-            if (string.IsNullOrEmpty(UpdateCourseModel.code) || UpdateCourseModel.code.Length == 0)
+            if(string.IsNullOrEmpty(UpdateCourseModel.courseName) || UpdateCourseModel.courseName.Length==0)
+                await App.Current.MainPage.DisplayAlert("HMS", "Course Name Required", "OK");
+            else if (string.IsNullOrEmpty(UpdateCourseModel.code) || UpdateCourseModel.code.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Course Code Required", "OK");
             else
                 studentService.UpdateCourse(UpdateCourseModel);
