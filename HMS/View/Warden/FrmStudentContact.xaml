@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:HMS.ViewModel.Warden"
+             xmlns:vm="clr-namespace:HMS.ViewModel.Warden" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
              x:Name="wardencontactstudent"
              Title="Contact Student"
@@ -14,6 +14,9 @@
     <ContentPage.Content>
         <StackLayout
            Orientation="Vertical" >
+            <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50" IsVisible="{Binding Isvisible}">
+                <forms:AutoSuggestBox x:Name="txtsearchbystudentname"  HorizontalOptions="FillAndExpand" IsVisible="{Binding Isvisible}" PlaceholderText="Search by student name" TextMemberPath="studentName" DisplayMemberPath="studentName"  Margin="-10" TextChanged="txtsearchbystudentname_TextChanged" SuggestionChosen="txtsearchbystudentname_SuggestionChosen"/>
+            </Frame>
             <ListView 
                 x:Name="lv_contact"  
                 ItemsSource="{Binding studentlist}"

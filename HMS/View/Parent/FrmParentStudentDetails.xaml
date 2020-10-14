@@ -13,19 +13,11 @@
              Margin="20,20,20,0"
             >
             <Label
-                    Text="Name:Nijon Jomi K"
+                    Text="Nijon Jomi K"
                     TextColor="#2D295F" 
                     FontAttributes="None"
                     FontSize="30"/>
-
-            <Frame 
-                    x:Name="f_service_type"
-                    HasShadow="True"
-                    IsVisible="{Binding AreaVisible}"                      
-                    Margin="10,0,10,0"  >
-
-            </Frame>
-
+            
             <Label
                 Text="Room 304"
                 TextColor="#2D295F"

@@ -15,7 +15,7 @@
                 <RowDefinition Height="Auto"/>-->
             </Grid.RowDefinitions>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="0">
-                <Controls:BetterEntry Text="{Binding Academicyear}" Keyboard="Numeric" MaxLength="4" Placeholder="Enter Hostel Acadmic Year(Between 2019-2021)" PlaceholderColor="Black" Margin="-17" TextColor="Black"/>
+                <Controls:BetterEntry Text="{Binding Academicyear}" Keyboard="Numeric" MaxLength="4" Placeholder="Academic Year" PlaceholderColor="Black" Margin="-17" TextColor="Black"/>
             </Frame>
             <!--<Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="1" BorderColor="Black">
                 <forms:AutoSuggestBox x:Name="txtsearchbyapplicationno" HorizontalOptions="FillAndExpand" TextMemberPath="applicationNo" DisplayMemberPath="applicationNo" PlaceholderText="Search from Application No"  Margin="-17" TextChanged="txtsearchbyapplicationno_TextChanged" SuggestionChosen="txtsearchbyapplicationno_SuggestionChosen"/>

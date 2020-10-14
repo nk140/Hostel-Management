@@ -85,18 +85,6 @@
     <EmbeddedResource Update="View\Admin\FacilityMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\FIlterFloorPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\FilterPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\FilterRoomBedPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\FilterRoomPopup.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="View\Admin\FloorMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -364,9 +352,6 @@
     <EmbeddedResource Update="View\Warden\Frmcontactperson.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Warden\FrmDirectorcontact.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="View\Warden\FrmDiscpoption.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -388,13 +373,7 @@
     <EmbeddedResource Update="View\Warden\FrmStudentContact.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Warden\Frmstudentleaveaction.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="View\Warden\FrmStudentParentContact.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="View\Warden\Frmstudentscontact.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Warden\FrmStudleavehistory.xaml">

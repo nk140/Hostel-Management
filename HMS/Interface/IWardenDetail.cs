@@ -10,6 +10,11 @@ namespace HMS.Interface
     {
         void GetWardenData(ObservableCollection<WardenInfoModel> wardenModels);
     }
+    public interface IViewDirectorDetail
+    {
+        void GetDirectorDetails(ObservableCollection<ViewDirectorDetails> viewDirectorDetails);
+        void failer(string result);
+    }
     public interface IEditWardenDetail
     {
         void updatesucessfully(string result);

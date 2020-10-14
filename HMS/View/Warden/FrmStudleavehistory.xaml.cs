@@ -18,9 +18,16 @@ namespace HMS.View.Warden
         public FrmStudleavehistory()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             BindingContext = vm = new StudentLeaveHistoryVM();
         }
-
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
         private void txtsearchbykeyword_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try
@@ -32,11 +39,11 @@ namespace HMS.View.Warden
                     {
                         foreach (var items in vm.Studentleavedata)
                         {
-                            if (!string.IsNullOrEmpty(items.leaveTypeName))
+                            if (!string.IsNullOrEmpty(items.stuName))
                             {
                                 if (!string.IsNullOrEmpty(txtsearchbykeyword.Text))
                                 {
-                                    if (items.leaveTypeName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.leaveTypeName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
+                                    if (items.stuName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.stuName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
                                         studentLeaveHistories.Add(items);
                                 }
                             }
@@ -55,13 +62,13 @@ namespace HMS.View.Warden
         {
             try
             {
-                txtsearchbykeyword.Text = ((StudentLeaveHistory)e.SelectedItem).leaveTypeName.ToString();
+                txtsearchbykeyword.Text = ((StudentLeaveHistory)e.SelectedItem).stuName.ToString();
                 studentLeaveHistories1 = new ObservableCollection<StudentLeaveHistory>();
                 if (studentLeaveHistories != null)
                 {
                     foreach (var items in studentLeaveHistories)
                     {
-                        if (items.leaveTypeName == txtsearchbykeyword.Text)
+                        if (items.stuName == txtsearchbykeyword.Text)
                             studentLeaveHistories1.Add(items);
                     }
                 }

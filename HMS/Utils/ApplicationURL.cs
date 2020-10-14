@@ -100,6 +100,7 @@
         public static string ViewDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardenDisciplinaryDetails";
         public static string UpdateDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardendisciplinaryupdate";
         public static string DeleteDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/deletewardendisciplinary";
+        public static string DirectorDetails = "";
         #endregion
         #region NewsFeed
         public static string GetNewsFeedData = "/hostelandmesstest/api/v1/notification/allNotification";

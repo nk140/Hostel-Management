@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Warden
 {
-    public class StudentContactforwarden : INotifyPropertyChanged
+    public class StudentContactforwarden : BaseViewModel
     {
         //StudentList student = new StudentList();
         #region Properties
@@ -27,6 +27,7 @@ namespace HMS.ViewModel.Warden
             }
         }
         #endregion
+
         public ICommand WhatsappCommand => new Command<Students>(OnWhatsappCommand);
         public ICommand MessageCommand => new Command<Students>(OnMessageCommand);
         public ICommand CallCommand => new Command<Students>(OnCallCommand);
@@ -35,12 +36,28 @@ namespace HMS.ViewModel.Warden
         #endregion
         public StudentContactforwarden()
         {
-            //List<Students> lst = new List<Students>();
-            //foreach (var items in student.student)
-            //{
-            //    lst.Add(items);
-            //}
-            //studentlist = new ObservableCollection<Students>(lst);
+            if (studentlist == null || studentlist.Count == 0)
+            {
+                //App.Current.MainPage.DisplayAlert("HMS", "No Student record found", "OK");
+            }
+            else
+            {
+                Isvisible = true;
+                OnPropertyChanged("Isvisible");
+            }
+        }
+        private bool isvisible;
+        public bool Isvisible
+        {
+            get
+            {
+                return isvisible;
+            }
+            set
+            {
+                isvisible = value;
+                OnPropertyChanged("Isvisible");
+            }
         }
         public async void OnWhatsappCommand(Students studetns)
         {
@@ -87,11 +104,6 @@ namespace HMS.ViewModel.Warden
             {
                 // Other error has occurred.
             }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

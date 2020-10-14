@@ -8,9 +8,6 @@
              x:Name="wardleavereply"
              x:Class="HMS.View.Parrent.FrmParentLeaves">
     <StackLayout Orientation="Vertical">
-        <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Leave Reason" TextMemberPath="leaveType" DisplayMemberPath="leaveType" Margin="-7"/>
-        </Frame>
         <CollectionView x:Name="collectionView" ItemsSource="{Binding ParentStudentLeaveStatuses}"  SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

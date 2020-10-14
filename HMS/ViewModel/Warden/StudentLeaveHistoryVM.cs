@@ -26,10 +26,27 @@ namespace HMS.ViewModel.Warden
             }
         }
         #endregion
+        public ICommand LeaveActionOption => new Command<StudentLeaveHistory>(OnLeaveActionOption);
         public StudentLeaveHistoryVM()
         {
             warden = new WardenService(this);
             warden.GetStudentLeaveHistory();
+        }
+        public async void OnLeaveActionOption(StudentLeaveHistory obj)
+        {
+            var result = await App.Current.MainPage.DisplayActionSheet("Choose what action you take", "Cancel", null, "Approve", "Reject");
+            if (result.Equals("Approve"))
+            {
+
+            }
+            else if (result.Equals("Reject"))
+            {
+
+            }
+            else
+            {
+
+            }
         }
         public void GetStudentLeaveHistory(ObservableCollection<StudentLeaveHistory> studentleavedata)
         {
@@ -38,10 +55,11 @@ namespace HMS.ViewModel.Warden
             OnPropertyChanged();
         }
     }
-    public class ViewWardLeaveHistoryVM : BaseViewModel, Iwardenleaveaction,IApproveLeave,IRejectLeave
+    public class ViewWardLeaveHistoryVM : BaseViewModel, Iwardenleaveaction, IApproveLeave, IRejectLeave
     {
         WardenService wardenService;
         string hosteladmissionids, studentids;
+        int counter;
         private ObservableCollection<ParentStudentLeaveStatus> parentStudentLeaveStatuses = new ObservableCollection<ParentStudentLeaveStatus>();
         public ObservableCollection<ParentStudentLeaveStatus> ParentStudentLeaveStatuses
         {
@@ -56,11 +74,11 @@ namespace HMS.ViewModel.Warden
             }
         }
         public ICommand LeaveActionOption => new Command<ParentStudentLeaveStatus>(OnLeaveActionOption);
-        public ViewWardLeaveHistoryVM(string studentid,string hosteladmissionid)
+        public ViewWardLeaveHistoryVM(string studentid, string hosteladmissionid)
         {
             studentids = studentid;
             hosteladmissionids = hosteladmissionid;
-            wardenService = new WardenService((Iwardenleaveaction)this,(IApproveLeave)this,(IRejectLeave)this);
+            wardenService = new WardenService((Iwardenleaveaction)this, (IApproveLeave)this, (IRejectLeave)this);
             wardenService.GetWardLeave(studentid);
         }
         public void GetStudentLeaveDetail(ObservableCollection<ParentStudentLeaveStatus> parent)
@@ -75,7 +93,7 @@ namespace HMS.ViewModel.Warden
             {
                 wardenService.ApproveWardLeave(hosteladmissionids, "Approved");
             }
-            else if(result.Equals("Reject"))
+            else if (result.Equals("Reject"))
             {
                 wardenService.ApproveWardLeave(hosteladmissionids, "Reject");
             }

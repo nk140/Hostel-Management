@@ -92,7 +92,7 @@ namespace HMS.View.Admin
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushPopupAsync(new FilterPopup(), true);
+            
         }
     }
 }

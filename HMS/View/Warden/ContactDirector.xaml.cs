@@ -16,5 +16,15 @@ namespace HMS.View.Warden
         {
             InitializeComponent();
         }
+
+        private void txtsearchbydirectorname_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtsearchbydirectorname_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
+
+        }
     }
 }

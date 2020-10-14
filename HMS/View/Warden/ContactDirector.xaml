@@ -10,7 +10,7 @@
     <StackLayout
            Orientation="Vertical">
         <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-            <forms:AutoSuggestBox x:Name="txtsearchbydirectorname" HorizontalOptions="FillAndExpand" TextMemberPath="Name" DisplayMemberPath="Name" PlaceholderText="Search by guest name"  Margin="-7" />
+            <forms:AutoSuggestBox x:Name="txtsearchbydirectorname" HorizontalOptions="FillAndExpand" TextMemberPath="Name" DisplayMemberPath="Name" PlaceholderText="Search by Director name"  Margin="-7" TextChanged="txtsearchbydirectorname_TextChanged" SuggestionChosen="txtsearchbydirectorname_SuggestionChosen"/>
         </Frame>
         <ListView 
                 x:Name="lv_contact"  

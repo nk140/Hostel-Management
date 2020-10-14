@@ -28,9 +28,14 @@ namespace HMS.Services
         ViewDisciplinaryActionTaken iviewDisciplinaryActionTaken;
         IEditDisciplinary editDisciplinary;
         IDeleteDisciplinary deleteDisciplinary;
+        IViewDirectorDetail iviewdirector;
         public WardenService(Iservicewarden callbackservice)
         {
             service = callbackservice;
+        }
+        public WardenService(IViewDirectorDetail viewDirectorDetail)
+        {
+            iviewdirector = viewDirectorDetail;
         }
         public WardenService(ViewDisciplinaryActionTaken viewDisciplinaryActionTaken, IDeleteDisciplinary ideletedisciplinary)
         {
@@ -240,6 +245,42 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("HMS", "No New Student list Found", "OK");
+            }
+        }
+        public async void ViewDirectorDetails()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.DirectorDetails);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<ViewDirectorDetails> directorlists = JsonConvert.DeserializeObject<ObservableCollection<ViewDirectorDetails>>(result);
+                    if (directorlists.Count > 0)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        iviewdirector.GetDirectorDetails(directorlists);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        iviewdirector.failer("No Director record");
+                    }
+
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    iviewdirector.failer("No Director record");
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                iviewdirector.failer("Something went wrong please contact to administrator");
             }
         }
         public async void GetParentDetails()

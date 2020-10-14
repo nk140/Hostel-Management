@@ -6,13 +6,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
              Title="Student Leave History"
+             x:Name="studentleaveactions"
              x:Class="HMS.View.Warden.FrmStudleavehistory">
     <!--<ContentPage.BindingContext>
         <vm:StudentLeaveHistoryVM></vm:StudentLeaveHistoryVM>
     </ContentPage.BindingContext>-->
     <StackLayout Orientation="Vertical">
         <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Leave Name" TextMemberPath="leaveTypeName" DisplayMemberPath="leaveTypeName" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Student Name" TextMemberPath="stuName" DisplayMemberPath="stuName" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
         </Frame>
         <ListView  x:Name="_listView"  ItemsSource="{Binding Studentleavedata}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  HasUnevenRows="true">
             <ListView.ItemTemplate>
@@ -45,10 +46,13 @@
                                     <Label Text="{Binding mobileNo}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="IsApproved:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="ParentStatus:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                     <Label Text="{Binding isApproved}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                             </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference studentleaveactions}, Path=BindingContext.LeaveActionOption}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>
