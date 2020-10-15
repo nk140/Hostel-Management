@@ -50,13 +50,17 @@ namespace HMS.ViewModel.Student
             wardenService = new WardenService((ViewDisciplinaryActionTaken)this, (IDeleteDisciplinary)this);
             wardenService.GetAllDisciplinaryAction();
         }
+        public void GetAllDiscpAction()
+        {
+            wardenService.GetAllDisciplinaryAction();
+        }
         public ICommand EditCommand => new Command<ViewDisciplinaryActionbywarden>(OnEditCommand);
         public ICommand ViewCommand => new Command<ViewDisciplinaryActionbywarden>(OnViewCommand);
         public ICommand DeleteCommand => new Command<ViewDisciplinaryActionbywarden>(OnDeleteCommand);
         public ICommand TapCommand => new Command<ViewDisciplinaryActionbywarden>(OnTapCommand);
         public async void OnEditCommand(ViewDisciplinaryActionbywarden obj)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new EditDisciplinaryAction(obj.disciplinaryTypeName, obj.disciplinaryTypeId, obj.discription, obj.hostelAdmissionId, obj.date, obj.time));
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditDisciplinaryAction(obj.disciplinaryTypeName,obj.disciplinaryTypeId, obj.wardenDisciplinaryId, obj.discription, obj.hostelAdmissionId, obj.date, obj.time));
             Hideorshowbutton(obj);
         }
         public async void OnViewCommand(ViewDisciplinaryActionbywarden obj)
@@ -66,7 +70,7 @@ namespace HMS.ViewModel.Student
         }
         public async void OnDeleteCommand(ViewDisciplinaryActionbywarden obj)
         {
-            wardenService.DeleteDisciplinaryActionTaken(obj.disciplinaryTypeId);
+            wardenService.DeleteDisciplinaryActionTaken(obj.wardenDisciplinaryId);
         }
         public async void OnTapCommand(ViewDisciplinaryActionbywarden obj)
         {
@@ -120,6 +124,7 @@ namespace HMS.ViewModel.Student
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             wardenService.GetAllDisciplinaryAction();
+            OnPropertyChanged("DisciplinaryActionbywardens");
         }
 
         public async void Failer(string result)
@@ -171,11 +176,11 @@ namespace HMS.ViewModel.Student
             }
         }
         public ICommand UpdateDisciplinaryAction => new Command(OnUpdateDisciplinaryAction);
-        public EditDisciplinaryActionVM(string disciplinaryname, string discipid, string description, string hostelAdmissionId, string date, string time)
+        public EditDisciplinaryActionVM(string disciplinaryname, string discpid,string wardendiscipid, string description, string hostelAdmissionId, string date, string time)
         {
             DisciplinaryName = disciplinaryname;
-            UpdateDisciplinaryActionbywarden.disciplinaryTypeId = discipid;
-            UpdateDisciplinaryActionbywarden.wardenDisciplinaryId = discipid;
+            UpdateDisciplinaryActionbywarden.disciplinaryTypeId = discpid;
+            UpdateDisciplinaryActionbywarden.wardenDisciplinaryId = wardendiscipid;
             UpdateDisciplinaryActionbywarden.description = description;
             UpdateDisciplinaryActionbywarden.hostelAdmissionId = hostelAdmissionId;
             UpdateDisciplinaryActionbywarden.date = date;

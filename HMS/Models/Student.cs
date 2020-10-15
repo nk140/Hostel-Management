@@ -19,6 +19,24 @@ namespace HMS.Models
         public string mobileNo { get; set; }
         public string email { get; set; }
     }
+    public class VehicleRequestByStudent
+    {
+        public string studentId { get; set; }
+        public string studentName { get; set; }
+        public string mobileNo { get; set; }
+        public string sourcelocation { get; set; }
+        public string destinationlocation { get; set; }
+        public string requestedtype { get; set; }
+    }
+    public class FeedbackDetailsByStudent
+    {
+        public string studentId { get; set; }
+        public string studentName { get; set; }
+        public string mobileNo { get; set; }
+        public string serviceid { get; set; }
+        public string servicerating { get; set; }
+        public string description { get; set; }
+    }
     public class Parents
     {
         public string Name { get; set; }
@@ -27,8 +45,8 @@ namespace HMS.Models
     }
     public class UpdatePassword
     {
-       public string userId { get; set; }
-       public string password { get; set; }
+        public string userId { get; set; }
+        public string password { get; set; }
     }
     public class UpdatePasswordResponse
     {

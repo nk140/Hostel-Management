@@ -39,6 +39,7 @@ namespace HMS.Models
         public string time { get; set; }
         public string appicationNo { get; set; }
         public string disciplinaryTypeId { get; set; }
+        public string wardenDisciplinaryId { get; set; }
         public string disciplinaryTypeName { get; set; }
         public string discription { get; set; }
         [JsonIgnore]

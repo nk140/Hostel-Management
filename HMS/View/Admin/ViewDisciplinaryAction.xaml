@@ -10,7 +10,7 @@
     <StackLayout Orientation="Vertical" Spacing="9">
         <StackLayout Orientation="Horizontal" Margin="10">
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
-                <forms:AutoSuggestBox x:Name="txtsearchbystudentname" HorizontalOptions="FillAndExpand" TextMemberPath="studentName" DisplayMemberPath="studentName" PlaceholderText="Search from Student name" TextChanged="txtsearchbystudentname_TextChanged" SuggestionChosen="txtsearchbystudentname_SuggestionChosen"  Margin="-17"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbystudentname" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbystudentname_Unfocused" TextMemberPath="studentName" DisplayMemberPath="studentName" PlaceholderText="Search from Student name" TextChanged="txtsearchbystudentname_TextChanged" SuggestionChosen="txtsearchbystudentname_SuggestionChosen"  Margin="-17"/>
             </Frame>
             <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
         </StackLayout>

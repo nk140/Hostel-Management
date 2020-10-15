@@ -46,11 +46,11 @@
                             </StackLayout>
                             <StackLayout Orientation="Horizontal" Spacing="3">
                                 <Label Text="LeaveType:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                <Label Text="{Binding leaveType}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding leaveTypeName}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal" Spacing="3">
-                                <Label Text="Parent Approve:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                <Label Text="{Binding isParentApproved}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="Parent Status:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding ParentStatus}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                             </StackLayout>
                         </StackLayout>
                         <Frame.GestureRecognizers>

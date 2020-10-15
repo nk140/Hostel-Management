@@ -28,7 +28,6 @@ namespace HMS.View.Admin
             base.OnAppearing();
             BindingContext = vm = new ViewDisciplinaryActionVM();
         }
-
         private void txtsearchbystudentname_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
             try
@@ -77,6 +76,13 @@ namespace HMS.View.Admin
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
           
+        }
+
+        private void txtsearchbystudentname_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbystudentname.Text))
+                vm.GetAllDiscpAction();
+            arealist.ItemsSource = vm.DisciplinaryActionbywardens;
         }
     }
 }

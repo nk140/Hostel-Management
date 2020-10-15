@@ -27,7 +27,7 @@ namespace HMS.View.Parrent
                 //new ParentMenuItem {Title="Parent Registration",TargetType=typeof(FrmParentRegistration) },
                 new ParentMenuItem {Title="Hostel Detail",TargetType=typeof(FrmParentHostelDetails)},
                 new ParentMenuItem {Title="Student Detail",TargetType=typeof(FrmParentStudentDetails)},
-                new ParentMenuItem {Title="Roomates",TargetType=typeof(FrmParentRoomates)},
+                //new ParentMenuItem {Title="Roomates",TargetType=typeof(FrmParentRoomates)},
                 new ParentMenuItem {Title="View Ward Disciplinary",TargetType=typeof(ViewWardDisciplinaryAction)},
                 new ParentMenuItem {Title="View Ward Leave Applied",TargetType=typeof(FrmParentLeaves)},
                 new ParentMenuItem {Title="Warden Details",TargetType=typeof(FrmWardenDetails)},

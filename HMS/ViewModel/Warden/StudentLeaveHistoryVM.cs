@@ -88,14 +88,21 @@ namespace HMS.ViewModel.Warden
         }
         public async void OnLeaveActionOption(ParentStudentLeaveStatus obj)
         {
+            LeaveStatusModel leaveStatusModel = new LeaveStatusModel();
             var result = await App.Current.MainPage.DisplayActionSheet("Choose what action you take", "Cancel", null, "Approve", "Reject");
             if (result.Equals("Approve"))
             {
-                wardenService.ApproveWardLeave(hosteladmissionids, "Approved");
+                leaveStatusModel.hostelAdmissionId = hosteladmissionids;
+                leaveStatusModel.leaveTypeId = obj.leaveTypeId;
+                leaveStatusModel.isApproved = "Approved";
+                wardenService.ApproveWardLeave(leaveStatusModel);
             }
             else if (result.Equals("Reject"))
             {
-                wardenService.ApproveWardLeave(hosteladmissionids, "Reject");
+                leaveStatusModel.hostelAdmissionId = hosteladmissionids;
+                leaveStatusModel.leaveTypeId = obj.leaveTypeId.ToString();
+                leaveStatusModel.isApproved = "Reject";
+                wardenService.ApproveWardLeave(leaveStatusModel);
             }
             else
             {

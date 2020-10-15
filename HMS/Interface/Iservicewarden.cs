@@ -8,4 +8,9 @@ namespace HMS.Interface
         void GetServicelist(ObservableCollection<WardenServiceModel> servicelists);
         void Servicefailed(string result);
     }
+    public interface Isubmitfeedback
+    {
+        void sucess(string result);
+        void failer(string result);
+    }
 }

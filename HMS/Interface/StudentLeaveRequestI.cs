@@ -13,4 +13,14 @@ namespace HMS.Interface
 
         Task SaveLeaveRequest(String result);
     }
+    public interface EditleaveType
+    {
+        void sucess(string result);
+        void failer(string result);
+    }
+    public interface DeleteLeavetype
+    {
+        void deletesucess(string result);
+        void failer(string result);
+    }
 }

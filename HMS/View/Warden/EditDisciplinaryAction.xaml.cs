@@ -21,10 +21,10 @@ namespace HMS.View.Warden
         {
             InitializeComponent();
         }
-        public EditDisciplinaryAction(string disciplinaryname,string discipid, string description, string hostelAdmissionId, string date, string time)
+        public EditDisciplinaryAction(string disciplinaryname,string discipid,string wardendiscipid, string description, string hostelAdmissionId, string date, string time)
         {
             InitializeComponent();
-            BindingContext = vm = new EditDisciplinaryActionVM(disciplinaryname, discipid, description, hostelAdmissionId, date, time);
+            BindingContext = vm = new EditDisciplinaryActionVM(disciplinaryname, discipid, wardendiscipid, description, hostelAdmissionId, date, time);
         }
         private void txtsearchbydisciplinarytype_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
@@ -59,7 +59,8 @@ namespace HMS.View.Warden
         private void txtsearchbydisciplinarytype_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbydisciplinarytype.Text = ((ViewDisciplinaryType)e.SelectedItem).name;
-            vm.UpdateDisciplinaryActionbywarden.wardenDisciplinaryId = ((ViewDisciplinaryType)e.SelectedItem).id;
+            //vm.UpdateDisciplinaryActionbywarden.wardenDisciplinaryId = ((ViewDisciplinaryType)e.SelectedItem).id;
+            vm.UpdateDisciplinaryActionbywarden.disciplinaryTypeId= ((ViewDisciplinaryType)e.SelectedItem).id;
         }
     }
 }

@@ -1,13 +1,33 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:HMS.Controls"
+             Title="Vehicle Request"
              x:Class="HMS.View.Student.FrmVehicleRequest">
-    <ContentPage.Content>
-
-        <StackLayout
-            Orientation="Vertical">
-
+    <Grid Margin="10" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="0">
+            <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding VehicleRequestByStudent.studentName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+            <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding VehicleRequestByStudent.mobileNo}" IsEnabled="False" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
+            <controls:BetterEntry Placeholder="Enter Source Location" Keyboard="Default" Text="{Binding VehicleRequestByStudent.sourcelocation}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="3">
+            <controls:BetterEntry Placeholder="Enter Destination Location" Keyboard="Default" Text="{Binding VehicleRequestByStudent.destinationlocation}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <StackLayout Orientation="Horizontal" Grid.Row="4">
+            <RadioButton Text="Drop request" FontSize="15" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}" TextColor="#e96125"/>
+            <RadioButton Text="Pick-up request" FontSize="15" IsChecked="{Binding IsCheck2}" Command="{Binding Check2Clicked}" TextColor="#e96125"/>
         </StackLayout>
-
-    </ContentPage.Content>
+        <Button Text="Vehicle Request" x:Name="btnvehiclerequest" Grid.Row="5" Command="{Binding RequestVehicleCommand}" TextColor="White" CornerRadius="25" BackgroundColor="#e96125"/>
+    </Grid>
 </ContentPage>

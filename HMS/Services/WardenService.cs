@@ -15,6 +15,7 @@ namespace HMS.Services
     public class WardenService
     {
         Iservicewarden service;
+        Isubmitfeedback submissionfeedback;
         IHostelMaster hostalmaster;
         Istudentleave studentleavemaster;
         Iwardenregistrtion wardenregistration;
@@ -32,6 +33,11 @@ namespace HMS.Services
         public WardenService(Iservicewarden callbackservice)
         {
             service = callbackservice;
+        }
+        public WardenService(Iservicewarden callbackservice, Isubmitfeedback isubmitfeedback)
+        {
+            service = callbackservice;
+            submissionfeedback = isubmitfeedback;
         }
         public WardenService(IViewDirectorDetail viewDirectorDetail)
         {
@@ -131,6 +137,17 @@ namespace HMS.Services
                 {
                     UserDialogs.Instance.HideLoading();
                     ObservableCollection<ParentStudentLeaveStatus> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ParentStudentLeaveStatus>>(result);
+                    foreach (var items in parentleave)
+                    {
+                        if (items.isParentApproved.Equals("true"))
+                        {
+                            items.ParentStatus = "Leave Approved";
+                        }
+                        else
+                        {
+                            items.ParentStatus = "Leave Rejected";
+                        }
+                    }
                     leaveaction.GetStudentLeaveDetail(parentleave);
                 }
                 else
@@ -354,7 +371,7 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
-        public async void ApproveWardLeave(string hostelAdmissionId, string isApproved)
+        public async void ApproveWardLeave(LeaveStatusModel leaveStatusModel)
         {
             UpdateAreaResponse updateAreaResponse;
             UpdateAreaErrorResponse updateAreaErrorResponse;
@@ -363,7 +380,7 @@ namespace HMS.Services
             {
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
-                string jsn = @"{""hostelAdmissionId"" : """ + hostelAdmissionId + @""",""isApproved"" : """ + isApproved + @"""}";
+                string jsn = JsonConvert.SerializeObject(leaveStatusModel);
                 var content = new StringContent(jsn, Encoding.UTF8, "application/json");
                 response = await client.PostAsync(ApplicationURL.ActionAgainstWardLeave, content);
                 if ((int)response.StatusCode == 200)
@@ -386,10 +403,6 @@ namespace HMS.Services
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("HMS", "Something went wrong", "OK");
             }
-        }
-        public async void RejectWardLeave(string hostelAdmissionId, string isApproved)
-        {
-
         }
         public async void DeleteDisciplinaryActionTaken(string wardenDisciplinaryId)
         {

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             Title="Feedback On Service"
+             x:Class="HMS.View.Student.Feedbackonservice">
+    <Grid Margin="10" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> 
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="0">
+            <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding FeedbackDetailsByStudent.studentName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+            <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding FeedbackDetailsByStudent.mobileNo}" IsEnabled="False" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by Service Category" TextMemberPath="name" DisplayMemberPath="name" Margin="-17" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="3">
+            <controls:CustomPicker  x:Name="ddservicerating" TitleColor="Black" Title="Give Rating" SelectedIndexChanged="ddservicerating_SelectedIndexChanged" BackgroundColor="Transparent" FontSize="17" Margin="-7" >
+                <controls:CustomPicker.Items>
+                    <x:String>Poor</x:String>
+                    <x:String>Average</x:String>
+                    <x:String>Good</x:String>
+                    <x:String>Excellent</x:String>
+                </controls:CustomPicker.Items>
+            </controls:CustomPicker>
+            <!--<controls:BetterEntry Placeholder="Gender" Keyboard="Text"  Text="{Binding Gender}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>-->
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
+            <controls:XEditor x:Name="txtfeedbackdescription" Placeholder="How we improve the service" Text="{Binding FeedbackDetailsByStudent.description}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="9"/>
+        </Frame>
+        <Button Text="Submit Feedback" x:Name="btnsubmitfeedback" Grid.Row="5" Command="{Binding SubmitFeedbackCommand}" TextColor="White" CornerRadius="25" BackgroundColor="#e96125"/>
+    </Grid>
+</ContentPage>
