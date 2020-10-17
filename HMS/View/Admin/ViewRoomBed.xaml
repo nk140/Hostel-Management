@@ -11,7 +11,7 @@
         <Label Text="View Room Bed" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
         <StackLayout Orientation="Horizontal" Margin="10">
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
-                <forms:AutoSuggestBox x:Name="txtsearchbyroombed" HorizontalOptions="FillAndExpand" TextMemberPath="bedNo" DisplayMemberPath="bedNo" PlaceholderText="Search from bed name"  Margin="-17" TextChanged="txtsearchbyroombed_TextChanged" SuggestionChosen="txtsearchbyroombed_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbyroombed" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbyroombed_Unfocused" TextMemberPath="bedNo" DisplayMemberPath="bedNo" PlaceholderText="Search from bed name"  Margin="-17" TextChanged="txtsearchbyroombed_TextChanged" SuggestionChosen="txtsearchbyroombed_SuggestionChosen"/>
             </Frame>
             <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
         </StackLayout>

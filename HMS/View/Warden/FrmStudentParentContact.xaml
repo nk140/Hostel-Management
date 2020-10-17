@@ -15,7 +15,7 @@
         <StackLayout
            Orientation="Vertical">
             <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-                <forms:AutoSuggestBox x:Name="txtsearchbykeyword"  PlaceholderText="Search By Parent name" TextMemberPath="parentName" DisplayMemberPath="parentName" HorizontalOptions="FillAndExpand" Margin="-10" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbykeyword"  PlaceholderText="Search By Parent name" Unfocused="txtsearchbykeyword_Unfocused" TextMemberPath="parentName" DisplayMemberPath="parentName" HorizontalOptions="FillAndExpand" Margin="-10" TextChanged="txtsearchbykeyword_TextChanged"  SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
             </Frame>
             <ListView 
                 x:Name="lv_contact"  

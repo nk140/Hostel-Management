@@ -18,6 +18,7 @@ namespace HMS.Services
         ViewHostelAdmittedStudent iviewhosteladmittedstudent;
         Iupdatestudentpassword iupdatestudentpassword;
         StudentLeaveRequestI leaveRequestCallback;
+        icreateleavetype icreateleavetype;
         EditleaveType editleaveType;
         DeleteLeavetype deleteLeavetype;
         RegistrationI registrationCallback;
@@ -37,6 +38,10 @@ namespace HMS.Services
         public StudentService(IEditWardenDetail callback)
         {
             editWardenDetail = callback;
+        }
+        public StudentService(icreateleavetype createleavetype)
+        {
+            icreateleavetype = createleavetype;
         }
         public StudentService(EditleaveType ieditleavetype)
         {
@@ -291,6 +296,43 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
+        public async void CreateLeaveType(CreateLeaveTypeModel createLeaveTypeModel)
+        {
+            CourseResponse courseResponse;
+            CourseErrorResponse courseErrorResponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+
+                string jsn = JsonConvert.SerializeObject(createLeaveTypeModel);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.CreateLeaveType, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    courseResponse = JsonConvert.DeserializeObject<CourseResponse>(resultHostel);
+                    icreateleavetype.sucess(courseResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    courseErrorResponse = JsonConvert.DeserializeObject<CourseErrorResponse>(resultHostel);
+                    icreateleavetype.failer(courseErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
         public async void UpdateLeavetype(UpdateLeavetype updateLeavetype)
         {
             CourseResponse courseResponse;
@@ -328,7 +370,7 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
-        public async void DeleteLeavetype(string courseId)
+        public async void DeleteLeavetype(string leaveTypeId)
         {
             UpdateRoomTypeResponse updateNewsFeedResponse;
             UpdateRoomErrorTypeResponse updateNewsFeederrorresponse;
@@ -339,7 +381,7 @@ namespace HMS.Services
                 var client = new HttpClient();
                 UserDialogs.Instance.ShowLoading();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
-                string json = @"[{""courseId"" : """ + courseId + @"""}]";
+                string json = @"[{""leaveTypeId"" : """ + leaveTypeId + @"""}]";
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 response = await client.PostAsync(ApplicationURL.DeleteLeavetype, content);
                 if ((int)response.StatusCode == 200)

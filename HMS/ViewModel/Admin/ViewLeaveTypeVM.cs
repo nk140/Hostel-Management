@@ -1,6 +1,7 @@
 ﻿using HMS.Interface;
 using HMS.Models;
 using HMS.Services;
+using HMS.View.Admin;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Admin
 {
-    public class ViewLeaveTypeVM : BaseViewModel, StudentLeaveRequestI,DeleteLeavetype
+    public class ViewLeaveTypeVM : BaseViewModel, StudentLeaveRequestI, DeleteLeavetype
     {
         StudentService web;
         private ObservableCollection<LeaveTypeModel> leaveTypeModel_ = new ObservableCollection<LeaveTypeModel>();
@@ -27,17 +28,17 @@ namespace HMS.ViewModel.Admin
         public ICommand TapCommand => new Command<LeaveTypeModel>(OnTapCommand);
         public ViewLeaveTypeVM()
         {
-            web = new StudentService((StudentLeaveRequestI)this,(DeleteLeavetype)this);
+            web = new StudentService((StudentLeaveRequestI)this, (DeleteLeavetype)this);
             web.GetAllLeaveType();
         }
         public async void OnEditCommand(LeaveTypeModel obj)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", "Feature Under Progress.", "OK");
+            await App.Current.MainPage.Navigation.PushModalAsync(new EditLeavetype(obj.leaveTypeId, obj.name, App.userid));
             Hideorshowbutton(obj);
         }
         public async void OnDeleteCommand(LeaveTypeModel obj)
         {
-            web.DeleteLeavetype(obj.id);
+            web.DeleteLeavetype(obj.leaveTypeId);
             Hideorshowbutton(obj);
         }
         public async void OnTapCommand(LeaveTypeModel obj)
@@ -95,14 +96,59 @@ namespace HMS.ViewModel.Admin
 
         public async void deletesucess(string result)
         {
-            
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            web.GetAllLeaveType();
+            OnPropertyChanged("LeaveTypeList");
         }
 
-        public void failer(string result)
+        public async void failer(string result)
         {
-            throw new NotImplementedException();
+            LeaveTypeList.Clear();
+            OnPropertyChanged("LeaveTypeList");
         }
     }
+    public class CreateLeaveTypeVM : BaseViewModel, icreateleavetype
+    {
+        StudentService studentService;
+        private CreateLeaveTypeModel createLeaveTypeModel = new CreateLeaveTypeModel();
+        public CreateLeaveTypeModel CreateLeaveTypeModel
+        {
+            get
+            {
+                return createLeaveTypeModel;
+            }
+            set
+            {
+                createLeaveTypeModel = value;
+                OnPropertyChanged("CreateLeaveTypeModel");
+            }
+        }
+        public ICommand CreateLeaveTypeCommand => new Command(OnCreateLeaveTypeCommand);
+        public CreateLeaveTypeVM()
+        {
+            CreateLeaveTypeModel.userId = App.userid;
+            studentService = new StudentService((icreateleavetype)this);
+        }
+        public async void OnCreateLeaveTypeCommand()
+        {
+            if (string.IsNullOrEmpty(CreateLeaveTypeModel.name) || CreateLeaveTypeModel.name.Length == 0)
+                await App.Current.MainPage.DisplayAlert("HMS", "Leave type name required", "OK");
+            else
+                studentService.CreateLeaveType(CreateLeaveTypeModel);
+        }
+        public async void failer(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
+        }
+
+        public async void sucess(string result)
+        {
+            CreateLeaveTypeModel = new CreateLeaveTypeModel();
+            await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
+            OnPropertyChanged("CreateLeaveTypeModel");
+        }
+    }
+
     public class EditLeavetypeVM : BaseViewModel, EditleaveType
     {
         StudentService studentService;
@@ -122,15 +168,15 @@ namespace HMS.ViewModel.Admin
         public ICommand UpdateLeavetypeCommand => new Command(OnUpdateLeavetypeCommand);
         public EditLeavetypeVM(string leaveid, string leavetypename, string userid)
         {
-            UpdateLeavetype.id = leaveid;
-            UpdateLeavetype.leavename = leavetypename;
-            UpdateLeavetype.userid = userid;
+            UpdateLeavetype.leaveTypeId = leaveid;
+            UpdateLeavetype.name = leavetypename;
+            UpdateLeavetype.userId = userid;
             studentService = new StudentService((EditleaveType)this);
             OnPropertyChanged("UpdateLeavetype");
         }
         public async void OnUpdateLeavetypeCommand()
         {
-            if (string.IsNullOrEmpty(UpdateLeavetype.leavename) || UpdateLeavetype.leavename.Length == 0)
+            if (string.IsNullOrEmpty(UpdateLeavetype.name) || UpdateLeavetype.name.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Leave type name required", "OK");
             else
             {
@@ -143,7 +189,6 @@ namespace HMS.ViewModel.Admin
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged("UpdateLeavetype");
         }
-
         public async void failer(string result)
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");

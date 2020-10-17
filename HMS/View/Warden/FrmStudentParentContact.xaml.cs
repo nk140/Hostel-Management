@@ -72,5 +72,11 @@ namespace HMS.View.Warden
                 lv_contact.ItemsSource = studentParentDetails1;
             }
         }
+
+        private void txtsearchbykeyword_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbykeyword.Text))
+                lv_contact.ItemsSource = vm.StudentParentDetails;
+        }
     }
 }

@@ -109,7 +109,7 @@ namespace HMS.ViewModel.Student
 
             // display entry selected text value
             LeaveType = LeaveTypeList[index].name;
-            LeaveRequest.hostelLeaveTypeId = LeaveTypeList[index].id;
+            LeaveRequest.hostelLeaveTypeId = LeaveTypeList[index].leaveTypeId;
 
             OnPropertyChanged("CountryName");
         }

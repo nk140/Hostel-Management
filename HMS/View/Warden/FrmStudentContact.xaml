@@ -15,7 +15,7 @@
         <StackLayout
            Orientation="Vertical" >
             <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50" IsVisible="{Binding Isvisible}">
-                <forms:AutoSuggestBox x:Name="txtsearchbystudentname"  HorizontalOptions="FillAndExpand" IsVisible="{Binding Isvisible}" PlaceholderText="Search by student name" TextMemberPath="studentName" DisplayMemberPath="studentName"  Margin="-10" TextChanged="txtsearchbystudentname_TextChanged" SuggestionChosen="txtsearchbystudentname_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbystudentname"  HorizontalOptions="FillAndExpand" Unfocused="txtsearchbystudentname_Unfocused" IsVisible="{Binding Isvisible}" PlaceholderText="Search by student name" TextMemberPath="studentName" DisplayMemberPath="studentName"  Margin="-10" TextChanged="txtsearchbystudentname_TextChanged" SuggestionChosen="txtsearchbystudentname_SuggestionChosen"/>
             </Frame>
             <ListView 
                 x:Name="lv_contact"  

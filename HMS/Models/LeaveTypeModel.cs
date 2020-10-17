@@ -6,11 +6,17 @@ namespace HMS.Models
 {
     public class LeaveTypeModel
     {
-        public string id { get; set; }
+        public string leaveTypeId { get; set; }
         public string name { get; set; }
+        public string userId { get; set; }
         [JsonIgnore]
         public string listcount { get; set; }
         public bool Isbuttonvisible { get; set; }
+    }
+    public class CreateLeaveTypeModel
+    {
+        public string userId { get; set; }
+        public string name { get; set; }
     }
     public class LeaveStatusModel
     {
@@ -20,9 +26,9 @@ namespace HMS.Models
     }
     public class UpdateLeavetype
     {
-        public string userid { get; set; }
-        public string id { get; set; }
-        public string leavename { get; set; }
+        public string userId { get; set; }
+        public string leaveTypeId { get; set; }
+        public string name { get; set; }
     }
     public class LeaveTypeerrorresponse
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class BlockModel:JsonProperty
+    public class BlockModel
     {
         public string id { get; set; }
         public string name { get; set; }

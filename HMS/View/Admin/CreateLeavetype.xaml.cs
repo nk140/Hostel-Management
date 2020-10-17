@@ -11,17 +11,13 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditLeavetype : ContentPage
+    public partial class CreateLeavetype : ContentPage
     {
-        EditLeavetypeVM vm;
-        public EditLeavetype()
+        CreateLeaveTypeVM vm;
+        public CreateLeavetype()
         {
             InitializeComponent();
-        }
-        public EditLeavetype(string leaveid,string leavename,string userid)
-        {
-            InitializeComponent();
-            BindingContext = vm = new EditLeavetypeVM(leaveid, leavename, userid);
+            BindingContext = vm = new CreateLeaveTypeVM();
         }
     }
 }

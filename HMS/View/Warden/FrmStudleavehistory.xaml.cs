@@ -79,5 +79,11 @@ namespace HMS.View.Warden
 
             }
         }
+
+        private void txtsearchbykeyword_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbykeyword.Text))
+                _listView.ItemsSource = vm.Studentleavedata;
+        }
     }
 }

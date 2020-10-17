@@ -8,10 +8,10 @@
              x:Name="viewleavetype"
              x:Class="HMS.View.Admin.ViewLeaveType">
     <StackLayout Orientation="Vertical" Spacing="9">
-        <!--<Label Text="View Area" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center"/>-->
+        <Label Text="View Leave Type" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center"/>
         <StackLayout Orientation="Horizontal" Margin="10">
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
-                <forms:AutoSuggestBox x:Name="txtsearchbyleavetype" HorizontalOptions="FillAndExpand" TextMemberPath="name" DisplayMemberPath="name" PlaceholderText="Search from Leave type name"  Margin="-17" TextChanged="txtsearchbyleavetype_TextChanged" SuggestionChosen="txtsearchbyleavetype_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbyleavetype" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbyleavetype_Unfocused" TextMemberPath="name" DisplayMemberPath="name" PlaceholderText="Search from Leave type name"  Margin="-17" TextChanged="txtsearchbyleavetype_TextChanged" SuggestionChosen="txtsearchbyleavetype_SuggestionChosen"/>
             </Frame>
             <!-- <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
         </StackLayout>

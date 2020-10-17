@@ -79,5 +79,11 @@ namespace HMS.View.Admin
                 roombeddata.ItemsSource = roomTypeModels1;
             }
         }
+
+        private void txtsearchbyroomtypename_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbyroomtypename.Text))
+                roombeddata.ItemsSource = vm.RoomTypeModels;
+        }
     }
 }

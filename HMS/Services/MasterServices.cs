@@ -116,6 +116,16 @@ namespace HMS.Services
             this.roomListI = roomListI;
             this.deleteRoomI = deleteRoomI;
         }
+        public MasterServices(RoomListI roomListI)
+        {
+            // this.masterCallback = master;
+            this.roomListI = roomListI;
+        }
+        public MasterServices(MasterI masters,RoomListI roomListI)
+        {
+            this.masterCallback = masters;
+            this.roomListI = roomListI;
+        }
         public MasterServices(RoomBedI1 master, DeleteRoomBedI deleteRoomBedI)
         {
             roomBed = master;
@@ -169,11 +179,6 @@ namespace HMS.Services
         public MasterServices(MasterI masterI)
         {
             this.masterCallback = masterI;
-        }
-        public MasterServices(MasterI masterI, RoomListI roomlists)
-        {
-            this.masterCallback = masterI;
-            roomListI = roomlists;
         }
         public MasterServices(WardenCreatrI call)
         {

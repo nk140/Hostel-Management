@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             Title="Create Leave Type"
+             x:Class="HMS.View.Admin.CreateLeavetype">
+    <Grid Margin="10" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Text="New Leave Type" TextColor="Black" FontSize="25" Grid.Row="0" HorizontalOptions="CenterAndExpand"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="25" Grid.Row="1">
+            <controls:BetterEntry Placeholder="Enter Leave Type Name" Keyboard="Default" TextColor="Black" Margin="-17" Text="{Binding CreateLeaveTypeModel.name}"/>
+        </Frame>
+        <Button Text="Create Leave Type" TextColor="White" CornerRadius="25" Grid.Row="2" BackgroundColor="#e96125" Command="{Binding CreateLeaveTypeCommand}"/>
+    </Grid>
+</ContentPage>

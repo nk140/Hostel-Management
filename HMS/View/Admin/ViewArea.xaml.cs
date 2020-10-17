@@ -76,5 +76,11 @@ namespace HMS.View.Admin
                 arealist.ItemsSource = areaModels1;
             }
         }
+
+        private void txtsearchbyareaname_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbyareaname.Text))
+                arealist.ItemsSource = vm.AreaLists;
+        }
     }
 }

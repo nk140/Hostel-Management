@@ -3,6 +3,7 @@ using HMS.Models;
 using HMS.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,12 +14,13 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Guest
 {
-    public class GuestRegBeforeLoginVM : BaseViewModel, IGuestRegistration
+    public class GuestRegBeforeLoginVM : BaseViewModel, IGuestRegistration, MasterI, RoomListI
     {
         private GuestRegistrationModel guestRegistrationModel_ = new GuestRegistrationModel();
         public string cnfpassword;
         public string temppassword;
         GuestServices guestServices;
+        MasterServices web;
         #region properties
         public GuestRegistrationModel GuestRegistrationModel
         {
@@ -44,6 +46,37 @@ namespace HMS.ViewModel.Guest
                 OnPropertyChanged("Cnfpassword");
             }
         }
+        private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
+        public ObservableCollection<AreaModel> AreaLists
+        {
+            get { return areaPresentmodels_; }
+            set { areaPresentmodels_ = value; OnPropertyChanged("AreaLists"); }
+        }
+        private ObservableCollection<BlockModel> blockModels_ = new ObservableCollection<BlockModel>();
+        public ObservableCollection<BlockModel> BlockModelList
+        {
+            get { return blockModels_; }
+            set { blockModels_ = value; OnPropertyChanged("BlockModelList"); }
+        }
+        private ObservableCollection<HostelModel> hostelPresentmodels_ = new ObservableCollection<HostelModel>();
+        public ObservableCollection<HostelModel> HostelLists
+        {
+            get { return hostelPresentmodels_; }
+            set { hostelPresentmodels_ = value; OnPropertyChanged("HostelLists"); }
+        }
+        private ObservableCollection<RoomNameList> roomNameLists = new ObservableCollection<RoomNameList>();
+        public ObservableCollection<RoomNameList> RoomNameLists
+        {
+            get
+            {
+                return roomNameLists;
+            }
+            set
+            {
+                roomNameLists = value;
+                OnPropertyChanged("RoomNameLists");
+            }
+        }
         #endregion
         #region commands
         public ICommand SaveCommand => new Command(OnSaveCommand);
@@ -56,10 +89,12 @@ namespace HMS.ViewModel.Guest
         public bool IsCheck2 { get { return _check2; } set { if (_check2 != value) { _check2 = value; OnPropertyChanged(); } } }
         public GuestRegBeforeLoginVM()
         {
+            web = new MasterServices((MasterI)this,(RoomListI)this);
             guestServices = new GuestServices(this);
             IsCheck1 = true;
             Check1Clicked = new Command(check1Clicked);
             Check2Clicked = new Command(check2Clicked);
+            web.GetAllArea();
         }
         private void check2Clicked()
         {
@@ -140,6 +175,18 @@ namespace HMS.ViewModel.Guest
                 guestServices.SaveGuestData(GuestRegistrationModel);
             }
         }
+        public void GetHostelList(string areaid)
+        {
+            web.GetAllHostel(areaid);
+        }
+        public void GetAllblocklist(string hostelid)
+        {
+            web.GetAllBlock(hostelid);
+        }
+        public void GetAllRoomnamelist(string hostelid,string blockid)
+        {
+            web.RoomListname(hostelid, blockid);
+        }
         public async void Success(string result)
         {
             GuestRegistrationModel = new GuestRegistrationModel();
@@ -148,6 +195,55 @@ namespace HMS.ViewModel.Guest
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged("GuestRegistrationModel");
             OnPropertyChanged("Cnfpassword");
+        }
+
+        public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        {
+            AreaLists = AreaList;
+            OnPropertyChanged("AreaLists");
+        }
+
+        public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        {
+            HostelLists = HostelList;
+            OnPropertyChanged("HostelLists");
+        }
+
+        public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+            BlockModelList = BlockList;
+            OnPropertyChanged("BlockList");
+        }
+
+        public void NoListFound(string result)
+        {
+            
+        }
+
+        public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            
+        }
+
+        public async Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            
+        }
+
+        public async Task ServiceFailed(int index)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", "No Record Found", "OK");
+        }
+
+        public void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
+        {
+            RoomNameLists = roomLists;
+            OnPropertyChanged("RoomNameLists");
+        }
+
+        public async void ServiceFaild(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
     }
 }

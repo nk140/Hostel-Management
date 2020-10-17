@@ -5,14 +5,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
              mc:Ignorable="d"
              x:Class="HMS.View.Admin.EditLeavetype">
-    <Grid>
+    <Grid Margin="10" RowSpacing="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="0">
-            <controls:BetterEntry Placeholder="Enter Leave type" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        <Label Text="Edit Leave Type" FontSize="25" TextColor="Black" HorizontalOptions="CenterAndExpand" Grid.Row="0"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+            <controls:BetterEntry Placeholder="Enter Leave type" Keyboard="Text"  Text="{Binding UpdateLeavetype.name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
-        <Button x:Name="btnupdate" CornerRadius="25" Text="Update"    Grid.Row="1" TextColor="White" BackgroundColor="#e96125"/>
+        <Button x:Name="btnupdate" CornerRadius="25" Text="Update" Command="{Binding UpdateLeavetypeCommand}"   Grid.Row="2" TextColor="White" BackgroundColor="#e96125"/>
     </Grid>
 </ContentPage>

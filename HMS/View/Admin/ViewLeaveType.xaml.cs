@@ -75,5 +75,11 @@ namespace HMS.View.Admin
                 leavetypelist.ItemsSource = leaveTypeModels1;
             }
         }
+
+        private void txtsearchbyleavetype_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbyleavetype.Text))
+                leavetypelist.ItemsSource = vm.LeaveTypeList;
+        }
     }
 }

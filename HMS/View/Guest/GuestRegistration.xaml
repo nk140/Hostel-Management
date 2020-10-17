@@ -3,16 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:vm="clr-namespace:HMS.ViewModel.Guest"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
              Title="Edit Guest Info"
              x:Class="HMS.View.Guest.GuestRegistration">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <vm:GuestRegistrationViewModel></vm:GuestRegistrationViewModel>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     <ScrollView>
         <Grid Margin="10" RowSpacing="14">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -47,6 +51,9 @@
                 <RadioButton Text="Male"    IsChecked="{Binding IsCheck1}"/>
                 <RadioButton Text="Female"  IsChecked="{Binding IsCheck2}"/>
             </StackLayout>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="6">
+                <forms:AutoSuggestBox x:Name="txtsearchbyarea"  HorizontalOptions="FillAndExpand"  IsVisible="{Binding Isvisible}" PlaceholderText="Area name" TextMemberPath="areaName" DisplayMemberPath="areaName"  Margin="-10" TextChanged="txtsearchbyarea_TextChanged" SuggestionChosen="txtsearchbyarea_SuggestionChosen"/>
+            </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="7">
                 <controls:BetterEntry Placeholder="Username" Keyboard="Text" IsEnabled="False" x:Name="txtusername" Text="{Binding Username}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>

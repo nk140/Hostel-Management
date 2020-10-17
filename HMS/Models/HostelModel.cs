@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HMS.Models
 {
-    public class HostelModel : JsonProperty
+    public class HostelModel
     {
         public string id { get; set; }
         public string hostelName { get; set; }

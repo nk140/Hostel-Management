@@ -11,7 +11,7 @@
         <Label Text="View Hostel" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
         <StackLayout Orientation="Horizontal" Margin="10">
             <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
-                <forms:AutoSuggestBox x:Name="txtsearchbyhostelname" HorizontalOptions="FillAndExpand" TextMemberPath="hostelName" DisplayMemberPath="hostelName" PlaceholderText="Search from Hostel name"  Margin="-17" TextChanged="txtsearchbyhostelname_TextChanged" SuggestionChosen="txtsearchbyhostelname_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbyhostelname" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbyhostelname_Unfocused" TextMemberPath="hostelName" DisplayMemberPath="hostelName" PlaceholderText="Search from Hostel name"  Margin="-17" TextChanged="txtsearchbyhostelname_TextChanged" SuggestionChosen="txtsearchbyhostelname_SuggestionChosen"/>
             </Frame>
             <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30">
                 <Image.GestureRecognizers>

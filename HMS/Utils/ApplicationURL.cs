@@ -74,8 +74,9 @@
         public static string GetHostelStudent = "/hostelandmesstest/api/v1/hostel/allAdmissionDetails";
         public static string GetHostelStudentbyapplicationno = "/hostelandmesstest/api/v1/hostel/AdmissionDetails";
         public static string GetLeaveTypeList = "/hostelandmesstest/api/v1/leave/allleavetype";
-        public static string EditLeavetype = "";
-        public static string DeleteLeavetype = "";
+        public static string CreateLeaveType = "/hostelandmesstest/api/v1/leave/hostelleavetype";
+        public static string EditLeavetype = "/hostelandmesstest/api/v1/leave/leavetypeupdate";
+        public static string DeleteLeavetype = "/hostelandmesstest/api/v1/leave/deleteleavetype";
         public static string SaveLeaveRequest = "/hostelandmesstest/api/v1/leave/applyforleave";
         public static string StudentRegister = "/hostelandmesstest/api/v1/student/studentregister";
         public static string GetAllWarden = "/hostelandmesstest/api/v1/leave/wardeninfo";

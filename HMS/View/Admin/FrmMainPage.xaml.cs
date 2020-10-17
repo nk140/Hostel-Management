@@ -27,7 +27,7 @@ namespace HMS.View.Admin
                 new HomeMenuItem {Title="News Feed",TargetType=typeof(AdminNewsFeed)},
                 new HomeMenuItem {Title="Set Password",TargetType=typeof(FrmParentRegistration)},
                 new HomeMenuItem {Title="Course Master",TargetType=typeof(CourseMaster)},
-                new HomeMenuItem {Title="View Leave Type",TargetType=typeof(ViewLeaveType)},
+                new HomeMenuItem {Title="Leave Type Master",TargetType=typeof(LeavetypeMaster)},
                 new HomeMenuItem {Title="View Disciplinary Action",TargetType=typeof(ViewDisciplinaryAction)},
                 new HomeMenuItem {Title="Area Master",TargetType=typeof(AreaMaster)},
                 new HomeMenuItem {Title="Hostel Master",TargetType=typeof(HostelMaster)},

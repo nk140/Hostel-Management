@@ -3,58 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:vm="clr-namespace:HMS.ViewModel.Guest"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
              Title="Guest Registration"
              x:Class="HMS.View.Guest.FrmGuestRegistration">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <vm:GuestRegBeforeLoginVM></vm:GuestRegBeforeLoginVM>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     <ScrollView>
-    <Grid Margin="0,14,0,0" RowSpacing="7">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30">
-            <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding GuestRegistrationModel.guestName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
-            <controls:BetterEntry Placeholder="Enter Address" Keyboard="Text" Text="{Binding GuestRegistrationModel.address}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
-            <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding GuestRegistrationModel.phoneNo}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <StackLayout Orientation="Horizontal" Grid.Row="3">
-            <RadioButton x:Name="maleOption" Text="Male" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}"/>
-            <RadioButton x:Name="femaleoption" Text="Female" IsChecked="{Binding IsCheck2}" Command="{Binding Check2Clicked}"/>
-        </StackLayout>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="4">
-            <controls:BetterEntry Placeholder="Enter Email" Keyboard="Email" Text="{Binding GuestRegistrationModel.email}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="5">
-            <controls:BetterEntry Placeholder="Enter Aadhar no" Keyboard="Numeric" MaxLength="9"  Text="{Binding GuestRegistrationModel.aadharNo}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="6">
-            <controls:BetterEntry Placeholder="Enter UserName" Keyboard="Text"  Text="{Binding GuestRegistrationModel.userName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="7">
-            <controls:BetterEntry Placeholder="Enter Password" Keyboard="Text"  Text="{Binding GuestRegistrationModel.password}" IsPassword="True" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="8">
-            <controls:BetterEntry Placeholder="Confirm Password" Keyboard="Text"  Text="{Binding Cnfpassword}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
-        </Frame>
-        <Button Text="Register" BackgroundColor="#e96125"  Command="{Binding SaveCommand}" Grid.Row="9" TextColor="White" CornerRadius="30" HeightRequest="50" WidthRequest="190"   HorizontalOptions="CenterAndExpand"/>
-        <Button Text="Login"  x:Name="login" BackgroundColor="Transparent" Grid.Row="10" TextColor="Black" CornerRadius="10" HeightRequest="50" WidthRequest="190"  HorizontalOptions="CenterAndExpand" Clicked="login_Clicked"/>
-    </Grid>
+        <Grid Margin="0,14,0,0" RowSpacing="7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <!--<RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>-->
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30">
+                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding GuestRegistrationModel.guestName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+                <controls:BetterEntry Placeholder="Enter Address" Keyboard="Text" Text="{Binding GuestRegistrationModel.address}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
+                <controls:BetterEntry Placeholder="Enter Phone no" Keyboard="Telephone" Text="{Binding GuestRegistrationModel.phoneNo}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <StackLayout Orientation="Horizontal" Grid.Row="3">
+                <RadioButton x:Name="maleOption" Text="Male" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}"/>
+                <RadioButton x:Name="femaleoption" Text="Female" IsChecked="{Binding IsCheck2}" Command="{Binding Check2Clicked}"/>
+            </StackLayout>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="4">
+                <controls:BetterEntry Placeholder="Enter Email" Keyboard="Email" Text="{Binding GuestRegistrationModel.email}"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="5">
+                <controls:BetterEntry Placeholder="Enter Aadhar no" Keyboard="Numeric" MaxLength="9"  Text="{Binding GuestRegistrationModel.aadharNo}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <!--<Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="6">
+                <forms:AutoSuggestBox x:Name="txtsearchbyarea"  HorizontalOptions="FillAndExpand"  PlaceholderText="Area name" TextMemberPath="areaName" DisplayMemberPath="areaName"  Margin="-17" TextChanged="txtsearchbyarea_TextChanged" SuggestionChosen="txtsearchbyarea_SuggestionChosen" Visual="Material"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="7">
+                <forms:AutoSuggestBox x:Name="txtsearchbyhostel"  HorizontalOptions="FillAndExpand"  PlaceholderText="Hostel name" TextMemberPath="hostelName" DisplayMemberPath="hostelName"  Margin="-17" TextChanged="txtsearchbyhostel_TextChanged" SuggestionChosen="txtsearchbyhostel_SuggestionChosen" Visual="Material"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="8">
+                <forms:AutoSuggestBox x:Name="txtsearchbyblock"  HorizontalOptions="FillAndExpand"  PlaceholderText="block name" TextMemberPath="name" DisplayMemberPath="name"  Margin="-17" TextChanged="txtsearchbyblock_TextChanged" SuggestionChosen="txtsearchbyblock_SuggestionChosen"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="9">
+                <forms:AutoSuggestBox x:Name="txtsearchbyroomname"  HorizontalOptions="FillAndExpand"  PlaceholderText="Allot room" TextMemberPath="name" DisplayMemberPath="name"  Margin="-17" TextChanged="txtsearchbyroomname_TextChanged" SuggestionChosen="txtsearchbyroomname_SuggestionChosen"/>
+            </Frame>-->
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="6">
+                <controls:BetterEntry Placeholder="Enter UserName" Keyboard="Text"  Text="{Binding GuestRegistrationModel.userName}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="7">
+                <controls:BetterEntry Placeholder="Enter Password" Keyboard="Text"  Text="{Binding GuestRegistrationModel.password}" IsPassword="True" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="8">
+                <controls:BetterEntry Placeholder="Confirm Password" Keyboard="Text"  Text="{Binding Cnfpassword}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            </Frame>
+            <Button Text="Register" BackgroundColor="#e96125"  Command="{Binding SaveCommand}" Grid.Row="9" TextColor="White" CornerRadius="30" HeightRequest="50" WidthRequest="190"   HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Login"  x:Name="login" BackgroundColor="Transparent" Grid.Row="10" TextColor="Black" CornerRadius="10" HeightRequest="50" WidthRequest="190"  HorizontalOptions="CenterAndExpand" Clicked="login_Clicked"/>
+        </Grid>
     </ScrollView>
 </ContentPage>

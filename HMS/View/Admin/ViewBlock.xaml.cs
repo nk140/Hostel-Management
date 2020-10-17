@@ -84,6 +84,12 @@ namespace HMS.View.Admin
             }
         }
 
+        private void txtsearchbyblockname_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbyblockname.Text))
+                blocklist.ItemsSource = vm.BlockModelList;
+        }
+
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             await App.Current.MainPage.Navigation.PushPopupAsync(new PopupBlock(App.areaid));

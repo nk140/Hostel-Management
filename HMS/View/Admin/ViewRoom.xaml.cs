@@ -67,6 +67,12 @@ namespace HMS.View.Admin
             }
         }
 
+        private void txtsearchbyroomname_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbyroomname.Text))
+                FloorDetaillists1.ItemsSource = vm.RoomNameLists;
+        }
+
         private void txtsearchbyroomname_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyroomname.Text = ((RoomNameList)e.SelectedItem).name;

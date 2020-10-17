@@ -69,6 +69,12 @@ namespace HMS.View.Admin
             }
         }
 
+        private void txtsearchbyroombed_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbyroombed.Text))
+                roombeddata.ItemsSource = vm.RoomBedDatas;
+        }
+
         private void txtsearchbyroombed_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbyroombed.Text = ((RoomBedData)e.SelectedItem).bedNo;

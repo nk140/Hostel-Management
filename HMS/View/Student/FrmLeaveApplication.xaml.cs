@@ -123,7 +123,7 @@ namespace HMS.View.Student
         {
             txtsearchbykeyword.Text = ((LeaveTypeModel)e.SelectedItem).name;
             Vm.LeaveType = txtsearchbykeyword.Text;
-            var id = ((LeaveTypeModel)e.SelectedItem).id;
+            var id = ((LeaveTypeModel)e.SelectedItem).leaveTypeId;
             Vm.LeaveTypeId = id;
         }
     }

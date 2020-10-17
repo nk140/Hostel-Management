@@ -10,7 +10,7 @@
     <StackLayout
            Orientation="Vertical" >
         <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Margin="30">
-            <forms:AutoSuggestBox x:Name="txtsearchbywarden" HorizontalOptions="FillAndExpand" TextMemberPath="firstName" DisplayMemberPath="firstName" PlaceholderText="Search from Warden name"  Margin="-17" TextChanged="txtsearchbywarden_TextChanged" SuggestionChosen="txtsearchbywarden_SuggestionChosen"/>
+            <forms:AutoSuggestBox x:Name="txtsearchbywarden" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbywarden_Unfocused" TextMemberPath="firstName" DisplayMemberPath="firstName" PlaceholderText="Search from Warden name"  Margin="-17" TextChanged="txtsearchbywarden_TextChanged" SuggestionChosen="txtsearchbywarden_SuggestionChosen"/>
         </Frame>
         <CollectionView 
                 x:Name="lv_contact"    

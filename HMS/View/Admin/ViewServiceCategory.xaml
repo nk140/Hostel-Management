@@ -11,7 +11,7 @@
         <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <Label Text="View Service Category" FontSize="25" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
             <Frame CornerRadius="30" BackgroundColor="Transparent" BorderColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.3,0.4,0.7,0.06">
-                <forms:AutoSuggestBox x:Name="txtsearchbyservicename" HorizontalOptions="FillAndExpand" DisplayMemberPath="name" TextMemberPath="name"  PlaceholderText="Search From Service name" Margin="-11" TextChanged="txtsearchbyservicename_TextChanged" SuggestionChosen="txtsearchbyservicename_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtsearchbyservicename" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbyservicename_Unfocused" DisplayMemberPath="name" TextMemberPath="name"  PlaceholderText="Search From Service name" Margin="-11" TextChanged="txtsearchbyservicename_TextChanged" SuggestionChosen="txtsearchbyservicename_SuggestionChosen"/>
             </Frame>
             <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.3,0.58,0.6,0.9">
                 <Grid.RowDefinitions>

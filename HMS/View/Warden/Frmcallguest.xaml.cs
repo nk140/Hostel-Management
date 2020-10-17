@@ -71,5 +71,11 @@ namespace HMS.View.Warden
 
             }
         }
+
+        private void txtsearchbykeyword_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbykeyword.Text))
+                lv_contact.ItemsSource = vm.listofguests;
+        }
     }
 }

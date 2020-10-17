@@ -1,9 +1,13 @@
-﻿using Xamarin.Essentials;
+﻿using HMS.Interface;
+using HMS.Models;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HMS.ViewModel.Guest
 {
-    public class GuestRegistrationViewModel : BaseViewModel
+    public class GuestRegistrationViewModel : BaseViewModel,MasterI, RoomListI
     {
         private string userId;
         private string id;
@@ -21,6 +25,24 @@ namespace HMS.ViewModel.Guest
         private string fulladdress;
         private string newpassword;
         private string cnfpassword;
+        private ObservableCollection<AreaModel> areaPresentmodels_ = new ObservableCollection<AreaModel>();
+        public ObservableCollection<AreaModel> AreaLists
+        {
+            get { return areaPresentmodels_; }
+            set { areaPresentmodels_ = value; OnPropertyChanged("AreaLists"); }
+        }
+        private ObservableCollection<BlockModel> blockModels_ = new ObservableCollection<BlockModel>();
+        public ObservableCollection<BlockModel> BlockModelList
+        {
+            get { return blockModels_; }
+            set { blockModels_ = value; OnPropertyChanged("BlockModelList"); }
+        }
+        private ObservableCollection<HostelModel> hostelPresentmodels_ = new ObservableCollection<HostelModel>();
+        public ObservableCollection<HostelModel> HostelLists
+        {
+            get { return hostelPresentmodels_; }
+            set { hostelPresentmodels_ = value; OnPropertyChanged("HostelLists"); }
+        }
         #region Properties
         public string UserId
         {
@@ -238,6 +260,51 @@ namespace HMS.ViewModel.Guest
                     IsCheck2 = true;
             }
             //Username = "";
+        }
+
+        public Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void NoListFound(string result)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task ServiceFailed(int index)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ServiceFaild(string result)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
