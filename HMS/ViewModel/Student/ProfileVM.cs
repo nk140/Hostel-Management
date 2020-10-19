@@ -1,6 +1,7 @@
 ﻿using HMS.Interface;
 using HMS.Models;
 using HMS.Services;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -109,19 +110,23 @@ namespace HMS.ViewModel.Student
         public ICommand UpdateCommand => new Command(OnUpdateCommand);
 
         #endregion
+        private ObservableCollection<StudentProfileModel> studentProfile = new ObservableCollection<StudentProfileModel>();
+        public ObservableCollection<StudentProfileModel> StudentProfileModel
+        {
+            get
+            {
+                return studentProfile;
+            }
+            set
+            {
+                studentProfile = value;
+                OnPropertyChanged("StudentProfileModel");
+            }
+        }
         public ProfileVM()
         {
-            StudentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult();
-            if (string.IsNullOrEmpty(App.studentupdatedphoneno) || App.studentupdatedphoneno.Length == 0)
-                Phoneno = SecureStorage.GetAsync("mobileNo").GetAwaiter().GetResult();
-            else
-                Phoneno = App.studentupdatedphoneno;
-            Email = SecureStorage.GetAsync("email").GetAwaiter().GetResult();
-            HostelName = "Dream Hostel";
-            FloorNo = "13";
-            Roomno = "34";
-            BedNo = "3";
             studentService = new StudentService(this);
+            studentService.GetProfiile(App.userid);
         }
         public async void OnUpdateCommand()
         {
@@ -138,14 +143,25 @@ namespace HMS.ViewModel.Student
             }
         }
 
-        public void LoadStudentProfile(StudentProfileModel profiles)
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
         {
-            throw new System.NotImplementedException();
+            StudentProfileModel = profiles;
+            foreach (var items in StudentProfileModel)
+            {
+                StudentName = items.studentName;
+                Phoneno = items.studentPhoneNo;
+                Email = items.studentemail;
+                HostelName = items.hostelName;
+                FloorNo = items.floreNo;
+                Roomno = items.roomName;
+                BedNo = items.bedNo;
+            }
+            OnPropertyChanged("StudentProfileModel");
         }
 
-        public Task ServiceFaild()
+        public async Task ServiceFaild()
         {
-            throw new System.NotImplementedException();
+           
         }
 
         public async void UpdatedSucessfully(string result)

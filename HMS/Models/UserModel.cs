@@ -27,6 +27,9 @@ namespace HMS.Models
         public string date { get; set; }
         public string time { get; set; }
         public string hostelAdmisiionId { get; set; }
+        public string areaId { get; set; }
+        public string hostelId { get; set; }
+        public string hostelName { get; set; }
         [JsonIgnore]
         public bool Isbuttonvisible { get; set; }
     }
@@ -55,5 +58,26 @@ namespace HMS.Models
         public string time { get; set; }
         [JsonIgnore]
         public bool Isbuttonvisible { get; set; }
+    }
+    public class WardenModels
+    {
+        public int userId { get; set; }
+        public int employeeId { get; set; }
+        public string wardenName { get; set; }
+        public string dateOfBirth { get; set; }
+        public string dateOfJoining { get; set; }
+        public string permanent_address_line_1 { get; set; }
+        public string permanent_address_line_2 { get; set; }
+        public string permanent_address_city { get; set; }
+        public string wardenEmail { get; set; }
+        public string wardenPhoneNo { get; set; }
+        public string blood_group { get; set; }
+        public string wardenGender { get; set; }
+        public string isWarden { get; set; }
+        public string areaId { get; set; }
+        public string areaName { get; set; }
+        public string hostelId { get; set; }
+        public string hostelName { get; set; }
+        public string userType { get; set; }
     }
 }

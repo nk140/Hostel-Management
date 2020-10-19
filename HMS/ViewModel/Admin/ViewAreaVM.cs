@@ -54,7 +54,11 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnDeleteCommand(AreaModel obj)
         {
-            web.DeleteArea(obj.id);
+            var result = await App.Current.MainPage.DisplayActionSheet("Hostels and others are associated from this area want to delete.", "Cancel", null, "Yes", "No");
+            if (result.Equals("Yes"))
+            {
+                web.DeleteArea(obj.id);
+            }
             //Hideorshowbutton(obj);
         }
         public async void OnTapCommand(AreaModel obj)
@@ -184,7 +188,11 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnDeleteCommand(BlockModel obj)
         {
-            web.DeleteBlock(obj.id);
+            var result = await App.Current.MainPage.DisplayActionSheet("Rooms and others are associated from this block want to delete.", "Cancel", null, "Yes", "No");
+            if (result.Equals("Yes"))
+            {
+                web.DeleteBlock(obj.id);
+            }
         }
         public async void OnTapCommand(BlockModel obj)
         {
@@ -374,7 +382,11 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnDeleteCommand(FloorData obj)
         {
-            web.DeleteFloor(obj.id.ToString());
+            var result = await App.Current.MainPage.DisplayActionSheet("Rooms and others are associated from this floor want to delete.", "Cancel", null, "Yes", "No");
+            if (result.Equals("Yes"))
+            {
+                web.DeleteFloor(obj.id.ToString());
+            }
         }
         public async void OnTapCommand(FloorData obj)
         {
@@ -583,7 +595,11 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnDeleteCommand(RoomNameList obj)
         {
-            web.DeleteRoom(obj.id);
+            var result = await App.Current.MainPage.DisplayActionSheet("Room Beds are associated from this room want to delete.", "Cancel", null, "Yes", "No");
+            if (result.Equals("Yes"))
+            {
+                web.DeleteRoom(obj.id);
+            }
         }
         public async void OnTapCommand(RoomNameList obj)
         {
@@ -1163,7 +1179,11 @@ namespace HMS.ViewModel.Admin
         }
         public async void OnDeleteCommand(HostelModel obj)
         {
-            web.DeleteHostel(obj.id);
+            var result = await App.Current.MainPage.DisplayActionSheet("Blocks and others are associated from this hostel want to delete.", "Cancel", null, "Yes", "No");
+            if (result.Equals("Yes"))
+            {
+                web.DeleteHostel(obj.id);
+            }
         }
         public async void OnTapCommand(HostelModel obj)
         {

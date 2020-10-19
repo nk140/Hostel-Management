@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -228,10 +229,11 @@ namespace HMS.ViewModel.Student
             OnPropertyChanged("UpdateDisciplinaryActionbywarden");
         }
     }
-    public class ViewStudentDisciplinaryActionVM : BaseViewModel
+    public class ViewStudentDisciplinaryActionVM : BaseViewModel,ProfileI
     {
+        public StudentService studentService;
         private ObservableCollection<StudentModel> studentModels = new ObservableCollection<StudentModel>();
-        private StudentModel _OldDisciplinaryData;
+        private StudentProfileModel _OldDisciplinaryData;
 
         public ObservableCollection<StudentModel> StudentModels
         {
@@ -245,29 +247,46 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged("StudentModels");
             }
         }
+        private ObservableCollection<StudentProfileModel> studentProfile = new ObservableCollection<StudentProfileModel>();
+        public ObservableCollection<StudentProfileModel> StudentProfileModel
+        {
+            get
+            {
+                return studentProfile;
+            }
+            set
+            {
+                studentProfile = value;
+                OnPropertyChanged("StudentProfileModel");
+            }
+        }
         public ViewStudentDisciplinaryActionVM()
         {
-            StudentModels.Add(new StudentModel
-            {
-                wardenDisciplinaryId = SecureStorage.GetAsync("wardenDisciplinaryId").GetAwaiter().GetResult(),
-                studentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult(),
-                disciplinaryName = SecureStorage.GetAsync("disciplinaryName").GetAwaiter().GetResult(),
-                applicationNo = SecureStorage.GetAsync("applicationNo").GetAwaiter().GetResult(),
-                date = SecureStorage.GetAsync("date").GetAwaiter().GetResult(),
-                time = SecureStorage.GetAsync("time").GetAwaiter().GetResult()
-            });
+            studentService = new StudentService(this);
+            studentService.GetProfiile(App.userid);
+            //StudentModels.Add(new StudentModel
+            //{
+            //    wardenDisciplinaryId = SecureStorage.GetAsync("wardenDisciplinaryId").GetAwaiter().GetResult(),
+            //    studentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult(),
+            //    disciplinaryName = SecureStorage.GetAsync("disciplinaryName").GetAwaiter().GetResult(),
+            //    applicationNo = SecureStorage.GetAsync("applicationNo").GetAwaiter().GetResult(),
+            //    date = SecureStorage.GetAsync("date").GetAwaiter().GetResult(),
+            //    time = SecureStorage.GetAsync("time").GetAwaiter().GetResult()
+            //});
+            //if (string.IsNullOrEmpty(StudentModels[0].applicationNo) || StudentModels[0].applicationNo.Length == 0)
+            //    App.Current.MainPage.DisplayAlert("HMS", "Seems you haven't done hostel admission", "OK");
         }
-        public ICommand ViewCommand => new Command<StudentModel>(OnViewCommand);
-        public ICommand TapCommand => new Command<StudentModel>(OnTapCommand);
-        public async void OnViewCommand(StudentModel obj)
+        public ICommand ViewCommand => new Command<StudentProfileModel>(OnViewCommand);
+        public ICommand TapCommand => new Command<StudentProfileModel>(OnTapCommand);
+        public async void OnViewCommand(StudentProfileModel obj)
         {
             await App.Current.MainPage.Navigation.PushPopupAsync(new ViewDisciplinaryActionPopup(obj.date, obj.time, obj.studentName, obj.applicationNo, obj.disciplinaryName, obj.disciplinaryName));
         }
-        public async void OnTapCommand(StudentModel obj)
+        public async void OnTapCommand(StudentProfileModel obj)
         {
             Hideorshowbutton(obj);
         }
-        public void Hideorshowbutton(StudentModel obj)
+        public void Hideorshowbutton(StudentProfileModel obj)
         {
             if (_OldDisciplinaryData == obj)
             {
@@ -293,11 +312,27 @@ namespace HMS.ViewModel.Student
             }
             _OldDisciplinaryData = obj;
         }
-        public void UpdateProduct(StudentModel obj)
+        public void UpdateProduct(StudentProfileModel obj)
         {
-            var index = StudentModels.IndexOf(obj);
-            StudentModels.Remove(obj);
-            StudentModels.Insert(index, obj);
+            var index = StudentProfileModel.IndexOf(obj);
+            StudentProfileModel.Remove(obj);
+            StudentProfileModel.Insert(index, obj);
+        }
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
+        {
+            StudentProfileModel = profiles;
+            OnPropertyChanged("StudentProfileModel");
+        }
+
+        public async Task ServiceFaild()
+        {
+           
+        }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new NotImplementedException();
         }
     }
     public class ViewWardDisciplinaryActionVM : BaseViewModel

@@ -3,13 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox" xmlns:controls="clr-namespace:HMS.Controls"
              x:Class="HMS.View.Student.FrmServiceRequest"
              Title="Service Request">
-    <AbsoluteLayout>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.03,0.8,0.08">
+    <Grid Margin="8" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="0">
             <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Text="{Binding Servicecategoryname}" PlaceholderText="Search by Service Category" TextMemberPath="name" DisplayMemberPath="name" Margin="-17" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
         </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,0.16,0.8,0.08">
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="1">
+            <controls:BetterEntry Placeholder="Enter Room name" Text="{Binding Roomname}" IsEnabled="False" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
             <controls:BetterEntry Placeholder="Enter Description" Text="{Binding Servicedescription}" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
         </Frame>
-        <Button Text="Request Service" BackgroundColor="#e96125" AbsoluteLayout.LayoutFlags="All" Command="{Binding SaveRequestCommand}" TextColor="White" CornerRadius="30" AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.08"/>
-    </AbsoluteLayout>
+        <Button Text="Request Service" BackgroundColor="#e96125"  Command="{Binding SaveRequestCommand}" TextColor="White" CornerRadius="30" Grid.Row="3"/>
+    </Grid>
 </ContentPage>

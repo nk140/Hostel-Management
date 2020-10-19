@@ -1,20 +1,27 @@
-﻿namespace HMS.Models
+﻿using Newtonsoft.Json;
+
+namespace HMS.Models
 {
     public class StudentProfileModel
     {
-        public int id { get; set; }
-        public object userName { get; set; }
-        public object password { get; set; }
+        public string studentId { get; set; }
+        public string wardenHostelId { get; set; }
+        public string wardenName { get; set; }
+        public string wardenPhoneNo { get; set; }
+        public string studentPhoneNo { get; set; }
         public string studentName { get; set; }
-        public string email { get; set; }
-        public object dateOfBirth { get; set; }
-        public object gender { get; set; }
-        public object bloodGroup { get; set; }
-        public object fatherName { get; set; }
-        public object motherName { get; set; }
-        public object fatherEmail { get; set; }
-        public object motherEmail { get; set; }
-        public string userType { get; set; }
-        public object applicationNo { get; set; }
+        public string studentemail { get; set; }
+        public string hostelName { get; set; }
+        public string floreNo { get; set; }
+        public string bedNo { get; set; }
+        public string roomName { get; set; }
+        public string roomId { get; set; }
+        public string applicationNo { get; set; }
+        public string wardenDisciplinaryId { get; set; }
+        public string disciplinaryName { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
+        [JsonIgnore]
+        public bool Isbuttonvisible { get; set; }
     }
 }

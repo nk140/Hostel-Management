@@ -25,9 +25,9 @@
                                 <StackLayout
                                     Orientation="Vertical">
                                     <Label
-                                    Text="{Binding firstName}"/>
+                                    Text="{Binding wardenName}"/>
                                 <Label
-                                    Text="{Binding contact}"/>
+                                    Text="{Binding wardenPhoneNo}"/>
 
                                     <StackLayout
                                         Orientation="Horizontal"

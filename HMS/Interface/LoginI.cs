@@ -7,6 +7,7 @@ namespace HMS.Interface
     {
         void UserLoginSuccess(UserModel userData);
         void StudentLoginSucess(StudentModel studentModel);
+        void WardenLoginsucess(WardenModels wardenModel);
         Task ProccessFailed();
     }
 }

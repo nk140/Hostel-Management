@@ -233,7 +233,7 @@ namespace HMS.ViewModel.Student
         }
         public void servicefailed(string result)
         {
-
+            App.Current.MainPage.DisplayAlert("HMS",result, "OK");
         }
     }
 }

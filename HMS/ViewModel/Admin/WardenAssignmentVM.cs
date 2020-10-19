@@ -74,6 +74,19 @@ namespace HMS.ViewModel.Admin
                 OnPropertyChanged("SelectedHostelName");
             }
         }
+        private double listheight;
+        public double Listheight
+        {
+            get
+            {
+                return listheight;
+            }
+            set
+            {
+                listheight = value;
+                OnPropertyChanged("Listheight");
+            }
+        }
         public ICommand AssignWardenCommand => new Command(OnAssignWardenCommand);
         public WardenAssignmentVM()
         {
@@ -130,8 +143,10 @@ namespace HMS.ViewModel.Admin
             {
                 HostelModelList = HostelList;
                 IsListviewvisible = true;
+                Listheight= (40 * HostelModelList.Count) + 20;
                 OnPropertyChanged("HostelModelList");
                 OnPropertyChanged("IsListviewvisible");
+                OnPropertyChanged("Listheight");
             }
         }
 

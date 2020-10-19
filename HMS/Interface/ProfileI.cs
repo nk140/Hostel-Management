@@ -1,11 +1,12 @@
 ﻿using HMS.Models;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace HMS.Interface
 {
     public interface ProfileI
     {
-        void LoadStudentProfile(StudentProfileModel profiles);
+        void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles);
         Task ServiceFaild();
         void UpdatedSucessfully(string result);
     }

@@ -29,7 +29,7 @@ namespace HMS.View.Student
         private void OnSelectedItem(object sender, ItemTappedEventArgs e)
         {
 
-            WardenInfoModel md = (WardenInfoModel)lv_contact.SelectedItem;
+            StudentProfileModel md = (StudentProfileModel)lv_contact.SelectedItem;
 
 
 
@@ -43,10 +43,10 @@ namespace HMS.View.Student
 
 
 
-            var item_ = (sender as StackLayout).BindingContext as WardenInfoModel;
+            var item_ = (sender as StackLayout).BindingContext as StudentProfileModel;
             if (item_ != null)
             {
-                PlacePhoneCall(item_.contact);
+                PlacePhoneCall(item_.wardenPhoneNo);
             }
 
 
@@ -57,10 +57,10 @@ namespace HMS.View.Student
         {
 
 
-            var item_ = (sender as StackLayout).BindingContext as WardenInfoModel;
+            var item_ = (sender as StackLayout).BindingContext as StudentProfileModel;
             if (item_ != null)
             {
-                SendSms("", item_.contact);
+                SendSms("", item_.wardenPhoneNo);
             }
 
         }

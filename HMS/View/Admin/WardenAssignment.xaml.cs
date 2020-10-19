@@ -162,14 +162,14 @@ namespace HMS.View.Admin
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            if (vm.HostelModelList.Count == 0 || vm.HostelModelList == null)
-                App.Current.MainPage.DisplayAlert("HMS", "No Hostel List", "OK");
-            else
-            {
-                lv_role.IsVisible = true;
-                lv_role.IsEnabled = true;
-                lv_role.HeightRequest = (40 * vm.HostelModelList.Count) + 20;
-            }
+            //if (vm.HostelModelList.Count == 0 || vm.HostelModelList == null)
+            //    App.Current.MainPage.DisplayAlert("HMS", "No Hostel List", "OK");
+            //else
+            //{
+            //    lv_role.IsVisible = true;
+            //    lv_role.IsEnabled = true;
+            //    lv_role.HeightRequest = (40 * vm.HostelModelList.Count) + 20;
+            //}
         }
         private void lv_role_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -183,7 +183,6 @@ namespace HMS.View.Admin
         public void selectehostel(int index)
         {
             string hostelname = vm.HostelModelList[index].hostelName;
-            txthostelseleted.Text = hostelname;
             vm.SelectedHostelName = hostelname;
             string hostelid = vm.HostelModelList[index].id;
             vm.WardenAssignment.hostelId = hostelid;

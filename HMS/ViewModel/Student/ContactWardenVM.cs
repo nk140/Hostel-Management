@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace HMS.ViewModel.Student
 {
-    public class ContactWardenVM : BaseViewModel, ContactWardenI
+    public class ContactWardenVM : BaseViewModel, ProfileI
     {
         public ContactWardenVM()
         {
             web = new StudentService(this);
-            web.GetAllWarden();
+            web.GetProfiile(App.userid);
         }
 
         StudentService web;
 
-        private ObservableCollection<WardenInfoModel> warden_ = new ObservableCollection<WardenInfoModel>();
+        private ObservableCollection<StudentProfileModel> warden_ = new ObservableCollection<StudentProfileModel>();
 
 
-        public ObservableCollection<WardenInfoModel> Warden
+        public ObservableCollection<StudentProfileModel> Warden
         {
             get { return warden_; }
             set { warden_ = value; OnPropertyChanged("Warden"); }
@@ -32,9 +32,20 @@ namespace HMS.ViewModel.Student
 
         public async Task GetAllWarden(ObservableCollection<WardenInfoModel> warden__)
         {
-            Warden = new ObservableCollection<WardenInfoModel>();
-            Warden = warden__;
+           // Warden = new ObservableCollection<WardenInfoModel>();
+           // Warden = warden__;
+           // OnPropertyChanged("Warden");
+        }
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
+        {
+            Warden = profiles;
             OnPropertyChanged("Warden");
+        }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

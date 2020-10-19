@@ -7,8 +7,8 @@
 
         // Development
         // public static string BaseURL = "http://172.16.16.5:8080";
-        public static string BaseURL = "http://203.192.204.167:8081";
-        // public static string BaseURL = "http://203.192.204.167:8080";
+        //public static string BaseURL = "http://203.192.204.167:8081";
+         public static string BaseURL = "http://106.51.139.122:8080";
 
         //  public static string BaseURL = "http://203.192.204.167:8080";
 
@@ -71,6 +71,7 @@
         #region Student
         public static string GetProfiile = "/hostelandmesstest/api/v1/student/studentprofile";
         public static string HostelAdmission = "/hostelandmesstest/api/v1/auth/admission";
+        public static string Getstudentidforhosteladmission = "";
         public static string GetHostelStudent = "/hostelandmesstest/api/v1/hostel/allAdmissionDetails";
         public static string GetHostelStudentbyapplicationno = "/hostelandmesstest/api/v1/hostel/AdmissionDetails";
         public static string GetLeaveTypeList = "/hostelandmesstest/api/v1/leave/allleavetype";
@@ -86,6 +87,7 @@
         public static string coursesetup = "/hostelandmesstest/api/v1/area/coursesetup";
         public static string UpdateCourse = "/hostelandmesstest/api/v1/area/courseupdate";
         public static string DeleteCourse = "/hostelandmesstest/api/v1/area/deletecourse";
+        public static string ServiceRequestByStudent = "";
         #endregion
 
         #region Warden

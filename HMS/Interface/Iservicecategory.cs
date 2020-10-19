@@ -9,6 +9,8 @@ namespace HMS.Interface
     public interface Iservicecategory
     {
         void getallservicecategory(ObservableCollection<WardenServiceModel> wardenServiceModels);
+        void requestedsucess(string result);
+        void failer(string result);
     }
     public interface IEditservicecategory
     {

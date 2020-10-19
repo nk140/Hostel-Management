@@ -30,6 +30,7 @@ namespace HMS.Services
         {
             UserModel userModel;
             StudentModel studentModel;
+            WardenModels wardenModel;
             try
             {
                 var client = new HttpClient();
@@ -48,7 +49,7 @@ namespace HMS.Services
                     if(userModel.userType==null)
                     {
                         UserDialogs.Instance.HideLoading();
-                        await App.Current.MainPage.DisplayAlert("HMS", "You have not completed Hostel Admission.", "OK");
+                        await App.Current.MainPage.DisplayAlert("HMS", "User doesn't exists.", "OK");
                     }
                     else if (userModel.userType == "student")
                     {
@@ -56,6 +57,13 @@ namespace HMS.Services
                         userModel = new UserModel();
                         studentModel = JsonConvert.DeserializeObject<StudentModel>(await response.Content.ReadAsStringAsync());
                         loginEvent.StudentLoginSucess(studentModel);
+                    }
+                    else if (userModel.userType == "warden")
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        userModel = new UserModel();
+                        wardenModel = JsonConvert.DeserializeObject<WardenModels>(await response.Content.ReadAsStringAsync());
+                        loginEvent.WardenLoginsucess(wardenModel);
                     }
                     else
                     {

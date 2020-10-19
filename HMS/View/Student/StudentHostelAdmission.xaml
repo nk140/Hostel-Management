@@ -21,7 +21,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <!--<RowDefinition Height="Auto"/>-->
             </Grid.RowDefinitions>
             <Label Text="Hostel Admission" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
             <!--<Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
@@ -58,7 +58,7 @@
                 <controls:BetterEntry Placeholder="Enter parent phone no" Keyboard="Numeric"  Text="{Binding HostelAdmission.parentPhoneNo}" MaxLength="10" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Button x:Name="btnsave" CornerRadius="25" Text="Register"  Command="{Binding SaveHostelAdmissionCommand}"  Grid.Row="11" TextColor="White" BackgroundColor="#e96125"/>
-            <Button x:Name="btnback" CornerRadius="25" Text="Back To Login" Clicked="btnsave_Clicked"  Grid.Row="12" TextColor="White" BackgroundColor="#e96125"/>
+            <!--<Button x:Name="btnback" CornerRadius="25" Text="Back To Login" Clicked="btnsave_Clicked"  Grid.Row="12" TextColor="White" BackgroundColor="#e96125"/>-->
         </Grid>
     </ScrollView>
 </ContentPage>

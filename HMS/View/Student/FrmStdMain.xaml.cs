@@ -22,7 +22,7 @@ namespace HMS.View.Student
                 new StudentMenuItem {Title="News Feed",TargetType=typeof(StudentNewsFeed)},
                 new StudentMenuItem {Title="Set Password",TargetType=typeof(SetPassword)},
                 new StudentMenuItem {Title="Profile",TargetType=typeof(FrmStudentProfile)},
-                //new StudentMenuItem {Title="Hostel Admission",TargetType=typeof(StudentHostelAdmission)},
+                new StudentMenuItem {Title="Hostel Admission",TargetType=typeof(StudentHostelAdmission)},
                 new StudentMenuItem {Title="View Disciplinary Action",TargetType=typeof(ViewDisciplinaryAction)},
                 new StudentMenuItem {Title="Room List",TargetType=typeof(FrmRoomList)},
                   new StudentMenuItem {Title="Service Request",TargetType=typeof(FrmServiceRequest)},

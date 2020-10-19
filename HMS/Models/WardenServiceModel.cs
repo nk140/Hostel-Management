@@ -11,4 +11,8 @@ namespace HMS.Models
         public string listcount { get; set; }
         public bool Isbuttonvisible { get; set; }
     }
+    public class RequestServiceModel
+    {
+
+    }
 }

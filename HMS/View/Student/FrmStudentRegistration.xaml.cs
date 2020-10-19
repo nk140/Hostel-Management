@@ -17,7 +17,7 @@ namespace HMS.View.Student
 
         private async void BtnLoginClick(object sender, EventArgs e)
         {
-            
+            App.Current.MainPage = new FrmLogin();
         }
 
         private  void btnhosteladmission_Clicked(object sender, EventArgs e)

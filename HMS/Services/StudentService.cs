@@ -35,6 +35,11 @@ namespace HMS.Services
         {
             profileCallback = callback;
         }
+        public StudentService(Iservicecategory servicecategorydata, ProfileI callback)
+        {
+            iservicecategory = servicecategorydata;
+            profileCallback = callback;
+        }
         public StudentService(IEditWardenDetail callback)
         {
             editWardenDetail = callback;
@@ -87,10 +92,11 @@ namespace HMS.Services
             ContactWardenCallback = callback;
             deleteWardenDetail = ideleteWardenDetail;
         }
-        public StudentService(HostelAdmissionI hostel, Icoursedetail coursedetail)
+        public StudentService(HostelAdmissionI hostel, Icoursedetail coursedetail,ProfileI calls)
         {
             hostelAdmissionI = hostel;
             icoursedetail = coursedetail;
+            profileCallback = calls;
         }
         public StudentService(ViewHostelAdmittedStudent viewHostelAdmittedStudent)
         {
@@ -114,35 +120,38 @@ namespace HMS.Services
         {
             iservicecategory = servicecategorydata;
         }
-        public async void GetProfiile()
+        public async void GetProfiile(string studentId)
         {
 
             try
             {
+                UserDialogs.Instance.ShowLoading();
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
 
 
-                client.DefaultRequestHeaders.Add("studentId", Constants.UserId.ToString());
+                client.DefaultRequestHeaders.Add("studentId", studentId);
 
                 HttpResponseMessage response = await client.GetAsync(ApplicationURL.GetProfiile);
                 string result = await response.Content.ReadAsStringAsync();
                 if ((int)response.StatusCode == 200)
                 {
-
                     ObservableCollection<StudentProfileModel> profile = JsonConvert.DeserializeObject<ObservableCollection<StudentProfileModel>>(result);
-                    if (profile.Count > 0)
+                    if (profile.Count!=0)
                     {
-                        profileCallback.LoadStudentProfile(profile[0]);
+                        UserDialogs.Instance.HideLoading();
+                        profileCallback.LoadStudentProfile(profile);
                     }
                     else
                     {
+                        UserDialogs.Instance.HideLoading();
                         await profileCallback.ServiceFaild();
                     }
 
                 }
                 else
                 {
+                    UserDialogs.Instance.HideLoading();
                     await profileCallback.ServiceFaild();
                     await App.Current.MainPage.DisplayAlert(" ", "Data Error", "OK");
 
@@ -150,6 +159,7 @@ namespace HMS.Services
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await profileCallback.ServiceFaild();
                 await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
             }
@@ -216,6 +226,43 @@ namespace HMS.Services
                     string resultHostel = await response.Content.ReadAsStringAsync();
                     courseErrorResponse = JsonConvert.DeserializeObject<CourseErrorResponse>(resultHostel);
                     saveCourse.servicefailed(courseErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void RequestServiceByStudent(RequestServiceModel requestServiceModel)
+        {
+            CourseResponse courseResponse;
+            CourseErrorResponse courseErrorResponse;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+
+                string jsn = JsonConvert.SerializeObject(requestServiceModel);
+
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(ApplicationURL.ServiceRequestByStudent, content);
+
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    courseResponse = JsonConvert.DeserializeObject<CourseResponse>(resultHostel);
+                    iservicecategory.requestedsucess(courseResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    courseErrorResponse = JsonConvert.DeserializeObject<CourseErrorResponse>(resultHostel);
+                    iservicecategory.failer(courseErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)

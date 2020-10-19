@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Student
 {
-    public class StudentHostelAdmissionVM : BaseViewModel, HostelAdmissionI,RoomBedI1,MasterI,FloorI, Icoursedetail
+    public class StudentHostelAdmissionVM : BaseViewModel, HostelAdmissionI, RoomBedI1, MasterI, FloorI, Icoursedetail, ProfileI
     {
         StudentService web;
         MasterServices masters;
@@ -80,12 +80,24 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged("courseDetailModels");
             }
         }
+        private ObservableCollection<StudentProfileModel> studentProfile = new ObservableCollection<StudentProfileModel>();
+        public ObservableCollection<StudentProfileModel> StudentProfileModel
+        {
+            get
+            {
+                return studentProfile;
+            }
+            set
+            {
+                studentProfile = value;
+                OnPropertyChanged("StudentProfileModel");
+            }
+        }
         public StudentHostelAdmissionVM()
         {
-            web = new StudentService((HostelAdmissionI)this,(Icoursedetail)this);
-            masters = new MasterServices((RoomBedI1)this, (MasterI)this,(FloorI)this);
-            HostelAdmission.firstName= SecureStorage.GetAsync("studentName").GetAwaiter().GetResult();
-            HostelAdmission.studentId= SecureStorage.GetAsync("userId").GetAwaiter().GetResult();
+            web = new StudentService((HostelAdmissionI)this, (Icoursedetail)this, (ProfileI)this);
+            masters = new MasterServices((RoomBedI1)this, (MasterI)this, (FloorI)this);
+            web.GetProfiile(App.userid);
             masters.GetAllArea();
             masters.GetAllRomType();
             web.GetCourseList();
@@ -105,7 +117,7 @@ namespace HMS.ViewModel.Student
         }
         public async void OnSaveHostelAdmissionCommand()
         {
-             if (string.IsNullOrEmpty(HostelAdmission.firstName) || HostelAdmission.firstName.Length == 0)
+            if (string.IsNullOrEmpty(HostelAdmission.firstName) || HostelAdmission.firstName.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Student Name", "OK");
             else if (string.IsNullOrEmpty(HostelAdmission.courseId) || HostelAdmission.courseId.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Course", "OK");
@@ -123,7 +135,7 @@ namespace HMS.ViewModel.Student
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Parent Address", "OK");
             else if (string.IsNullOrEmpty(HostelAdmission.parentPhoneNo) || HostelAdmission.parentPhoneNo.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Parent Phone no", "OK");
-            else if(HostelAdmission.parentPhoneNo.Length != 10)
+            else if (HostelAdmission.parentPhoneNo.Length != 10)
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter 10 digit Phone no", "OK");
             //else if (string.IsNullOrEmpty(HostelAdmission.roomId) || HostelAdmission.roomId.Length == 0)
             //    await App.Current.MainPage.DisplayAlert("HMS", "Room Id Required.", "OK");
@@ -149,12 +161,12 @@ namespace HMS.ViewModel.Student
 
         public void Failer(string result)
         {
-           
+
         }
 
         public void NoListFound(string result)
         {
-            
+
         }
 
         public async Task LoadAreaList(ObservableCollection<AreaModel> AreaList)
@@ -171,17 +183,17 @@ namespace HMS.ViewModel.Student
 
         public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
         {
-            
+
         }
 
         public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
         {
-            
+
         }
 
         public async Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
         {
-           
+
         }
 
         public Task ServiceFailed(int index)
@@ -212,6 +224,31 @@ namespace HMS.ViewModel.Student
         }
 
         public Task PostFloorSuccess(string resultHostel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
+        {
+            StudentProfileModel = profiles;
+            foreach (var items in StudentProfileModel)
+            {
+                HostelAdmission.applicationNo = items.applicationNo;
+                HostelAdmission.firstName = items.studentName;
+                HostelAdmission.studentId = items.studentId;
+            }
+            if (!string.IsNullOrEmpty(HostelAdmission.applicationNo) || HostelAdmission.applicationNo.Length == 0)
+                App.Current.MainPage.DisplayAlert("HMS", "You have already registered", "OK");
+            OnPropertyChanged("StudentProfileModel");
+            OnPropertyChanged("HostelAdmission");
+        }
+
+        public async Task ServiceFaild()
+        {
+
+        }
+
+        public void UpdatedSucessfully(string result)
         {
             throw new NotImplementedException();
         }
