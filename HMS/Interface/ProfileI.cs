@@ -7,6 +7,7 @@ namespace HMS.Interface
     public interface ProfileI
     {
         void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles);
+        void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels);
         Task ServiceFaild();
         void UpdatedSucessfully(string result);
     }

@@ -170,5 +170,10 @@ namespace HMS.ViewModel.Student
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged();
         }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

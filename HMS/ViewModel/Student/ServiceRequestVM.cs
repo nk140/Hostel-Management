@@ -156,5 +156,10 @@ namespace HMS.ViewModel.Student
         {
             App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

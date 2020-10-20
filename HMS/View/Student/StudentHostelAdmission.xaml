@@ -23,7 +23,7 @@
                 <RowDefinition Height="Auto"/>
                 <!--<RowDefinition Height="Auto"/>-->
             </Grid.RowDefinitions>
-            <Label Text="Hostel Admission" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+            <!--<Label Text="Hostel Admission" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>-->
             <!--<Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
                 <controls:BetterEntry Placeholder="Enter Roll No" Keyboard="Text"  Text="{Binding HostelAdmission.studentId}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>-->

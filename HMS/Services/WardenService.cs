@@ -30,9 +30,14 @@ namespace HMS.Services
         IEditDisciplinary editDisciplinary;
         IDeleteDisciplinary deleteDisciplinary;
         IViewDirectorDetail iviewdirector;
+        ProfileI profileI;
         public WardenService(Iservicewarden callbackservice)
         {
             service = callbackservice;
+        }
+        public WardenService(ProfileI profile)
+        {
+            profileI = profile;
         }
         public WardenService(Iservicewarden callbackservice, Isubmitfeedback isubmitfeedback)
         {
@@ -160,6 +165,41 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("", "Ward Leave Data Not Found.", "OK");
+            }
+        }
+        public async void GetWardenprofile(string userId)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("userId", userId);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.WardenProfile);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<WardenProfileModel> parentleave = JsonConvert.DeserializeObject<ObservableCollection<WardenProfileModel>>(result);
+                    if (parentleave.Count != 0)
+                    {
+                        for (int i = 0; i < parentleave.Count; i++)
+                        {
+                            parentleave[i].serialno = (i + 1).ToString();
+                        }
+                        UserDialogs.Instance.HideLoading();
+                        profileI.Loadwardenprofile(parentleave);
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await profileI.ServiceFaild();
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                await profileI.ServiceFaild();
             }
         }
         public async void GetDisciplinaryAction(string applicationNo)

@@ -13,7 +13,7 @@ namespace HMS.View.Warden
     {
         HostelDetailMasterViewModel vm;
         ObservableCollection<HostalMasterModel> ListHostel;
-        ObservableCollection<HostalMasterModel> hostalMasterModels;
+        ObservableCollection<WardenProfileModel> hostalMasterModels;
         public FrmHostelDetail()
         {
             InitializeComponent();
@@ -27,60 +27,60 @@ namespace HMS.View.Warden
         }
         private void txtsearchbykeyword_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
         {
-            try
-            {
-                if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
-                {
-                    ListHostel = new ObservableCollection<HostalMasterModel>();
-                    if (vm.HostalMasterData != null)
-                    {
-                        foreach (var item in vm.HostalMasterData)
-                        {
-                            if (!string.IsNullOrEmpty(item.hostelName) || item.hostelName != null)
-                            {
-                                //VM.AreaVisible = !VM.AreaVisible;
-                                if (txtsearchbykeyword.Text != string.Empty)
-                                {
-                                    if (item.hostelName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || item.hostelName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
-                                        ListHostel.Add(item);
-                                }
-                            }
-                        }
-                        txtsearchbykeyword.ItemsSource = ListHostel;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
+            //try
+            //{
+            //    if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            //    {
+            //        ListHostel = new ObservableCollection<HostalMasterModel>();
+            //        if (vm.HostalMasterData != null)
+            //        {
+            //            foreach (var item in vm.HostalMasterData)
+            //            {
+            //                if (!string.IsNullOrEmpty(item.hostelName) || item.hostelName != null)
+            //                {
+            //                    //VM.AreaVisible = !VM.AreaVisible;
+            //                    if (txtsearchbykeyword.Text != string.Empty)
+            //                    {
+            //                        if (item.hostelName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || item.hostelName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
+            //                            ListHostel.Add(item);
+            //                    }
+            //                }
+            //            }
+            //            txtsearchbykeyword.ItemsSource = ListHostel;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
         }
 
         private void txtsearchbykeyword_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
-            try
-            {
-                hostalMasterModels = new ObservableCollection<HostalMasterModel>();
-                txtsearchbykeyword.Text = ((HostalMasterModel)e.SelectedItem).hostelName;
-                if (ListHostel != null)
-                {
-                    foreach (var items in ListHostel)
-                    {
-                        hostalMasterModels.Add(items);
-                    }
-                }
-                _listView.ItemsSource = hostalMasterModels;
-            }
-            catch (Exception ex)
-            {
+            //try
+            //{
+            //    hostalMasterModels = new ObservableCollection<HostalMasterModel>();
+            //    txtsearchbykeyword.Text = ((HostalMasterModel)e.SelectedItem).hostelName;
+            //    if (ListHostel != null)
+            //    {
+            //        foreach (var items in ListHostel)
+            //        {
+            //            hostalMasterModels.Add(items);
+            //        }
+            //    }
+            //    _listView.ItemsSource = hostalMasterModels;
+            //}
+            //catch (Exception ex)
+            //{
 
-            }
+            //}
         }
 
         private void txtsearchbykeyword_Unfocused(object sender, FocusEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtsearchbykeyword.Text))
-                _listView.ItemsSource = vm.HostalMasterData;
+            //if (string.IsNullOrEmpty(txtsearchbykeyword.Text))
+            //    _listView.ItemsSource = vm.HostalMasterData;
         }
     }
 }

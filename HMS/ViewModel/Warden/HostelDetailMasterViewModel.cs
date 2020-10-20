@@ -2,15 +2,16 @@
 using HMS.Models;
 using HMS.Services;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace HMS.ViewModel.Warden
 {
-    public class HostelDetailMasterViewModel : BaseViewModel, IHostelMaster
+    public class HostelDetailMasterViewModel : BaseViewModel,ProfileI
     {
         WardenService warden;
-        private ObservableCollection<HostalMasterModel> HostelData = new ObservableCollection<HostalMasterModel>();
+        private ObservableCollection<WardenProfileModel> HostelData = new ObservableCollection<WardenProfileModel>();
         #region list
-        public ObservableCollection<HostalMasterModel> HostalMasterData
+        public ObservableCollection<WardenProfileModel> HostalMasterData
         {
             get
             {
@@ -22,17 +23,45 @@ namespace HMS.ViewModel.Warden
                 OnPropertyChanged("HostelData");
             }
         }
+        private bool isdataavailable;
+        public bool Isdataavailable
+        {
+            get
+            {
+                return isdataavailable;
+            }
+            set
+            {
+                isdataavailable = value;
+                OnPropertyChanged("Isdataavailable");
+            }
+        }
         #endregion
         public HostelDetailMasterViewModel()
         {
             warden = new WardenService(this);
-            warden.GetHostelDetailList();
+            warden.GetWardenprofile(App.userid);
         }
-        public void GetHostelDetailList(ObservableCollection<HostalMasterModel> HostelData)
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
         {
-            HostalMasterData = new ObservableCollection<HostalMasterModel>();
-            HostalMasterData = HostelData;
-            OnPropertyChanged();
+            throw new System.NotImplementedException();
+        }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            Isdataavailable = true;
+            HostalMasterData = wardenProfileModels;
+            OnPropertyChanged("HostalMasterData");
+        }
+
+        public async Task ServiceFaild()
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", "No data found", "OK");
+        }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

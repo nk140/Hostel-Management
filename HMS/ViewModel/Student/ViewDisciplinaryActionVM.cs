@@ -334,6 +334,11 @@ namespace HMS.ViewModel.Student
         {
             throw new NotImplementedException();
         }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class ViewWardDisciplinaryActionVM : BaseViewModel
     {

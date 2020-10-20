@@ -47,5 +47,10 @@ namespace HMS.ViewModel.Student
         {
             throw new System.NotImplementedException();
         }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

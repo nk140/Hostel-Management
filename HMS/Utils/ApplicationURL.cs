@@ -106,6 +106,7 @@
         public static string UpdateDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardendisciplinaryupdate";
         public static string DeleteDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/deletewardendisciplinary";
         public static string DirectorDetails = "";
+        public static string WardenProfile = "/hostelandmesstest/api/v1/warden/wardenprofile";
         #endregion
         #region NewsFeed
         public static string GetNewsFeedData = "/hostelandmesstest/api/v1/notification/allNotification";
