@@ -51,6 +51,7 @@ namespace HMS.View.Student
         {
             txtsearchbykeyword.Text = ((WardenServiceModel)e.SelectedItem).name;
             vm.Servicecategoryname = txtsearchbykeyword.Text;
+            vm.RequestServiceModel.roomServiceTypeId = ((WardenServiceModel)e.SelectedItem).id.ToString();
         }
     }
 }

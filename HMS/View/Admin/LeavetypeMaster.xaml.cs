@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LeavetypeMaster : PopupPage
+    public partial class LeavetypeMaster : ContentPage
     {
         public LeavetypeMaster()
         {

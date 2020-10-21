@@ -17,7 +17,7 @@
             <controls:BetterEntry Placeholder="Enter Room name" Text="{Binding Roomname}" IsEnabled="False" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
-            <controls:BetterEntry Placeholder="Enter Description" Text="{Binding Servicedescription}" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
+            <controls:XEditor Placeholder="Enter Description" Text="{Binding Servicedescription}" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="9"/>
         </Frame>
         <Button Text="Request Service" BackgroundColor="#e96125"  Command="{Binding SaveRequestCommand}" TextColor="White" CornerRadius="30" Grid.Row="3"/>
     </Grid>

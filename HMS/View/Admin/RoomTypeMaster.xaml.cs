@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RoomTypeMaster : PopupPage
+    public partial class RoomTypeMaster : ContentPage
     {
         public RoomTypeMaster()
         {

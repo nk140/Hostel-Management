@@ -161,7 +161,7 @@ namespace HMS.ViewModel.Student
 
         public async Task ServiceFaild()
         {
-           
+            await App.Current.MainPage.DisplayAlert("HMS", "Student doesn't exists", "OK");
         }
 
         public async void UpdatedSucessfully(string result)

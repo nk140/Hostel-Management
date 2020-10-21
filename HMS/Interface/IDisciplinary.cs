@@ -15,6 +15,7 @@ namespace HMS.Interface
     public interface ViewDisciplinaryActionTaken
     {
         void LoadTakenDisciplinaryAction(ObservableCollection<ViewDisciplinaryActionbywarden> disciplinaryActionbywardens);
+        void LoadStudentdisciplinarylist(ObservableCollection<StudentDisciplinaryDetails> studentDisciplinaryDetails);
         void servicefailed(string result);
     }
     public interface ViewIDisciplinary

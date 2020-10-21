@@ -87,7 +87,9 @@
         public static string coursesetup = "/hostelandmesstest/api/v1/area/coursesetup";
         public static string UpdateCourse = "/hostelandmesstest/api/v1/area/courseupdate";
         public static string DeleteCourse = "/hostelandmesstest/api/v1/area/deletecourse";
-        public static string ServiceRequestByStudent = "";
+        public static string ServiceRequestByStudent = "/hostelandmesstest/api/v1/roomdetails/servicerequest";
+        public static string FeedBackOnServicebystudent = "";
+        public static string StudentDisciplinaryList = "/hostelandmesstest/api/v1/student/alldisciplinarylist";
         #endregion
 
         #region Warden

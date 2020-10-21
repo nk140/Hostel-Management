@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RoomBedMaster : PopupPage
+    public partial class RoomBedMaster : ContentPage
     {
         public RoomBedMaster()
         {

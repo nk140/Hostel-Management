@@ -20,25 +20,25 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding StudentName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="Name" Keyboard="Text"  Text="{Binding StudentName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="1" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Phone No" Keyboard="Telephone"  Text="{Binding Phoneno}" MaxLength="10"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="Phone No" Keyboard="Telephone"  Text="{Binding Phoneno}" MaxLength="10"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="2" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding Email}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="Email" Keyboard="Text"  Text="{Binding Email}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="3" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding HostelName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="HostelName" Keyboard="Text"  Text="{Binding HostelName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="4" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding FloorNo}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="FloorNo" Keyboard="Text"  Text="{Binding FloorNo}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="5" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding Roomno}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="Roomno" Keyboard="Text"  Text="{Binding Roomno}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="6" CornerRadius="35">
-                <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding BedNo}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+                <controls:BetterEntry Placeholder="BedNo" Keyboard="Text"  Text="{Binding BedNo}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
             </Frame>
             <Button Text="Update Profile" Grid.Row="7" Command="{Binding UpdateCommand}" TextColor="White" BackgroundColor="#e96125" CornerRadius="15"/>
         </Grid>

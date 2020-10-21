@@ -31,9 +31,14 @@ namespace HMS.Services
         IEditCourse ieditcourse;
         IDeleteCourse deleteCourse;
         ISaveCourse saveCourse;
+        ViewDisciplinaryActionTaken disciplinaryActionTaken;
         public StudentService(ProfileI callback)
         {
             profileCallback = callback;
+        }
+        public StudentService(ViewDisciplinaryActionTaken callback)
+        {
+            disciplinaryActionTaken = callback;
         }
         public StudentService(Iservicecategory servicecategorydata, ProfileI callback)
         {
@@ -82,7 +87,7 @@ namespace HMS.Services
         {
             leaveRequestCallback = callback;
         }
-        public StudentService(StudentLeaveRequestI callback,DeleteLeavetype ideleteleavetype)
+        public StudentService(StudentLeaveRequestI callback, DeleteLeavetype ideleteleavetype)
         {
             leaveRequestCallback = callback;
             deleteLeavetype = ideleteleavetype;
@@ -92,7 +97,7 @@ namespace HMS.Services
             ContactWardenCallback = callback;
             deleteWardenDetail = ideleteWardenDetail;
         }
-        public StudentService(HostelAdmissionI hostel, Icoursedetail coursedetail,ProfileI calls)
+        public StudentService(HostelAdmissionI hostel, Icoursedetail coursedetail, ProfileI calls)
         {
             hostelAdmissionI = hostel;
             icoursedetail = coursedetail;
@@ -137,7 +142,7 @@ namespace HMS.Services
                 if ((int)response.StatusCode == 200)
                 {
                     ObservableCollection<StudentProfileModel> profile = JsonConvert.DeserializeObject<ObservableCollection<StudentProfileModel>>(result);
-                    if (profile.Count!=0)
+                    if (profile.Count != 0)
                     {
                         UserDialogs.Instance.HideLoading();
                         profileCallback.LoadStudentProfile(profile);
@@ -161,7 +166,47 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 await profileCallback.ServiceFaild();
-                await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");
+            }
+
+            //return response;
+        }
+        public async void GetDisciplinaryDetails(string studentId)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                ObservableCollection<StudentDisciplinaryDetails> profile = new ObservableCollection<StudentDisciplinaryDetails>();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("studentId", studentId);
+
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.StudentDisciplinaryList);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    profile = JsonConvert.DeserializeObject<ObservableCollection<StudentDisciplinaryDetails>>(result);
+                    if (profile.Count != 0)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        disciplinaryActionTaken.LoadStudentdisciplinarylist(profile);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        disciplinaryActionTaken.servicefailed("No Disciplinary record");
+                    }
+
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    disciplinaryActionTaken.servicefailed("Data Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                disciplinaryActionTaken.servicefailed("Seems that you didn't done anything wrong in the hostel");
             }
 
             //return response;
@@ -243,7 +288,7 @@ namespace HMS.Services
                 UserDialogs.Instance.ShowLoading();
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
-
+                client.DefaultRequestHeaders.Add("studentId", App.userid);
                 string jsn = JsonConvert.SerializeObject(requestServiceModel);
 
                 var content = new StringContent(jsn, Encoding.UTF8, "application/json");
@@ -582,7 +627,7 @@ namespace HMS.Services
                     {
                         for (int i = 0; i < leaveType.Count; i++)
                         {
-                            leaveType[i].listcount = (i+1).ToString();
+                            leaveType[i].listcount = (i + 1).ToString();
                         }
                         await leaveRequestCallback.GetAllLeaveType(leaveType);
                     }

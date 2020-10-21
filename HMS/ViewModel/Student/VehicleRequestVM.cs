@@ -152,7 +152,9 @@ namespace HMS.ViewModel.Student
 
         public async void sucess(string result)
         {
+            FeedbackDetailsByStudent = new FeedbackDetailsByStudent();
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            OnPropertyChanged("FeedbackDetailsByStudent");
         }
 
         public async void failer(string result)

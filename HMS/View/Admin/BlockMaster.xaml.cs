@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BlockMaster : PopupPage
+    public partial class BlockMaster : ContentPage
     {
         public BlockMaster()
         {

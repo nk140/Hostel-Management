@@ -245,7 +245,10 @@ namespace HMS.ViewModel.Student
 
         public async Task ServiceFaild()
         {
-
+            HostelAdmission.studentId = SecureStorage.GetAsync("userId").GetAwaiter().GetResult();
+            HostelAdmission.firstName= SecureStorage.GetAsync("studentName").GetAwaiter().GetResult();
+            await App.Current.MainPage.DisplayAlert("HMS", "You are new student", "OK");
+            OnPropertyChanged("HostelAdmission");
         }
 
         public void UpdatedSucessfully(string result)

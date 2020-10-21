@@ -13,6 +13,8 @@ namespace HMS.Models
     }
     public class RequestServiceModel
     {
-
+        public string roomId { get; set; }
+        public string roomServiceTypeId { get; set; }
+        public string description { get; set; }
     }
 }

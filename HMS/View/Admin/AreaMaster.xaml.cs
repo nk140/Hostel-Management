@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AreaMaster : PopupPage
+    public partial class AreaMaster : ContentPage
     {
         public AreaMaster()
         {

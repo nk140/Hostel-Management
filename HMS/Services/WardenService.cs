@@ -411,6 +411,41 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
+        public async void FeedBackOnServiceByStudent(FeedbackDetailsByStudent feedbackDetailsByStudent)
+        {
+            UpdateAreaResponse updateAreaResponse;
+            UpdateAreaErrorResponse updateAreaErrorResponse;
+            HttpResponseMessage response;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                UserDialogs.Instance.ShowLoading();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string json = JsonConvert.SerializeObject(feedbackDetailsByStudent);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync(ApplicationURL.FeedBackOnServicebystudent, content);
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateAreaResponse = JsonConvert.DeserializeObject<UpdateAreaResponse>(result);
+                    submissionfeedback.sucess(updateAreaResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateAreaErrorResponse = JsonConvert.DeserializeObject<UpdateAreaErrorResponse>(result);
+                    submissionfeedback.failer(updateAreaErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
         public async void ApproveWardLeave(LeaveStatusModel leaveStatusModel)
         {
             UpdateAreaResponse updateAreaResponse;

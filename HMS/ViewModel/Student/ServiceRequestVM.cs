@@ -115,7 +115,8 @@ namespace HMS.ViewModel.Student
                     await App.Current.MainPage.DisplayAlert("HMS", "Enter Description", "OK");
                 else
                 {
-
+                    RequestServiceModel.description = Servicedescription;
+                    studentService.RequestServiceByStudent(RequestServiceModel);
                 }
             }
             catch (Exception ex)
@@ -133,8 +134,10 @@ namespace HMS.ViewModel.Student
         {
             StudentProfileModel = profiles;
             Roomname = StudentProfileModel[0].roomName;
+            RequestServiceModel.roomId = StudentProfileModel[0].roomId;
             OnPropertyChanged("StudentProfileModel");
             OnPropertyChanged("Roomname");
+            OnPropertyChanged("RequestServiceModel");
         }
 
         public async Task ServiceFaild()
@@ -149,7 +152,13 @@ namespace HMS.ViewModel.Student
 
         public void requestedsucess(string result)
         {
+            RequestServiceModel = new RequestServiceModel();
+            Servicecategoryname = "";
+            Servicedescription = "";
             App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            OnPropertyChanged("RequestServiceModel");
+            OnPropertyChanged("Servicecategoryname");
+            OnPropertyChanged("Servicedescription");
         }
 
         public void failer(string result)

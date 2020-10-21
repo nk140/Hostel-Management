@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ServiceCategoryMaster : PopupPage
+    public partial class ServiceCategoryMaster : ContentPage
     {
         public ServiceCategoryMaster()
         {

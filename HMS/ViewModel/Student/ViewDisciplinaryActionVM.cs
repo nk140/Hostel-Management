@@ -132,6 +132,11 @@ namespace HMS.ViewModel.Student
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
+
+        public void LoadStudentdisciplinarylist(ObservableCollection<StudentDisciplinaryDetails> studentDisciplinaryDetails)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class EditDisciplinaryActionVM : BaseViewModel, IEditDisciplinary, ViewIDisciplinary
     {
@@ -229,11 +234,11 @@ namespace HMS.ViewModel.Student
             OnPropertyChanged("UpdateDisciplinaryActionbywarden");
         }
     }
-    public class ViewStudentDisciplinaryActionVM : BaseViewModel,ProfileI
+    public class ViewStudentDisciplinaryActionVM : BaseViewModel, ViewDisciplinaryActionTaken
     {
         public StudentService studentService;
         private ObservableCollection<StudentModel> studentModels = new ObservableCollection<StudentModel>();
-        private StudentProfileModel _OldDisciplinaryData;
+        private StudentDisciplinaryDetails _OldDisciplinaryData;
 
         public ObservableCollection<StudentModel> StudentModels
         {
@@ -247,8 +252,8 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged("StudentModels");
             }
         }
-        private ObservableCollection<StudentProfileModel> studentProfile = new ObservableCollection<StudentProfileModel>();
-        public ObservableCollection<StudentProfileModel> StudentProfileModel
+        private ObservableCollection<StudentDisciplinaryDetails> studentProfile = new ObservableCollection<StudentDisciplinaryDetails>();
+        public ObservableCollection<StudentDisciplinaryDetails> StudentProfileModel
         {
             get
             {
@@ -260,10 +265,23 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged("StudentProfileModel");
             }
         }
+        private bool isdataavailable;
+        public bool Isdataavailable
+        {
+            get
+            {
+                return isdataavailable;
+            }
+            set
+            {
+                isdataavailable = value;
+                OnPropertyChanged("Isdataavailable");
+            }
+        }
         public ViewStudentDisciplinaryActionVM()
         {
             studentService = new StudentService(this);
-            studentService.GetProfiile(App.userid);
+            studentService.GetDisciplinaryDetails(App.userid);
             //StudentModels.Add(new StudentModel
             //{
             //    wardenDisciplinaryId = SecureStorage.GetAsync("wardenDisciplinaryId").GetAwaiter().GetResult(),
@@ -276,17 +294,17 @@ namespace HMS.ViewModel.Student
             //if (string.IsNullOrEmpty(StudentModels[0].applicationNo) || StudentModels[0].applicationNo.Length == 0)
             //    App.Current.MainPage.DisplayAlert("HMS", "Seems you haven't done hostel admission", "OK");
         }
-        public ICommand ViewCommand => new Command<StudentProfileModel>(OnViewCommand);
-        public ICommand TapCommand => new Command<StudentProfileModel>(OnTapCommand);
-        public async void OnViewCommand(StudentProfileModel obj)
+        public ICommand ViewCommand => new Command<StudentDisciplinaryDetails>(OnViewCommand);
+        public ICommand TapCommand => new Command<StudentDisciplinaryDetails>(OnTapCommand);
+        public async void OnViewCommand(StudentDisciplinaryDetails obj)
         {
             await App.Current.MainPage.Navigation.PushPopupAsync(new ViewDisciplinaryActionPopup(obj.date, obj.time, obj.studentName, obj.applicationNo, obj.disciplinaryName, obj.disciplinaryName));
         }
-        public async void OnTapCommand(StudentProfileModel obj)
+        public async void OnTapCommand(StudentDisciplinaryDetails obj)
         {
             Hideorshowbutton(obj);
         }
-        public void Hideorshowbutton(StudentProfileModel obj)
+        public void Hideorshowbutton(StudentDisciplinaryDetails obj)
         {
             if (_OldDisciplinaryData == obj)
             {
@@ -312,32 +330,27 @@ namespace HMS.ViewModel.Student
             }
             _OldDisciplinaryData = obj;
         }
-        public void UpdateProduct(StudentProfileModel obj)
+        public void UpdateProduct(StudentDisciplinaryDetails obj)
         {
             var index = StudentProfileModel.IndexOf(obj);
             StudentProfileModel.Remove(obj);
             StudentProfileModel.Insert(index, obj);
         }
-
-        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
+        public void LoadTakenDisciplinaryAction(ObservableCollection<ViewDisciplinaryActionbywarden> disciplinaryActionbywardens)
         {
-            StudentProfileModel = profiles;
+            throw new NotImplementedException();
+        }
+
+        public void LoadStudentdisciplinarylist(ObservableCollection<StudentDisciplinaryDetails> studentDisciplinaryDetails)
+        {
+            Isdataavailable = true;
+            StudentProfileModel = studentDisciplinaryDetails;
             OnPropertyChanged("StudentProfileModel");
         }
 
-        public async Task ServiceFaild()
+        public void servicefailed(string result)
         {
-           
-        }
-
-        public void UpdatedSucessfully(string result)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
-        {
-            throw new NotImplementedException();
+            App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
     }
     public class ViewWardDisciplinaryActionVM : BaseViewModel

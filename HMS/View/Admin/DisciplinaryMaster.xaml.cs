@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace HMS.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DisciplinaryMaster : PopupPage
+    public partial class DisciplinaryMaster : ContentPage
     {
         public DisciplinaryMaster()
         {
