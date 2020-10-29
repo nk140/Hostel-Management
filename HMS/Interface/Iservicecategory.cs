@@ -12,6 +12,16 @@ namespace HMS.Interface
         void requestedsucess(string result);
         void failer(string result);
     }
+    public interface Iviewrequestedservice
+    {
+        void LoadAllrequestedservicelist(ObservableCollection<ViewRequestedServiceModel> viewRequestedServiceModels);
+        void failer(string result);
+    }
+    public interface Iassignserviceperson
+    {
+        void sucess(string result);
+        void failer(string result);
+    }
     public interface IEditservicecategory
     {
         void getallservicecategory(string result);

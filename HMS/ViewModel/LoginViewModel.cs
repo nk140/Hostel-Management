@@ -152,6 +152,30 @@ namespace HMS.ViewModel
                     {
 
                     }
+                    if (UserModel.hostelName != null)
+                        await SecureStorage.SetAsync("hostelName", UserModel.hostelName);
+                    else
+                    {
+
+                    }
+                    if (UserModel.roomName != null)
+                        await SecureStorage.SetAsync("roomName", UserModel.roomName);
+                    else
+                    {
+
+                    }
+                    if (UserModel.roomBedName != null)
+                        await SecureStorage.SetAsync("roomBedName", UserModel.roomBedName);
+                    else
+                    {
+
+                    }
+                    if (UserModel.blockName != null)
+                        await SecureStorage.SetAsync("blockName", UserModel.blockName);
+                    else
+                    {
+
+                    }
                     if (UserModel.studentId != null)
                         await SecureStorage.SetAsync("studentId", UserModel.studentId);
                     else

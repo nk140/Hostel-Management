@@ -863,7 +863,7 @@ namespace HMS.ViewModel.Admin
             //App.hostelid = hostelid;
             //App.blockid = blockid;
             //web = new MasterServices(this);
-            //web.GetAllArea();
+            web.GetAllArea();
             // web.GetAllHostel();
             // web.GetAllBlock(hostelid);
         }

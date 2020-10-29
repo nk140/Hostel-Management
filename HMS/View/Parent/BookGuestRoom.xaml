@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             Title="Book Guest Room"
+             x:Class="HMS.View.Parent.BookGuestRoom">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame BackgroundColor="Transparent"  BorderColor="Black" CornerRadius="30" Grid.Row="0">
+            <controls:BetterEntry x:Name="txtguestname" Text="{Binding ParentRegistrations.parentName}" TextColor="Black" Margin="-17" Placeholder="Enter the Guest name"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent"  BorderColor="Black" CornerRadius="30" Grid.Row="1">
+            <controls:BetterEntry x:Name="txtguestaddress" Text="{Binding ParentRegistrations.parentName}" TextColor="Black" Margin="-17" Placeholder="Enter the Guest Address"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent"  BorderColor="Black" CornerRadius="30" Grid.Row="2">
+            <controls:BetterEntry x:Name="txtguestphoneno" Text="{Binding ParentRegistrations.parentName}" TextColor="Black" Margin="-17" Placeholder="Enter the Guest Phone no"/>
+        </Frame>
+        <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Grid.Row="3" BorderColor="Black">
+            <forms:AutoSuggestBox x:Name="txtsearchbyareaname" HorizontalOptions="FillAndExpand" TextMemberPath="areaName" DisplayMemberPath="areaName" PlaceholderText="Search from Area name"  Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="4" CornerRadius="30">
+            <forms:AutoSuggestBox x:Name="txtsearchbyhostelname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsEnabled="False" DisplayMemberPath="hostelName" Margin="-16" TextMemberPath="hostelName" TextColor="#2D295F" PlaceholderText="Search From Hostel Name"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" Grid.Row="5" CornerRadius="30">
+            <forms:AutoSuggestBox x:Name="txtsearchbyblockname" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsEnabled="False" DisplayMemberPath="name" Margin="-16" TextMemberPath="name" TextColor="#2D295F" PlaceholderText="Search From Block Name"/>
+        </Frame>
+    </Grid>
+</ContentPage>

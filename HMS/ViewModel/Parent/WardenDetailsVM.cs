@@ -5,18 +5,19 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HMS.ViewModel.Parent
 {
-    public class WardenDetailsVM : BaseViewModel,IWardenDetail
+    public class WardenDetailsVM : BaseViewModel,ProfileI
     {
-        private ObservableCollection<WardenInfoModel> wardenInfoModels = new ObservableCollection<WardenInfoModel>();
-        public ParentService parentService;
+        private ObservableCollection<StudentProfileModel> wardenInfoModels = new ObservableCollection<StudentProfileModel>();
+        public StudentService studentService;
         #region listproperties
-        public ObservableCollection<WardenInfoModel> WardenInfoModels
+        public ObservableCollection<StudentProfileModel> WardenInfoModels
         {
             get
             {
@@ -25,27 +26,28 @@ namespace HMS.ViewModel.Parent
             set
             {
                 wardenInfoModels = value;
-                OnPropertyChanged();
+                OnPropertyChanged("WardenInfoModels");
             }
         }
         #endregion
         #region Tapcommands
-        public ICommand CallCommand => new Command<WardenInfoModel>(OnCallCommand);
-        public ICommand MessageCommand => new Command<WardenInfoModel>(OnMessageCommand);
+        public ICommand CallCommand => new Command<StudentProfileModel>(OnCallCommand);
+        public ICommand MessageCommand => new Command<StudentProfileModel>(OnMessageCommand);
 
         [Obsolete]
-        public ICommand WhatsappCommand => new Command<WardenInfoModel>(OnWhatsappCommand);
+        public ICommand WhatsappCommand => new Command<StudentProfileModel>(OnWhatsappCommand);
         #endregion
         public WardenDetailsVM()
         {
-            parentService = new ParentService(this);
-            parentService.GetAllWardenData();
+            studentService = new StudentService(this);
+            string childid = SecureStorage.GetAsync("studentId").GetAwaiter().GetResult();
+            studentService.GetProfiile(childid);
         }
-        public async void OnCallCommand(WardenInfoModel guestModel)
+        public async void OnCallCommand(StudentProfileModel guestModel)
         {
             try
             {
-                PhoneDialer.Open(guestModel.contact);
+                PhoneDialer.Open(guestModel.wardenPhoneNo);
             }
             catch (ArgumentNullException anEx)
             {
@@ -60,11 +62,11 @@ namespace HMS.ViewModel.Parent
                 // Other error has occurred.
             }
         }
-        public async void OnMessageCommand(WardenInfoModel guestModel)
+        public async void OnMessageCommand(StudentProfileModel guestModel)
         {
             try
             {
-                var message = new SmsMessage("You Have to come to collect refund money", guestModel.contact);
+                var message = new SmsMessage("", guestModel.wardenPhoneNo);
                 await Sms.ComposeAsync(message);
             }
             catch (FeatureNotSupportedException ex)
@@ -78,22 +80,37 @@ namespace HMS.ViewModel.Parent
         }
 
         [Obsolete]
-        public async void OnWhatsappCommand(WardenInfoModel guestModel)
+        public async void OnWhatsappCommand(StudentProfileModel guestModel)
         {
             try
             {
-                Device.OpenUri(new Uri("whatsapp://send?phone=+91" + guestModel.contact));
+                Device.OpenUri(new Uri("whatsapp://send?phone=+91" + guestModel.wardenPhoneNo));
             }
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Not Installed", "Whatsapp Not Installed", "ok");
             }
         }
-        public void GetWardenData(ObservableCollection<WardenInfoModel> wardenModels)
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
         {
-            WardenInfoModels = new ObservableCollection<WardenInfoModel>();
-            WardenInfoModels = wardenModels;
-            OnPropertyChanged();
+            WardenInfoModels = profiles;
+            OnPropertyChanged("WardenInfoModels");
+        }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            
+        }
+
+        public async Task ServiceFaild()
+        {
+           
+        }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new NotImplementedException();
         }
     }
 }

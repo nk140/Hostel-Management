@@ -15,6 +15,8 @@ namespace HMS.ViewModel.Admin
     {
         MasterServices web;
         StudentService student;
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         private ObservableCollection<WardenInfoModel> warden_ = new ObservableCollection<WardenInfoModel>();
 
 
@@ -143,13 +145,26 @@ namespace HMS.ViewModel.Admin
             {
                 HostelModelList = HostelList;
                 IsListviewvisible = true;
-                Listheight= (40 * HostelModelList.Count) + 20;
+                Listheight = (40 * HostelModelList.Count) + 20;
                 OnPropertyChanged("HostelModelList");
                 OnPropertyChanged("IsListviewvisible");
                 OnPropertyChanged("Listheight");
             }
         }
-
+        public void selectedhostel(int index)
+        {
+            string hostelname = HostelModelList[index].hostelName;
+            string hostelid = HostelModelList[index].id;
+            sb.Append(hostelname);
+            sb2.Append(hostelid);
+            sb.Append(",");
+            //sb2.Append(",");
+            SelectedHostelName = sb.ToString();
+            wardenAssignment.hostelId = sb2.ToString();
+            wardenAssignment.hostelAssigned = SelectedHostelName;
+            OnPropertyChanged("SelectedHostelName");
+            OnPropertyChanged("wardenAssignment");
+        }
         public Task LoadRoomList(ObservableCollection<RoomModel> RoomList)
         {
             throw new NotImplementedException();
@@ -173,6 +188,8 @@ namespace HMS.ViewModel.Admin
         public async void SaveWardenassignment(string result)
         {
             WardenAssignment = new WardenAssignment();
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             IsListviewvisible = false;
             SelectedHostelName = "";
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");

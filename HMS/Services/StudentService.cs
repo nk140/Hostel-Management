@@ -32,13 +32,23 @@ namespace HMS.Services
         IDeleteCourse deleteCourse;
         ISaveCourse saveCourse;
         ViewDisciplinaryActionTaken disciplinaryActionTaken;
+        ViewLeaveStatus viewLeaveStatus;
+        Iviewservicestatus iviewservicestatus;
         public StudentService(ProfileI callback)
         {
             profileCallback = callback;
         }
+        public StudentService(ViewLeaveStatus iviewleavestatus)
+        {
+            viewLeaveStatus = iviewleavestatus;
+        }
         public StudentService(ViewDisciplinaryActionTaken callback)
         {
             disciplinaryActionTaken = callback;
+        }
+        public StudentService(Iviewservicestatus callback)
+        {
+            iviewservicestatus = callback;
         }
         public StudentService(Iservicecategory servicecategorydata, ProfileI callback)
         {
@@ -78,9 +88,9 @@ namespace HMS.Services
         {
             iupdatestudentpassword = updatestudentpassword;
         }
-        public StudentService(ViewHostelAdmittedStudent viewHostelAdmittedStudent, StudentLeaveRequestI callback)
+        public StudentService(ProfileI viewHostelAdmittedStudent, StudentLeaveRequestI callback)
         {
-            iviewhosteladmittedstudent = viewHostelAdmittedStudent;
+            profileCallback = viewHostelAdmittedStudent;
             leaveRequestCallback = callback;
         }
         public StudentService(StudentLeaveRequestI callback)
@@ -166,6 +176,48 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 await profileCallback.ServiceFaild();
+            }
+
+            //return response;
+        }
+        public async void GetRequestedServiceStatus(string studentId)
+        {
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("studentId", studentId);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.GetRequestedservicestatus);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<ViewRequestedServiceStatusModel> profile = JsonConvert.DeserializeObject<ObservableCollection<ViewRequestedServiceStatusModel>>(result);
+                    foreach (var items in profile)
+                    {
+                        if (items.workStatus == true)
+                        {
+                            items.WorkStatus = "Completed";
+                        }
+                        else
+                        {
+                            items.WorkStatus = "Pending";
+                        }
+                        UserDialogs.Instance.HideLoading();
+                        iviewservicestatus.LoadServicestatus(profile);
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    iviewservicestatus.failer("Data Not Found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                iviewservicestatus.failer("Something went wrong.");
             }
 
             //return response;
@@ -653,6 +705,56 @@ namespace HMS.Services
 
             //return response;
         }
+        public async void GetLeaveStatus(string studentId)
+        {
+            try
+            {
+                var client = new HttpClient();
+                UserDialogs.Instance.ShowLoading();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("studentId", studentId);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.GetLeaveStatus);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+
+                    ObservableCollection<ViewLeaveStatusModel> profile = JsonConvert.DeserializeObject<ObservableCollection<ViewLeaveStatusModel>>(result);
+                    if (profile.Count > 0)
+                    {
+                        foreach (var items in profile)
+                        {
+                            if (items.wardenApproved.Equals("true"))
+                            {
+                                items.leavestatus = "Leave Approved";
+                                items.isrejectreasonavaialble = false;
+                            }
+                            else
+                            {
+                                items.leavestatus = "Leave Rejected";
+                                items.isrejectreasonavaialble = true;
+                            }
+                        }
+                        UserDialogs.Instance.HideLoading();
+                        viewLeaveStatus.GetLeavestatus(profile);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        viewLeaveStatus.failer("No Leave Status Found");
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    viewLeaveStatus.failer("Server Issue");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                viewLeaveStatus.failer("Seems that you haven't applied for any leave.");
+            }
+        }
         public async void GetHostelStudent()
         {
             LeaveTypeerrorresponse leaveTypeerrorresponse;
@@ -910,7 +1012,6 @@ namespace HMS.Services
                     leaveErrorResponse = JsonConvert.DeserializeObject<LeaveErrorResponse>(resultHostel);
                     await leaveRequestCallback.ServiceFaild(leaveErrorResponse.errors[0].message);
                 }
-
             }
             catch (Exception e)
             {

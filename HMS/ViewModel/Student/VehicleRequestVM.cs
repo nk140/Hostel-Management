@@ -87,9 +87,10 @@ namespace HMS.ViewModel.Student
             }
         }
     }
-    public class FeedBackSubmissionVM : BaseViewModel, Iservicewarden, Isubmitfeedback
+    public class FeedBackSubmissionVM : BaseViewModel, Iviewservicestatus, Isubmitfeedback
     {
         WardenService warden;
+        StudentService studentService;
         private FeedbackDetailsByStudent feedbackDetails = new FeedbackDetailsByStudent();
         public FeedbackDetailsByStudent FeedbackDetailsByStudent
         {
@@ -103,53 +104,53 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged("FeedbackDetailsByStudent");
             }
         }
-        private ObservableCollection<WardenServiceModel> servicelists = new ObservableCollection<WardenServiceModel>();
-        public ObservableCollection<WardenServiceModel> WardenServiceData
+        private ObservableCollection<ViewRequestedServiceStatusModel> viewRequestedServiceStatusModels = new ObservableCollection<ViewRequestedServiceStatusModel>();
+        public ObservableCollection<ViewRequestedServiceStatusModel> ViewRequestedServiceStatusModels
         {
             get
             {
-                return servicelists;
+                return viewRequestedServiceStatusModels;
             }
             set
             {
-                servicelists = value;
-                OnPropertyChanged();
+                viewRequestedServiceStatusModels = value;
+                OnPropertyChanged("ViewRequestedServiceStatusModels");
+            }
+        }
+        private string servicename;
+        public string ServiceName
+        {
+            get
+            {
+                return servicename;
+            }
+            set
+            {
+                servicename = value;
+                OnPropertyChanged("ServiceName");
             }
         }
         public ICommand SubmitFeedbackCommand => new Command(OnSubmitFeedbackCommand);
         public FeedBackSubmissionVM()
         {
-            FeedbackDetailsByStudent.studentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult();
             FeedbackDetailsByStudent.studentId = SecureStorage.GetAsync("userId").GetAwaiter().GetResult();
-            FeedbackDetailsByStudent.mobileNo = SecureStorage.GetAsync("mobileNo").GetAwaiter().GetResult();
-            warden = new WardenService((Iservicewarden)this, (Isubmitfeedback)this);
-            warden.GetServicelist();
+            warden = new WardenService(this);
+            studentService = new StudentService(this);
+            studentService.GetRequestedServiceStatus(App.userid);
         }
         public async void OnSubmitFeedbackCommand()
         {
-            if (string.IsNullOrEmpty(FeedbackDetailsByStudent.serviceid) || FeedbackDetailsByStudent.serviceid.Length == 0)
+            if (string.IsNullOrEmpty(ServiceName) || ServiceName.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Service name required", "OK");
-            else if (string.IsNullOrEmpty(FeedbackDetailsByStudent.servicerating) || FeedbackDetailsByStudent.servicerating.Length == 0)
+            else if (string.IsNullOrEmpty(FeedbackDetailsByStudent.personRating) || FeedbackDetailsByStudent.personRating.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Service rating is required", "OK");
-            else if (string.IsNullOrEmpty(FeedbackDetailsByStudent.description) || FeedbackDetailsByStudent.description.Length == 0)
+            else if (string.IsNullOrEmpty(FeedbackDetailsByStudent.improveService) || FeedbackDetailsByStudent.improveService.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Feedback description required", "OK");
             else
             {
-
+                warden.FeedBackOnServiceByStudent(FeedbackDetailsByStudent);
             }
         }
-
-        public void GetServicelist(ObservableCollection<WardenServiceModel> servicelists)
-        {
-            WardenServiceData = servicelists;
-            OnPropertyChanged("WardenServiceData");
-        }
-
-        public void Servicefailed(string result)
-        {
-
-        }
-
         public async void sucess(string result)
         {
             FeedbackDetailsByStudent = new FeedbackDetailsByStudent();
@@ -160,6 +161,24 @@ namespace HMS.ViewModel.Student
         public async void failer(string result)
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+        }
+
+        public void LoadServicestatus(ObservableCollection<ViewRequestedServiceStatusModel> viewRequestedServiceStatusModels)
+        {
+            foreach (var items in viewRequestedServiceStatusModels)
+            {
+                if (items.personName != null || items.personMobileNo != null || items.personJob != null)
+                {
+                    ViewRequestedServiceStatusModels = viewRequestedServiceStatusModels;
+                    FeedbackDetailsByStudent.personName = items.personName;
+                    FeedbackDetailsByStudent.personMobileNo = items.personMobileNo;
+                    ServiceName = items.personJob;
+                    FeedbackDetailsByStudent.serviceTypeId = items.serviceTypeId;
+                    OnPropertyChanged("ViewRequestedServiceStatusModels");
+                    OnPropertyChanged("ServiceName");
+                    OnPropertyChanged("FeedbackDetailsByStudent");
+                }
+            }
         }
     }
 }

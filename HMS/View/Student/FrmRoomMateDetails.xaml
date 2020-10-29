@@ -1,5 +1,44 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HMS.View.Student.FrmRoomMateDetails">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HMS.View.Student.FrmRoomMateDetails" Title="Roommates Details">
+    <ListView x:Name="lstroomatedetails" HasUnevenRows="True" Margin="10">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="30">
+                        <Grid ColumnSpacing="18">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackLayout Orientation="Horizontal" Grid.Row="0">
+                                    <Label Text="Name" TextColor="Black" FontSize="15"/>
+                                    <Label Text="{Binding name}" TextColor="Black" FontSize="15"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="1">
+                                    <Label Text="Bed No" TextColor="Black" FontSize="15"/>
+                                    <Label Text="{Binding bedno}" TextColor="Black" FontSize="15"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="2">
+                                    <Label Text="Contact No" TextColor="Black" FontSize="15"/>
+                                    <Label Text="{Binding contact}" TextColor="Black" FontSize="15"/>
+                                </StackLayout>
+                            </Grid>
+                            <Image Source="user.png" Grid.Column="1" Aspect="AspectFit"/>
+                            <!--<StackLayout Orientation="Horizontal" Grid.Row="1">
+                                <Image Source="phone.png"  WidthRequest="30"/>
+                                <Image Source="messenging.png"  WidthRequest="30"/>
+                                <Image Source="messenging.png"  WidthRequest="30"/>
+                            </StackLayout>-->
+                        </Grid>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

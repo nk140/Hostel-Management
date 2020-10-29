@@ -8,7 +8,7 @@
              x:Name="wardleavereply"
              x:Class="HMS.View.Parrent.FrmParentLeaves">
     <StackLayout Orientation="Vertical">
-        <CollectionView x:Name="collectionView" ItemsSource="{Binding ParentStudentLeaveStatuses}"  SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
+        <CollectionView x:Name="collectionView" ItemsSource="{Binding ParentStudentLeaveStatuses}" Margin="10"  SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <!--<SwipeView>
@@ -47,10 +47,6 @@
                             <StackLayout Orientation="Horizontal" Spacing="3">
                                 <Label Text="LeaveType:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 <Label Text="{Binding leaveTypeName}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" Spacing="3">
-                                <Label Text="Parent Status:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                <Label Text="{Binding ParentStatus}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                             </StackLayout>
                         </StackLayout>
                         <Frame.GestureRecognizers>

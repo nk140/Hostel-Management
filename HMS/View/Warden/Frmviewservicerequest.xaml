@@ -2,14 +2,48 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
              mc:Ignorable="d"
+             x:Name="viewservicerequest"
+             Title="View Service Request/assign Person"
              x:Class="HMS.View.Warden.Frmviewservicerequest">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <StackLayout Orientation="Vertical" Spacing="9">
+        <StackLayout Orientation="Horizontal" Margin="10">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
+                <forms:AutoSuggestBox x:Name="txtsearchstudentname" HorizontalOptions="FillAndExpand" Unfocused="txtsearchstudentname_Unfocused" TextMemberPath="studentName" DisplayMemberPath="studentName" PlaceholderText="Search from Student name"  Margin="-17" TextChanged="txtsearchstudentname_TextChanged" SuggestionChosen="txtsearchstudentname_SuggestionChosen"/>
+            </Frame>
+            <Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>
         </StackLayout>
-    </ContentPage.Content>
+        <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding ViewRequestedServiceModels}" IsVisible="{Binding Isdataavailable}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+            <CollectionView.Header>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label WidthRequest="150" HeightRequest="40" Text="Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="250" HeightRequest="40" Text="Service issue" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="250" HeightRequest="40" Text="Description" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Label WidthRequest="250" HeightRequest="40" Text="Room name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label WidthRequest="150" HeightRequest="40" Text="{Binding studentName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding serviceTypeName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding description}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <Label WidthRequest="200" HeightRequest="40" Text="{Binding roomName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" IsVisible="{Binding Isbuttonvisible}" HorizontalOptions="EndAndExpand">
+                                <Button Text="Assign Person" BackgroundColor="Navy" CornerRadius="25" Command="{Binding Source={x:Reference viewservicerequest}, Path=BindingContext.ServicePersonCommand}" CommandParameter="{Binding}" TextColor="White"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference viewservicerequest}, Path=BindingContext.TapCommand}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <!--</SwipeView>-->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

@@ -2,28 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:vm="clr-namespace:HMS.ViewModel.Warden"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="Student Leave History"
-             x:Name="studentleaveactions"
-             x:Class="HMS.View.Warden.FrmStudleavehistory">
-    <!--<ContentPage.BindingContext>
-        <vm:StudentLeaveHistoryVM></vm:StudentLeaveHistoryVM>
-    </ContentPage.BindingContext>-->
+             Title="View Leave Status"
+             x:Class="HMS.View.Student.ViewLeaveStatus">
     <StackLayout Orientation="Vertical">
-        <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbykeyword_Unfocused" PlaceholderText="Search by Student Name" TextMemberPath="stuName" DisplayMemberPath="stuName" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
-        </Frame>
-        <ListView  x:Name="_listView"  ItemsSource="{Binding Studentleavedata}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  HasUnevenRows="true">
+        <ListView  x:Name="_listView"  ItemsSource="{Binding ViewLeaveStatusModels}" IsVisible="{Binding Isdataavailable}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  HasUnevenRows="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Frame VerticalOptions="FillAndExpand" BorderColor="DarkBlue" Margin="20,10,20,10" CornerRadius="20">
                             <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="StudName:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding stuName}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="Name:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="{Binding studentName}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
                                     <Label Text="Leave Name:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
@@ -42,17 +34,14 @@
                                     <Label Text="{Binding leaveToDate}" FontFamily="{StaticResource BoldFont}" Margin="3" FontSize="15"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="MobileNo:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding mobileNo}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="Leave Status:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="{Binding leavestatus}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
-                                <StackLayout Orientation="Horizontal" Spacing="3">
-                                    <Label Text="ParentStatus:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Label Text="{Binding Parentleavestatus}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <StackLayout Orientation="Horizontal" Spacing="3" IsVisible="{Binding isrejectreasonavaialble}">
+                                    <Label Text="Reason:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Label Text="{Binding rejectReason}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                                 </StackLayout>
                             </StackLayout>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:Reference studentleaveactions}, Path=BindingContext.LeaveActionOption}" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
-                            </Frame.GestureRecognizers>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>

@@ -20,9 +20,6 @@ namespace HMS.View.Admin
         ObservableCollection<WardenInfoModel> wardenInfoModels;
         ObservableCollection<AreaModel> areaModels;
         ObservableCollection<HostelModel> hostelModels = new ObservableCollection<HostelModel>();
-        List<string> hostellist = new List<string>();
-        StringBuilder sb = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
         public WardenAssignment()
         {
             InitializeComponent();
@@ -177,21 +174,21 @@ namespace HMS.View.Admin
             int cnt = vm.HostelModelList.IndexOf(md);
             if (cnt >= 0)
             {
-                selectehostel(cnt);
+                vm.selectedhostel(cnt);
             }
         }
-        public void selectehostel(int index)
-        {
-            string hostelname = vm.HostelModelList[index].hostelName;
-            vm.SelectedHostelName = hostelname;
-            string hostelid = vm.HostelModelList[index].id;
-            vm.WardenAssignment.hostelId = hostelid;
-            sb.Append(hostelname);
-            sb2.Append(hostelid);
-            //sb.Append(",");
-            sb2.Append(",");
-            txtassignedhostellist.Text = hostelname;
-            vm.WardenAssignment.hostelAssigned = txtassignedhostellist.Text;
-        }
+        //public void selectehostel(int index)
+        //{
+        //    string hostelname = vm.HostelModelList[index].hostelName;
+        //    vm.SelectedHostelName = hostelname;
+        //    string hostelid = vm.HostelModelList[index].id;
+        //    vm.WardenAssignment.hostelId = hostelid;
+        //    sb.Append(hostelname);
+        //    sb2.Append(hostelid);
+        //    //sb.Append(",");
+        //    sb2.Append(",");
+        //    txtassignedhostellist.Text = hostelname;
+        //    vm.WardenAssignment.hostelAssigned = txtassignedhostellist.Text;
+        //}
     }
 }

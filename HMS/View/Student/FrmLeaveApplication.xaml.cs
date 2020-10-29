@@ -25,7 +25,7 @@ namespace HMS.View.Student
             Vm = new LeaveRequestVM();
             BindingContext = Vm;
             applicationno = SecureStorage.GetAsync("applicationNo").GetAwaiter().GetResult();
-            Vm.gethosteladmissionid(applicationno);
+           // Vm.gethosteladmissionid(applicationno);
         }
         private void from_date_selected(object sender, FocusEventArgs e)
         {

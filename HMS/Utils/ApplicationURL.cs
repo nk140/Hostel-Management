@@ -7,9 +7,8 @@
 
         // Development
         // public static string BaseURL = "http://172.16.16.5:8080";
-        //public static string BaseURL = "http://203.192.204.167:8081";
-         public static string BaseURL = "http://106.51.139.122:8080";
-
+        public static string BaseURL = "http://203.192.204.167:8081";
+       // public static string BaseURL = "http://106.51.139.122:8080";
         //  public static string BaseURL = "http://203.192.204.167:8080";
 
         // lOCAL SERVER
@@ -71,7 +70,7 @@
         #region Student
         public static string GetProfiile = "/hostelandmesstest/api/v1/student/studentprofile";
         public static string HostelAdmission = "/hostelandmesstest/api/v1/auth/admission";
-        public static string Getstudentidforhosteladmission = "";
+        public static string GetLeaveStatus = "/hostelandmesstest/api/v1/student/allstuleaveDetails";
         public static string GetHostelStudent = "/hostelandmesstest/api/v1/hostel/allAdmissionDetails";
         public static string GetHostelStudentbyapplicationno = "/hostelandmesstest/api/v1/hostel/AdmissionDetails";
         public static string GetLeaveTypeList = "/hostelandmesstest/api/v1/leave/allleavetype";
@@ -88,7 +87,8 @@
         public static string UpdateCourse = "/hostelandmesstest/api/v1/area/courseupdate";
         public static string DeleteCourse = "/hostelandmesstest/api/v1/area/deletecourse";
         public static string ServiceRequestByStudent = "/hostelandmesstest/api/v1/roomdetails/servicerequest";
-        public static string FeedBackOnServicebystudent = "";
+        public static string FeedBackOnServicebystudent = "/hostelandmesstest/api/v1/student/feedbackservice";
+        public static string GetRequestedservicestatus = "/hostelandmesstest/api/v1/warden/assignPersonList";
         public static string StudentDisciplinaryList = "/hostelandmesstest/api/v1/student/alldisciplinarylist";
         #endregion
 
@@ -105,10 +105,13 @@
         public static string Disciplinaryaction = "/hostelandmesstest/api/v1/hostel/wardendisciplanary";
         public static string ViewDisciplinaryActionByAppno = "/hostelandmesstest/api/v1/hostel/allWardenDisciplinaryDetails";
         public static string ViewDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardenDisciplinaryDetails";
+        public static string viewrequestedservice = "/hostelandmesstest/api/v1/roomdetails/allservicerequest";
+        public static string Assignserviceperson = "/hostelandmesstest/api/v1/warden/serviceRequestPerson";
         public static string UpdateDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardendisciplinaryupdate";
         public static string DeleteDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/deletewardendisciplinary";
         public static string DirectorDetails = "";
         public static string WardenProfile = "/hostelandmesstest/api/v1/warden/wardenprofile";
+        public static string WardenLeaveAction = "/hostelandmesstest/api/v1/adminleave/adminapprove";
         #endregion
         #region NewsFeed
         public static string GetNewsFeedData = "/hostelandmesstest/api/v1/notification/allNotification";

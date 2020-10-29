@@ -36,7 +36,7 @@ namespace HMS.View.Admin
                 new HomeMenuItem {Title="Room Master",TargetType=typeof(RoomMaster)},
                 new HomeMenuItem {Title="Room Bed Master",TargetType=typeof(RoomBedMaster)},
                 new HomeMenuItem {Title="Room Type Master",TargetType=typeof(RoomTypeMaster)},
-                //new HomeMenuItem {Title="Contact Director",TargetType=typeof(ContactDirector)},
+                new HomeMenuItem {Title="Contact Students",TargetType=typeof(FrmStudentContact)},
                     new HomeMenuItem {Title="Contact Student Parent",TargetType=typeof(FrmStudentParentContact)},
                     new HomeMenuItem {Title="Warden Assignment",TargetType=typeof(WardenAssignment)},
                     new HomeMenuItem {Title="Warden Detail",TargetType=typeof(WardenDetails)},

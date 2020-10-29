@@ -13,8 +13,8 @@ namespace HMS.View.Parrent
     public partial class FrmWardenDetails : ContentPage
     {
         WardenDetailsVM vm;
-        public ObservableCollection<WardenInfoModel> wardenInfoModels;
-        public ObservableCollection<WardenInfoModel> selectedtextdata;
+        public ObservableCollection<StudentProfileModel> wardenInfoModels;
+        public ObservableCollection<StudentProfileModel> selectedtextdata;
         public FrmWardenDetails()
         {
             InitializeComponent();
@@ -27,16 +27,16 @@ namespace HMS.View.Parrent
             {
                 if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
                 {
-                    wardenInfoModels = new ObservableCollection<WardenInfoModel>();
+                    wardenInfoModels = new ObservableCollection<StudentProfileModel>();
                     if (vm.WardenInfoModels != null)
                     {
                         foreach (var items in vm.WardenInfoModels)
                         {
-                            if (!string.IsNullOrEmpty(items.firstName))
+                            if (!string.IsNullOrEmpty(items.wardenName))
                             {
                                 if (!string.IsNullOrEmpty(txtsearchbykeyword.Text))
                                 {
-                                    if (items.firstName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.firstName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
+                                    if (items.wardenName.ToUpper().StartsWith(txtsearchbykeyword.Text.ToUpper()) || items.wardenName.ToLower().StartsWith(txtsearchbykeyword.Text.ToLower()))
                                         wardenInfoModels.Add(items);
                                 }
                             }
@@ -54,20 +54,20 @@ namespace HMS.View.Parrent
         {
             try
             {
-                txtsearchbykeyword.Text = ((WardenInfoModel)e.SelectedItem).firstName;
-                selectedtextdata = new ObservableCollection<WardenInfoModel>();
+                txtsearchbykeyword.Text = ((StudentProfileModel)e.SelectedItem).wardenName;
+                selectedtextdata = new ObservableCollection<StudentProfileModel>();
                 if (wardenInfoModels != null)
                 {
                     foreach (var items in wardenInfoModels)
                     {
-                        if (txtsearchbykeyword.Text == items.firstName)
+                        if (txtsearchbykeyword.Text == items.wardenName)
                         {
-                            if (!string.IsNullOrEmpty(items.contact))
+                            if (!string.IsNullOrEmpty(items.wardenPhoneNo))
                                 selectedtextdata.Add(items);
                         }
                     }
                 }
-                if (selectedtextdata == null || selectedtextdata.Count==0)
+                if (selectedtextdata == null || selectedtextdata.Count == 0)
                 {
                     _listView.ItemsSource = null;
                     App.Current.MainPage.DisplayAlert("HMS", "No contact no found for the entered name", "OK");
@@ -78,6 +78,14 @@ namespace HMS.View.Parrent
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void txtsearchbykeyword_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtsearchbykeyword.Text))
+            {
+                _listView.ItemsSource = vm.WardenInfoModels;
             }
         }
     }

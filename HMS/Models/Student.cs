@@ -31,11 +31,11 @@ namespace HMS.Models
     public class FeedbackDetailsByStudent
     {
         public string studentId { get; set; }
-        public string studentName { get; set; }
-        public string mobileNo { get; set; }
-        public string serviceid { get; set; }
-        public string servicerating { get; set; }
-        public string description { get; set; }
+        public string personName { get; set; }
+        public string personMobileNo { get; set; }
+        public string serviceTypeId { get; set; }
+        public string personRating { get; set; }
+        public string improveService { get; set; }
     }
     public class Parents
     {

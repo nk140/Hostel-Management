@@ -31,17 +31,27 @@ namespace HMS.Services
         IDeleteDisciplinary deleteDisciplinary;
         IViewDirectorDetail iviewdirector;
         ProfileI profileI;
+        Iviewrequestedservice iviewrequestedservice;
+        Iassignserviceperson iassignserviceperson;
         public WardenService(Iservicewarden callbackservice)
         {
             service = callbackservice;
+        }
+        public WardenService(Iviewrequestedservice callbackservice, ProfileI profile)
+        {
+            iviewrequestedservice = callbackservice;
+            profileI = profile;
+        }
+        public WardenService(Iassignserviceperson callbackservice)
+        {
+            iassignserviceperson = callbackservice;
         }
         public WardenService(ProfileI profile)
         {
             profileI = profile;
         }
-        public WardenService(Iservicewarden callbackservice, Isubmitfeedback isubmitfeedback)
+        public WardenService(Isubmitfeedback isubmitfeedback)
         {
-            service = callbackservice;
             submissionfeedback = isubmitfeedback;
         }
         public WardenService(IViewDirectorDetail viewDirectorDetail)
@@ -261,6 +271,37 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("", "Server Error.", "OK");
             }
         }
+        public async void GetAllrequestservicebystudent(string hostelId)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.viewrequestedservice);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<ViewRequestedServiceModel> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ViewRequestedServiceModel>>(result);
+                    for (int i = 0; i < parentleave.Count; i++)
+                    {
+                        parentleave[i].Isbuttonvisible = false;
+                    }
+                    UserDialogs.Instance.HideLoading();
+                    iviewrequestedservice.LoadAllrequestedservicelist(parentleave);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    iviewrequestedservice.failer("Data Not Found.");
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                iviewrequestedservice.failer("Data is not available.");
+            }
+        }
         public async void Getnewstudentdata()
         {
             Studenterrorresponse studenterrorresponse;
@@ -411,6 +452,43 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
+        public async void AssignServiceToPerson(AssignServiceModel assignServiceModel,string requestTypeId,string userId)
+        {
+            UpdateAreaResponse updateAreaResponse;
+            UpdateAreaErrorResponse updateAreaErrorResponse;
+            HttpResponseMessage response;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                UserDialogs.Instance.ShowLoading();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("requestTypeId", requestTypeId);
+                client.DefaultRequestHeaders.Add("userId", userId);
+                string json = JsonConvert.SerializeObject(assignServiceModel);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync(ApplicationURL.Assignserviceperson, content);
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateAreaResponse = JsonConvert.DeserializeObject<UpdateAreaResponse>(result);
+                    iassignserviceperson.sucess(updateAreaResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateAreaErrorResponse = JsonConvert.DeserializeObject<UpdateAreaErrorResponse>(result);
+                    iassignserviceperson.failer(updateAreaErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS","Something went wrong.", "OK");
+            }
+        }
         public async void FeedBackOnServiceByStudent(FeedbackDetailsByStudent feedbackDetailsByStudent)
         {
             UpdateAreaResponse updateAreaResponse;
@@ -471,6 +549,39 @@ namespace HMS.Services
                     string result = await response.Content.ReadAsStringAsync();
                     updateAreaErrorResponse = JsonConvert.DeserializeObject<UpdateAreaErrorResponse>(result);
                     iapproveleave.failer(updateAreaErrorResponse.errors[0].message);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await App.Current.MainPage.DisplayAlert("HMS", "Something went wrong", "OK");
+            }
+        }
+        public async void ApproveStudentLeave(wardenstatusonleavemodel wardenstatusonleavemodel)
+        {
+            UpdateAreaResponse updateAreaResponse;
+            UpdateAreaErrorResponse updateAreaErrorResponse;
+            HttpResponseMessage response;
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                string jsn = JsonConvert.SerializeObject(wardenstatusonleavemodel);
+                var content = new StringContent(jsn, Encoding.UTF8, "application/json");
+                response = await client.PostAsync(ApplicationURL.WardenLeaveAction, content);
+                if ((int)response.StatusCode == 200)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateAreaResponse = JsonConvert.DeserializeObject<UpdateAreaResponse>(result);
+                    studentleavemaster.wardenaction(updateAreaResponse.message);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    string result = await response.Content.ReadAsStringAsync();
+                    updateAreaErrorResponse = JsonConvert.DeserializeObject<UpdateAreaErrorResponse>(result);
+                    studentleavemaster.failer(updateAreaErrorResponse.errors[0].message);
                 }
             }
             catch (Exception ex)
@@ -731,6 +842,17 @@ namespace HMS.Services
                 {
 
                     ObservableCollection<StudentLeaveHistory> leaveType = JsonConvert.DeserializeObject<ObservableCollection<StudentLeaveHistory>>(result);
+                    for (int i = 0; i < leaveType.Count; i++)
+                    {
+                        if (leaveType[i].isParentApprove.Equals("true"))
+                        {
+                            leaveType[i].Parentleavestatus = "Leave Approved";
+                        }
+                        else
+                        {
+                            leaveType[i].Parentleavestatus = "Leave Rejected";
+                        }
+                    }
                     if (leaveType.Count > 0)
                     {
                         UserDialogs.Instance.HideLoading();

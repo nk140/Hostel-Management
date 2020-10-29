@@ -37,11 +37,23 @@ namespace HMS.ViewModel.Warden
             var result = await App.Current.MainPage.DisplayActionSheet("Choose what action you take", "Cancel", null, "Approve", "Reject");
             if (result.Equals("Approve"))
             {
-
+                wardenstatusonleavemodel wardenstatusonleavemodel = new wardenstatusonleavemodel();
+                wardenstatusonleavemodel.userId = App.userid;
+                wardenstatusonleavemodel.hostelAdmissionId = obj.hostelAdmissionId;
+                wardenstatusonleavemodel.leaveTypeId = obj.hostelLeaveTypeId;
+                wardenstatusonleavemodel.isApproved = "Approved";
+                wardenstatusonleavemodel.rejectReason = "";
+                warden.ApproveStudentLeave(wardenstatusonleavemodel);
             }
             else if (result.Equals("Reject"))
             {
-
+                wardenstatusonleavemodel wardenstatusonleavemodel = new wardenstatusonleavemodel();
+                wardenstatusonleavemodel.userId = App.userid;
+                wardenstatusonleavemodel.hostelAdmissionId = obj.hostelAdmissionId;
+                wardenstatusonleavemodel.leaveTypeId = obj.hostelLeaveTypeId;
+                wardenstatusonleavemodel.isApproved = "Reject";
+                wardenstatusonleavemodel.rejectReason = "Parent Not Allowed.";
+                warden.ApproveStudentLeave(wardenstatusonleavemodel);
             }
             else
             {
@@ -53,6 +65,62 @@ namespace HMS.ViewModel.Warden
             Studentleavedata = new ObservableCollection<StudentLeaveHistory>();
             Studentleavedata = studentleavedata;
             OnPropertyChanged();
+        }
+
+        public void wardenaction(string result)
+        {
+            App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+        }
+
+        public void failer(string result)
+        {
+            App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+        }
+    }
+    public class ViewStudentLeaveStatus : BaseViewModel, ViewLeaveStatus
+    {
+        StudentService studentService;
+        private ObservableCollection<ViewLeaveStatusModel> viewLeaveStatusModels = new ObservableCollection<ViewLeaveStatusModel>();
+        public ObservableCollection<ViewLeaveStatusModel> ViewLeaveStatusModels
+        {
+            get
+            {
+                return viewLeaveStatusModels;
+            }
+            set
+            {
+                viewLeaveStatusModels = value;
+                OnPropertyChanged("ViewLeaveStatusModels");
+            }
+        }
+        private bool isdataavailable;
+        public bool Isdataavailable
+        {
+            get
+            {
+                return isdataavailable;
+            }
+            set
+            {
+                isdataavailable = value;
+                OnPropertyChanged("Isdataavailable");
+            }
+        }
+        public ViewStudentLeaveStatus()
+        {
+            studentService = new StudentService(this);
+            studentService.GetLeaveStatus(App.userid);
+        }
+        public void failer(string result)
+        {
+
+        }
+        public void GetLeavestatus(ObservableCollection<ViewLeaveStatusModel> viewLeaveStatusModels)
+        {
+            Isdataavailable = true;
+            ViewLeaveStatusModels = viewLeaveStatusModels;
+            OnPropertyChanged("ViewLeaveStatusModels");
+            OnPropertyChanged("Isdataavailable");
         }
     }
     public class ViewWardLeaveHistoryVM : BaseViewModel, Iwardenleaveaction, IApproveLeave, IRejectLeave

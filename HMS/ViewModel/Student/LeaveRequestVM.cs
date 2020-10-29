@@ -10,14 +10,14 @@ using Xamarin.Forms;
 
 namespace HMS.ViewModel.Student
 {
-    public class LeaveRequestVM : BaseViewModel, StudentLeaveRequestI, ViewHostelAdmittedStudent
+    public class LeaveRequestVM : BaseViewModel, StudentLeaveRequestI,ProfileI
     {
         public LeaveRequestVM()
         {
 
-            web = new StudentService((ViewHostelAdmittedStudent)this, (StudentLeaveRequestI)this);
+            web = new StudentService((ProfileI)this, (StudentLeaveRequestI)this);
             web.GetAllLeaveType();
-            web.GetHostelStudent();
+            web.GetProfiile(App.userid);
         }
         StudentService web;
         private ObservableCollection<LeaveTypeModel> leaveTypeModel_ = new ObservableCollection<LeaveTypeModel>();
@@ -113,8 +113,8 @@ namespace HMS.ViewModel.Student
 
             OnPropertyChanged("CountryName");
         }
-        private ObservableCollection<HostelAdmittedStudentDetails> hostelAdmittedStudentDetails = new ObservableCollection<HostelAdmittedStudentDetails>();
-        public ObservableCollection<HostelAdmittedStudentDetails> HostelAdmittedStudentDetails
+        private ObservableCollection<StudentProfileModel> hostelAdmittedStudentDetails = new ObservableCollection<StudentProfileModel>();
+        public ObservableCollection<StudentProfileModel> HostelAdmittedStudentDetails
         {
             get
             {
@@ -217,23 +217,31 @@ namespace HMS.ViewModel.Student
             OnPropertyChanged("HostelAdmittedStudentDetails");
             OnPropertyChanged();
         }
-        public void gethosteladmissionid(string applicationno)
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
         {
-            web.GetHostelAdmittedStudentbyappno(applicationno);
+            HostelAdmittedStudentDetails = profiles;
+            HostelAdmittedStudentDetails[0].hostelAdmissionId = HosteladmissionId;
+            OnPropertyChanged("HostelAdmittedStudentDetails");
         }
-        public void LoadHostelStudent(ObservableCollection<HostelAdmittedStudentDetails> hostelAdmittedStudentDetails)
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
         {
-            if (hostelAdmittedStudentDetails.Count == 1)
-            {
-                HostelAdmittedStudentDetails = hostelAdmittedStudentDetails;
-                OnPropertyChanged("HostelAdmittedStudentDetails");
-                HosteladmissionId = HostelAdmittedStudentDetails[0].hostelAdmissionId;
-                OnPropertyChanged("HosteladmissionId");
-            }
+            throw new NotImplementedException();
         }
-        public void servicefailed(string result)
+
+        public async Task ServiceFaild()
         {
-            App.Current.MainPage.DisplayAlert("HMS",result, "OK");
+           
         }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new NotImplementedException();
+        }
+        //public void gethosteladmissionid(string applicationno)
+        //{
+        //    web.GetHostelAdmittedStudentbyappno(applicationno);
+        //}
     }
 }

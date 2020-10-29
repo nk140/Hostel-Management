@@ -6,6 +6,7 @@ namespace HMS.Models
     {
         public string studentId { get; set; }
         public string wardenHostelId { get; set; }
+        public string hostelAdmissionId { get; set; }
         public string wardenName { get; set; }
         public string wardenPhoneNo { get; set; }
         public string studentPhoneNo { get; set; }
