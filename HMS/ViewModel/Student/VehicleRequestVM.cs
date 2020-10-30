@@ -167,7 +167,7 @@ namespace HMS.ViewModel.Student
         {
             foreach (var items in viewRequestedServiceStatusModels)
             {
-                if (items.personName != null || items.personMobileNo != null || items.personJob != null)
+                if (items.personName != null || items.personMobileNo != null || items.personJob != null || items.WorkStatus=="Completed")
                 {
                     ViewRequestedServiceStatusModels = viewRequestedServiceStatusModels;
                     FeedbackDetailsByStudent.personName = items.personName;

@@ -35,9 +35,9 @@ namespace HMS.View.Warden
                 if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
                 {
                     studentLeaveHistories = new ObservableCollection<StudentLeaveHistory>();
-                    if (vm.Studentleavedata != null)
+                    if (vm.StudentLeaveHistories != null)
                     {
-                        foreach (var items in vm.Studentleavedata)
+                        foreach (var items in vm.StudentLeaveHistories)
                         {
                             if (!string.IsNullOrEmpty(items.stuName))
                             {
@@ -83,7 +83,7 @@ namespace HMS.View.Warden
         private void txtsearchbykeyword_Unfocused(object sender, FocusEventArgs e)
         {
             if (string.IsNullOrEmpty(txtsearchbykeyword.Text))
-                _listView.ItemsSource = vm.Studentleavedata;
+                _listView.ItemsSource = vm.StudentLeaveHistories;
         }
     }
 }

@@ -27,6 +27,10 @@ namespace HMS.Models
         [JsonIgnore]
         public bool Isbuttonvisible { get; set; }
     }
+    public class ServiceStatusModel
+    {
+
+    }
     public class AssignServiceModel
     {
         public string requestPersonName { get; set; }

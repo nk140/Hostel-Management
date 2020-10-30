@@ -14,29 +14,31 @@
             >
             <Label
                     x:Name="childname"
+                    Text="{Binding ChildHostelDetailModels.studentName}"
                     TextColor="#2D295F" 
                     FontAttributes="None"
                     FontSize="20"/>
-
             <Label
                 x:Name="childroomno"
+                Text="{Binding ChildHostelDetailModels.roomName}"
                 TextColor="#2D295F"
                 Margin="0,10,0,0"
                 FontSize="20"/>
             <Label
                 x:Name="childbedno"
+                Text="{Binding ChildHostelDetailModels.roomBedName}"
                 TextColor="#2D295F"
                 Margin="0,10,0,0"
                 FontSize="20"/>
-
             <Label
                 x:Name="blockno"
+                Text="{Binding ChildHostelDetailModels.blockName}"
                 TextColor="#2D295F"
                 Margin="0,10,0,0"
                 FontSize="20"/>
-
             <Label
                 x:Name="hostelname"
+                Text="{Binding ChildHostelDetailModels.hostelName}"
                 TextColor="#2D295F"
                 Margin="0,10,0,0"
                 FontSize="20"/>

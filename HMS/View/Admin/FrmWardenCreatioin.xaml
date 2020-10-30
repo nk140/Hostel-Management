@@ -48,6 +48,9 @@
                            ReturnType="Next" />
                         </Frame>
                         <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
+                            <controls:DatePickers x:Name="dp_dob" Margin="-7"  DateSelected="dp_dob_DateSelected" Unfocused="dp_dob_Unfocused"/>
+                        </Frame>
+                        <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                             <controls:BetterEntry
                              Placeholder="Phone Number"
                              Margin="-16"
@@ -129,7 +132,7 @@
                             <RadioButton Text="Male" FontSize="15" IsChecked="{Binding IsCheck1}" Command="{Binding Check1Clicked}" TextColor="#e96125"/>
                             <RadioButton Text="Female" FontSize="15" IsChecked="{Binding IsCheck2}" Command="{Binding Check2Clicked}" TextColor="#e96125"/>
                         </StackLayout>
-                        
+
                         <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                             <controls:BetterEntry
                              Placeholder="Username"

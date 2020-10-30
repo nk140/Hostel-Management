@@ -334,9 +334,9 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", "No Hostel For Searched area", "OK");
         }
 
         public void NoListFound(string result)
@@ -544,7 +544,7 @@ namespace HMS.ViewModel.Admin
 
         public async Task ServiceFailed(int index)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", "No Area Found", "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", "No Hostel Found", "OK");
         }
 
         public void NoListFound(string result)
@@ -862,7 +862,7 @@ namespace HMS.ViewModel.Admin
         {
             //App.hostelid = hostelid;
             //App.blockid = blockid;
-            //web = new MasterServices(this);
+            web = new MasterServices((MasterI)this,(RoomListI)this);
             web.GetAllArea();
             // web.GetAllHostel();
             // web.GetAllBlock(hostelid);
@@ -907,7 +907,7 @@ namespace HMS.ViewModel.Admin
 
         public async Task ServiceFailed(int index)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", "Some Data is not available.", "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", "No hostel found.", "OK");
         }
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
@@ -1121,7 +1121,7 @@ namespace HMS.ViewModel.Admin
 
         public async Task ServiceFailed(int index)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", "Data Not Available.", "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", "No hostel found.", "OK");
         }
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
@@ -1293,14 +1293,14 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("AreaLists");
         }
 
-        public Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
+        public async Task LoadBlockList(ObservableCollection<BlockModel> BlockList)
         {
-            throw new NotImplementedException();
+          
         }
 
-        public Task LoadFloorList(ObservableCollection<FloorData> FloorList)
+        public async Task LoadFloorList(ObservableCollection<FloorData> FloorList)
         {
-            throw new NotImplementedException();
+            
         }
 
         public async Task LoadHostelList(ObservableCollection<HostelModel> HostelList)
@@ -1314,9 +1314,9 @@ namespace HMS.ViewModel.Admin
             throw new NotImplementedException();
         }
 
-        public Task ServiceFailed(int index)
+        public async Task ServiceFailed(int index)
         {
-            throw new NotImplementedException();
+            await App.Current.MainPage.DisplayAlert("HMS", "No Area found", "OK");
         }
 
         public void NoListFound(string result)

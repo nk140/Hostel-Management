@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HMS.ViewModel.Admin
@@ -26,6 +27,8 @@ namespace HMS.ViewModel.Admin
         }
         public ICommand EditCommand => new Command<WardenInfoModel>(OnEditCommand);
         public ICommand DeleteCommand => new Command<WardenInfoModel>(OnDeleteCommand);
+        public ICommand CallCommand => new Command<WardenInfoModel>(OnCallCommand);
+        public ICommand MessageCommand => new Command<WardenInfoModel>(OnMessageCommand);
         public WardenDetailVM()
         {
             web = new StudentService((ContactWardenI)this, (IDeleteWardenDetail)this);
@@ -39,6 +42,41 @@ namespace HMS.ViewModel.Admin
         public async void OnDeleteCommand(WardenInfoModel obj)
         {
             web.DeleteWardenDetail(obj.userId);
+        }
+        public async void OnCallCommand(WardenInfoModel obj)
+        {
+            try
+            {
+                PhoneDialer.Open(obj.contact);
+            }
+            catch (ArgumentNullException anEx)
+            {
+                // Number was null or white space
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Phone Dialer is not supported on this device.
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
+        }
+        public async void OnMessageCommand(WardenInfoModel obj)
+        {
+            try
+            {
+                var message = new SmsMessage("", obj.contact);
+                await Sms.ComposeAsync(message);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Failed", "Sms is not supported on this device.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Failed", ex.Message, "OK");
+            }
         }
         public async void Deletesucessfully(string result)
         {
@@ -91,7 +129,7 @@ namespace HMS.ViewModel.Admin
         {
             if (string.IsNullOrEmpty(UpdateWarden.name) || UpdateWarden.name.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter Name", "OK");
-            else if(UpdateWarden.contactNo.Length != 10)
+            else if (UpdateWarden.contactNo.Length != 10)
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter 10 digit contact no", "OK");
             else if (string.IsNullOrEmpty(UpdateWarden.contactNo) || UpdateWarden.contactNo.Length == 0)
                 await App.Current.MainPage.DisplayAlert("HMS", "Enter contact no", "OK");

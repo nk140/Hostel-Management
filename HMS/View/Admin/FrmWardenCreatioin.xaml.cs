@@ -29,5 +29,15 @@ namespace HMS.View.Admin
             //}
             //((listview)sender).selecteditem = null;
         }
+
+        private void dp_dob_Unfocused(object sender, FocusEventArgs e)
+        {
+            Vm.Warden.dateOfBirth = dp_dob.Date.ToShortDateString();
+        }
+
+        private void dp_dob_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            Vm.Warden.dateOfBirth = dp_dob.Date.ToShortDateString();
+        }
     }
 }

@@ -110,6 +110,7 @@
         public static string UpdateDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/wardendisciplinaryupdate";
         public static string DeleteDisciplinaryAction = "/hostelandmesstest/api/v1/hostel/deletewardendisciplinary";
         public static string DirectorDetails = "";
+        public static string Servicestatusbyperson = "";
         public static string WardenProfile = "/hostelandmesstest/api/v1/warden/wardenprofile";
         public static string WardenLeaveAction = "/hostelandmesstest/api/v1/adminleave/adminapprove";
         #endregion
@@ -126,6 +127,7 @@
         public static string UpdatePassword = "/hostelandmesstest/api/v1/student/passwordupdate";
         public static string GetWardeLeaveDetail = "/hostelandmesstest/api/v1/leave/parentleaves";
         public static string ActionAgainstWardLeave = "/hostelandmesstest/api/v1/leave/parrentapprove";
+        public static string Getchildhosteldetail = "/hostelandmesstest/api/v1/student/parentprofile";
         #endregion
     }
 }

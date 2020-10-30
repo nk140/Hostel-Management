@@ -728,6 +728,11 @@ namespace HMS.Services
                                 items.leavestatus = "Leave Approved";
                                 items.isrejectreasonavaialble = false;
                             }
+                            else if(items.wardenApproved.Equals("false") || items.wardenReject.Equals("false"))
+                            {
+                                items.leavestatus = "Leave Pending";
+                                items.isrejectreasonavaialble = false;
+                            }
                             else
                             {
                                 items.leavestatus = "Leave Rejected";

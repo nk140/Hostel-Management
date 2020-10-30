@@ -13,7 +13,7 @@ namespace HMS.ViewModel.Warden
         WardenService warden;
         private ObservableCollection<StudentLeaveHistory> studentleavedata = new ObservableCollection<StudentLeaveHistory>();
         #region list
-        public ObservableCollection<StudentLeaveHistory> Studentleavedata
+        public ObservableCollection<StudentLeaveHistory> StudentLeaveHistories
         {
             get
             {
@@ -22,7 +22,7 @@ namespace HMS.ViewModel.Warden
             set
             {
                 studentleavedata = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Studentleavedata");
             }
         }
         #endregion
@@ -62,9 +62,8 @@ namespace HMS.ViewModel.Warden
         }
         public void GetStudentLeaveHistory(ObservableCollection<StudentLeaveHistory> studentleavedata)
         {
-            Studentleavedata = new ObservableCollection<StudentLeaveHistory>();
-            Studentleavedata = studentleavedata;
-            OnPropertyChanged();
+            StudentLeaveHistories = studentleavedata;
+            OnPropertyChanged("StudentLeaveHistories");
         }
 
         public void wardenaction(string result)

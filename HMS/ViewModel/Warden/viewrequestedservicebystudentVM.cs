@@ -64,7 +64,6 @@ namespace HMS.ViewModel.Warden
         {
             wardenService = new WardenService((Iviewrequestedservice)this,(ProfileI)this);
             wardenService.GetWardenprofile(App.userid);
-            wardenService.GetAllrequestservicebystudent(hostelid);
         }
         public async void OnServicePersonCommand(ViewRequestedServiceModel obj)
         {
@@ -128,6 +127,7 @@ namespace HMS.ViewModel.Warden
             HostalMasterData = wardenProfileModels;
             hostelid = HostalMasterData[0].hostelId;
             OnPropertyChanged("HostalMasterData");
+            wardenService.GetAllrequestservicebystudent(hostelid);
         }
 
         public async Task ServiceFaild()
@@ -138,6 +138,90 @@ namespace HMS.ViewModel.Warden
         public void UpdatedSucessfully(string result)
         {
           
+        }
+    }
+    public class ServiceStatusbypersonVM : BaseViewModel, Iviewservicestatusbyperson, ProfileI
+    {
+        WardenService wardenService;
+        string hostelid;
+        private ObservableCollection<ServiceStatusModel> serviceStatusModels = new ObservableCollection<ServiceStatusModel>();
+        public ObservableCollection<ServiceStatusModel> ServiceStatusModels
+        {
+            get
+            {
+                return serviceStatusModels;
+            }
+            set
+            {
+                serviceStatusModels = value;
+                OnPropertyChanged("ServiceStatusModels");
+            }
+        }
+        private ObservableCollection<WardenProfileModel> HostelData = new ObservableCollection<WardenProfileModel>();
+        public ObservableCollection<WardenProfileModel> HostalMasterData
+        {
+            get
+            {
+                return HostelData;
+            }
+            set
+            {
+                HostelData = value;
+                OnPropertyChanged("HostelData");
+            }
+        }
+        private bool isdataavailable;
+        public bool Isdataavailable
+        {
+            get
+            {
+                return isdataavailable;
+            }
+            set
+            {
+                isdataavailable = value;
+                OnPropertyChanged("Isdataavailable");
+            }
+        }
+        public ServiceStatusbypersonVM()
+        {
+            wardenService = new WardenService((Iviewrequestedservice)this, (ProfileI)this);
+            wardenService.GetWardenprofile(App.userid);
+        }
+        public void LoadAllservicestatus(ObservableCollection<ServiceStatusModel> serviceStatusModels)
+        {
+            Isdataavailable = true;
+            ServiceStatusModels = serviceStatusModels;
+            OnPropertyChanged("ServiceStatusModels");
+        }
+
+        public void servicefailed(string result)
+        {
+           
+        }
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
+        {
+            
+        }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            
+            HostalMasterData = wardenProfileModels;
+            hostelid = HostalMasterData[0].hostelId;
+            OnPropertyChanged("HostalMasterData");
+            wardenService.GetServiceStatusbyperson(hostelid);
+        }
+
+        public async Task ServiceFaild()
+        {
+           
+        }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new NotImplementedException();
         }
     }
 }

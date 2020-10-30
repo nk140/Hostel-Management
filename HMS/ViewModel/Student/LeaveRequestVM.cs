@@ -221,7 +221,7 @@ namespace HMS.ViewModel.Student
         public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
         {
             HostelAdmittedStudentDetails = profiles;
-            HostelAdmittedStudentDetails[0].hostelAdmissionId = HosteladmissionId;
+            HosteladmissionId=HostelAdmittedStudentDetails[0].hostelAdmissionId;
             OnPropertyChanged("HostelAdmittedStudentDetails");
         }
 

@@ -17,9 +17,14 @@ namespace HMS.Services
         Iparent iparent;
         iUpdatePassword iupdatePassword;
         iviewchildleave iviewchildleave;
+        Iviewchildhosteldetail iviewchildhosteldetail;
         public ParentService(IWardenDetail wardenDetaildata)
         {
             wardenDetail = wardenDetaildata;
+        }
+        public ParentService(Iviewchildhosteldetail callback)
+        {
+            iviewchildhosteldetail = callback;
         }
         public ParentService(Iparent callback)
         {
@@ -71,6 +76,45 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
+            }
+        }
+        public async void GetChildHostelData(string studentId)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("studentId", studentId);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.Getchildhosteldetail);
+                string result = await response.Content.ReadAsStringAsync();
+
+                if ((int)response.StatusCode == 200)
+                {
+
+                    ObservableCollection<ChildHostelDetailModel> data_ = JsonConvert.DeserializeObject<ObservableCollection<ChildHostelDetailModel>>(result);
+                    if (data_.Count > 0)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        iviewchildhosteldetail.LoadChildHostelDetails(data_);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        iviewchildhosteldetail.servicefailed("No Data Found");
+                    }
+
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await App.Current.MainPage.DisplayAlert("HMS", "Data Error", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                iviewchildhosteldetail.servicefailed("Something went wrong in data");
             }
         }
         public async void SaveParentDetail(ParentRegistration model)

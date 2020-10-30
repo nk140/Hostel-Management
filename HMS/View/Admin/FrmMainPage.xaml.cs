@@ -40,7 +40,7 @@ namespace HMS.View.Admin
                     new HomeMenuItem {Title="Contact Student Parent",TargetType=typeof(FrmStudentParentContact)},
                     new HomeMenuItem {Title="Warden Assignment",TargetType=typeof(WardenAssignment)},
                     new HomeMenuItem {Title="Warden Detail",TargetType=typeof(WardenDetails)},
-                    new HomeMenuItem {Title="Contact warden",TargetType=typeof(FrmContactWarden)},
+                    new HomeMenuItem {Title="Contact warden",TargetType=typeof(ContactAllWarden)},
                     new HomeMenuItem {Title="Service Category Master",TargetType=typeof(ServiceCategoryMaster)},
                     new HomeMenuItem {Title="Facility Master",TargetType=typeof(FacilityMaster)},
                     new HomeMenuItem {Title="Disciplinary Master",TargetType=typeof(DisciplinaryMaster)},

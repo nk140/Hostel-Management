@@ -353,12 +353,13 @@ namespace HMS.ViewModel.Student
             App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
     }
-    public class ViewWardDisciplinaryActionVM : BaseViewModel
+    public class ViewWardDisciplinaryActionVM : BaseViewModel, Iviewchildhosteldetail
     {
-        private ObservableCollection<UserModel> wardmodels = new ObservableCollection<UserModel>();
-        private UserModel _OldDisciplinaryData;
+        ParentService parent;
+        private ObservableCollection<ChildHostelDetailModel> wardmodels = new ObservableCollection<ChildHostelDetailModel>();
+        private ChildHostelDetailModel _OldDisciplinaryData;
 
-        public ObservableCollection<UserModel> WardModels
+        public ObservableCollection<ChildHostelDetailModel> WardModels
         {
             get
             {
@@ -372,28 +373,21 @@ namespace HMS.ViewModel.Student
         }
         public ViewWardDisciplinaryActionVM()
         {
-            WardModels.Add(new UserModel
-            {
-                wardenDisciplinaryId = SecureStorage.GetAsync("wardenDisciplinaryId").GetAwaiter().GetResult(),
-                studentName = SecureStorage.GetAsync("studentName").GetAwaiter().GetResult(),
-                disciplinaryName = SecureStorage.GetAsync("disciplinaryName").GetAwaiter().GetResult(),
-                applicationNo = SecureStorage.GetAsync("applicationNo").GetAwaiter().GetResult(),
-                studentId = SecureStorage.GetAsync("studentId").GetAwaiter().GetResult(),
-                date = SecureStorage.GetAsync("date").GetAwaiter().GetResult(),
-                time = SecureStorage.GetAsync("time").GetAwaiter().GetResult()
-            });
+            parent = new ParentService(this);
+            string studentid = SecureStorage.GetAsync("studentId").GetAwaiter().GetResult();
+            parent.GetChildHostelData(studentid);
         }
-        public ICommand ViewCommand => new Command<UserModel>(OnViewCommand);
-        public ICommand TapCommand => new Command<UserModel>(OnTapCommand);
-        public async void OnViewCommand(UserModel obj)
+        public ICommand ViewCommand => new Command<ChildHostelDetailModel>(OnViewCommand);
+        public ICommand TapCommand => new Command<ChildHostelDetailModel>(OnTapCommand);
+        public async void OnViewCommand(ChildHostelDetailModel obj)
         {
             await App.Current.MainPage.Navigation.PushPopupAsync(new ViewDisciplinaryActionPopup(obj.date, obj.time, obj.studentName, obj.applicationNo, obj.disciplinaryName, obj.disciplinaryName));
         }
-        public async void OnTapCommand(UserModel obj)
+        public async void OnTapCommand(ChildHostelDetailModel obj)
         {
             Hideorshowbutton(obj);
         }
-        public void Hideorshowbutton(UserModel obj)
+        public void Hideorshowbutton(ChildHostelDetailModel obj)
         {
             if (_OldDisciplinaryData == obj)
             {
@@ -419,11 +413,22 @@ namespace HMS.ViewModel.Student
             }
             _OldDisciplinaryData = obj;
         }
-        public void UpdateProduct(UserModel obj)
+        public void UpdateProduct(ChildHostelDetailModel obj)
         {
             var index = WardModels.IndexOf(obj);
             WardModels.Remove(obj);
             WardModels.Insert(index, obj);
+        }
+
+        public void LoadChildHostelDetails(ObservableCollection<ChildHostelDetailModel> childHostelDetailModels)
+        {
+            WardModels = childHostelDetailModels;
+            OnPropertyChanged("WardModels");
+        }
+
+        public void servicefailed(string result)
+        {
+            App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
     }
 }

@@ -16,7 +16,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="0">
-                <forms:AutoSuggestBox x:Name="txtstudentregistrationno" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" TextMemberPath="applicationNo" DisplayMemberPath="applicationNo" PlaceholderText="Enter student registration" TextChanged="txtstudentregistrationno_TextChanged" SuggestionChosen="txtstudentregistrationno_SuggestionChosen"/>
+                <forms:AutoSuggestBox x:Name="txtstudentregistrationno" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-18" TextColor="#2D295F" TextMemberPath="applicationNo" DisplayMemberPath="applicationNo" PlaceholderText="Enter student application no" TextChanged="txtstudentregistrationno_TextChanged" SuggestionChosen="txtstudentregistrationno_SuggestionChosen"/>
             </Frame>
             <Frame CornerRadius="35" BackgroundColor="Transparent" BorderColor="Black" Grid.Row="1">
                 <controls:BetterEntry Placeholder="Student Name" x:Name="txtstudentname" Keyboard="Text"  Text="{Binding DisciplinaryActionbywarden.Studentname}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>

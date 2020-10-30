@@ -2217,7 +2217,7 @@ namespace HMS.Services
                 model.lastName = "";
                 model.permanent_address_line_2 = "";
                 //model.isWarden = "1";
-                model.dateOfBirth = "23/01/1994";
+                //model.dateOfBirth = "23/01/1994";
                 model.dateOfJoining = "23/01/1994";
 
 

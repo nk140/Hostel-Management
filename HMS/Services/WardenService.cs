@@ -32,6 +32,7 @@ namespace HMS.Services
         IViewDirectorDetail iviewdirector;
         ProfileI profileI;
         Iviewrequestedservice iviewrequestedservice;
+        Iviewservicestatusbyperson iviewservicestatusbyperson;
         Iassignserviceperson iassignserviceperson;
         public WardenService(Iservicewarden callbackservice)
         {
@@ -45,6 +46,15 @@ namespace HMS.Services
         public WardenService(Iassignserviceperson callbackservice)
         {
             iassignserviceperson = callbackservice;
+        }
+        public WardenService(Iviewservicestatusbyperson callback)
+        {
+            iviewservicestatusbyperson = callback;
+        }
+        public WardenService(Iviewservicestatusbyperson callback, ProfileI profile)
+        {
+            iviewservicestatusbyperson = callback;
+            profileI = profile;
         }
         public WardenService(ProfileI profile)
         {
@@ -278,6 +288,7 @@ namespace HMS.Services
                 UserDialogs.Instance.ShowLoading();
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("hostelId", hostelId);
                 HttpResponseMessage response = await client.GetAsync(ApplicationURL.viewrequestedservice);
                 string result = await response.Content.ReadAsStringAsync();
                 if ((int)response.StatusCode == 200)
@@ -300,6 +311,38 @@ namespace HMS.Services
             {
                 UserDialogs.Instance.HideLoading();
                 iviewrequestedservice.failer("Data is not available.");
+            }
+        }
+        public async void GetServiceStatusbyperson(string hostelId)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(ApplicationURL.BaseURL);
+                client.DefaultRequestHeaders.Add("hostelId", hostelId);
+                HttpResponseMessage response = await client.GetAsync(ApplicationURL.Servicestatusbyperson);
+                string result = await response.Content.ReadAsStringAsync();
+                if ((int)response.StatusCode == 200)
+                {
+                    ObservableCollection<ServiceStatusModel> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ServiceStatusModel>>(result);
+                    //for (int i = 0; i < parentleave.Count; i++)
+                    //{
+                    //    parentleave[i].Isbuttonvisible = false;
+                    //}
+                    UserDialogs.Instance.HideLoading();
+                    iviewservicestatusbyperson.LoadAllservicestatus(parentleave);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    iviewservicestatusbyperson.servicefailed("Data Not Found.");
+                }
+            }
+            catch
+            {
+                UserDialogs.Instance.HideLoading();
+                iviewservicestatusbyperson.servicefailed("Something went wrong.");
             }
         }
         public async void Getnewstudentdata()
@@ -452,7 +495,7 @@ namespace HMS.Services
                 await App.Current.MainPage.DisplayAlert("HMS", ex.ToString(), "OK");
             }
         }
-        public async void AssignServiceToPerson(AssignServiceModel assignServiceModel,string requestTypeId,string userId)
+        public async void AssignServiceToPerson(AssignServiceModel assignServiceModel, string requestTypeId, string userId)
         {
             UpdateAreaResponse updateAreaResponse;
             UpdateAreaErrorResponse updateAreaErrorResponse;
@@ -486,7 +529,7 @@ namespace HMS.Services
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await App.Current.MainPage.DisplayAlert("HMS","Something went wrong.", "OK");
+                await App.Current.MainPage.DisplayAlert("HMS", "Something went wrong.", "OK");
             }
         }
         public async void FeedBackOnServiceByStudent(FeedbackDetailsByStudent feedbackDetailsByStudent)
@@ -840,21 +883,24 @@ namespace HMS.Services
                 string result = await response.Content.ReadAsStringAsync();
                 if ((int)response.StatusCode == 200)
                 {
-
                     ObservableCollection<StudentLeaveHistory> leaveType = JsonConvert.DeserializeObject<ObservableCollection<StudentLeaveHistory>>(result);
-                    for (int i = 0; i < leaveType.Count; i++)
-                    {
-                        if (leaveType[i].isParentApprove.Equals("true"))
-                        {
-                            leaveType[i].Parentleavestatus = "Leave Approved";
-                        }
-                        else
-                        {
-                            leaveType[i].Parentleavestatus = "Leave Rejected";
-                        }
-                    }
                     if (leaveType.Count > 0)
                     {
+                        for (int i = 0; i < leaveType.Count; i++)
+                        {
+                            if (string.IsNullOrEmpty(leaveType[i].isParentApprove) || string.IsNullOrEmpty(leaveType[i].isParenetReject))
+                            {
+                                leaveType[i].Parentleavestatus = "Leave Pending";
+                            }
+                            else if(leaveType[i].isParentApprove.Equals("true"))
+                            {
+                                leaveType[i].Parentleavestatus = "Leave Approved";
+                            }
+                            else
+                            {
+                                leaveType[i].Parentleavestatus = "Leave Rejected";
+                            }
+                        }
                         UserDialogs.Instance.HideLoading();
                         studentleavemaster.GetStudentLeaveHistory(leaveType);
                     }
@@ -863,7 +909,6 @@ namespace HMS.Services
                         UserDialogs.Instance.HideLoading();
                         await App.Current.MainPage.DisplayAlert(" ", "Data Not found", "OK");
                     }
-
                 }
                 else
                 {
@@ -871,7 +916,7 @@ namespace HMS.Services
                     await App.Current.MainPage.DisplayAlert(" ", "Data Error", "OK");
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert(" ", "Server Error", "OK");

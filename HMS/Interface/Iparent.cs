@@ -36,6 +36,11 @@ namespace HMS.Interface
         void Loadchildleavelist(ObservableCollection<childleavehistory> childleavehistories);
         void servicefailed(string result);
     }
+    public interface Iviewchildhosteldetail
+    {
+        void LoadChildHostelDetails(ObservableCollection<ChildHostelDetailModel> childHostelDetailModels);
+        void servicefailed(string result);
+    }
     public interface iforgetpassword
     {
         void ForgetPasswordSucess(string result);

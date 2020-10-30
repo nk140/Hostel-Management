@@ -15,7 +15,7 @@
         <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
             <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbykeyword_Unfocused" PlaceholderText="Search by Student Name" TextMemberPath="stuName" DisplayMemberPath="stuName" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
         </Frame>
-        <ListView  x:Name="_listView"  ItemsSource="{Binding Studentleavedata}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  HasUnevenRows="true">
+        <ListView  x:Name="_listView"  ItemsSource="{Binding StudentLeaveHistories}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  HasUnevenRows="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
