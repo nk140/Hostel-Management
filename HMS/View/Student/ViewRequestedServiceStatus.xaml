@@ -8,7 +8,7 @@
              Title="View Service Status"
              x:Class="HMS.View.Student.ViewRequestedServiceStatus">
     <StackLayout Orientation="Vertical" Spacing="9">
-        <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding ViewRequestedServiceStatusModels}" IsVisible="{Binding Isdataavailable}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+        <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding ViewRequestedServiceStatusModels}"  VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Label WidthRequest="200" HeightRequest="40" Text="Serviced By" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
@@ -19,7 +19,7 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" BorderColor="MediumPurple" CornerRadius="20">
+                    <Frame BackgroundColor="Transparent" Padding="0,0,0,0" HorizontalOptions="FillAndExpand" IsVisible="{Binding isdataavailable}" BorderColor="MediumPurple" CornerRadius="20">
                         <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label WidthRequest="150" HeightRequest="40" Text="{Binding personName}" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>

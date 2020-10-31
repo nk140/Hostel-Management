@@ -58,6 +58,16 @@
                            TextColor="Black"
                            ReturnType="Next" />
 
+                        <Entry
+                             Placeholder="Parent Phone Number" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.parentPhoneNo}"
+                             Keyboard="Telephone"
+                            MaxLength="10"
+                           TextColor="Black"
+                           ReturnType="Next" />
+
                         <!--<Label
                             Text="Enter Email"
                             TextColor="#2D295F" 
@@ -71,7 +81,14 @@
                              Keyboard="Email"
                            TextColor="Black"
                            ReturnType="Next" />
-
+                        <Entry
+                             Placeholder="Parent Email" 
+                           FontSize="Default"
+                           PlaceholderColor="#003366" 
+                           Text="{Binding Registration.parentEmail}"
+                             Keyboard="Email"
+                           TextColor="Black"
+                           ReturnType="Next" />
                         <!--<Label
                             Text="Enter Adhar Number"
                             TextColor="#2D295F" 

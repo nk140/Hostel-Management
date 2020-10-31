@@ -21,16 +21,17 @@ namespace HMS.View.Warden
     {
         AssignServiceModel AssignServiceModel = new AssignServiceModel();
         WardenService wardenService;
-        string requesttypeids;
+        string requesttypeids, serviceissues;
         public Assignpersonpopup()
         {
             InitializeComponent();
             wardenService = new WardenService(this);
         }
-        public Assignpersonpopup(string requesttypeid)
+        public Assignpersonpopup(string serviceissue,string requesttypeid)
         {
             InitializeComponent();
             requesttypeids = requesttypeid;
+            txtjobtitle.Text = serviceissue;
             wardenService = new WardenService(this);
         }
         public void failer(string result)

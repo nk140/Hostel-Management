@@ -15,7 +15,7 @@
                 </Image.GestureRecognizers>
                 </Image>-->
         </StackLayout>
-        <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding WardModels}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+        <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding WardModels}" IsVisible="{Binding Isdataavailable}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Label WidthRequest="150" HeightRequest="40" Text="Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>

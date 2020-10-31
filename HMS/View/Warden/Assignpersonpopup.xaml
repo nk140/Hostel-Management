@@ -31,7 +31,7 @@
                 <controls:BetterEntry x:Name="txtpersonname" IsEnabled="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Service Person Name"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="2" CornerRadius="30">
-                <controls:BetterEntry x:Name="txtjobtitle" IsEnabled="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Job Title"/>
+                <controls:BetterEntry x:Name="txtjobtitle" IsEnabled="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Job Title"/>
             </Frame>
             <Frame x:Name="frmhostel" BackgroundColor="Transparent" BorderColor="DarkGoldenrod" Grid.Row="3" CornerRadius="30">
                 <controls:BetterEntry x:Name="txtpersonphoneno" Keyboard="Telephone" MaxLength="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-17" Placeholder="Contact no" IsEnabled="True" />

@@ -53,15 +53,9 @@ namespace HMS.ViewModel.Student
 
         public void LoadServicestatus(ObservableCollection<ViewRequestedServiceStatusModel> viewRequestedServiceStatusModels)
         {
-            foreach (var items in viewRequestedServiceStatusModels)
-            {
-                if (items.personName != null || items.personJob != null || items.personMobileNo!=null)
-                {
-                    Isdataavailable = true;
-                    ViewRequestedServiceStatusModels = viewRequestedServiceStatusModels;
-                    OnPropertyChanged("ViewRequestedServiceStatusModels");
-                }
-            }
+            ViewRequestedServiceStatusModels = viewRequestedServiceStatusModels;
+            OnPropertyChanged("ViewRequestedServiceStatusModels");
+
         }
         public async void OnTapCommand(ViewRequestedServiceStatusModel obj)
         {

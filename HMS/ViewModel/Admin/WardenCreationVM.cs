@@ -308,12 +308,6 @@ namespace HMS.ViewModel.Admin
             OnPropertyChanged("GenderVisible");
             OnPropertyChanged("Warden");
         }
-
-        public async Task ServiceFaild()
-        {
-            await App.Current.MainPage.DisplayAlert("HMS", "Something Went wrong.", "OK");
-        }
-
         public async Task GetAllRole(ObservableCollection<RoleModel> role_)
         {
             Role = new ObservableCollection<RoleModel>();
@@ -341,6 +335,11 @@ namespace HMS.ViewModel.Admin
             IsCheck1 = true;
             OnPropertyChanged("Warden");
             OnPropertyChanged("ConfirmPassword");
+        }
+
+        public async void ServiceFaild(string result)
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", "Username already exists try different username", "OK");
         }
     }
 }

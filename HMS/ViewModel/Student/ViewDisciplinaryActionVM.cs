@@ -234,7 +234,7 @@ namespace HMS.ViewModel.Student
             OnPropertyChanged("UpdateDisciplinaryActionbywarden");
         }
     }
-    public class ViewStudentDisciplinaryActionVM : BaseViewModel, ViewDisciplinaryActionTaken
+    public class ViewStudentDisciplinaryActionVM : BaseViewModel, ViewDisciplinaryActionTaken,ProfileI
     {
         public StudentService studentService;
         private ObservableCollection<StudentModel> studentModels = new ObservableCollection<StudentModel>();
@@ -250,6 +250,19 @@ namespace HMS.ViewModel.Student
             {
                 studentModels = value;
                 OnPropertyChanged("StudentModels");
+            }
+        }
+        private ObservableCollection<StudentProfileModel> studentProfiles = new ObservableCollection<StudentProfileModel>();
+        public ObservableCollection<StudentProfileModel> StudentProfileModels
+        {
+            get
+            {
+                return studentProfiles;
+            }
+            set
+            {
+                studentProfiles = value;
+                OnPropertyChanged("StudentProfileModels");
             }
         }
         private ObservableCollection<StudentDisciplinaryDetails> studentProfile = new ObservableCollection<StudentDisciplinaryDetails>();
@@ -280,8 +293,8 @@ namespace HMS.ViewModel.Student
         }
         public ViewStudentDisciplinaryActionVM()
         {
-            studentService = new StudentService(this);
-            studentService.GetDisciplinaryDetails(App.userid);
+            studentService = new StudentService((ProfileI)this,(ViewDisciplinaryActionTaken)this);
+            studentService.GetProfiile(App.userid);
             //StudentModels.Add(new StudentModel
             //{
             //    wardenDisciplinaryId = SecureStorage.GetAsync("wardenDisciplinaryId").GetAwaiter().GetResult(),
@@ -293,6 +306,10 @@ namespace HMS.ViewModel.Student
             //});
             //if (string.IsNullOrEmpty(StudentModels[0].applicationNo) || StudentModels[0].applicationNo.Length == 0)
             //    App.Current.MainPage.DisplayAlert("HMS", "Seems you haven't done hostel admission", "OK");
+        }
+        public void GetDisciplinarylist(string wardenid)
+        {
+            studentService.GetDisciplinaryDetails(wardenid, App.userid);
         }
         public ICommand ViewCommand => new Command<StudentDisciplinaryDetails>(OnViewCommand);
         public ICommand TapCommand => new Command<StudentDisciplinaryDetails>(OnTapCommand);
@@ -352,6 +369,27 @@ namespace HMS.ViewModel.Student
         {
             App.Current.MainPage.DisplayAlert("HMS", result, "OK");
         }
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
+        {
+            StudentProfileModels = profiles;
+            OnPropertyChanged("StudentProfileModels");
+        }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+           
+        }
+
+        public async Task ServiceFaild()
+        {
+            //await App.Current.MainPage.DisplayAlert("HMS", "You have no disciplinary action from the searched warden", "OK");
+        }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class ViewWardDisciplinaryActionVM : BaseViewModel, Iviewchildhosteldetail
     {
@@ -369,6 +407,19 @@ namespace HMS.ViewModel.Student
             {
                 wardmodels = value;
                 OnPropertyChanged("WardModels");
+            }
+        }
+        private bool isdataavailable;
+        public bool Isdataavailable
+        {
+            get
+            {
+                return isdataavailable;
+            }
+            set
+            {
+                isdataavailable = value;
+                OnPropertyChanged("Isdataavailable");
             }
         }
         public ViewWardDisciplinaryActionVM()
@@ -422,8 +473,10 @@ namespace HMS.ViewModel.Student
 
         public void LoadChildHostelDetails(ObservableCollection<ChildHostelDetailModel> childHostelDetailModels)
         {
+            Isdataavailable = true;
             WardModels = childHostelDetailModels;
             OnPropertyChanged("WardModels");
+            OnPropertyChanged("Isdataavailable");
         }
 
         public void servicefailed(string result)

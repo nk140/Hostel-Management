@@ -49,9 +49,8 @@ namespace HMS.ViewModel.Admin
         }
         public async Task ServiceFaild(string result)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+            await App.Current.MainPage.DisplayAlert("HMS","Invalid Room type(Room type eg:-1 sharing,2 sharing)", "OK");
         }
-
         public async Task PostRoomTypeSuccess(string result)
         {
             await App.Current.MainPage.DisplayAlert("", result, "OK");

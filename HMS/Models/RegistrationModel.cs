@@ -7,19 +7,20 @@ namespace HMS.Models
         public string studentName { get; set; }
         public string address { get; set; }
         public string email { get; set; }
+        public string parentEmail { get; set; }
         public string phoneNo { get; set; }
         public string userName { get; set; }
         public string password { get; set; }
         public string adharNo { get; set; }
+        public string parentPhoneNo { get; set; }
     }
     public class ParentRegistration
     {
         public string parentName { get; set; } //
         public string address { get; set; } //
         public string email { get; set; } //
-        public string phoneNo { get; set; } //
+        public string parentPhoneNo { get; set; } //
         public string aadharNo { get; set; } //
-        public string studentAadharNo { get; set; }
         public string userName { get; set; } //
         public string password { get; set; } //
     }

@@ -114,7 +114,7 @@ namespace HMS.Services
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                iviewchildhosteldetail.servicefailed("Something went wrong in data");
+                iviewchildhosteldetail.servicefailed("It seems Your child is not done anything in wrong");
             }
         }
         public async void SaveParentDetail(ParentRegistration model)

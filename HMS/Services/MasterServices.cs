@@ -2196,12 +2196,12 @@ namespace HMS.Services
                 }
                 else
                 {
-                    await wardenCallback.ServiceFaild();
+                    wardenCallback.ServiceFaild("No Data Found");
                 }
             }
             catch (Exception ex)
             {
-                await wardenCallback.ServiceFaild();
+                wardenCallback.ServiceFaild("Something went wrong");
             }
         }
         public async void SaveWarden(WardenModel model)
@@ -2213,6 +2213,7 @@ namespace HMS.Services
                 UserDialogs.Instance.ShowLoading();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
                 WardenResponse wardenResponse;
+                Wardenerrorresponse wardenerrorresponse;
                 // string json = @"{""hostelId"" : """ + hostelId + @""",""bedNo"" : """ + bedNo + @"""}";
                 model.lastName = "";
                 model.permanent_address_line_2 = "";
@@ -2238,13 +2239,15 @@ namespace HMS.Services
                 else
                 {
                     UserDialogs.Instance.HideLoading();
-                    await wardenCallback.ServiceFaild();
+                    string resultHostel = await response.Content.ReadAsStringAsync();
+                    wardenerrorresponse = JsonConvert.DeserializeObject<Wardenerrorresponse>(resultHostel);
+                    wardenCallback.ServiceFaild(wardenerrorresponse.errors[0].message);
                 }
             }
             catch (Exception e)
             {
                 UserDialogs.Instance.HideLoading();
-                await wardenCallback.ServiceFaild();
+                wardenCallback.ServiceFaild("Something went wrong");
             }
         }
 

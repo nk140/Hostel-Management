@@ -14,6 +14,9 @@
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                 </Image.GestureRecognizers>
                 </Image>-->
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand"  BorderColor="Black">
+                <forms:AutoSuggestBox x:Name="txtsearchbywarden" HorizontalOptions="FillAndExpand" TextMemberPath="wardenName" DisplayMemberPath="wardenName" PlaceholderText="Search by  Warden name"  Margin="-17" TextChanged="txtsearchbywarden_TextChanged" SuggestionChosen="txtsearchbywarden_SuggestionChosen"/>
+            </Frame>
         </StackLayout>
         <CollectionView x:Name="lstdisciplinaryaction" ItemsSource="{Binding StudentProfileModel}" IsVisible="{Binding Isdataavailable}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
             <CollectionView.Header>

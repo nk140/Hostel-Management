@@ -50,7 +50,27 @@ namespace HMS.ViewModel.Student
                 App.Current.MainPage.DisplayAlert("", "Enter Phone Number", "OK");
                 return false;
             }
+            else if(Registration.phoneNo.StartsWith("1")|| Registration.phoneNo.StartsWith("2")|| Registration.phoneNo.StartsWith("3") || Registration.phoneNo.StartsWith("4") || Registration.phoneNo.StartsWith("5"))
+            {
+                App.Current.MainPage.DisplayAlert("", "Enter Valid Phone Number", "OK");
+                return false;
+            }
             else if(Registration.phoneNo.Length!=10)
+            {
+                App.Current.MainPage.DisplayAlert("", "Enter 10 digit mobile no", "OK");
+                return false;
+            }
+            else if (Registration.parentPhoneNo == null || Registration.parentPhoneNo.ToString().Trim().Length == 0)
+            {
+                App.Current.MainPage.DisplayAlert("", "Enter Parent Phone Number", "OK");
+                return false;
+            }
+            else if (Registration.parentPhoneNo.StartsWith("1") || Registration.parentPhoneNo.StartsWith("2") || Registration.parentPhoneNo.StartsWith("3") || Registration.parentPhoneNo.StartsWith("4") || Registration.parentPhoneNo.StartsWith("5"))
+            {
+                App.Current.MainPage.DisplayAlert("", "Enter Valid Parent Phone Number", "OK");
+                return false;
+            }
+            else if (Registration.parentPhoneNo.Length != 10)
             {
                 App.Current.MainPage.DisplayAlert("", "Enter 10 digit mobile no", "OK");
                 return false;
@@ -63,6 +83,16 @@ namespace HMS.ViewModel.Student
             else if(emailRegx.IsMatch(Registration.email)==false)
             {
                 App.Current.MainPage.DisplayAlert("", "Enter Valid Emaiil Id", "OK");
+                return false;
+            }
+            else if (Registration.parentEmail == null || Registration.parentEmail.ToString().Trim().Length == 0)
+            {
+                App.Current.MainPage.DisplayAlert("", "Enter parent Emaiil Id", "OK");
+                return false;
+            }
+            else if (emailRegx.IsMatch(Registration.parentEmail) == false)
+            {
+                App.Current.MainPage.DisplayAlert("", "Enter Valid parent Emaiil Id", "OK");
                 return false;
             }
             else if (Registration.adharNo == null || Registration.adharNo.ToString().Trim().Length == 0)
@@ -110,14 +140,7 @@ namespace HMS.ViewModel.Student
 
         public async void RegistrationSuccess(string result)
         {
-            Registration.studentName = string.Empty;
-            Registration.password = string.Empty;
-            ConfirmPassword = string.Empty;
-            Registration.userName = string.Empty;
-            Registration.address = string.Empty;
-            Registration.phoneNo = string.Empty;
-            Registration.email = string.Empty;
-            Registration.adharNo = string.Empty;
+            Registration = new RegistrationModel();
             await App.Current.MainPage.DisplayAlert("HMS",result, "OK");
             OnPropertyChanged("Registration");
             OnPropertyChanged("ConfirmPassword");

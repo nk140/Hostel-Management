@@ -84,16 +84,6 @@ namespace HMS.ViewModel.Parent
                 App.Current.MainPage.DisplayAlert("HMS", "Enter 12 digit aadhar no", "OK");
                 return false;
             }
-            else if (string.IsNullOrEmpty(ParentRegistrations.studentAadharNo) || ParentRegistrations.studentAadharNo.Length == 0)
-            {
-                App.Current.MainPage.DisplayAlert("HMS", "Enter Student Aaadhar no", "OK");
-                return false;
-            }
-            else if (ParentRegistrations.studentAadharNo.Length != 12)
-            {
-                App.Current.MainPage.DisplayAlert("HMS", "Enter 12 digit aadhar no", "OK");
-                return false;
-            }
             else if (ParentRegistrations.address.Length == 0 || string.IsNullOrEmpty(ParentRegistrations.address))
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Enter Address", "OK");
@@ -109,12 +99,17 @@ namespace HMS.ViewModel.Parent
                 App.Current.MainPage.DisplayAlert("HMS", "Enter valid email address", "OK");
                 return false;
             }
-            else if (ParentRegistrations.phoneNo.Length == 0 || string.IsNullOrEmpty(ParentRegistrations.phoneNo))
+            else if (ParentRegistrations.parentPhoneNo.Length == 0 || string.IsNullOrEmpty(ParentRegistrations.parentPhoneNo))
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Enter phone no", "OK");
                 return false;
             }
-            else if (parentRegistrations.phoneNo.Length != 10)
+            else if (ParentRegistrations.parentPhoneNo.StartsWith("1") || ParentRegistrations.parentPhoneNo.StartsWith("2") || ParentRegistrations.parentPhoneNo.StartsWith("3") || ParentRegistrations.parentPhoneNo.StartsWith("4") || ParentRegistrations.parentPhoneNo.StartsWith("5"))
+            {
+                App.Current.MainPage.DisplayAlert("", "Enter Valid Phone Number", "OK");
+                return false;
+            }
+            else if (parentRegistrations.parentPhoneNo.Length != 10)
             {
                 App.Current.MainPage.DisplayAlert("HMS", "Enter 10 digit phone no", "OK");
                 return false;

@@ -46,6 +46,11 @@ namespace HMS.Services
         {
             disciplinaryActionTaken = callback;
         }
+        public StudentService(ProfileI profile, ViewDisciplinaryActionTaken callback)
+        {
+            profileCallback = profile;
+            disciplinaryActionTaken = callback;
+        }
         public StudentService(Iviewservicestatus callback)
         {
             iviewservicestatus = callback;
@@ -204,8 +209,12 @@ namespace HMS.Services
                         {
                             items.WorkStatus = "Pending";
                         }
-                        UserDialogs.Instance.HideLoading();
-                        iviewservicestatus.LoadServicestatus(profile);
+                        if (!string.IsNullOrEmpty(items.personJob) || !string.IsNullOrEmpty(items.personName) || !string.IsNullOrEmpty(items.personMobileNo))
+                        {
+                            UserDialogs.Instance.HideLoading();
+                            items.isdataavailable = true;
+                            iviewservicestatus.LoadServicestatus(profile);
+                        }
                     }
                 }
                 else
@@ -222,7 +231,7 @@ namespace HMS.Services
 
             //return response;
         }
-        public async void GetDisciplinaryDetails(string studentId)
+        public async void GetDisciplinaryDetails(string userId, string studentId)
         {
             try
             {
@@ -231,7 +240,7 @@ namespace HMS.Services
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(ApplicationURL.BaseURL);
                 client.DefaultRequestHeaders.Add("studentId", studentId);
-
+                client.DefaultRequestHeaders.Add("userId", userId);
                 HttpResponseMessage response = await client.GetAsync(ApplicationURL.StudentDisciplinaryList);
                 string result = await response.Content.ReadAsStringAsync();
                 if ((int)response.StatusCode == 200)
@@ -258,7 +267,7 @@ namespace HMS.Services
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                disciplinaryActionTaken.servicefailed("Seems that you didn't done anything wrong in the hostel");
+                disciplinaryActionTaken.servicefailed("You have no disciplinary action from the searched warden");
             }
 
             //return response;
@@ -728,7 +737,7 @@ namespace HMS.Services
                                 items.leavestatus = "Leave Approved";
                                 items.isrejectreasonavaialble = false;
                             }
-                            else if(items.wardenApproved.Equals("false") || items.wardenReject.Equals("false"))
+                            else if (items.wardenApproved.Equals("false") || items.wardenReject.Equals("false"))
                             {
                                 items.leavestatus = "Leave Pending";
                                 items.isrejectreasonavaialble = false;
@@ -1086,11 +1095,10 @@ namespace HMS.Services
                     roomErrorTypeResponse = JsonConvert.DeserializeObject<RoomErrorTypeResponse>(resultHostel);
                     await roomTypeCallback.ServiceFaild(roomErrorTypeResponse.errors[0].message);
                 }
-
             }
             catch (Exception e)
             {
-                await roomTypeCallback.ServiceFaild(e.ToString());
+                await roomTypeCallback.ServiceFaild("Something went wrong");
             }
         }
 

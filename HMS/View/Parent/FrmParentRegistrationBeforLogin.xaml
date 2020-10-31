@@ -19,7 +19,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Frame BackgroundColor="Transparent"  BorderColor="Black" CornerRadius="30" Grid.Row="0">
                 <controls:BetterEntry x:Name="txtparentname" Text="{Binding ParentRegistrations.parentName}" TextColor="Black" Margin="-17" Placeholder="Enter the parent name"/>
@@ -31,25 +30,22 @@
                 <controls:BetterEntry Text="{Binding ParentRegistrations.email}" TextColor="Black" Margin="-17" Placeholder="Enter the email"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="3">
-                <controls:BetterEntry Text="{Binding ParentRegistrations.phoneNo}" Keyboard="Telephone" MaxLength="10" TextColor="Black" Margin="-17" Placeholder="Enter the Phone no"/>
+                <controls:BetterEntry Text="{Binding ParentRegistrations.parentPhoneNo}" Keyboard="Telephone" MaxLength="10" TextColor="Black" Margin="-17" Placeholder="Enter the Phone no"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
                 <controls:BetterEntry Text="{Binding ParentRegistrations.aadharNo}" Keyboard="Numeric" MaxLength="12" TextColor="Black" Margin="-17" Placeholder="Enter the Aaadhar no"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="5">
-                <controls:BetterEntry Text="{Binding ParentRegistrations.studentAadharNo}" Keyboard="Numeric" MaxLength="12" TextColor="Black" Margin="-17" Placeholder="Enter the Student Aaadhar no"/>
-            </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="6">
                 <controls:BetterEntry Text="{Binding ParentRegistrations.userName}" Keyboard="Text" Margin="-17" TextColor="Black" Placeholder="Enter the Username"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="7">
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="6">
                 <controls:BetterEntry Text="{Binding ParentRegistrations.password}" IsPassword="True" TextColor="Black" Margin="-17" Placeholder="Enter the Password"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="8">
+            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="7">
                 <controls:BetterEntry Text="{Binding Cnfpassword}" TextColor="Black" Margin="-17" Placeholder="Confirm Password"/>
             </Frame>
-            <Button x:Name="Btnregister" CornerRadius="30" Grid.Row="9" Command="{Binding SaveCommands}" Text="Register" BackgroundColor="#e96125" TextColor="White"/>
-            <Button x:Name="Btnbacklogin" Clicked="Btnbacklogin_Clicked" CornerRadius="30" Grid.Row="10" Text=" Back To Login" BackgroundColor="#e96125" TextColor="White"/>
+            <Button x:Name="Btnregister" CornerRadius="30" Grid.Row="8" Command="{Binding SaveCommands}" Text="Register" BackgroundColor="#e96125" TextColor="White"/>
+            <Button x:Name="Btnbacklogin" Clicked="Btnbacklogin_Clicked" CornerRadius="30" Grid.Row="9" Text=" Back To Login" BackgroundColor="#e96125" TextColor="White"/>
         </Grid>
     </ScrollView>
 </ContentPage>

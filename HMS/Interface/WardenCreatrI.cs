@@ -7,7 +7,7 @@ namespace HMS.Interface
 {
     public interface WardenCreatrI
     {
-        Task ServiceFaild();
+        void ServiceFaild(string result);
 
         Task GetAllRole(ObservableCollection<RoleModel> role_);
 

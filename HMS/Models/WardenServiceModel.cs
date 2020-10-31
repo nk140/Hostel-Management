@@ -49,6 +49,7 @@ namespace HMS.Models
         [JsonIgnore]
         public bool isbuttonvisible { get; set; }
         public string WorkStatus { get; set; }
+        public bool isdataavailable { get; set; }
     }
     public class RequestServiceModel
     {

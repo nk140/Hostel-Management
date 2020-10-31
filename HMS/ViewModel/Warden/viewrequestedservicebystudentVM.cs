@@ -67,7 +67,7 @@ namespace HMS.ViewModel.Warden
         }
         public async void OnServicePersonCommand(ViewRequestedServiceModel obj)
         {
-            await App.Current.MainPage.Navigation.PushPopupAsync(new Assignpersonpopup(obj.serviceTypeId), true);
+            await App.Current.MainPage.Navigation.PushPopupAsync(new Assignpersonpopup(obj.serviceTypeName,obj.serviceTypeId), true);
         }
         public async void OnTapCommand(ViewRequestedServiceModel obj)
         {
