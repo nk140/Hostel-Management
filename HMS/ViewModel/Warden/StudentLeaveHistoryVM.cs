@@ -180,7 +180,6 @@ namespace HMS.ViewModel.Warden
         public async void approved(string result)
         {
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
-            wardenService.GetWardLeave(studentids);
         }
 
         public async void failer(string result)
