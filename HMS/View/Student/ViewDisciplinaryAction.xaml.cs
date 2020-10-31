@@ -64,8 +64,8 @@ namespace HMS.View.Student
         private void txtsearchbywarden_SuggestionChosen(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             txtsearchbywarden.Text = ((StudentProfileModel)e.SelectedItem).wardenName;
-            //var id = ((StudentProfileModel)e.SelectedItem).wardenId;
-           // vm.GetDisciplinarylist(id);
+            var id = ((StudentProfileModel)e.SelectedItem).userId;
+            vm.GetDisciplinarylist(id);
         }
     }
 }

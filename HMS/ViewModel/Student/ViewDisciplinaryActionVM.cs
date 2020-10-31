@@ -394,6 +394,7 @@ namespace HMS.ViewModel.Student
     public class ViewWardDisciplinaryActionVM : BaseViewModel, Iviewchildhosteldetail
     {
         ParentService parent;
+        StudentService studentService;
         private ObservableCollection<ChildHostelDetailModel> wardmodels = new ObservableCollection<ChildHostelDetailModel>();
         private ChildHostelDetailModel _OldDisciplinaryData;
 
@@ -425,7 +426,9 @@ namespace HMS.ViewModel.Student
         public ViewWardDisciplinaryActionVM()
         {
             parent = new ParentService(this);
+            //studentService = new StudentService(this);
             string studentid = SecureStorage.GetAsync("studentId").GetAwaiter().GetResult();
+            //studentService.GetProfiile(studentid);
             parent.GetChildHostelData(studentid);
         }
         public ICommand ViewCommand => new Command<ChildHostelDetailModel>(OnViewCommand);
@@ -482,6 +485,27 @@ namespace HMS.ViewModel.Student
         public void servicefailed(string result)
         {
             App.Current.MainPage.DisplayAlert("HMS", result, "OK");
+        }
+
+        public void LoadStudentProfile(ObservableCollection<StudentProfileModel> profiles)
+        {
+            //StudentProfileModels = profiles;
+            //OnPropertyChanged("StudentProfileModels");
+        }
+
+        public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task ServiceFaild()
+        {
+            await App.Current.MainPage.DisplayAlert("HMS", "No warden", "OK");
+        }
+
+        public void UpdatedSucessfully(string result)
+        {
+            throw new NotImplementedException();
         }
     }
 }

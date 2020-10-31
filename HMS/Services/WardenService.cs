@@ -164,7 +164,11 @@ namespace HMS.Services
                     ObservableCollection<ParentStudentLeaveStatus> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ParentStudentLeaveStatus>>(result);
                     foreach (var items in parentleave)
                     {
-                        if (items.isParentApproved.Equals("true"))
+                        if(string.IsNullOrEmpty(items.isParentApproved))
+                        {
+                           
+                        }
+                        else if (items.isParentApproved.Equals("true"))
                         {
                             items.ParentStatus = "Leave Approved";
                         }

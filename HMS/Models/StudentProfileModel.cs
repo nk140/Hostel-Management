@@ -8,6 +8,7 @@ namespace HMS.Models
         public string wardenHostelId { get; set; }
         public string hostelAdmissionId { get; set; }
         public string wardenName { get; set; }
+        public string userId { get; set; }
         public string wardenPhoneNo { get; set; }
         public string studentPhoneNo { get; set; }
         public string studentName { get; set; }

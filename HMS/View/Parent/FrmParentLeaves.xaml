@@ -28,13 +28,13 @@
                         </SwipeView.RightItems>-->
                     <Frame VerticalOptions="FillAndExpand" BorderColor="DarkBlue" Margin="20,25,20,10" CornerRadius="20">
                         <StackLayout Orientation="Vertical">
-                            <StackLayout Orientation="Horizontal" Spacing="3">
-                                <Label Text="Reason:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                <Label Text="{Binding reason}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <Label Text="Reason:-" FontFamily="{StaticResource BoldFont}" LineBreakMode="CharacterWrap" MaxLines="2" FontSize="20"/>
+                                <Label Text="{Binding reason}" LineBreakMode="CharacterWrap"  FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                             </StackLayout>
-                            <StackLayout Orientation="Horizontal" Spacing="3">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
                                 <Label Text="Remark:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                <Label Text="{Binding reason}" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                <Label Text="{Binding reason}" LineBreakMode="CharacterWrap" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal" Spacing="3">
                                 <Label Text="FromDate:-" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
