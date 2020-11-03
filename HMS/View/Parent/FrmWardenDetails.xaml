@@ -8,34 +8,34 @@
              Title="Warden Details"
              x:Class="HMS.View.Parrent.FrmWardenDetails">
     <StackLayout Orientation="Vertical">
-        <Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
+        <!--<Frame CornerRadius="35" Margin="17,15,20,10" HeightRequest="35" WidthRequest="50">
             <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbykeyword_Unfocused" PlaceholderText="Search by Warden name" TextMemberPath="firstName" DisplayMemberPath="firstName" Margin="-7" TextChanged="txtsearchbykeyword_TextChanged" SuggestionChosen="txtsearchbykeyword_SuggestionChosen"/>
-        </Frame>
+        </Frame>-->
         <ListView  x:Name="_listView"  ItemsSource="{Binding WardenInfoModels}" SelectionMode="None" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  HasUnevenRows="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Frame VerticalOptions="FillAndExpand" BorderColor="DarkBlue" Margin="20,10,20,10" CornerRadius="30">
                             <StackLayout  Orientation="Vertical">
-                                <Label Text="{Binding wardenName}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
-                                <Label Text="{Binding wardenPhoneNo}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
+                                <Label Text="{Binding wardenName}" FontFamily="{StaticResource BoldFont}" FontSize="25"/>
+                                <Label Text="{Binding wardenPhoneNo}" FontFamily="{StaticResource BoldFont}" FontSize="25"/>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" Margin="10">
                                     <StackLayout>
-                                        <Image Source="phone.png" WidthRequest="30"/>
+                                        <Image Source="phone.png" WidthRequest="35"/>
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" 
                                                             Command="{Binding BindingContext.CallCommand, Source={x:Reference wardencontact}}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout Margin="10,0,0,0">
-                                        <Image Source="messenging.png" WidthRequest="30"/>
+                                        <Image Source="messenging.png" WidthRequest="35"/>
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" 
                                                             Command="{Binding BindingContext.MessageCommand, Source={x:Reference wardencontact}}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <StackLayout Margin="17,0,0,0">
-                                        <Image Source="whatsappmessenger.png" WidthRequest="30" />
+                                        <Image Source="whatsappmessenger.png" WidthRequest="35" />
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" 
                                                             Command="{Binding BindingContext.WhatsappCommand, Source={x:Reference wardencontact}}" CommandParameter="{Binding .}" />

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace HMS.Models
 {
@@ -14,6 +15,8 @@ namespace HMS.Models
         public string isParentApproved { get; set; }
         [JsonIgnore]
         public string ParentStatus { get; set; }
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
     }
     public class ChildHostelDetailModel
     {

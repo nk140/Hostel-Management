@@ -164,6 +164,12 @@ namespace HMS.Services
                     ObservableCollection<ParentStudentLeaveStatus> parentleave = JsonConvert.DeserializeObject<ObservableCollection<ParentStudentLeaveStatus>>(result);
                     foreach (var items in parentleave)
                     {
+                        items.FromDate = Convert.ToDateTime(items.fromDate);
+                        string frmdays = items.FromDate.ToString("dd-MMM-yyyy h:mm tt");
+                        items.fromDate = frmdays;
+                        items.ToDate = Convert.ToDateTime(items.toDate);
+                        string todays = items.ToDate.ToString("dd-MMM-yyyy");
+                        items.toDate = todays;
                         if(string.IsNullOrEmpty(items.isParentApproved))
                         {
                            
