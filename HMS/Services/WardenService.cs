@@ -282,7 +282,7 @@ namespace HMS.Services
             catch
             {
                 UserDialogs.Instance.HideLoading();
-                await App.Current.MainPage.DisplayAlert("", "Server Error.", "OK");
+                iviewDisciplinaryActionTaken.servicefailed("No Data.");
             }
         }
         public async void GetAllrequestservicebystudent(string hostelId)

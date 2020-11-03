@@ -5,14 +5,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
              mc:Ignorable="d"
-             Title="Disciplinary Type"
              x:Class="HMS.View.Admin.Disciplinary">
     <ContentPage.BindingContext>
         <vm:DisciplinaryTypeVM></vm:DisciplinaryTypeVM>
     </ContentPage.BindingContext>
     <AbsoluteLayout>
-        <Label Text="Create Disciplinary" TextColor="Black" FontSize="25" HorizontalTextAlignment="Center"/>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.42,0.06,0.79,0.08">
+        <Label Text="Create Disciplinary Type" TextColor="Black" FontSize="25" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.67,0.02,0.79,0.08"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.42,0.12,0.79,0.08">
             <controls:BetterEntry Placeholder="Enter Disciplinary Type" Text="{Binding DisciplinaryReason}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="-17"/>
         </Frame>
         <Button Text="Save" x:Name="btndisciplinarytype" TextColor="White" BackgroundColor="#e96125" CornerRadius="30" Command="{Binding SaveCommands}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.46,0.25,0.58,0.08"/>

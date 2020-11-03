@@ -31,19 +31,19 @@ namespace HMS.ViewModel.Student
                 OnPropertyChanged("DisciplinaryActionbywardens");
             }
         }
-        private bool isbuttonvisible;
+        private bool isrecordavailable;
         private ViewDisciplinaryActionbywarden _OldDisciplinaryData;
 
-        public bool Isbuttonvisible
+        public bool IsRecordAvailable
         {
             get
             {
-                return isbuttonvisible;
+                return isrecordavailable;
             }
             set
             {
-                isbuttonvisible = value;
-                OnPropertyChanged("Isbuttonvisible");
+                isrecordavailable = value;
+                OnPropertyChanged("IsRecordAvailable");
             }
         }
         public ViewDisciplinaryActionVM()
@@ -117,6 +117,7 @@ namespace HMS.ViewModel.Student
 
         public async void LoadTakenDisciplinaryAction(ObservableCollection<ViewDisciplinaryActionbywarden> disciplinaryActionbywardens)
         {
+            IsRecordAvailable = true;
             DisciplinaryActionbywardens = disciplinaryActionbywardens;
             OnPropertyChanged("DisciplinaryActionbywardens");
         }

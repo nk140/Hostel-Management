@@ -9,13 +9,13 @@
              x:Class="HMS.View.Admin.ViewDisciplinaryAction">
     <StackLayout Orientation="Vertical" Spacing="9">
         <StackLayout Orientation="Horizontal" Margin="10">
-            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsRecordAvailable}">
                 <forms:AutoSuggestBox x:Name="txtsearchbystudentname" HorizontalOptions="FillAndExpand" Unfocused="txtsearchbystudentname_Unfocused" TextMemberPath="studentName" DisplayMemberPath="studentName" PlaceholderText="Search from Student name" TextChanged="txtsearchbystudentname_TextChanged" SuggestionChosen="txtsearchbystudentname_SuggestionChosen"  Margin="-17"/>
             </Frame>
             <!--<Image Source="filter.png" HeightRequest="30" WidthRequest="30"/>-->
         </StackLayout>
         <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
-            <CollectionView x:Name="arealist" ItemsSource="{Binding DisciplinaryActionbywardens}"  VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
+            <CollectionView x:Name="arealist" ItemsSource="{Binding DisciplinaryActionbywardens}" IsVisible="{Binding IsRecordAvailable}" VerticalScrollBarVisibility="Never"   VerticalOptions="FillAndExpand">
                 <CollectionView.Header>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <Label WidthRequest="150" HeightRequest="40" Text="Name" TextColor="Black" FontAttributes="Bold"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
