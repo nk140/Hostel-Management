@@ -112,6 +112,7 @@ namespace HMS.ViewModel.Student
         public async void servicefailed(string result)
         {
             DisciplinaryActionbywardens.Clear();
+            await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
             OnPropertyChanged("DisciplinaryActionbywardens");
         }
 

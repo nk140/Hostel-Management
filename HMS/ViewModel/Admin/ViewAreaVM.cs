@@ -544,7 +544,7 @@ namespace HMS.ViewModel.Admin
 
         public async Task ServiceFailed(int index)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", "No Hostel Found", "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", "No Block Found", "OK");
         }
 
         public void NoListFound(string result)
@@ -907,7 +907,7 @@ namespace HMS.ViewModel.Admin
 
         public async Task ServiceFailed(int index)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", "No hostel found.", "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", "No Block found.", "OK");
         }
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
@@ -1121,7 +1121,7 @@ namespace HMS.ViewModel.Admin
 
         public async Task ServiceFailed(int index)
         {
-            await App.Current.MainPage.DisplayAlert("HMS", "No hostel found.", "OK");
+            await App.Current.MainPage.DisplayAlert("HMS", "No Block found.", "OK");
         }
 
         public async void LoadRoomList(ObservableCollection<RoomNameList> roomLists)
