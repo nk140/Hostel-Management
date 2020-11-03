@@ -42,7 +42,7 @@ namespace HMS.ViewModel.Student
             set
             {
                 phoneno = value;
-                OnPropertyChanged();
+                OnPropertyChanged("Phoneno");
             }
         }
         public string Email
@@ -166,9 +166,9 @@ namespace HMS.ViewModel.Student
 
         public async void UpdatedSucessfully(string result)
         {
-            phoneno = string.Empty;
+            Phoneno = string.Empty;
             await App.Current.MainPage.DisplayAlert("HMS", result, "OK");
-            OnPropertyChanged();
+            OnPropertyChanged("Phoneno");
         }
 
         public void Loadwardenprofile(ObservableCollection<WardenProfileModel> wardenProfileModels)

@@ -53,7 +53,7 @@ namespace HMS.ViewModel.Student
         }
         public void GetAllDiscpAction()
         {
-            wardenService.GetAllDisciplinaryAction();
+           // wardenService.GetAllDisciplinaryAction();
         }
         public ICommand EditCommand => new Command<ViewDisciplinaryActionbywarden>(OnEditCommand);
         public ICommand ViewCommand => new Command<ViewDisciplinaryActionbywarden>(OnViewCommand);
