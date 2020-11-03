@@ -6,9 +6,9 @@
     <ContentPage.Content>
         <StackLayout
             Orientation="Vertical"
-            Margin="20,40,20,0" Spacing="16">
+            Margin="10,40,20,0" Spacing="16">
 
-            <Label Text="Create Facility" TextColor="Black" FontSize="25"/>
+            <Label Text="Create Facility" TextColor="Black" HorizontalTextAlignment="Center"  FontSize="25"/>
             <Frame BackgroundColor="Transparent" CornerRadius="30" BorderColor="black">
                 <Controls:BetterEntry
                     Placeholder="Enter Facility"
