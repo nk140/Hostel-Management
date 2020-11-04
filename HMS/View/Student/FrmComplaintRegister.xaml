@@ -7,13 +7,23 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="0">
-            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by complain type" TextMemberPath="name" DisplayMemberPath="name" Margin="-17"/>
+            <controls:CustomPicker Title="Select complain for whom" TitleColor="Black" x:Name="ddcomplaintype">
+                <controls:CustomPicker.Items>
+                    <x:String>"Hostel Staff"</x:String>
+                    <x:String>"Rommate"</x:String>
+                    <x:String>"Room Cleaner Staff"</x:String>
+                </controls:CustomPicker.Items>
+            </controls:CustomPicker>   
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="1">
+            <forms:AutoSuggestBox x:Name="txtsearchbykeyword" HorizontalOptions="FillAndExpand"  PlaceholderText="Search by complain type" TextMemberPath="name" DisplayMemberPath="name" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="2">
             <controls:BetterEntry Placeholder="Enter Complain Description" FontSize="Default" PlaceholderColor="#003366" TextColor="Black" Margin="-17"/>
         </Frame>
-        <Button Text="Register Complain" BackgroundColor="#e96125" TextColor="White" CornerRadius="30" Grid.Row="2"/>
+        <Button Text="Register Complain" BackgroundColor="#e96125" TextColor="White" CornerRadius="30" Grid.Row="3"/>
     </Grid>
 </ContentPage>
