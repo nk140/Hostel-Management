@@ -158,6 +158,9 @@
     <EmbeddedResource Update="View\Admin\ServiceCategoryMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\Admin\UpdateAvailableandReservedRooms.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\Admin\UploadImageAndVideo.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

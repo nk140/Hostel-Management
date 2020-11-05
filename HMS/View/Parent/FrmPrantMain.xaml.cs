@@ -30,6 +30,7 @@ namespace HMS.View.Parrent
                 //new ParentMenuItem {Title="Roomates",TargetType=typeof(FrmParentRoomates)},
                 new ParentMenuItem {Title="View Ward Disciplinary",TargetType=typeof(ViewWardDisciplinaryAction)},
                 new ParentMenuItem {Title="View Ward Leave Applied",TargetType=typeof(FrmParentLeaves)},
+                new ParentMenuItem {Title="Feedback option",TargetType=typeof(FeedBackByParent)},
                 new ParentMenuItem {Title="Warden Details",TargetType=typeof(FrmWardenDetails)},
                 new ParentMenuItem {Title="Logout",TargetType=typeof(FrmLogin)},
             };

@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls" xmlns:skiarate="clr-namespace:SkiaRate;assembly=SkiaRate.Forms"
              mc:Ignorable="d"
              Title="Feedback Option"
              x:Class="HMS.View.Parent.FeedBackByParent">
-    <Grid>
+    <Grid Margin="10" RowSpacing="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -15,13 +16,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="0">
-            <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Parent Name" Keyboard="Text"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
         <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
-            <controls:BetterEntry Placeholder="Enter Child name" Keyboard="Text"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+            <controls:BetterEntry Placeholder="Parent Of" Keyboard="Text"  PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
-        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35">
-            <controls:BetterEntry Placeholder="Enter Name" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="2">
+            <controls:BetterEntry Placeholder="Warden Name" Keyboard="Text"  Text="{Binding Name}" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
         </Frame>
+        <skiarate:RatingView x:Name="ratingView2" ColorOn="#e96125" Count="5" Grid.Row="3" RatingType="Half"/>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="30" Grid.Row="4">
+            <controls:XEditor x:Name="txtfeedbackdescription" Placeholder="Feedback" Text="{Binding FeedbackDetailsByStudent.improveService}" FontSize="Default" PlaceholderColor="#003366"  TextColor="Black" Margin="9"/>
+        </Frame>
+        <Button Text="Submit Feedback" x:Name="btnsubmitfeedback" Grid.Row="5" TextColor="White" CornerRadius="25" BackgroundColor="#e96125"/>
     </Grid>
 </ContentPage>

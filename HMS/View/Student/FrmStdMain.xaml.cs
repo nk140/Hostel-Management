@@ -32,7 +32,7 @@ namespace HMS.View.Student
                    new StudentMenuItem {Title="Vehicle Request",TargetType=typeof(FrmVehicleRequest)},
                    new StudentMenuItem {Title="Service Feedback",TargetType=typeof(Feedbackonservice)},
                    new StudentMenuItem {Title="View Service Status",TargetType=typeof(ViewRequestedServiceStatus)},
-                   // new StudentMenuItem {Title="Complaint Register",TargetType=typeof(FrmComplaintRegister)},
+                   new StudentMenuItem {Title="Complaint Register",TargetType=typeof(FrmComplaintRegister)},
                 new StudentMenuItem {Title="Contact Warden",TargetType=typeof(FrmContactWarden)},
                 new StudentMenuItem {Title="Logout",TargetType=typeof(FrmLogin)}
             };

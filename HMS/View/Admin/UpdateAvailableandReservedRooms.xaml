@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:HMS.Controls"
+             mc:Ignorable="d"
+             Title="Update Available and Reserved Rooms"
+             x:Class="HMS.View.Admin.UpdateAvailableandReservedRooms">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="0">
+            <controls:BetterEntry Placeholder="No of Available Rooms" Keyboard="Text"  Text="{Binding FeedbackDetailsByStudent.personName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="35" Grid.Row="1">
+            <controls:BetterEntry Placeholder="No of Reserved Rooms" Keyboard="Text"  Text="{Binding FeedbackDetailsByStudent.personName}" IsEnabled="False" PlaceholderColor="Black" FontSize="17" Margin="-17"/>
+        </Frame>
+        <Button Text="Update" x:Name="btnsubmitfeedback" Grid.Row="2" Command="{Binding SubmitFeedbackCommand}" TextColor="White" CornerRadius="25" BackgroundColor="#e96125"/>
+    </Grid>
+</ContentPage>
